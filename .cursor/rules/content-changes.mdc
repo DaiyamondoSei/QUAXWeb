@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Always document all content changes, and keep in a seperate md. or text. file document. All the content that was changed and how. Make sure its easy to read and is storage and maintainability efficient.

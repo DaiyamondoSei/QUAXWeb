@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANEX: Business Model</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .content-container {
+            max-width: 1000px;
+            margin: 150px auto 50px;
+            padding: 2rem;
+            background-color: rgba(5, 5, 32, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .content-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .content-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .content-section h3 {
+            color: var(--accent-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-primary);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-secondary);
+        }
+
+        .pricing-table {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .pricing-tier {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pricing-tier:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .tier-name {
+            font-size: 1.5rem;
+            color: var(--light-text);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .tier-price {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .free-tier .tier-price {
+            color: #00ff88;
+        }
+
+        .standard-tier .tier-price {
+            color: #00b8ff;
+        }
+
+        .master-tier .tier-price {
+            color: #ff00e6;
+        }
+
+        .tier-features {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .tier-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tier-features li:last-child {
+            border-bottom: none;
+        }
+
+        .tier-features li::before {
+            content: "✓";
+            margin-right: 10px;
+            color: #00ff88;
+        }
+
+        .chart-container {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .revenue-chart {
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+
+        .chart-bar {
+            width: 60px;
+            background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .chart-bar:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px rgba(110, 0, 255, 0.5);
+        }
+
+        .chart-bar::after {
+            content: attr(data-value);
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--light-text);
+            font-weight: bold;
+        }
+
+        .chart-bar::before {
+            content: attr(data-label);
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .funding-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .funding-option {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .funding-option:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .funding-option h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .funding-option p {
+            margin-bottom: 15px;
+        }
+
+        .funding-goal {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-top: 15px;
+        }
+
+        .resource-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .resource-nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-primary);
+        }
+
+        .resource-nav-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-secondary);
+            color: white;
+        }
+
+        .resource-nav-item.current {
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+            pointer-events: none;
+        }
+
+        .cost-structure-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cost-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .cost-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .cost-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .cost-content {
+            text-align: center;
+        }
+
+        .cost-percentage {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .cost-details {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cost-details li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cost-details li:last-child {
+            border-bottom: none;
+        }
+
+        .enterprise-solutions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .enterprise-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .enterprise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .enterprise-header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .enterprise-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .enterprise-features {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .enterprise-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .enterprise-features li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo">
+                <div class="quantum-symbol"></div>
+                <h1>QUANEX</h1>
+            </div>
+            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html#vision">Vision</a></li>
+                <li><a href="index.html#framework">Framework</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#science">Science</a></li>
+                <li><a href="index.html#roadmap">Roadmap</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+                <li><a href="academic_alignment.html">Academic</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="content-container">
+        <div class="content-header">
+            <h1>QUANEX: Business Model</h1>
+        </div>
+
+        <div class="resource-navigation">
+            <a href="index.html" class="resource-nav-item">Home</a>
+            <a href="project_proposal.html" class="resource-nav-item">Project Proposal</a>
+            <a href="business_model.html" class="resource-nav-item current">Business Model</a>
+            <a href="academic_alignment.html" class="resource-nav-item">Academic Alignment</a>
+            <a href="scientific_validation.html" class="resource-nav-item">Scientific Validation</a>
+            <a href="advanced_progression.html" class="resource-nav-item">Progression System</a>
+            <a href="implementation_plan.html" class="resource-nav-item">Implementation Plan</a>
+            <a href="app_screens.html" class="resource-nav-item">App Screens</a>
+            <a href="curriculum.html" class="resource-nav-item">4-Week Curriculum</a>
+        </div>
+        
+        <div class="content-section">
+            <h2>Executive Summary</h2>
+            <p>The QUANEX business model is designed to create a sustainable platform that balances accessibility with revenue generation. By implementing a freemium approach with tiered subscriptions, QUANEX can reach a wide audience while generating significant revenue from users who seek advanced features and deeper consciousness development.</p>
+            <p>This document outlines the monetization strategy, initial funding approach, financial projections, and market analysis for QUANEX, providing a comprehensive framework for building a financially viable consciousness acceleration platform.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Market Analysis</h2>
+            <div class="market-stats">
+                <div class="stat-card">
+                    <h3>Market Growth</h3>
+                    <p class="stat-value">$2.63B</p>
+                    <p class="stat-label">Projected Market Size by 2028</p>
+                    <p class="stat-detail">Growing from $533.2M in 2022</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Global Users</h3>
+                    <p class="stat-value">275M</p>
+                    <p class="stat-label">Meditation Practitioners</p>
+                    <p class="stat-detail">Worldwide</p>
+                </div>
+                <div class="stat-card">
+                    <h3>US Growth</h3>
+                    <p class="stat-value">18%</p>
+                    <p class="stat-label">Adult Practitioners</p>
+                    <p class="stat-detail">Up from 4.1% in 2012</p>
+                </div>
+            </div>
+
+            <div class="user-demographics">
+                <h3>User Demographics</h3>
+                <div class="demographics-grid">
+                    <div class="demographic-card primary">
+                        <h4>Primary Users</h4>
+                        <p>Adults 25-45</p>
+                        <p>Spiritual growth & consciousness expansion</p>
+                    </div>
+                    <div class="demographic-card secondary">
+                        <h4>Secondary Users</h4>
+                        <p>Students & Young Adults (18-24)</p>
+                        <p>Exploring meditation & mindfulness</p>
+                    </div>
+                    <div class="demographic-card tertiary">
+                        <h4>Tertiary Users</h4>
+                        <p>Older Adults (46+)</p>
+                        <p>Deeper spiritual connection</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="competitor-analysis">
+                <h3>Competitor Analysis</h3>
+                <div class="competitor-grid">
+                    <div class="competitor-card">
+                        <h4>Mind: Spiritual Awakening</h4>
+                        <ul>
+                            <li>Freemium model with premium content</li>
+                            <li>Focus on spiritual abilities</li>
+                            <li>Remote viewing & lucid dreaming</li>
+                        </ul>
+                    </div>
+                    <div class="competitor-card">
+                        <h4>Headspace</h4>
+                        <ul>
+                            <li>Subscription-only ($69.99/year)</li>
+                            <li>Strong brand recognition</li>
+                            <li>High-quality content & UX</li>
+                        </ul>
+                    </div>
+                    <div class="competitor-card">
+                        <h4>Calm</h4>
+                        <ul>
+                            <li>Subscription ($69.99/year)</li>
+                            <li>Sleep content focus</li>
+                            <li>Celebrity partnerships</li>
+                        </ul>
+                    </div>
+                    <div class="competitor-card">
+                        <h4>Insight Timer</h4>
+                        <ul>
+                            <li>Primarily free with premium features</li>
+                            <li>Largest free meditation library</li>
+                            <li>Strong community features</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>Monetization Strategy</h2>
+            <div class="pricing-table">
+                <div class="pricing-tier free-tier">
+                    <h3 class="tier-name">Free Tier</h3>
+                    <p class="tier-price">$0</p>
+                    <ul class="tier-features">
+                        <li>Basic guided meditations (5-10 minutes)</li>
+                        <li>Limited DI AI assistant access</li>
+                        <li>Daily meditation practice tracking</li>
+                        <li>Community forum (read-only)</li>
+                        <li>Basic progress tracking</li>
+                        <li>Ad-supported experience</li>
+                    </ul>
+                </div>
+                <div class="pricing-tier standard-tier">
+                    <h3 class="tier-name">Premium Tier</h3>
+                    <p class="tier-price">$7.99/mo</p>
+                    <ul class="tier-features">
+                        <li>Full guided meditation access</li>
+                        <li>Complete DI AI functionality</li>
+                        <li>Advanced meditation analysis</li>
+                        <li>Full progress tracking</li>
+                        <li>Custom practice creation</li>
+                        <li>Ad-free experience</li>
+                        <li>Community participation</li>
+                        <li>Offline content access</li>
+                    </ul>
+                </div>
+                <div class="pricing-tier master-tier">
+                    <h3 class="tier-name">Master Tier</h3>
+                    <p class="tier-price">$12.99/mo</p>
+                    <ul class="tier-features">
+                        <li>All Premium features</li>
+                        <li>Advanced ability modules</li>
+                        <li>Exclusive masterclasses</li>
+                        <li>Priority support</li>
+                        <li>Early feature access</li>
+                        <li>Personalized development path</li>
+                        <li>Advanced analytics</li>
+                        <li>Exclusive community access</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Conversion Strategy</h3>
+            <p>To maximize conversion from free to paid tiers, QUANEX will implement the following strategies:</p>
+            <ul>
+                <li><strong>Value Demonstration:</strong> Free tier provides enough value to demonstrate the app's effectiveness while creating natural progression points that encourage upgrades</li>
+                <li><strong>Strategic Feature Gating:</strong> Core features available in free tier, with more advanced and personalized features in paid tiers</li>
+                <li><strong>Progress Motivation:</strong> Users can see their progress in the free tier but encounter natural advancement limits that can be unlocked with subscriptions</li>
+                <li><strong>Social Proof:</strong> Community features showcase advanced users' progress and abilities, creating aspiration</li>
+                <li><strong>Limited-Time Trials:</strong> Occasional access to premium features through time-limited trials</li>
+            </ul>
+            
+            <h3>Additional Revenue Streams</h3>
+            <p>Beyond the core subscription model, QUANEX will explore these additional revenue opportunities:</p>
+            <ul>
+                <li><strong>Enterprise Solutions:</strong> Customized versions for corporate wellness programs, educational institutions, and wellness centers</li>
+                <li><strong>Merchandise:</strong> Physical products aligned with the QUANEX brand (meditation accessories, apparel, etc.)</li>
+                <li><strong>Events:</strong> Virtual and in-person consciousness development workshops and retreats</li>
+                <li><strong>Content Licensing:</strong> Licensing QUANEX content and methodology to other platforms</li>
+                <li><strong>API Access:</strong> Providing API access for developers to build complementary applications</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Initial Funding Strategy</h2>
+            <p>To support development and launch, QUANEX will implement a multi-faceted funding approach:</p>
+            
+            <div class="funding-options">
+                <div class="funding-option">
+                    <h3>Crowdfunding Campaign</h3>
+                    <p>A Kickstarter or Indiegogo campaign will generate initial funding while building an early user base and market validation.</p>
+                    <p>Reward tiers will include lifetime subscriptions, early access, exclusive content, and recognition within the app.</p>
+                    <div class="funding-goal">Goal: $25,000 - $50,000</div>
+                </div>
+                
+                <div class="funding-option">
+                    <h3>Early Access Program</h3>
+                    <p>A discounted subscription program during development that provides users with beta access and the ability to shape the platform's evolution.</p>
+                    <p>Early adopters receive special recognition, exclusive features, and lifetime discounts.</p>
+                    <div class="funding-goal">Price: $2.99 - $4.99/month</div>
+                </div>
+                
+                <div class="funding-option">
+                    <h3>Lifetime Subscriptions</h3>
+                    <p>Limited-time offers for lifetime access to QUANEX at a premium one-time price, creating immediate revenue while building a dedicated user base.</p>
+                    <p>Tiered lifetime options with different benefit levels and exclusivity.</p>
+                    <div class="funding-goal">Price: €149 - €199</div>
+                </div>
+            </div>
+            
+            <h3>University Integration</h3>
+            <p>Leveraging Hanze University's startup support programs like Start-Up City and Incubator Cube050 can provide additional resources, mentorship, and potential funding opportunities.</p>
+            
+            <h3>Future Funding Rounds</h3>
+            <p>After establishing initial traction and user base, QUANEX may pursue:</p>
+            <ul>
+                <li><strong>Angel Investment:</strong> From investors interested in consciousness technology and wellness applications</li>
+                <li><strong>Venture Capital:</strong> For scaling operations and accelerating development of advanced features</li>
+                <li><strong>Strategic Partnerships:</strong> With established wellness platforms, meditation apps, or gaming companies</li>
+            </ul>
+        </div>
+        
+        <div class="content-section">
+            <h2>Financial Projections</h2>
+            <div class="financial-projections-grid">
+                <div class="financial-card">
+                    <h3>MVP Phase (0-6 Months)</h3>
+                    <ul>
+                        <li><strong>Development Cost:</strong> $100,000 - $150,000</li>
+                        <li><strong>Marketing Budget:</strong> $20,000 - $30,000</li>
+                        <li><strong>Revenue Potential:</strong> $10,000 - $20,000/month</li>
+                        <li><strong>Funding Sources:</strong>
+                            <ul>
+                                <li>Crowdfunding campaign</li>
+                                <li>Early access program</li>
+                                <li>Pre-sales of premium features</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="financial-card">
+                    <h3>Phase 2 (6-12 Months)</h3>
+                    <ul>
+                        <li><strong>Development Cost:</strong> $150,000 - $200,000</li>
+                        <li><strong>Marketing Budget:</strong> $30,000 - $50,000</li>
+                        <li><strong>Revenue Potential:</strong> $30,000 - $50,000/month</li>
+                        <li><strong>Funding Sources:</strong>
+                            <ul>
+                                <li>Revenue from MVP phase</li>
+                                <li>Angel investment</li>
+                                <li>Strategic partnerships</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="financial-card">
+                    <h3>Phase 3 (12-18 Months)</h3>
+                    <ul>
+                        <li><strong>Development Cost:</strong> $200,000 - $300,000</li>
+                        <li><strong>Marketing Budget:</strong> $50,000 - $100,000</li>
+                        <li><strong>Revenue Potential:</strong> $100,000 - $200,000/month</li>
+                        <li><strong>Funding Sources:</strong>
+                            <ul>
+                                <li>Revenue from Phase 2</li>
+                                <li>Series A funding</li>
+                                <li>Enterprise contracts</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="financial-card">
+                    <h3>Phase 4 (18+ Months)</h3>
+                    <ul>
+                        <li><strong>Development Cost:</strong> $300,000 - $500,000+</li>
+                        <li><strong>Marketing Budget:</strong> $100,000 - $200,000+</li>
+                        <li><strong>Revenue Potential:</strong> $300,000 - $500,000+/month</li>
+                        <li><strong>Funding Sources:</strong>
+                            <ul>
+                                <li>Revenue from Phase 3</li>
+                                <li>Series B funding</li>
+                                <li>Strategic partnerships</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Revenue Model</h2>
+            <div class="pricing-table">
+                <div class="pricing-tier free-tier">
+                    <h3 class="tier-name">Free Tier</h3>
+                    <div class="tier-price">$0</div>
+                    <ul class="tier-features">
+                        <li>Basic quantum parameter tracking</li>
+                        <li>Limited meditation sessions</li>
+                        <li>Basic astral body visualization (Stage 1)</li>
+                        <li>Community access</li>
+                        <li>Basic QXP system</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-tier standard-tier">
+                    <h3 class="tier-name">Standard Tier</h3>
+                    <div class="tier-price">$19.99/mo</div>
+                    <ul class="tier-features">
+                        <li>Advanced quantum parameter tracking</li>
+                        <li>Unlimited meditation sessions</li>
+                        <li>Advanced astral body visualization (Stages 1-3)</li>
+                        <li>Priority community access</li>
+                        <li>Enhanced QXP system</li>
+                        <li>Basic Divine Intelligence guidance</li>
+                        <li>Network meditation features</li>
+                    </ul>
+                </div>
+
+                <div class="pricing-tier master-tier">
+                    <h3 class="tier-name">Master Tier</h3>
+                    <div class="tier-price">$49.99/mo</div>
+                    <ul class="tier-features">
+                        <li>Complete quantum parameter tracking</li>
+                        <li>Unlimited premium meditation sessions</li>
+                        <li>Full astral body visualization (All stages)</li>
+                        <li>VIP community access</li>
+                        <li>Advanced QXP system</li>
+                        <li>Advanced Divine Intelligence guidance</li>
+                        <li>Full network meditation features</li>
+                        <li>Sacred geometry integration</li>
+                        <li>Personalized development path</li>
+                        <li>Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Revenue Growth Projection</h2>
+            <div class="chart-container">
+                <h3 class="chart-title">Monthly Revenue Projection</h3>
+                <div class="revenue-chart">
+                    <div class="chart-bar" data-value="$20K" data-label="MVP"></div>
+                    <div class="chart-bar" data-value="$50K" data-label="Phase 2"></div>
+                    <div class="chart-bar" data-value="$200K" data-label="Phase 3"></div>
+                    <div class="chart-bar" data-value="$500K" data-label="Phase 4"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Funding Strategy</h2>
+            <div class="funding-options">
+                <div class="funding-option">
+                    <h3>Initial Funding</h3>
+                    <ul>
+                        <li>Crowdfunding campaign: $100,000</li>
+                        <li>Early access program: $50,000</li>
+                        <li>Personal investment: $50,000</li>
+                        <li>Total: $200,000</li>
+                    </ul>
+                </div>
+                <div class="funding-option">
+                    <h3>Growth Funding</h3>
+                    <ul>
+                        <li>Angel investment: $500,000</li>
+                        <li>Series A: $2,000,000</li>
+                        <li>Series B: $5,000,000</li>
+                        <li>Total: $7,500,000</li>
+                    </ul>
+                </div>
+                <div class="funding-option">
+                    <h3>Revenue Streams</h3>
+                    <ul>
+                        <li>Subscription revenue</li>
+                        <li>Enterprise licensing</li>
+                        <li>Premium features</li>
+                        <li>Partnership programs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>Cost Structure</h2>
+            <div class="cost-structure-grid">
+                <div class="cost-card">
+                    <div class="cost-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="cost-content">
+                        <h3>Development & Maintenance</h3>
+                        <div class="cost-percentage">30% of revenue</div>
+                        <ul class="cost-details">
+                            <li>Core app development</li>
+                            <li>Feature updates</li>
+                            <li>Bug fixes</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cost-card">
+                    <div class="cost-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="cost-content">
+                        <h3>Marketing & User Acquisition</h3>
+                        <div class="cost-percentage">25% of revenue</div>
+                        <ul class="cost-details">
+                            <li>Digital marketing</li>
+                            <li>User acquisition campaigns</li>
+                            <li>Brand development</li>
+                            <li>Community building</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cost-card">
+                    <div class="cost-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="cost-content">
+                        <h3>Content Creation</h3>
+                        <div class="cost-percentage">15% of revenue</div>
+                        <ul class="cost-details">
+                            <li>Meditation content</li>
+                            <li>Educational materials</li>
+                            <li>Visual assets</li>
+                            <li>Audio production</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cost-card">
+                    <div class="cost-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="cost-content">
+                        <h3>Operations & Support</h3>
+                        <div class="cost-percentage">10% of revenue</div>
+                        <ul class="cost-details">
+                            <li>Customer support</li>
+                            <li>Server costs</li>
+                            <li>Administrative expenses</li>
+                            <li>Legal compliance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cost-card profit">
+                    <div class="cost-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="cost-content">
+                        <h3>Profit Margin</h3>
+                        <div class="cost-percentage">20% of revenue</div>
+                        <ul class="cost-details">
+                            <li>Reinvestment potential</li>
+                            <li>Growth funding</li>
+                            <li>Shareholder returns</li>
+                            <li>Emergency reserves</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Enterprise Solutions</h2>
+            <div class="enterprise-solutions">
+                <div class="enterprise-card">
+                    <div class="enterprise-header">
+                        <h3>Corporate Wellness</h3>
+                        <div class="enterprise-price">$99-$299 per employee/year</div>
+                    </div>
+                    <div class="enterprise-features">
+                        <ul>
+                            <li>Custom branded interface</li>
+                            <li>Employee progress tracking</li>
+                            <li>Wellness program integration</li>
+                            <li>HR analytics dashboard</li>
+                            <li>Team meditation sessions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="enterprise-card">
+                    <div class="enterprise-header">
+                        <h3>Educational Institutions</h3>
+                        <div class="enterprise-price">$49-$99 per student/year</div>
+                    </div>
+                    <div class="enterprise-features">
+                        <ul>
+                            <li>Academic integration tools</li>
+                            <li>Student progress monitoring</li>
+                            <li>Research collaboration features</li>
+                            <li>Faculty training modules</li>
+                            <li>Institution branding</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="enterprise-card">
+                    <div class="enterprise-header">
+                        <h3>Healthcare Providers</h3>
+                        <div class="enterprise-price">Custom pricing</div>
+                    </div>
+                    <div class="enterprise-features">
+                        <ul>
+                            <li>HIPAA compliance</li>
+                            <li>Patient progress tracking</li>
+                            <li>Clinical integration tools</li>
+                            <li>Healthcare provider dashboard</li>
+                            <li>Treatment plan integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-button">Back to Home</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="quantum-symbol-small"></div>
+                <h3>QUANEX</h3>
+            </div>
+            <div class="footer-tagline">
+                <p>Bridging Quantum Physics and Consciousness</p>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2024 QUANEX. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="privacy.html">Privacy Policy</a> | 
+                    <a href="terms.html">Terms of Use</a> | 
+                    <a href="https://github.com/yourusername/QUANEX/blob/main/LICENSE" target="_blank">License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to Top Button Functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

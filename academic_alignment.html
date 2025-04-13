@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANEX: Academic Alignment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="academic_styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .content-container {
+            max-width: 1000px;
+            margin: 150px auto 50px;
+            padding: 2rem;
+            background-color: rgba(5, 5, 32, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .content-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .content-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .content-section h3 {
+            color: var(--accent-color);
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .research-area {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .research-area:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            box-shadow: var(--glow-accent);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-primary);
+        }
+        
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--glow-secondary);
+        }
+
+        .resource-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .resource-nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--glow-primary);
+        }
+
+        .resource-nav-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--glow-secondary);
+            color: white;
+        }
+
+        .resource-nav-item.current {
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header>
+        <a href="index.html" class="logo-container">
+            <div class="logo">
+                <div class="quantum-symbol"></div>
+                <h1>QUANEX</h1>
+            </div>
+            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html#vision">Vision</a></li>
+                <li><a href="index.html#framework">Framework</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#science">Science</a></li>
+                <li><a href="index.html#roadmap">Roadmap</a></li>
+                <li><a href="index.html#resources">Resources</a></li>
+                <li><a href="academic_alignment.html">Academic</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="academic-container">
+        <div class="main-content">
+            <div class="content-header">
+                <h1>Academic Alignment</h1>
+                <p>QUANXES and International Finance & Control</p>
+            </div>
+            
+            <div class="resource-navigation">
+                <a href="index.html" class="resource-nav-item">Home</a>
+                <a href="project_proposal.html" class="resource-nav-item">Project Proposal</a>
+                <a href="business_model.html" class="resource-nav-item">Business Model</a>
+                <a href="academic_alignment.html" class="resource-nav-item current">Academic Alignment</a>
+                <a href="scientific_validation.html" class="resource-nav-item">Scientific Validation</a>
+                <a href="advanced_progression.html" class="resource-nav-item">Progression System</a>
+                <a href="implementation_plan.html" class="resource-nav-item">Implementation Plan</a>
+                <a href="app_screens.html" class="resource-nav-item">App Screens</a>
+                <a href="curriculum.html" class="resource-nav-item">4-Week Curriculum</a>
+            </div>
+
+            <nav class="secondary-nav">
+                <a href="#overview" class="secondary-nav-item active">Overview</a>
+                <a href="#financial-focus" class="secondary-nav-item">Financial Focus</a>
+                <a href="#academic-integration" class="secondary-nav-item">Integration</a>
+                <a href="#implementation" class="secondary-nav-item">Implementation</a>
+            </nav>
+
+            <section id="overview" class="content-section">
+                <div class="section-header">
+                    <h2>Executive Summary</h2>
+                </div>
+                <p>This document outlines how the QUANXES (Quantum Nexus) consciousness accelerator app project aligns with the International Finance & Control program at Hanze University of Applied Sciences. By focusing on specific financial and business aspects of the project, this alignment creates a compelling case for thesis approval while maintaining the innovative consciousness development core of the application.</p>
+            </section>
+
+            <section id="financial-focus" class="content-section">
+                <div class="section-header">
+                    <h2>Key Financial Focus Areas</h2>
+                </div>
+                <div class="research-grid">
+                    <div class="research-area">
+                        <h3>Business Model Innovation</h3>
+                        <h4>Research Questions</h4>
+                        <ul>
+                            <li>How can subscription and freemium models be optimized?</li>
+                            <li>What pricing strategies maximize accessibility and revenue?</li>
+                            <li>How do monetization approaches affect user engagement?</li>
+                        </ul>
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Comparative analysis of business models</li>
+                            <li>A/B testing of pricing structures</li>
+                            <li>Quantitative analysis of conversion rates</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>Financial Viability</h3>
+                        <h4>Research Questions</h4>
+                        <ul>
+                            <li>What are the key financial metrics for success?</li>
+                            <li>How does the cost structure compare to traditional apps?</li>
+                            <li>What is the projected timeline to profitability?</li>
+                        </ul>
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Cost-benefit analysis</li>
+                            <li>Break-even analysis</li>
+                            <li>Sensitivity analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>Market Valuation</h3>
+                        <h4>Research Questions</h4>
+                        <ul>
+                            <li>How are consciousness apps valued vs traditional software?</li>
+                            <li>What valuation metrics are most relevant?</li>
+                            <li>How do growth strategies impact valuation?</li>
+                        </ul>
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Comparative valuation analysis</li>
+                            <li>Case studies of successful apps</li>
+                            <li>Expert interviews</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>Investment Strategy</h3>
+                        <h4>Research Questions</h4>
+                        <ul>
+                            <li>What funding sources are most appropriate?</li>
+                            <li>How can early revenue affect investment needs?</li>
+                            <li>What investor profiles align best?</li>
+                        </ul>
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Funding pattern analysis</li>
+                            <li>Comparative study of funding approaches</li>
+                            <li>Risk assessment</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>Financial Risk Management</h3>
+                        <h4>Research Questions</h4>
+                        <ul>
+                            <li>What are the unique financial risks?</li>
+                            <li>How can financial modeling mitigate risks?</li>
+                            <li>What contingency strategies maximize resilience?</li>
+                        </ul>
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Risk identification and quantification</li>
+                            <li>Scenario planning</li>
+                            <li>Comparative analysis of strategies</li>
+                        </ul>
+                    </div>
+
+                    <div class="research-area">
+                        <h3>International Market Entry</h3>
+                        <h4>Research Questions</h4>
+                        <ul>
+                            <li>What financial factors affect international expansion?</li>
+                            <li>How do monetization strategies need to adapt?</li>
+                            <li>What is the optimal expansion sequence?</li>
+                        </ul>
+                        <h4>Methodologies</h4>
+                        <ul>
+                            <li>Market analysis by region</li>
+                            <li>Financial modeling of expansion</li>
+                            <li>Currency risk management</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="academic-integration" class="content-section">
+                <div class="section-header">
+                    <h2>Academic Integration Framework</h2>
+                </div>
+                <h3>Thesis Structure</h3>
+                <div class="thesis-structure">
+                    <h4>Proposed Title</h4>
+                    <p>"Financial Viability and Business Model Innovation in Consciousness Technology: A Case Study of QUANXES"</p>
+                    
+                    <h4>Chapter Structure</h4>
+                    <ol>
+                        <li>Introduction: The intersection of finance, technology, and consciousness development</li>
+                        <li>Literature Review: Business models and financial strategies in wellness technology</li>
+                        <li>Methodology: Financial analysis frameworks and research approach</li>
+                        <li>Case Study: QUANXES business model and financial strategy</li>
+                        <li>Financial Analysis: Projections, valuation, and risk assessment</li>
+                        <li>Market Strategy: Pricing, monetization, and international expansion</li>
+                        <li>Conclusions: Financial implications and business recommendations</li>
+                    </ol>
+                </div>
+
+                <h3>Learning Objectives Alignment</h3>
+                <div class="learning-objectives">
+                    <div class="objective-group">
+                        <h4>International Finance Competencies</h4>
+                        <ul>
+                            <li>International market analysis and entry strategy</li>
+                            <li>Currency risk management for global digital products</li>
+                            <li>Cross-cultural pricing and monetization strategies</li>
+                        </ul>
+                    </div>
+
+                    <div class="objective-group">
+                        <h4>Control Competencies</h4>
+                        <ul>
+                            <li>Financial modeling and projection methodologies</li>
+                            <li>Risk assessment and mitigation strategies</li>
+                            <li>Performance metrics and KPI development</li>
+                            <li>Financial monitoring systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="objective-group">
+                        <h4>Business Development Competencies</h4>
+                        <ul>
+                            <li>Business model innovation and optimization</li>
+                            <li>Pricing strategy development</li>
+                            <li>Investment strategy and funding approaches</li>
+                            <li>Valuation methodologies for digital products</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="implementation" class="content-section">
+                <div class="section-header">
+                    <h2>Implementation Timeline</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3>Pre-Thesis Phase (Current - September 2025)</h3>
+                        <ul>
+                            <li>Develop initial financial models and projections</li>
+                            <li>Create preliminary business plan with financial focus</li>
+                            <li>Begin early revenue generation to provide financial data</li>
+                            <li>Establish financial tracking systems for prototype phase</li>
+                        </ul>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h3>Thesis Phase (September 2025 - June 2026)</h3>
+                        <ul>
+                            <li>Conduct formal financial research and analysis</li>
+                            <li>Develop comprehensive financial strategy</li>
+                            <li>Implement and test monetization approaches</li>
+                            <li>Analyze financial data from early implementation</li>
+                            <li>Prepare formal financial documentation and thesis</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="content-section">
+                <h2>Academic Integration Timeline</h2>
+                <div class="academic-timeline">
+                    <div class="academic-phase">
+                        <h3>Pre-Thesis Phase (Current - September 2025)</h3>
+                        <ul>
+                            <li><strong>MVP Development (0-6 months)</strong>
+                                <ul>
+                                    <li>Complete core quantum parameters framework</li>
+                                    <li>Implement basic visualization systems</li>
+                                    <li>Develop initial user testing protocols</li>
+                                    <li>Create data collection framework</li>
+                                </ul>
+                            </li>
+                            <li><strong>Early Access Program (6-12 months)</strong>
+                                <ul>
+                                    <li>Launch beta testing with academic community</li>
+                                    <li>Gather initial user data and feedback</li>
+                                    <li>Begin Phase 2 implementation</li>
+                                    <li>Develop research partnerships</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="academic-phase">
+                        <h3>Thesis Phase (September 2025 - June 2026)</h3>
+                        <ul>
+                            <li><strong>Research & Analysis (September 2025 - December 2025)</strong>
+                                <ul>
+                                    <li>Analyze financial performance of MVP</li>
+                                    <li>Study user engagement patterns</li>
+                                    <li>Evaluate feature adoption rates</li>
+                                    <li>Assess market positioning</li>
+                                </ul>
+                            </li>
+                            <li><strong>Strategy Development (January 2026 - March 2026)</strong>
+                                <ul>
+                                    <li>Develop comprehensive business strategy</li>
+                                    <li>Research monetization effectiveness</li>
+                                    <li>Create international expansion model</li>
+                                    <li>Design partnership frameworks</li>
+                                </ul>
+                            </li>
+                            <li><strong>Implementation & Validation (April 2026 - June 2026)</strong>
+                                <ul>
+                                    <li>Begin Phase 3 implementation</li>
+                                    <li>Validate business model assumptions</li>
+                                    <li>Test scaling strategies</li>
+                                    <li>Prepare for post-thesis growth</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Thesis Integration</h2>
+                <div class="thesis-details">
+                    <div class="thesis-card">
+                        <div class="thesis-header">
+                            <h3>Research Focus</h3>
+                            <div class="thesis-question">
+                                "How can gamification principles be effectively applied to spiritual development applications to increase user engagement and measurable progress in consciousness expansion?"
+                            </div>
+                        </div>
+                        <div class="thesis-content">
+                            <div class="methodology-section">
+                                <h4>Methodology</h4>
+                                <ul>
+                                    <li>Literature review of consciousness studies, gamification, and app engagement</li>
+                                    <li>User testing and feedback analysis</li>
+                                    <li>Iterative design and development process</li>
+                                    <li>Quantitative and qualitative assessment of user progress</li>
+                                </ul>
+                            </div>
+                            <div class="academic-value-section">
+                                <h4>Academic Value</h4>
+                                <ul>
+                                    <li>Contributes to understanding of digital tools for consciousness development</li>
+                                    <li>Explores intersection of technology, gamification, and spiritual growth</li>
+                                    <li>Provides framework for measuring subjective spiritual experiences</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>University Support Ecosystem</h2>
+                <div class="university-support">
+                    <div class="support-card">
+                        <div class="support-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="support-content">
+                            <h3>Start-Up City</h3>
+                            <p>Facility for startups and scale-ups at Hanze University</p>
+                            <ul class="support-features">
+                                <li>Modern workspace facilities</li>
+                                <li>Networking opportunities</li>
+                                <li>Access to university resources</li>
+                                <li>Collaboration spaces</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-icon">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <div class="support-content">
+                            <h3>Incubator Cube050</h3>
+                            <p>600 m² office space with comprehensive support</p>
+                            <ul class="support-features">
+                                <li>Dedicated office space</li>
+                                <li>Professional coaching</li>
+                                <li>Business development support</li>
+                                <li>Access to mentors</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="support-content">
+                            <h3>Marian van Os Centre</h3>
+                            <p>Focus on applied research and entrepreneurship</p>
+                            <ul class="support-features">
+                                <li>Research collaboration</li>
+                                <li>Educational resources</li>
+                                <li>Expert guidance</li>
+                                <li>Academic networking</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="support-card">
+                        <div class="support-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <div class="support-content">
+                            <h3>BusinessMatch Groningen</h3>
+                            <p>Student platform for events and networking</p>
+                            <ul class="support-features">
+                                <li>Networking events</li>
+                                <li>Competition opportunities</li>
+                                <li>Student collaboration</li>
+                                <li>Industry connections</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Application Process</h2>
+                <div class="application-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Initial Contact</h3>
+                        <p>Reach out to BusinessMatch Groningen as first point of contact</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Concept Presentation</h3>
+                        <p>Present the app concept and business plan</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Incubation Application</h3>
+                        <p>Apply for space in the Cube050 incubator if physical space is needed</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Mentorship Matching</h3>
+                        <p>Connect with relevant coaches and mentors</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <h3>Thesis Integration</h3>
+                        <p>Work with academic advisors to integrate the startup into thesis requirements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="progress-sidebar">
+            <div class="progress-header">
+                <h2>Research Progress</h2>
+                <p>Current Phase: Pre-Thesis Development</p>
+            </div>
+
+            <div class="progress-timeline">
+                <div class="timeline-phase">
+                    <div class="phase-marker"></div>
+                    <h3 class="phase-title">Initial Research</h3>
+                    <p class="phase-date">March 2024</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%"></div>
+                    </div>
+                    <p class="progress-percentage">100% Complete</p>
+                </div>
+
+                <div class="timeline-phase">
+                    <div class="phase-marker"></div>
+                    <h3 class="phase-title">Financial Modeling</h3>
+                    <p class="phase-date">April 2024</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <p class="progress-percentage">60% Complete</p>
+                </div>
+
+                <div class="timeline-phase">
+                    <div class="phase-marker"></div>
+                    <h3 class="phase-title">Market Analysis</h3>
+                    <p class="phase-date">May 2024</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 40%"></div>
+                    </div>
+                    <p class="progress-percentage">40% Complete</p>
+                </div>
+            </div>
+
+            <div class="progress-indicators">
+                <div class="progress-item">
+                    <h3>Documentation</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                    <p class="progress-percentage">75% Complete</p>
+                </div>
+
+                <div class="progress-item">
+                    <h3>Research Questions</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                    <p class="progress-percentage">90% Complete</p>
+                </div>
+
+                <div class="progress-item">
+                    <h3>Methodology</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%"></div>
+                    </div>
+                    <p class="progress-percentage">65% Complete</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <div class="quantum-symbol-small"></div>
+                <h3>QUANEX</h3>
+            </div>
+            <div class="footer-tagline">
+                <p>Bridging Quantum Physics and Consciousness</p>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2024 QUANEX. All rights reserved.</p>
+                <div class="legal-links">
+                    <a href="privacy.html">Privacy Policy</a> | 
+                    <a href="terms.html">Terms of Use</a> | 
+                    <a href="https://github.com/yourusername/QUANEX/blob/main/LICENSE" target="_blank">License</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Handle secondary navigation highlighting
+        const sections = document.querySelectorAll('.content-section');
+        const navItems = document.querySelectorAll('.secondary-nav-item');
+
+        function setActiveNavItem() {
+            const scrollPosition = window.scrollY;
+
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - 150;
+                const sectionBottom = sectionTop + section.offsetHeight;
+
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    navItems.forEach(item => item.classList.remove('active'));
+                    navItems[index].classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveNavItem);
+        window.addEventListener('load', setActiveNavItem);
+
+        // Back to Top Button Functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html> 
