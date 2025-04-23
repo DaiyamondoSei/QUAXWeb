@@ -1,0 +1,321 @@
+<invoke name="run_terminal_cmd">
+<parameter name="command">lighthouse https://quannex.com --view --output=html --output-path=./lighthouse-report.html</parameter>
+<parameter name="explanation">Running a Lighthouse audit to identify performance, accessibility, SEO, and best practices issues.</parameter>
+<parameter name="is_background">false</parameter>
+<parameter name="require_user_approval">true</parameter>
+</invoke> 
+
+<invoke name="edit_file">
+<parameter name="target_file">robots.txt</parameter>
+<parameter name="instructions">I will update the robots.txt file to reflect the new domain name.</parameter>
+<parameter name="code_edit">User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Sitemaps
+Sitemap: https://quannex.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10</parameter>
+</invoke> 
+
+<invoke name="edit_file">
+<parameter name="target_file">index.html</parameter>
+<parameter name="instructions">I will update all remaining instances of Quanex/QUANEX/quanex to Quannex/QUANNEX/quannex in the index.html file.</parameter>
+<parameter name="code_edit"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANNEX: Quantum Nexus - Consciousness Accelerator</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="QUANNEX: Quantum Nexus - Consciousness Accelerator">
+    <meta name="author" content="QUANNEX">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="QUANNEX: Quantum Nexus - Consciousness Accelerator">
+    
+    <!-- Twitter -->
+    <meta property="twitter:title" content="QUANNEX: Quantum Nexus - Consciousness Accelerator">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "QUANNEX: Quantum Nexus",
+        "description": "Your AI Guide to Expanded Consciousness & Future Self Integration",
+        "url": "https://quannex.com",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "100"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "QUANNEX",
+            "url": "https://quannex.com"
+        }
+    }
+    </script>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo-container" aria-label="QUANNEX Home">
+            <div class="logo" role="img" aria-label="QUANNEX Logo">
+                <div class="quantum-symbol" aria-hidden="true">
+                    <div class="quantum-particles">
+                        <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
+                        <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
+                        <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
+                        <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
+                    </div>
+                </div>
+                <h1>QUANNEX</h1>
+            </div>
+            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
+        </a>
+    </header>
+    <main>
+        <section id="resources" class="resources">
+            <div class="section-header">
+                <h2>Project Resources</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="resources-grid">
+                <a href="project_proposal.html" class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-file-alt"></i></div>
+                    <h3>Project Proposal</h3>
+                    <p>Comprehensive overview of the QUANNEX concept and vision</p>
+                </a>
+            </div>
+        </section>
+
+        <section id="app" class="app">
+            <div class="section-header">
+                <h2>Consciousness Accelerator App</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="app-content">
+                <div class="app-text">
+                    <p>The Consciousness Accelerator app is a revolutionary mobile platform that bridges spirituality and quantum physics through structured, incremental learning experiences. Through our innovative Five Quantum Parameters Framework and AI-powered Divine Intelligence guide, users can expand their consciousness and develop spiritual abilities in an engaging, gamified environment.</p>
+                    <div class="app-features">
+                        <div class="app-feature">
+                            <h3>Divine Intelligence Guide</h3>
+                            <p>Personalized AI assistant providing guidance and insights based on your progress</p>
+                        </div>
+                        <div class="app-feature">
+                            <h3>Meditation Analysis</h3>
+                            <p>Advanced tracking and analysis of meditation sessions for optimal development</p>
+                        </div>
+                        <div class="app-feature">
+                            <h3>Quantum Parameters</h3>
+                            <p>Comprehensive framework for measuring and developing consciousness</p>
+                        </div>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="consciousness_accelerator.html" class="cta-button primary">Learn More</a>
+                        <a href="app_features.html" class="cta-button secondary" id="viewFeaturesBtn">View Features</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html></parameter>
+</invoke> 
+
+<invoke name="edit_file">
+<parameter name="target_file">privacy.html</parameter>
+<parameter name="instructions">I will replace Quanex with Quannex in the privacy policy.</parameter>
+<parameter name="code_edit"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - QUANNEX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <section class="privacy-policy">
+            <h1>Privacy Policy</h1>
+            <div class="last-updated">Last Updated: April 18, 2024</div>
+            
+            <section>
+                <h2>1. Introduction</h2>
+                <p>Welcome to QUANNEX's Privacy Policy. We respect your privacy and are committed to protecting your personal data.</p>
+            </section>
+        </section>
+    </main>
+</body>
+</html></parameter>
+</invoke> 
+
+<invoke name="edit_file">
+<parameter name="target_file">sitemap.xml</parameter>
+<parameter name="instructions">I will update the sitemap.xml file to reflect the new domain name.</parameter>
+<parameter name="code_edit"><?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://quannex.com/</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/consciousness_accelerator.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/quantum_parameters.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/app_features.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/academic_alignment.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/scientific_validation.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/technical_implementation.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/consciousness_bands.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/advanced_progression.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/implementation_plan.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/app_screens.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/contact.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/privacy.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://quannex.com/terms.html</loc>
+        <lastmod>2024-04-18</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset></parameter>
+</invoke> 
+
+<invoke name="grep_search">
+<parameter name="query">Quanex|QUANEX|quanex</parameter>
+<parameter name="case_sensitive">false</parameter>
+</invoke> 
+
+<invoke name="list_dir">
+<parameter name="relative_workspace_path">.</parameter>
+</invoke> 
+
+<invoke name="edit_file">
+<parameter name="target_file">js/analytics.js</parameter>
+<parameter name="instructions">I will update the analytics configuration to use the new domain name.</parameter>
+<parameter name="code_edit">// Google Analytics Implementation
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX', {
+    'cookie_domain': 'quannex.com',
+    'linker': {
+        'domains': ['quannex.com']
+    }
+});
+
+// Enhanced Event Tracking
+document.addEventListener('DOMContentLoaded', function() {
+    // Track page views
+    gtag('event', 'page_view', {
+        'page_title': document.title,
+        'page_location': window.location.href,
+        'page_path': window.location.pathname
+    });
+
+    // Track CTA clicks
+    document.querySelectorAll('.cta-button').forEach(button => {
+        button.addEventListener('click', function() {
+            gtag('event', 'cta_click', {
+                'event_category': 'Engagement',
+                'event_label': this.textContent.trim()
+            });
+        });
+    });
+
+    // Track feature exploration
+    document.querySelectorAll('.feature').forEach(feature => {
+        feature.addEventListener('click', function() {
+            gtag('event', 'feature_click', {
+                'event_category': 'Features',
+                'event_label': this.querySelector('h3').textContent
+            });
+        });
+    });
+
+    // Track resource downloads
+    document.querySelectorAll('.resource-card').forEach(card => {
+        card.addEventListener('click', function() {
+            gtag('event', 'resource_click', {
+                'event_category': 'Resources',
+                'event_label': this.querySelector('h3').textContent
+            });
+        });
+    });
+});</parameter>
+</invoke> 

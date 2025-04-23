@@ -1,0 +1,24 @@
+/* Reading Progress Bar */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, 
+        var(--primary-color),
+        var(--secondary-color),
+        var(--accent-color));
+    z-index: 1000;
+    transform: translateX(0);
+    transition: transform 0.1s ease;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .reading-progress {
+        transition: none;
+    }
+} 

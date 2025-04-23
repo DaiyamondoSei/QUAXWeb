@@ -3,183 +3,1125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quantum Parameters - QUANEX Foundation</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Explore the Five Quantum Parameters Framework - A scientific approach to consciousness development through quantum-inspired principles.">
+    <title>Quantum Parameters - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/quantum_parameters.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
+    <style>
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, 
+                var(--dark-background) 0%,
+                rgba(5, 5, 32, 0.98) 5%,
+                rgba(5, 5, 32, 0.95) 15%,
+                rgba(5, 5, 32, 0.9) 100%);
+        }
+        
+        .app-page-content {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            background: none;
+        }
+        
+        .quantum-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8rem 0 4rem;
+            overflow: hidden;
+            background: linear-gradient(180deg,
+                rgba(5, 5, 32, 0.95) 0%,
+                rgba(5, 5, 32, 0.9) 50%,
+                rgba(5, 5, 32, 0.85) 100%);
+            border-bottom: 1px solid rgba(110, 0, 255, 0.1);
+            box-shadow: 
+                inset 0 20px 30px rgba(0, 0, 0, 0.2),
+                inset 0 -20px 30px rgba(0, 0, 0, 0.2);
+            mask-image: linear-gradient(
+                180deg,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            ),
+            linear-gradient(
+                90deg,
+                transparent 0%,
+                black 5%,
+                black 95%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                180deg,
+                transparent 0%,
+                black 8%,
+                black 92%,
+                transparent 100%
+            ),
+            linear-gradient(
+                90deg,
+                transparent 0%,
+                black 5%,
+                black 95%,
+                transparent 100%
+            );
+            mask-composite: intersect;
+            -webkit-mask-composite: source-in;
+        }
+
+        .quantum-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 50% 0%,
+                    rgba(110, 0, 255, 0.1) 0%,
+                    transparent 70%),
+                radial-gradient(circle at 0% 50%,
+                    rgba(0, 184, 255, 0.05) 0%,
+                    transparent 50%),
+                radial-gradient(circle at 100% 50%,
+                    rgba(0, 184, 255, 0.05) 0%,
+                    transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .quantum-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 100%,
+                rgba(0, 184, 255, 0.05) 0%,
+                transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .quantum-hero:hover::before,
+        .quantum-hero:hover::after {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2.5rem;
+            border-radius: 24px;
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(110, 0, 255, 0.15),
+                inset 0 0 20px rgba(0, 184, 255, 0.08);
+            transform: translateY(0);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .hero-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 12px 40px 0 rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(110, 0, 255, 0.2),
+                inset 0 0 25px rgba(0, 184, 255, 0.1);
+        }
+
+        .quantum-title-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .quantum-title-container h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quantum-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--primary-color),
+                var(--secondary-color),
+                var(--accent-color));
+            opacity: 0.7;
+            filter: blur(1px);
+            animation: glowLine 3s ease-in-out infinite;
+        }
+
+        .quantum-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--medium-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quantum-nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quantum-nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.3);
+            border-radius: 8px;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .quantum-nav-btn i {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .quantum-nav-btn span {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--light-text);
+        }
+
+        .quantum-btn-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(110, 0, 255, 0.4),
+                rgba(0, 184, 255, 0.2),
+                rgba(255, 0, 230, 0.4));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .quantum-nav-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(110, 0, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
+        }
+
+        .quantum-nav-btn:hover .quantum-btn-glow {
+            opacity: 0.8;
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+
+        .quantum-nav-btn:hover i {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .parameters-visualization {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .parameters-sphere {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .parameters-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8),
+                rgba(110, 0, 255, 0.6));
+            box-shadow: 0 0 50px rgba(110, 0, 255, 0.6);
+            animation: pulseSphere 4s ease-in-out infinite;
+        }
+
+        .parameters-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .parameters-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid rgba(0, 184, 255, 0.3);
+            animation: rotateRing 20s linear infinite;
+        }
+
+        .parameters-ring:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            animation-duration: 20s;
+        }
+
+        .parameters-ring:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .parameters-ring:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            animation-duration: 30s;
+        }
+
+        .parameters-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .parameters-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseSphere {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateRing {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(var(--tx, 20px), var(--ty, 20px));
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes btnGlow {
+            0%, 100% {
+                opacity: 0.4;
+                filter: blur(3px);
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-page-content {
+                padding: 0 1rem;
+            }
+
+            .quantum-hero {
+                min-height: auto;
+                padding: 4rem 0 2rem;
+            }
+
+            .quantum-title-container h1 {
+                font-size: 2.5rem;
+            }
+
+            .quantum-hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .quantum-nav-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .quantum-nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .parameters-visualization {
+                display: none;
+            }
+        }
+
+        .content-container {
+            padding-top: 100px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            background: none;
+            mask-image: linear-gradient(
+                to top,
+                black 0%,
+                black 95%,
+                transparent 100%
+            );
+            -webkit-mask-image: linear-gradient(
+                to top,
+                black 0%,
+                black 95%,
+                transparent 100%
+            );
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            background: none;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Keep section containers with subtle background for readability */
+        .section-container {
+            background: rgba(5, 5, 32, 0.3); /* Even more transparent */
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            margin: 4rem 0;
+            padding: 2.5rem;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05),
+                rgba(255, 0, 230, 0.1));
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-container h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--medium-text);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .back-to-framework {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.3);
+            border-radius: 8px;
+            color: var(--light-text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: var(--font-heading);
+        }
+
+        .back-to-framework i {
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .back-to-framework:hover {
+            background: rgba(110, 0, 255, 0.2);
+            border-color: rgba(110, 0, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
+        }
+
+        .back-to-framework:hover i {
+            transform: translateX(-5px);
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .section-container {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .section-container h2 {
+                font-size: 2rem;
+            }
+
+            .section-container p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Accessibility Styles */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 100;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        .keyboard-focus:focus {
+            outline: 3px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        /* Visual Enhancement Styles */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--primary-color),
+                var(--secondary-color),
+                var(--accent-color));
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+
+        .parameter-card {
+            display: flex;
+            flex-direction: row;
+            gap: 2rem;
+            background: rgba(5, 5, 32, 0.3);
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .parameter-card > h3 {
+            flex: 0 0 180px;
+            color: var(--light-text);
+            font-size: 1.2rem;
+            margin: 0;
+            padding-right: 1rem;
+            border-right: 1px solid rgba(110, 0, 255, 0.2);
+        }
+
+        .parameter-description {
+            flex: 0 0 220px;
+            color: var(--medium-text);
+            margin: 0;
+            padding-right: 1rem;
+            border-right: 1px solid rgba(110, 0, 255, 0.2);
+        }
+
+        .parameter-details {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .parameter-details h4 {
+            color: var(--light-text);
+            font-size: 1rem;
+            margin: 0 0 0.5rem 0;
+            grid-column: span 1;
+        }
+
+        .parameter-details ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .parameter-details li {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+        }
+
+        .parameter-details p {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 0;
+            grid-column: span 1;
+        }
+
+        /* Group related sections together */
+        .parameter-details > div {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        /* First column: Exercises and Metrics */
+        .parameter-details > div:nth-child(1),
+        .parameter-details > div:nth-child(2) {
+            grid-column: 1;
+        }
+
+        /* Second column: Represents and Symbolic Goal */
+        .parameter-details > div:nth-child(3),
+        .parameter-details > div:nth-child(4) {
+            grid-column: 2;
+        }
+
+        @media (max-width: 1200px) {
+            .parameter-card {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .parameter-card > h3,
+            .parameter-description {
+                flex: none;
+                border-right: none;
+                padding-right: 0;
+                border-bottom: 1px solid rgba(110, 0, 255, 0.2);
+                padding-bottom: 0.5rem;
+            }
+
+            .parameter-details {
+                grid-template-columns: 1fr;
+            }
+
+            .parameter-details > div {
+                grid-column: 1 !important;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            .parameter-card {
+                border: 2px solid var(--primary-color);
+            }
+
+            .quantum-nav-btn {
+                border: 2px solid var(--secondary-color);
+            }
+
+            .quantum-title-container h1 {
+                -webkit-text-fill-color: var(--primary-color);
+                text-shadow: none;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms;
+                animation-iteration-count: 1;
+                transition-duration: 0.01ms;
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Enhance stars effect */
+        .stars {
+            opacity: 1;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        .twinkling {
+            opacity: 0.8;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Add top fade connection to navigation */
+        .app-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(180deg,
+                var(--dark-background) 0%,
+                rgba(5, 5, 32, 0.98) 40%,
+                transparent 100%);
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* Enhance side fading with ambient glow */
+        .app-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 0% 50%,
+                    rgba(110, 0, 255, 0.05) 0%,
+                    transparent 30%),
+                radial-gradient(circle at 100% 50%,
+                    rgba(0, 184, 255, 0.05) 0%,
+                    transparent 30%);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .quantum-state-card {
+            background: rgba(5, 5, 32, 0.3);
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quantum-state-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .quantum-state-card:hover::before {
+            opacity: 1;
+        }
+
+        .quantum-state-card h3 {
+            color: var(--light-text);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantum-state-card p {
+            color: var(--medium-text);
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header class="app-pages-nav">
-        <nav>
-            <a href="index.html" class="logo">
-                <div class="quantum-symbol">
-                    <div class="quantum-core"></div>
-                    <div class="quantum-orbit"></div>
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
+
+    <div class="app-container">
+        <div id="main-content" class="app-page-content content-container">
+            <section class="hero app-hero quantum-hero">
+                <div class="hero-content">
+                    <div class="quantum-title-container">
+                        <h1>Five Quantum Parameters Framework</h1>
+                        <div class="quantum-underline"></div>
+                    </div>
+                    <p class="subtitle">A Scientific Approach to Consciousness Development</p>
+                    <div class="quantum-nav-buttons">
+                        <a href="consciousness_accelerator.html" class="quantum-nav-btn">
+                            <i class="fas fa-brain"></i>
+                            <span>Consciousness Accelerator</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="app_screens.html" class="quantum-nav-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>App Screens</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="app_features.html" class="quantum-nav-btn">
+                            <i class="fas fa-cube"></i>
+                            <span>App Features</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                    </div>
                 </div>
-                <h1>QUANEX</h1>
-            </a>
-            <ul>
-                <li><a href="consciousness_accelerator.html">Overview</a></li>
-                <li><a href="quantum_parameters.html" class="active">Parameters</a></li>
-                <li><a href="app_features.html">Features</a></li>
-            </ul>
-        </nav>
-    </header>
+                <div class="parameters-visualization">
+                    <div class="parameters-sphere">
+                        <div class="parameters-core"></div>
+                        <div class="parameters-rings">
+                            <div class="parameters-ring"></div>
+                            <div class="parameters-ring"></div>
+                            <div class="parameters-ring"></div>
+                        </div>
+                        <div class="parameters-particles">
+                            <div class="parameters-particle" style="--tx: 30px; --ty: -20px; top: 30%; left: 40%;"></div>
+                            <div class="parameters-particle" style="--tx: -25px; --ty: 30px; top: 50%; left: 60%;"></div>
+                            <div class="parameters-particle" style="--tx: 20px; --ty: 25px; top: 70%; left: 45%;"></div>
+                            <div class="parameters-particle" style="--tx: -30px; --ty: -25px; top: 40%; left: 55%;"></div>
+                            <div class="parameters-particle" style="--tx: 25px; --ty: 30px; top: 60%; left: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-    <main class="app-page-content">
-        <section class="hero app-hero">
-            <div class="hero-content">
-                <h1>Five Quantum Parameters Framework</h1>
-                <p class="subtitle">A Scientific Approach to Consciousness Development</p>
-            </div>
-            <div class="quantum-visualization">
-                <div class="quantum-circle"></div>
-                <div class="constellation-bg"></div>
-            </div>
-        </section>
+            <section class="content">
+                <div class="section-container">
+                    <a href="index.html#framework" class="quantum-nav-btn back-to-framework" aria-label="Back to Quantum Framework Overview">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        <span>Back to Quantum Framework Overview</span>
+                        <div class="quantum-btn-glow"></div>
+                    </a>
+                    <h2>Overview</h2>
+                    <p>The Five Quantum Parameters Framework is a comprehensive system that tracks and develops key aspects of consciousness inspired by quantum physics principles. This framework provides measurable metrics and structured exercises for consciousness expansion.</p>
+                </div>
 
-        <section class="content">
-            <div class="section-container">
-                <h2>Overview</h2>
-                <p>The Five Quantum Parameters Framework is a comprehensive system that tracks and develops key aspects of consciousness inspired by quantum physics principles. This framework provides measurable metrics and structured exercises for consciousness expansion.</p>
-            </div>
+                <div class="section-container">
+                    <h2>The Five Quantum Parameters: Pillars of Expansion</h2>
+                    <p>The QNX Quantum Nexus framework is built upon five core parameters, inspired metaphorically by quantum principles. These represent key facets of consciousness that you will actively cultivate and track (symbolically) throughout your journey. Balancing these parameters is key to stable, integrated growth and aligning with your Future Self.</p>
+                </div>
 
-            <div class="section-container">
-                <h2>Core Parameters</h2>
+                <div class="section-container" style="display: block; visibility: visible; opacity: 1;">
+                    <h2>Core Parameters</h2>
 
-                <div class="parameter-card">
-                    <h3>1. Coherence</h3>
-                    <p class="parameter-description">Represents internal harmony, focused intent, and the alignment of your mental, emotional, and energetic systems. Cultivated through consistency and stabilizing practices.</p>
-                    <div class="parameter-details">
-                        <h4>Exercises</h4>
-                        <ul>
-                            <li>Concentration practices</li>
-                            <li>Single-point meditation</li>
-                            <li>Energy alignment techniques</li>
-                        </ul>
-                        <h4>Metrics</h4>
-                        <ul>
-                            <li>Duration of sustained focus</li>
-                            <li>Reduction in mind-wandering</li>
-                            <li>Energy system coherence</li>
-                        </ul>
+                    <div id="observation" class="parameter-card" style="display: block; visibility: visible; opacity: 1;">
+                        <h3>1. Observation</h3>
+                        <p class="parameter-description">The power of focused, non-judgmental awareness.</p>
+                        <div class="parameter-details" style="display: block; visibility: visible; opacity: 1;">
+                            <h4>Exercises</h4>
+                            <ul>
+                                <li>Mindfulness practices</li>
+                                <li>Sensory awareness training</li>
+                                <li>Conscious observation techniques</li>
+                                <li>Presence/Breath Awareness Meditations</li>
+                                <li>Mindful Body Scans (Checkpoints)</li>
+                                <li>Energy Sensing Practices</li>
+                                <li>Intuition Awareness & Testing</li>
+                                <li>Inner Screen Visualization</li>
+                                <li>Focused Reflection</li>
+                            </ul>
+                            <h4>Metrics</h4>
+                            <ul>
+                                <li>Present-moment awareness scores</li>
+                                <li>Reaction time to stimuli</li>
+                                <li>Observation depth</li>
+                            </ul>
+                            <h4>Represents in QNX:</h4>
+                            <ul>
+                                <li>Mindfulness & Present Moment Awareness</li>
+                                <li>Ability to perceive subtle energy and inner/outer details</li>
+                                <li>Self-reflection capacity</li>
+                                <li>Clarity of inner vision</li>
+                                <li>Discerning intuitive signals</li>
+                            </ul>
+                            <h4>Symbolic Goal:</h4>
+                            <p>To become a clear, unbiased observer of both your inner landscape and the subtle signals from the wider quantum field.</p>
+                        </div>
+                    </div>
+
+                    <div id="resonance" class="parameter-card" style="display: block; visibility: visible; opacity: 1;">
+                        <h3>2. Resonance</h3>
+                        <p class="parameter-description">Attunement and vibrational harmony with beneficial frequencies.</p>
+                        <div class="parameter-details" style="display: block; visibility: visible; opacity: 1;">
+                            <h4>Exercises</h4>
+                            <ul>
+                                <li>Grounding practices</li>
+                                <li>Bio-field awareness</li>
+                                <li>Frequency alignment</li>
+                                <li>Grounding Visualizations</li>
+                                <li>Energy Ball / Aura Scanning</li>
+                                <li>Ajna Center Attunement</li>
+                                <li>Feeling connection during practice</li>
+                                <li>Practices involving specific feeling-states</li>
+                            </ul>
+                            <h4>Metrics</h4>
+                            <ul>
+                                <li>Energy field coherence</li>
+                                <li>Grounding effectiveness</li>
+                                <li>Frequency alignment</li>
+                            </ul>
+                            <h4>Represents in QNX:</h4>
+                            <ul>
+                                <li>Energetic sensitivity and perception</li>
+                                <li>Ability to connect with stabilizing Earth energy</li>
+                                <li>Attunement to your own bio-field/signature</li>
+                                <li>Alignment with desired frequencies (like your Dream state)</li>
+                                <li>Activation of energy centers (like Ajna)</li>
+                            </ul>
+                            <h4>Symbolic Goal:</h4>
+                            <p>To consciously tune your personal energy signature, resonate with supportive universal frequencies, and align with the vibration of your Future Self.</p>
+                        </div>
+                    </div>
+
+                    <div id="entanglement" class="parameter-card" style="display: block; visibility: visible; opacity: 1;">
+                        <h3>3. Entanglement</h3>
+                        <p class="parameter-description">Recognizing and utilizing profound interconnectedness.</p>
+                        <div class="parameter-details" style="display: block; visibility: visible; opacity: 1;">
+                            <h4>Exercises</h4>
+                            <ul>
+                                <li>Loving-kindness meditation</li>
+                                <li>Empathy practices</li>
+                                <li>Future Self connection</li>
+                                <li>Intuition Awareness & Testing</li>
+                                <li>Focused Thought Projection</li>
+                                <li>Future Self Connection Exercises</li>
+                                <li>Reflection on Synchronicities</li>
+                                <li>Network Meditation / Community Interaction</li>
+                            </ul>
+                            <h4>Metrics</h4>
+                            <ul>
+                                <li>Self-reported feelings of connection</li>
+                                <li>Recognition of synchronicities</li>
+                                <li>Intuitive accuracy</li>
+                            </ul>
+                            <h4>Represents in QNX:</h4>
+                            <ul>
+                                <li>Intuitive perception & accuracy</li>
+                                <li>Connection beyond space-time limits</li>
+                                <li>Link to Future Self guidance</li>
+                                <li>Understanding of non-local information</li>
+                                <li>Potential for conscious influence on the field</li>
+                                <li>Connection to collective consciousness</li>
+                            </ul>
+                            <h4>Symbolic Goal:</h4>
+                            <p>To strengthen the non-local connection to your Future Self, enhance intuitive guidance, and understand your participation within the interconnected quantum field.</p>
+                        </div>
+                    </div>
+
+                    <div id="coherence" class="parameter-card" style="display: block; visibility: visible; opacity: 1;">
+                        <h3>4. Coherence</h3>
+                        <p class="parameter-description">Internal harmony, stability, and focused energetic alignment.</p>
+                        <div class="parameter-details" style="display: block; visibility: visible; opacity: 1;">
+                            <h4>Exercises</h4>
+                            <ul>
+                                <li>Concentration practices</li>
+                                <li>Single-point meditation</li>
+                                <li>Energy alignment techniques</li>
+                                <li>Consistent Daily Practice</li>
+                                <li>Presence & Grounding practices</li>
+                                <li>Integration Checkpoints</li>
+                                <li>Focused Intent exercises</li>
+                                <li>Inner Visualization stability</li>
+                                <li>Practices promoting inner peace/balance</li>
+                            </ul>
+                            <h4>Metrics</h4>
+                            <ul>
+                                <li>Duration of sustained focus</li>
+                                <li>Reduction in mind-wandering</li>
+                                <li>Energy system coherence</li>
+                            </ul>
+                            <h4>Represents in QNX:</h4>
+                            <ul>
+                                <li>Mental focus and clarity</li>
+                                <li>Emotional stability and regulation</li>
+                                <li>Energetic alignment and harmony</li>
+                                <li>Strength and stability of the "vessel" (consciousness architecture)</li>
+                                <li>Ability to hold intent effectively</li>
+                            </ul>
+                            <h4>Symbolic Goal:</h4>
+                            <p>To build a stable, harmonious, and resilient inner state capable of holding higher frequencies and directing intention effectively towards manifestation.</p>
+                        </div>
+                    </div>
+
+                    <div id="superposition" class="parameter-card" style="display: block; visibility: visible; opacity: 1;">
+                        <h3>5. Superposition</h3>
+                        <p class="parameter-description">Embracing potential and the simultaneous existence of possibilities.</p>
+                        <div class="parameter-details" style="display: block; visibility: visible; opacity: 1;">
+                            <h4>Exercises</h4>
+                            <ul>
+                                <li>Perspective-shifting practices</li>
+                                <li>Paradox contemplation</li>
+                                <li>Future Self visualization</li>
+                                <li>Defining and Refining the Dream/Vision</li>
+                                <li>Intuitive Guessing</li>
+                                <li>Visualization of possibilities</li>
+                                <li>Contemplation of multiple perspectives</li>
+                                <li>Timeline exploration</li>
+                            </ul>
+                            <h4>Metrics</h4>
+                            <ul>
+                                <li>Cognitive flexibility assessments</li>
+                                <li>Tolerance for ambiguity</li>
+                                <li>Future Self clarity</li>
+                            </ul>
+                            <h4>Represents in QNX:</h4>
+                            <ul>
+                                <li>The field of infinite potential</li>
+                                <li>Connection to the user's core Dream/Future Self state</li>
+                                <li>Cognitive flexibility</li>
+                                <li>Understanding reality creation principles</li>
+                                <li>The state *before* conscious observation collapses potential</li>
+                            </ul>
+                            <h4>Symbolic Goal:</h4>
+                            <p>To consciously connect with the field of pure potential, hold the frequency of your desired Future Self, and understand your role in co-creating reality from possibility.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="parameter-card">
-                    <h3>2. Entanglement</h3>
-                    <p class="parameter-description">Represents profound interconnectedness, intuitive links, synchronicity, and the potential for non-local communication with your Future Self and the wider field.</p>
-                    <div class="parameter-details">
-                        <h4>Exercises</h4>
-                        <ul>
-                            <li>Loving-kindness meditation</li>
-                            <li>Empathy practices</li>
-                            <li>Future Self connection</li>
-                        </ul>
-                        <h4>Metrics</h4>
-                        <ul>
-                            <li>Self-reported feelings of connection</li>
-                            <li>Recognition of synchronicities</li>
-                            <li>Intuitive accuracy</li>
-                        </ul>
-                    </div>
+                <div class="section-container">
+                    <h2>Tracking in the App</h2>
+                    <p>Within the QNX app, your engagement with practices that cultivate these parameters is tracked symbolically. You can view your relative progress across all five states on your Progress Overview screen (accessed via the Observation node). This visual feedback helps you understand the balance of your development and how different activities contribute to your overall consciousness expansion.</p>
                 </div>
 
-                <div class="parameter-card">
-                    <h3>3. Superposition</h3>
-                    <p class="parameter-description">Represents the state of pure potential before observation, holding multiple possibilities simultaneously. Directly linked to accessing and defining your Dream/Future Self.</p>
-                    <div class="parameter-details">
-                        <h4>Exercises</h4>
-                        <ul>
-                            <li>Perspective-shifting practices</li>
-                            <li>Paradox contemplation</li>
-                            <li>Future Self visualization</li>
-                        </ul>
-                        <h4>Metrics</h4>
-                        <ul>
-                            <li>Cognitive flexibility assessments</li>
-                            <li>Tolerance for ambiguity</li>
-                            <li>Future Self clarity</li>
-                        </ul>
-                    </div>
+                <div class="section-container">
+                    <h2>Integration in the App</h2>
+                    <p>The Five Quantum Parameters Framework is seamlessly integrated into the Consciousness Accelerator app through:</p>
+                    <ul>
+                        <li>Personalized tracking of all five parameters</li>
+                        <li>Customized exercise recommendations based on parameter development</li>
+                        <li>Visual progress tracking and analytics</li>
+                        <li>Integration with meditation analysis system</li>
+                        <li>Adaptive learning paths based on parameter strengths and areas for growth</li>
+                    </ul>
                 </div>
-
-                <div class="parameter-card">
-                    <h3>4. Observation</h3>
-                    <p class="parameter-description">Represents mindful awareness, clear perception (inner and outer), self-reflection, and the power of focused consciousness to shape experience.</p>
-                    <div class="parameter-details">
-                        <h4>Exercises</h4>
-                        <ul>
-                            <li>Mindfulness practices</li>
-                            <li>Sensory awareness training</li>
-                            <li>Conscious observation techniques</li>
-                        </ul>
-                        <h4>Metrics</h4>
-                        <ul>
-                            <li>Present-moment awareness scores</li>
-                            <li>Reaction time to stimuli</li>
-                            <li>Observation depth</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="parameter-card">
-                    <h3>5. Resonance</h3>
-                    <p class="parameter-description">Represents vibrational attunement – connecting with stabilizing Earth energies, sensing your own bio-field, and aligning your frequency with your desired Future Self state.</p>
-                    <div class="parameter-details">
-                        <h4>Exercises</h4>
-                        <ul>
-                            <li>Grounding practices</li>
-                            <li>Bio-field awareness</li>
-                            <li>Frequency alignment</li>
-                        </ul>
-                        <h4>Metrics</h4>
-                        <ul>
-                            <li>Energy field coherence</li>
-                            <li>Grounding effectiveness</li>
-                            <li>Frequency alignment</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-container">
-                <h2>Integration in the App</h2>
-                <p>The Five Quantum Parameters Framework is seamlessly integrated into the Consciousness Accelerator app through:</p>
-                <ul>
-                    <li>Personalized tracking of all five parameters</li>
-                    <li>Customized exercise recommendations based on parameter development</li>
-                    <li>Visual progress tracking and analytics</li>
-                    <li>Integration with meditation analysis system</li>
-                    <li>Adaptive learning paths based on parameter strengths and areas for growth</li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>QUANEX Foundation</h4>
-                <p>Advancing consciousness through technology and science</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="consciousness_accelerator.html">Consciousness Accelerator</a></li>
-                    <li><a href="quantum_parameters.html">Quantum Parameters</a></li>
-                    <li><a href="app_features.html">App Features</a></li>
-                </ul>
-            </div>
+            </section>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 QUANEX Foundation. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
-    <script src="scripts.js"></script>
+    <footer></footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Load sidebar component
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('components/sidebar.html')
+                .then(response => response.text())
+                .then(html => {
+                    const sidebarContainer = document.getElementById('sidebar-container');
+                    if (sidebarContainer) {
+                        sidebarContainer.innerHTML = html;
+                        // Initialize sidebar state after component is loaded
+                        new SidebarState();
+                    }
+                })
+                .catch(error => console.error('Error loading sidebar:', error));
+        });
+    </script>
 </body>
 </html> 

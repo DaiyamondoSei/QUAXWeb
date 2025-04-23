@@ -1,0 +1,202 @@
+/* Progress Visualization Styles */
+.progress-visualization {
+    margin: 4rem 0;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 1rem;
+    border: var(--border-light);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-visualization::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, 
+        rgba(110, 0, 255, 0.1),
+        rgba(0, 184, 255, 0.1),
+        rgba(255, 0, 230, 0.1));
+    opacity: 0.5;
+    z-index: 0;
+}
+
+.progress-tracker {
+    position: relative;
+    z-index: 1;
+}
+
+.quantum-progress-stages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.progress-stage {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.progress-stage:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(110, 0, 255, 0.2);
+}
+
+.stage-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    font-size: 1.5rem;
+    color: white;
+    position: relative;
+}
+
+.stage-icon::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: inherit;
+    border-radius: inherit;
+    opacity: 0.5;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+.progress-stage h4 {
+    margin: 1rem 0;
+    color: var(--light-text);
+    font-size: 1.1rem;
+}
+
+.progress-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 3px;
+    transition: width 1s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    animation: shimmer 2s infinite;
+}
+
+.quantum-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 16px rgba(255, 0, 230, 0.2);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+    border-radius: 50%;
+    margin-right: 1.5rem;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info h4 {
+    font-size: 0.9rem;
+    color: var(--medium-text);
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--light-text);
+    font-family: var(--font-heading);
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@media (max-width: 768px) {
+    .quantum-progress-stages {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .quantum-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .progress-stage {
+        padding: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+} 

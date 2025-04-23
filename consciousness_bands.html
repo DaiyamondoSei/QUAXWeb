@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUANNEX: Consciousness Bands</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
+    <style>
+        .content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: rgba(5, 5, 32, 0.8);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(110, 0, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.5rem;
+            color: var(--medium-text);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quantum-decoration {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            transform: translateY(-50%);
+            width: 200px;
+            height: 200px;
+            opacity: 0.6;
+            mix-blend-mode: screen;
+        }
+
+        .quantum-decoration::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8),
+                rgba(110, 0, 255, 0.6));
+            box-shadow: 
+                0 0 30px rgba(110, 0, 255, 0.4),
+                0 0 60px rgba(0, 184, 255, 0.2);
+            animation: pulseSphere 4s ease-in-out infinite;
+        }
+
+        .consciousness-visualization {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0.9;
+            mix-blend-mode: screen;
+        }
+
+        .consciousness-sphere {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .sphere-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8),
+                rgba(110, 0, 255, 0.6));
+            box-shadow: 
+                0 0 50px rgba(110, 0, 255, 0.4),
+                0 0 100px rgba(0, 184, 255, 0.2),
+                0 0 150px rgba(255, 0, 230, 0.2);
+            animation: pulseSphere 4s ease-in-out infinite;
+        }
+
+        .sphere-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .sphere-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rotateRing 8s linear infinite;
+        }
+
+        .sphere-ring:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            animation-duration: 12s;
+        }
+
+        .sphere-ring:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            animation-duration: 16s;
+        }
+
+        .sphere-ring:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            animation-duration: 20s;
+        }
+
+        .consciousness-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .consciousness-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: particleFloat 4s ease-in-out infinite;
+        }
+
+        .band {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .band:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .band-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            padding: 0.5rem 0;
+        }
+
+        .band-header h4 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .band-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .band-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .band-content.active {
+            max-height: 1000px;
+            transition: max-height 0.5s ease-in;
+        }
+
+        .band-toggle {
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .band-toggle.active {
+            transform: rotate(180deg);
+        }
+
+        .band-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scientific-validation {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scientific-validation h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .validation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .validation-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .validation-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .validation-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .validation-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .validation-card ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .validation-card ul li::before {
+            content: '•';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 3rem 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .quantum-decoration {
+                display: none;
+            }
+
+            .validation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes pulseSphere {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateRing {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(var(--tx, 20px), var(--ty, 20px));
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
+    
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
+
+    <div class="page-header">
+        <h1>Consciousness Bands</h1>
+        <p class="subtitle">Understanding Our Multi-Consciousness Approach</p>
+        <div class="quantum-decoration"></div>
+    </div>
+
+    <section id="bands" class="section-container">
+        <div class="consciousness-bands">
+            <h2>Multi-Consciousness Band Approach</h2>
+            <p>Our platform is designed to resonate with different consciousness perspectives, ensuring accessibility and relevance across various worldviews.</p>
+            
+            <div class="bands">
+                <div class="band">
+                    <div class="band-header">
+                        <h4>
+                            <i class="fas fa-microscope band-icon"></i>
+                            Scientific-Rational (35%)
+                        </h4>
+                        <i class="fas fa-chevron-down band-toggle"></i>
+                    </div>
+                    <div class="band-content">
+                        <p>"Cognitive enhancement through quantum principles"</p>
+                        <ul>
+                            <li>Focus on measurable outcomes</li>
+                            <li>Quantum physics-based explanations</li>
+                            <li>Data-driven progress tracking</li>
+                        </ul>
+                        <div class="band-progress">
+                            <div class="progress-bar" style="width: 35%"></div>
+                        </div>
+                        <div class="band-details">
+                            <h4>Scientific Approach</h4>
+                            <ul>
+                                <li>Evidence-based methodologies</li>
+                                <li>Quantitative measurement systems</li>
+                                <li>Peer-reviewed research integration</li>
+                                <li>Controlled experimentation protocols</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="band">
+                    <div class="band-header">
+                        <h4>
+                            <i class="fas fa-spa band-icon"></i>
+                            Spiritual-Seeking (25%)
+                        </h4>
+                        <i class="fas fa-chevron-down band-toggle"></i>
+                    </div>
+                    <div class="band-content">
+                        <p>"Ancient wisdom validated by quantum physics"</p>
+                        <ul>
+                            <li>Integration of traditional practices</li>
+                            <li>Spiritual growth focus</li>
+                            <li>Energy work and meditation</li>
+                        </ul>
+                        <div class="band-progress">
+                            <div class="progress-bar" style="width: 25%"></div>
+                        </div>
+                        <div class="band-details">
+                            <h4>Spiritual Integration</h4>
+                            <ul>
+                                <li>Traditional meditation techniques</li>
+                                <li>Energy field awareness</li>
+                                <li>Consciousness expansion practices</li>
+                                <li>Quantum-spiritual alignment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="band">
+                    <div class="band-header">
+                        <h4>
+                            <i class="fas fa-chart-line band-icon"></i>
+                            Pragmatic-Results (30%)
+                        </h4>
+                        <i class="fas fa-chevron-down band-toggle"></i>
+                    </div>
+                    <div class="band-content">
+                        <p>"Measurable benefits for daily life"</p>
+                        <ul>
+                            <li>Practical applications</li>
+                            <li>Real-world benefits</li>
+                            <li>Skill development focus</li>
+                        </ul>
+                        <div class="band-progress">
+                            <div class="progress-bar" style="width: 30%"></div>
+                        </div>
+                        <div class="band-details">
+                            <h4>Practical Applications</h4>
+                            <ul>
+                                <li>Daily life integration</li>
+                                <li>Skill development tracking</li>
+                                <li>Real-world impact measurement</li>
+                                <li>Practical exercise protocols</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="band">
+                    <div class="band-header">
+                        <h4>
+                            <i class="fas fa-search band-icon"></i>
+                            Skeptical-Analytical (10%)
+                        </h4>
+                        <i class="fas fa-chevron-down band-toggle"></i>
+                    </div>
+                    <div class="band-content">
+                        <p>"Transparent explanations without metaphysical claims"</p>
+                        <ul>
+                            <li>Evidence-based approach</li>
+                            <li>Clear methodology</li>
+                            <li>Scientific validation</li>
+                        </ul>
+                        <div class="band-progress">
+                            <div class="progress-bar" style="width: 10%"></div>
+                        </div>
+                        <div class="band-details">
+                            <h4>Analytical Framework</h4>
+                            <ul>
+                                <li>Critical thinking emphasis</li>
+                                <li>Methodological transparency</li>
+                                <li>Empirical validation</li>
+                                <li>Clear documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scientific-validation">
+            <h3>Scientific Validation Framework</h3>
+            <p>Our approach is grounded in research from leading institutions and validated through multiple methodologies:</p>
+            
+            <div class="validation-grid">
+                <div class="validation-card">
+                    <h4>Research Foundation</h4>
+                    <ul>
+                        <li>Institute of Noetic Sciences</li>
+                        <li>HeartMath Institute</li>
+                        <li>Princeton Engineering Anomalies Research</li>
+                        <li>University of Virginia's Division of Perceptual Studies</li>
+                    </ul>
+                </div>
+                <div class="validation-card">
+                    <h4>Measurement Methods</h4>
+                    <ul>
+                        <li>Quantitative performance metrics</li>
+                        <li>Physiological measurements</li>
+                        <li>Subjective experience documentation</li>
+                        <li>Longitudinal studies</li>
+                    </ul>
+                </div>
+                <div class="validation-card">
+                    <h4>Validation Protocols</h4>
+                    <ul>
+                        <li>Peer-reviewed research</li>
+                        <li>Controlled experiments</li>
+                        <li>Statistical analysis</li>
+                        <li>Replication studies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer></footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const bandHeaders = document.querySelectorAll('.band-header');
+            
+            bandHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const band = this.parentElement;
+                    const content = band.querySelector('.band-content');
+                    const toggle = band.querySelector('.band-toggle');
+                    
+                    content.classList.toggle('active');
+                    toggle.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,114 @@
+
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header></header>
+    
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search QUANNEX..." value="">
+        </div>
+        
+        <div class="search-filters">
+            <div class="search-filter active" data-filter="all">All</div>
+            <div class="search-filter" data-filter="technical">Technical</div>
+            <div class="search-filter" data-filter="consciousness">Consciousness</div>
+            <div class="search-filter" data-filter="features">Features</div>
+        </div>
+        
+        <div class="search-results" id="searchResults">
+            <!-- Results will be populated here -->
+        </div>
+    </div>
+    
+    <footer></footer>
+    
+    <script src="js/header-footer.js"></script>
+    <script>
+        // Search index data
+        const searchIndex = [
+            {
+                title: "Quantum Consciousness",
+                url: "/consciousness_bands.html",
+                content: "Explore the different bands of consciousness and their quantum implications...",
+                category: "consciousness"
+            },
+            {
+                title: "Technical Implementation",
+                url: "/technical_implementation.html",
+                content: "Detailed technical specifications and implementation details of the QUANNEX system...",
+                category: "technical"
+            },
+            {
+                title: "App Features",
+                url: "/app_features.html",
+                content: "Discover the powerful features of the QUANNEX application...",
+                category: "features"
+            }
+            // Add more entries as needed
+        ];
+
+        function performSearch(query, category = 'all') {
+            const results = searchIndex.filter(item => {
+                const matchesQuery = item.title.toLowerCase().includes(query.toLowerCase()) ||
+                                   item.content.toLowerCase().includes(query.toLowerCase());
+                const matchesCategory = category === 'all' || item.category === category;
+                return matchesQuery && matchesCategory;
+            });
+
+            displayResults(results);
+        }
+
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('searchResults');
+            resultsContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h2>No results found</h2>
+                        <p>Try different keywords or check the spelling</p>
+                    </div>
+                `;
+                return;
+            }
+
+            results.forEach(result => {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'search-result';
+                resultElement.innerHTML = `
+                    <h2><a href="${result.url}">${result.title}</a></h2>
+                    <div class="url">${result.url}</div>
+                    <div class="snippet">${result.content}</div>
+                `;
+                resultsContainer.appendChild(resultElement);
+            });
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = this.value.trim();
+            const activeFilter = document.querySelector('.search-filter.active').dataset.filter;
+            performSearch(query, activeFilter);
+        });
+
+        document.querySelectorAll('.search-filter').forEach(filter => {
+            filter.addEventListener('click', function() {
+                document.querySelectorAll('.search-filter').forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                const query = document.getElementById('searchInput').value.trim();
+                performSearch(query, this.dataset.filter);
+            });
+        });
+
+        // Initialize search with URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const query = urlParams.get('q');
+        if (query) {
+            document.getElementById('searchInput').value = query;
+            performSearch(query);
+        }
+    </script>
+    <script src="js/consolidated.js" defer=""></script>
+
+ 

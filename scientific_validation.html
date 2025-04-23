@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUANEX: Scientific Validation Framework</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Explore QUANNEX's scientific validation framework - A comprehensive approach to consciousness development backed by scientific research and measurement methodologies.">
+    <title>Scientific Validation - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
     <style>
+        /* Main Content Adjustment */
         .content-container {
             max-width: 1000px;
-            margin: 150px auto 50px;
+            margin: 120px auto 2rem;
             padding: 2rem;
             background-color: rgba(5, 5, 32, 0.8);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 100px; /* Add space for fixed header */
+            min-height: 100vh;
         }
         
         .content-header {
@@ -66,39 +78,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .resource-navigation {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .resource-nav-item {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--glow-primary);
-        }
-
-        .resource-nav-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow-secondary);
-            color: white;
-        }
-
-        .resource-nav-item.current {
-            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
-            pointer-events: none;
-        }
-
         .implementation-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -135,111 +114,72 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .back-button {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border-radius: 30px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: var(--glow-primary);
-        }
-        
-        .back-button:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--glow-secondary);
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .content-container {
+                margin: 100px auto 2rem;
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    
-    <header>
-        <a href="index.html" class="logo-container">
-            <div class="logo">
-                <div class="quantum-symbol"></div>
-                <h1>QUANEX</h1>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html#vision">Vision</a></li>
-                <li><a href="index.html#framework">Framework</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#science">Science</a></li>
-                <li><a href="index.html#roadmap">Roadmap</a></li>
-                <li><a href="index.html#resources">Resources</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
 
-    <div class="content-container">
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
+
+    <main class="content-container">
         <div class="content-header">
             <h1>Scientific Validation Framework</h1>
             <p>Balancing Spiritual Exploration with Scientific Credibility</p>
         </div>
 
-        <div class="resource-navigation">
-            <a href="index.html" class="resource-nav-item">Home</a>
-            <a href="project_proposal.html" class="resource-nav-item">Project Proposal</a>
-            <a href="business_model.html" class="resource-nav-item">Business Model</a>
-            <a href="academic_alignment.html" class="resource-nav-item">Academic Alignment</a>
-            <a href="scientific_validation.html" class="resource-nav-item current">Scientific Validation</a>
-            <a href="advanced_progression.html" class="resource-nav-item">Progression System</a>
-            <a href="implementation_priorities.html" class="resource-nav-item">Implementation Plan</a>
-            <a href="app_screens.html" class="resource-nav-item">App Screens</a>
-            <a href="curriculum.html" class="resource-nav-item">4-Week Curriculum</a>
-        </div>
-        
-        <div class="content-section">
+        <section class="content-section">
             <h2>Executive Summary</h2>
-            <p>This framework outlines how QUANEX integrates scientific research, measurement methodologies, and neurological frameworks to maintain scientific credibility while exploring consciousness development. By providing dual explanation systems and comprehensive measurement approaches, we create a balanced platform that appeals to both spiritually-oriented and scientifically-minded users.</p>
-        </div>
+            <p>This framework outlines how QUANNEX integrates scientific research, measurement methodologies, and neurological frameworks to maintain scientific credibility while exploring consciousness development. By providing dual explanation systems and comprehensive measurement approaches, we create a balanced platform that appeals to both spiritually-oriented and scientifically-minded users.</p>
+        </section>
 
-        <div class="content-section">
+        <section class="content-section">
             <h2>Scientific Research Foundation</h2>
             <div class="research-grid">
-                <div class="research-institution">
+                <article class="research-institution" tabindex="0" role="article">
                     <h3>Institute of Noetic Sciences (IONS)</h3>
                     <p><strong>Relevant Research:</strong> Studies on consciousness, intuition, and psychic phenomena</p>
                     <p><strong>Key Researchers:</strong> Dr. Dean Radin, Dr. Cassandra Vieten</p>
                     <p><strong>Application:</strong> Scientific backing for telepathy, remote viewing, and precognition practices</p>
-                </div>
+                </article>
 
-                <div class="research-institution">
+                <article class="research-institution" tabindex="0" role="article">
                     <h3>HeartMath Institute</h3>
                     <p><strong>Relevant Research:</strong> Heart-brain coherence, emotional regulation, and intuition</p>
                     <p><strong>Key Findings:</strong> Documented relationship between heart rhythm patterns and cognitive function</p>
                     <p><strong>Application:</strong> Scientific framework for energy sensing and coherence practices</p>
-                </div>
+                </article>
 
-                <div class="research-institution">
+                <article class="research-institution" tabindex="0" role="article">
                     <h3>Princeton Engineering Anomalies Research</h3>
                     <p><strong>Relevant Research:</strong> Mind-matter interaction, random event generators</p>
                     <p><strong>Key Findings:</strong> Statistical evidence for consciousness affecting physical systems</p>
                     <p><strong>Application:</strong> Scientific context for manifestation and reality manipulation concepts</p>
-                </div>
+                </article>
 
-                <div class="research-institution">
+                <article class="research-institution" tabindex="0" role="article">
                     <h3>UVA Division of Perceptual Studies</h3>
                     <p><strong>Relevant Research:</strong> Consciousness beyond the brain, near-death experiences</p>
                     <p><strong>Key Researchers:</strong> Dr. Bruce Greyson, Dr. Jim Tucker</p>
                     <p><strong>Application:</strong> Academic foundation for astral projection and non-local consciousness</p>
-                </div>
+                </article>
             </div>
-        </div>
+        </section>
 
-        <div class="content-section">
+        <section class="content-section">
             <h2>Measurement and Validation Methodologies</h2>
             <div class="measurement-grid">
-                <div class="measurement-type">
+                <article class="measurement-type" tabindex="0" role="article">
                     <h3>Cognitive Performance Metrics</h3>
                     <ul>
                         <li>Attention Assessment</li>
@@ -247,41 +187,20 @@
                         <li>Memory and Recall</li>
                         <li>Implementation through gamified tasks</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="measurement-type">
+                <article class="measurement-type" tabindex="0" role="article">
                     <h3>Physiological Measurements</h3>
                     <ul>
                         <li>Heart Rate Variability (HRV)</li>
                         <li>Skin Conductance</li>
                         <li>Respiratory Patterns</li>
-                        <li>Integration with wearable devices</li>
                     </ul>
-                </div>
-
-                <div class="measurement-type">
-                    <h3>Practice Consistency Tracking</h3>
-                    <ul>
-                        <li>Duration Metrics</li>
-                        <li>Frequency Analysis</li>
-                        <li>Depth Assessment</li>
-                        <li>Automated tracking systems</li>
-                    </ul>
-                </div>
-
-                <div class="measurement-type">
-                    <h3>Performance on Specific Abilities</h3>
-                    <ul>
-                        <li>Remote Viewing Accuracy</li>
-                        <li>Intuitive Decision Quality</li>
-                        <li>Energy Sensing Precision</li>
-                        <li>Structured challenge outcomes</li>
-                    </ul>
-                </div>
+                </article>
             </div>
-        </div>
+        </section>
 
-        <div class="content-section">
+        <section class="content-section">
             <h2>Implementation Strategy</h2>
             <div class="implementation-grid">
                 <div class="implementation-phase">
@@ -320,9 +239,9 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content-section">
+        <section class="content-section">
             <h2>Ethical Considerations</h2>
             <div class="research-grid">
                 <div class="research-area">
@@ -361,20 +280,16 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="content-section">
+        <section class="content-section">
             <h2>Conclusion</h2>
-            <p>This scientific validation framework provides QUANEX with a solid foundation for balancing spiritual exploration with scientific credibility. By implementing dual explanation systems, comprehensive measurement methodologies, and evidence-based frameworks, QUANEX can appeal to both spiritually-oriented and scientifically-minded users.</p>
-            <p>The framework supports the academic integration of the project while maintaining the inspirational and transformative potential of the consciousness acceleration concept. By grounding supernatural abilities in scientific research and measurement, QUANEX creates an innovative platform that bridges ancient wisdom and modern science.</p>
-        </div>
+            <p>This scientific validation framework provides QUANNEX with a solid foundation for balancing spiritual exploration with scientific credibility. By implementing dual explanation systems, comprehensive measurement methodologies, and evidence-based frameworks, QUANNEX can appeal to both spiritually-oriented and scientifically-minded users.</p>
+            <p>The framework supports the academic integration of the project while maintaining the inspirational and transformative potential of the consciousness acceleration concept. By grounding supernatural abilities in scientific research and measurement, QUANNEX creates an innovative platform that bridges ancient wisdom and modern science.</p>
+        </section>
+    </main>
 
-        <a href="index.html" class="back-button">Back to Home</a>
-    </div>
-
-    <footer>
-        <p>&copy; 2023 QUANEX. All rights reserved.</p>
-    </footer>
+    <footer></footer>
     
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
@@ -398,6 +313,62 @@
                 behavior: 'smooth'
             });
         });
+
+        // Enhanced Quantum Cursor Effects
+        const cursor = document.querySelector('.quantum-cursor');
+        const quantumTrail = document.createElement('div');
+        quantumTrail.className = 'quantum-trail';
+        document.body.appendChild(quantumTrail);
+
+        let lastX = 0;
+        let lastY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            // Update cursor position
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+
+            // Create trail particles
+            if (Math.random() > 0.5) {
+                createTrailParticle(e.clientX, e.clientY);
+            }
+
+            // Create wave effect on significant movement
+            const dx = e.clientX - lastX;
+            const dy = e.clientY - lastY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance > 20) {
+                createWaveCircle(e.clientX, e.clientY);
+            }
+
+            lastX = e.clientX;
+            lastY = e.clientY;
+        });
+
+        function createTrailParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'quantum-trail-particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            quantumTrail.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        }
+
+        function createWaveCircle(x, y) {
+            const circle = document.createElement('div');
+            circle.className = 'quantum-wave-circle';
+            circle.style.left = x + 'px';
+            circle.style.top = y + 'px';
+            quantumTrail.appendChild(circle);
+
+            setTimeout(() => {
+                circle.remove();
+            }, 2000);
+        }
     </script>
 </body>
 </html> 
