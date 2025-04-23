@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Sitemaps
+Sitemap: https://quannex.com/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 10 

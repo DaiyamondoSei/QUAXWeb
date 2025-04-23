@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUANEX: Advanced Progression System</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>QUANNEX: Advanced Progression System</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
     <style>
         .content-container {
             max-width: 1000px;
@@ -14,6 +22,8 @@
             background-color: rgba(5, 5, 32, 0.8);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 100px; /* Add space for fixed header */
+            min-height: 100vh;
         }
         
         .content-header {
@@ -249,8 +259,8 @@
 
         .visual-element:hover {
             transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: var(--glow-secondary);
+            background-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .visual-element i {
@@ -323,46 +333,18 @@
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header>
-        <a href="index.html" class="logo-container">
-            <div class="logo">
-                <div class="quantum-symbol"></div>
-                <h1>QUANEX</h1>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html#vision">Vision</a></li>
-                <li><a href="index.html#framework">Framework</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#science">Science</a></li>
-                <li><a href="index.html#roadmap">Roadmap</a></li>
-                <li><a href="index.html#resources">Resources</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
 
     <div class="content-container">
         <div class="content-header">
             <h1>Advanced Progression System</h1>
             <p>13-Stage Evolution and Future Self Connection</p>
-        </div>
-
-        <div class="resource-navigation">
-            <a href="index.html" class="resource-nav-item">Home</a>
-            <a href="project_proposal.html" class="resource-nav-item">Project Proposal</a>
-            <a href="business_model.html" class="resource-nav-item">Business Model</a>
-            <a href="academic_alignment.html" class="resource-nav-item">Academic Alignment</a>
-            <a href="scientific_validation.html" class="resource-nav-item">Scientific Validation</a>
-            <a href="advanced_progression.html" class="resource-nav-item current">Progression System</a>
-            <a href="implementation_priorities.html" class="resource-nav-item">Implementation Plan</a>
-            <a href="app_screens.html" class="resource-nav-item">App Screens</a>
-            <a href="curriculum.html" class="resource-nav-item">4-Week Curriculum</a>
         </div>
         
         <div class="content-section">
@@ -718,25 +700,7 @@
         <a href="index.html" class="back-button">Back to Home</a>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <div class="quantum-symbol-small"></div>
-                <h3>QUANEX</h3>
-            </div>
-            <div class="footer-tagline">
-                <p>Bridging Quantum Physics and Consciousness</p>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2024 QUANEX. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy.html">Privacy Policy</a> | 
-                    <a href="terms.html">Terms of Use</a> | 
-                    <a href="https://github.com/yourusername/QUANEX/blob/main/LICENSE" target="_blank">License</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
     
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>

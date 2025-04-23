@@ -3,147 +3,589 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consciousness Accelerator App - QUANEX Foundation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Consciousness Accelerator App - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/progress-visualization.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
+    <style>
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            background: none;
+        }
+        
+        .app-page-content {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            background: none;
+        }
+        
+        .quantum-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 0 4rem;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(110, 0, 255, 0.15);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            border-radius: 24px;
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(110, 0, 255, 0.1),
+                inset 0 0 20px rgba(0, 184, 255, 0.05);
+        }
+
+        .quantum-title-container h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quantum-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--primary-color),
+                var(--secondary-color),
+                var(--accent-color));
+            opacity: 0.7;
+            filter: blur(1px);
+            animation: glowLine 3s ease-in-out infinite;
+        }
+
+        .quantum-hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--medium-text);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quantum-nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quantum-nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .quantum-nav-btn i {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .quantum-nav-btn span {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .quantum-btn-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(110, 0, 255, 0.4),
+                rgba(0, 184, 255, 0.2),
+                rgba(255, 0, 230, 0.4));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .quantum-nav-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(110, 0, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
+        }
+
+        .quantum-nav-btn:hover .quantum-btn-glow {
+            opacity: 0.8;
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+
+        .quantum-nav-btn:hover i {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .consciousness-visualization {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0.9;
+            mix-blend-mode: screen;
+        }
+
+        .consciousness-sphere {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .sphere-core {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8),
+                rgba(110, 0, 255, 0.6));
+            box-shadow: 
+                0 0 50px rgba(110, 0, 255, 0.4),
+                0 0 100px rgba(0, 184, 255, 0.2),
+                0 0 150px rgba(255, 0, 230, 0.2);
+            animation: pulseSphere 4s ease-in-out infinite;
+        }
+
+        .sphere-rings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .sphere-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 2px solid rgba(0, 184, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 184, 255, 0.1);
+            animation: rotateRing 20s linear infinite;
+        }
+
+        .sphere-ring:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            animation-duration: 20s;
+        }
+
+        .sphere-ring:nth-child(2) {
+            width: 250px;
+            height: 250px;
+            animation-duration: 25s;
+            animation-direction: reverse;
+        }
+
+        .sphere-ring:nth-child(3) {
+            width: 300px;
+            height: 300px;
+            animation-duration: 30s;
+        }
+
+        .consciousness-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .consciousness-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            animation: particleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseSphere {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateRing {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(var(--tx, 20px), var(--ty, 20px));
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes btnGlow {
+            0%, 100% {
+                opacity: 0.4;
+                filter: blur(3px);
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-page-content {
+                padding: 0 1rem;
+            }
+
+            .quantum-hero {
+                min-height: auto;
+                padding: 4rem 0 2rem;
+            }
+
+            .quantum-title-container h1 {
+                font-size: 2.5rem;
+            }
+
+            .quantum-hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .quantum-nav-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .quantum-nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .consciousness-visualization {
+                display: none;
+            }
+        }
+
+        .content-container {
+            padding-top: 100px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            background: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            background: none;
+        }
+
+        /* Enhance stars effect */
+        .stars {
+            opacity: 1;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        .twinkling {
+            opacity: 0.8;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Add glass effect to content sections */
+        .section-container {
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            margin: 4rem 0;
+            padding: 2.5rem;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header>
-        <a href="index.html" class="logo-container">
-            <div class="logo">
-                <div class="quantum-symbol"></div>
-                <h1>QUANEX</h1>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html#vision">Vision</a></li>
-                <li><a href="index.html#framework">Framework</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#science">Science</a></li>
-                <li><a href="index.html#roadmap">Roadmap</a></li>
-                <li><a href="index.html#resources">Resources</a></li>
-                <li><a href="consciousness_accelerator.html" class="active">App</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-                <li><a href="advanced_concepts.html">Advanced</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header></header>
 
-    <main class="app-page-content">
-        <section class="hero app-hero">
-            <div class="hero-content">
-                <h1>Consciousness Accelerator App</h1>
-                <p class="subtitle">Bridging Spirituality and Quantum Physics Through Gamified Learning</p>
-            </div>
-            <div class="quantum-visualization">
-                <div class="quantum-circle"></div>
-                <div class="constellation-bg"></div>
-            </div>
-        </section>
+    <div class="resource-navigation-container"></div>
 
-        <section class="content">
-            <div class="section-container">
-                <h2>Core Concept</h2>
-                <p>The Consciousness Accelerator is a revolutionary mobile application designed to bridge the gap between spirituality and quantum physics. Through structured, incremental learning experiences, users can expand their consciousness and develop spiritual abilities in an engaging, gamified environment.</p>
-                
-                <h3>Vision</h3>
-                <p>To create an engaging, gamified platform that makes consciousness expansion and spiritual development accessible, measurable, and enjoyable for users of all backgrounds, while grounding these concepts in principles inspired by quantum physics.</p>
+    <div class="app-container">
+        <main class="app-page-content">
+            <section class="hero app-hero quantum-hero">
+                <div class="hero-content">
+                    <div class="quantum-title-container">
+                        <h1>Consciousness Accelerator App</h1>
+                        <div class="quantum-underline"></div>
+                    </div>
+                    <p class="subtitle">Bridging Spirituality and Quantum Physics Through Gamified Learning</p>
+                    <div class="quantum-nav-buttons">
+                        <a href="quantum_parameters.html" class="quantum-nav-btn">
+                            <i class="fas fa-atom"></i>
+                            <span>Quantum States</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="app_features.html" class="quantum-nav-btn">
+                            <i class="fas fa-cube"></i>
+                            <span>App Features</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="app_screens.html" class="quantum-nav-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>App Screens</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="consciousness-visualization">
+                    <div class="consciousness-sphere">
+                        <div class="sphere-core"></div>
+                        <div class="sphere-rings">
+                            <div class="sphere-ring"></div>
+                            <div class="sphere-ring"></div>
+                            <div class="sphere-ring"></div>
+                        </div>
+                        <div class="consciousness-particles">
+                            <div class="consciousness-particle" style="--tx: 30px; --ty: -20px; top: 30%; left: 40%;"></div>
+                            <div class="consciousness-particle" style="--tx: -25px; --ty: 30px; top: 50%; left: 60%;"></div>
+                            <div class="consciousness-particle" style="--tx: 20px; --ty: 25px; top: 70%; left: 45%;"></div>
+                            <div class="consciousness-particle" style="--tx: -30px; --ty: -25px; top: 40%; left: 55%;"></div>
+                            <div class="consciousness-particle" style="--tx: 25px; --ty: 30px; top: 60%; left: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-                <h3>Target Audience</h3>
-                <ul>
-                    <li>Individuals interested in spiritual growth and consciousness expansion</li>
-                    <li>Meditation practitioners seeking to deepen their practice</li>
-                    <li>People curious about the intersection of spirituality and quantum physics</li>
-                    <li>Users looking to develop intuitive and consciousness-based abilities</li>
-                    <li>Students and academics interested in consciousness studies</li>
-                </ul>
-            </div>
+            <section class="content">
+                <div class="section-container">
+                    <h2>Core Concept</h2>
+                    <p>The Consciousness Accelerator is a revolutionary mobile application designed to bridge the gap between spirituality and quantum physics. Through structured, incremental learning experiences, users can expand their consciousness and develop spiritual abilities in an engaging, gamified environment.</p>
+                    
+                    <h3>Vision</h3>
+                    <p>To create an engaging, gamified platform that makes consciousness expansion and spiritual development accessible, measurable, and enjoyable for users of all backgrounds, while grounding these concepts in principles inspired by quantum physics.</p>
 
-            <div class="section-container">
-                <h2>Key Features</h2>
-                
-                <h3>Divine Intelligence (DI) AI Guide</h3>
-                <ul>
-                    <li>Personalized AI assistant guiding users through their consciousness expansion journey</li>
-                    <li>Advanced meditation session analysis and insights</li>
-                    <li>Personalized exercise and challenge recommendations</li>
-                    <li>Adaptive communication style based on user progress</li>
-                </ul>
+                    <h3>Target Audience</h3>
+                    <ul>
+                        <li>Individuals interested in spiritual growth and consciousness expansion</li>
+                        <li>Meditation practitioners seeking to deepen their practice</li>
+                        <li>People curious about the intersection of spirituality and quantum physics</li>
+                        <li>Users looking to develop intuitive and consciousness-based abilities</li>
+                        <li>Students and academics interested in consciousness studies</li>
+                    </ul>
+                </div>
 
-                <h3>Meditation Analysis System</h3>
-                <ul>
-                    <li>Guided meditation sessions with various focuses</li>
-                    <li>Post-meditation reflection and experience recording</li>
-                    <li>Pattern analysis across meditation sessions</li>
-                    <li>Progress visualization and tracking</li>
-                </ul>
+                <div class="section-container progress-visualization">
+                    <h2>Your Quantum Journey</h2>
+                    <div class="progress-tracker">
+                        <div class="quantum-progress-stages">
+                            <div class="progress-stage">
+                                <div class="stage-icon">
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                                <h4>Initiation</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-stage">
+                                <div class="stage-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4>Quantum Awareness</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-stage">
+                                <div class="stage-icon">
+                                    <i class="fas fa-atom"></i>
+                                </div>
+                                <h4>Consciousness Expansion</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="progress-stage">
+                                <div class="stage-icon">
+                                    <i class="fas fa-infinity"></i>
+                                </div>
+                                <h4>Quantum Mastery</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quantum-stats">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-meditation"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>Meditation Sessions</h4>
+                                    <p class="stat-value">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>Achievements</h4>
+                                    <p class="stat-value">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h4>Consciousness Level</h4>
+                                    <p class="stat-value">1.0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <h3>Gamification Elements</h3>
-                <ul>
-                    <li>Epic Meaning & Calling: Contributing to personal and collective evolution</li>
-                    <li>Development & Accomplishment: Quantum energy points and achievements</li>
-                    <li>Empowerment of Creativity: Personalized practice creation</li>
-                    <li>Ownership & Possession: Customizable spiritual profile</li>
-                    <li>Social Influence: Optional community features</li>
-                </ul>
-            </div>
+                <div class="section-container">
+                    <h2>Key Features</h2>
+                    
+                    <h3>Divine Intelligence (DI) AI Guide</h3>
+                    <ul>
+                        <li>Personalized AI assistant guiding users through their consciousness expansion journey</li>
+                        <li>Advanced meditation session analysis and insights</li>
+                        <li>Personalized exercise and challenge recommendations</li>
+                        <li>Adaptive communication style based on user progress</li>
+                    </ul>
 
-            <div class="section-container">
-                <h2>User Journey</h2>
-                
-                <h3>Onboarding</h3>
-                <ul>
-                    <li>Initial consciousness baseline assessment</li>
-                    <li>Introduction to Divine Intelligence guide</li>
-                    <li>App features tutorial</li>
-                    <li>Goal setting and preferences</li>
-                </ul>
+                    <h3>Meditation Analysis System</h3>
+                    <ul>
+                        <li>Guided meditation sessions with various focuses</li>
+                        <li>Post-meditation reflection and experience recording</li>
+                        <li>Pattern analysis across meditation sessions</li>
+                        <li>Progress visualization and tracking</li>
+                    </ul>
 
-                <h3>Daily Practice</h3>
-                <ul>
-                    <li>Recommended daily meditation (5-20 minutes)</li>
-                    <li>Post-meditation reflection and analysis</li>
-                    <li>Daily micro-challenges</li>
-                    <li>Progress tracking and DI feedback</li>
-                </ul>
+                    <h3>Gamification Elements</h3>
+                    <ul>
+                        <li>Epic Meaning & Calling: Contributing to personal and collective evolution</li>
+                        <li>Development & Accomplishment: Quantum energy points and achievements</li>
+                        <li>Empowerment of Creativity: Personalized practice creation</li>
+                        <li>Ownership & Possession: Customizable spiritual profile</li>
+                        <li>Social Influence: Optional community features</li>
+                    </ul>
+                </div>
 
-                <h3>Weekly Challenges</h3>
-                <ul>
-                    <li>Substantial weekly challenges</li>
-                    <li>Integration exercises</li>
-                    <li>Deep parameter exploration</li>
-                    <li>Learning path adjustments</li>
-                </ul>
-            </div>
-        </section>
-    </main>
+                <div class="section-container">
+                    <h2>User Journey</h2>
+                    
+                    <h3>Onboarding</h3>
+                    <ul>
+                        <li>Initial consciousness baseline assessment</li>
+                        <li>Introduction to Divine Intelligence guide</li>
+                        <li>App features tutorial</li>
+                        <li>Goal setting and preferences</li>
+                    </ul>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>QUANEX Foundation</h4>
-                <p>Advancing consciousness through technology and science</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="consciousness_accelerator.html">Consciousness Accelerator</a></li>
-                    <li><a href="quantum_parameters.html">Quantum Parameters</a></li>
-                    <li><a href="app_features.html">App Features</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 QUANEX Foundation. All rights reserved.</p>
-        </div>
-    </footer>
+                    <h3>Daily Practice</h3>
+                    <ul>
+                        <li>Recommended daily meditation (5-20 minutes)</li>
+                        <li>Post-meditation reflection and analysis</li>
+                        <li>Daily micro-challenges</li>
+                        <li>Progress tracking and DI feedback</li>
+                    </ul>
 
-    <script src="scripts.js"></script>
+                    <h3>Weekly Challenges</h3>
+                    <ul>
+                        <li>Substantial weekly challenges</li>
+                        <li>Integration exercises</li>
+                        <li>Deep parameter exploration</li>
+                        <li>Learning path adjustments</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer></footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html> 

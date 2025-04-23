@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUANEX: Business Model</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Business Model - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
+    <link rel="stylesheet" href="styles/business_model.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
     <style>
         .content-container {
             max-width: 1000px;
@@ -14,6 +23,8 @@
             background-color: rgba(5, 5, 32, 0.8);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 100px; /* Add space for fixed header */
+            min-height: 100vh;
         }
         
         .content-header {
@@ -361,134 +372,779 @@
         .enterprise-features li:last-child {
             border-bottom: none;
         }
+
+        .market-analysis-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .market-growth-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .growth-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+        }
+
+        .growth-stats {
+            display: flex;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .stat .label {
+            font-size: 0.9rem;
+            color: var(--medium-text);
+        }
+
+        .segment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .segment-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .segment-icon {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .segment-stats {
+            margin-top: 1rem;
+        }
+
+        .segment-stats .value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .comparison-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .quannex {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .competitors {
+            color: var(--medium-text);
+        }
+
+        .canvas-container {
+            margin: 2rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .canvas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .canvas-block {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .canvas-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .canvas-block:hover::before {
+            opacity: 0.05;
+        }
+
+        .canvas-block:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .canvas-block.expanded {
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .canvas-block.expanded::before {
+            opacity: 0.1;
+        }
+
+        .canvas-block h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        .canvas-block:hover h3 {
+            color: var(--accent-color);
+        }
+
+        .canvas-block h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .canvas-block ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .canvas-block li {
+            padding: 0.3rem 0;
+            color: var(--light-text);
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .canvas-block:hover li {
+            transform: translateX(5px);
+            color: var(--medium-text);
+        }
+
+        .segment-card, .value-card, .channel-card, .relationship-card, .revenue-card, .resource-card, .activity-card, .partnership-card, .cost-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .segment-card::after, .value-card::after, .channel-card::after, .relationship-card::after, .revenue-card::after, .resource-card::after, .activity-card::after, .partnership-card::after, .cost-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .segment-card:hover::after, .value-card:hover::after, .channel-card:hover::after, .relationship-card:hover::after, .revenue-card:hover::after, .resource-card:hover::after, .activity-card:hover::after, .partnership-card:hover::after, .cost-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .segment-card.primary {
+            border-left: 3px solid var(--primary-color);
+            background: linear-gradient(90deg, rgba(var(--primary-color-rgb), 0.1), transparent);
+        }
+
+        .segment-card.secondary {
+            border-left: 3px solid var(--secondary-color);
+            background: linear-gradient(90deg, rgba(var(--secondary-color-rgb), 0.1), transparent);
+        }
+
+        @media (max-width: 768px) {
+            .canvas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .canvas-block {
+                margin-bottom: 1rem;
+            }
+        }
+
+        .visualization-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .viz-control {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--light-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .viz-control:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .viz-control.active {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: var(--glow-primary);
+        }
+
+        .metrics-container, .segments-container {
+            display: none;
+        }
+
+        .active-view {
+            display: block;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .chart-container {
+            height: 200px;
+            margin: 1rem 0;
+        }
+
+        .metric-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .metric-item {
+            text-align: center;
+        }
+
+        .metric-item .label {
+            display: block;
+            color: var(--medium-text);
+            font-size: 0.9rem;
+        }
+
+        .metric-item .value {
+            display: block;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .segments-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .segment-visualization {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demographic-chart {
+            height: 300px;
+            margin-top: 1rem;
+        }
+
+        .segment-metrics {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .segment-metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .segment-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .value {
+            display: block;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .stat .label {
+            display: block;
+            color: var(--medium-text);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .segments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .accessibility-nav {
+            margin-bottom: 2rem;
+        }
+
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            z-index: 999;
+            padding: 1em;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        .view-navigation {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .viz-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: var(--light-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .viz-control i {
+            font-size: 1.2rem;
+        }
+
+        .view-overview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .key-points {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .key-point {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--medium-text);
+        }
+
+        .key-point i {
+            color: var(--secondary-color);
+        }
+
+        .metrics-summary, .segments-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .summary-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-card p {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .key-points {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .metrics-summary, .segments-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-to-details {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem auto 0;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-details::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .scroll-to-details:hover::before {
+            left: 100%;
+        }
+
+        .scroll-to-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .scroll-to-details i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .scroll-to-details:hover i {
+            transform: translateY(2px);
+        }
+
+        .scroll-to-details:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-5px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
+        }
+
+        .scroll-to-details i {
+            animation: bounce 2s infinite;
+        }
+
+        /* Add a subtle pulse effect */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(110, 0, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(110, 0, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(110, 0, 255, 0);
+            }
+        }
+
+        .scroll-to-details {
+            animation: pulse 2s infinite;
+        }
+
+        /* Add a subtle glow effect on hover */
+        .scroll-to-details:hover {
+            background: linear-gradient(45deg, 
+                var(--primary-color), 
+                var(--secondary-color), 
+                var(--primary-color)
+            );
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .back-to-overview {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0 0 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .back-to-overview:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-overview i {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-overview:hover i {
+            transform: translateY(-2px);
+        }
+
+        .back-to-overview:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .back-to-overview i {
+            animation: float 2s infinite;
+        }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header>
-        <a href="index.html" class="logo-container">
-            <div class="logo">
-                <div class="quantum-symbol"></div>
-                <h1>QUANEX</h1>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html#vision">Vision</a></li>
-                <li><a href="index.html#framework">Framework</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#science">Science</a></li>
-                <li><a href="index.html#roadmap">Roadmap</a></li>
-                <li><a href="index.html#resources">Resources</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
 
     <div class="content-container">
         <div class="content-header">
-            <h1>QUANEX: Business Model</h1>
-        </div>
-
-        <div class="resource-navigation">
-            <a href="index.html" class="resource-nav-item">Home</a>
-            <a href="project_proposal.html" class="resource-nav-item">Project Proposal</a>
-            <a href="business_model.html" class="resource-nav-item current">Business Model</a>
-            <a href="academic_alignment.html" class="resource-nav-item">Academic Alignment</a>
-            <a href="scientific_validation.html" class="resource-nav-item">Scientific Validation</a>
-            <a href="advanced_progression.html" class="resource-nav-item">Progression System</a>
-            <a href="implementation_plan.html" class="resource-nav-item">Implementation Plan</a>
-            <a href="app_screens.html" class="resource-nav-item">App Screens</a>
-            <a href="curriculum.html" class="resource-nav-item">4-Week Curriculum</a>
+            <h1>QUANNEX: Business Model</h1>
         </div>
         
         <div class="content-section">
             <h2>Executive Summary</h2>
-            <p>The QUANEX business model is designed to create a sustainable platform that balances accessibility with revenue generation. By implementing a freemium approach with tiered subscriptions, QUANEX can reach a wide audience while generating significant revenue from users who seek advanced features and deeper consciousness development.</p>
-            <p>This document outlines the monetization strategy, initial funding approach, financial projections, and market analysis for QUANEX, providing a comprehensive framework for building a financially viable consciousness acceleration platform.</p>
+            <p>The QUANNEX business model is designed to create a sustainable platform that balances accessibility with revenue generation. By implementing a freemium approach with tiered subscriptions, QUANNEX can reach a wide audience while generating significant revenue from users who seek advanced features and deeper consciousness development.</p>
+            <p>This document outlines the monetization strategy, initial funding approach, financial projections, and market analysis for QUANNEX, providing a comprehensive framework for building a financially viable consciousness acceleration platform.</p>
         </div>
         
         <div class="content-section">
             <h2>Market Analysis</h2>
-            <div class="market-stats">
+            
+            <div class="market-stats-container">
                 <div class="stat-card">
-                    <h3>Market Growth</h3>
-                    <p class="stat-value">$2.63B</p>
-                    <p class="stat-label">Projected Market Size by 2028</p>
-                    <p class="stat-detail">Growing from $533.2M in 2022</p>
+                    <h3>Market Size</h3>
+                    <div class="stat-value">$2.6B</div>
+                    <div class="stat-label">2022 Market Value</div>
+                    <div class="stat-projection">Projected $20.5B by 2030</div>
                 </div>
+                
                 <div class="stat-card">
-                    <h3>Global Users</h3>
-                    <p class="stat-value">275M</p>
-                    <p class="stat-label">Meditation Practitioners</p>
-                    <p class="stat-detail">Worldwide</p>
+                    <h3>Growth Rate</h3>
+                    <div class="stat-value">31.4%</div>
+                    <div class="stat-label">CAGR 2023-2030</div>
                 </div>
+                
                 <div class="stat-card">
-                    <h3>US Growth</h3>
-                    <p class="stat-value">18%</p>
-                    <p class="stat-label">Adult Practitioners</p>
-                    <p class="stat-detail">Up from 4.1% in 2012</p>
+                    <h3>Wellness Tech</h3>
+                    <div class="stat-value">$520B</div>
+                    <div class="stat-label">2023 Market Size</div>
                 </div>
             </div>
 
-            <div class="user-demographics">
-                <h3>User Demographics</h3>
-                <div class="demographics-grid">
-                    <div class="demographic-card primary">
-                        <h4>Primary Users</h4>
-                        <p>Adults 25-45</p>
-                        <p>Spiritual growth & consciousness expansion</p>
-                    </div>
-                    <div class="demographic-card secondary">
-                        <h4>Secondary Users</h4>
-                        <p>Students & Young Adults (18-24)</p>
-                        <p>Exploring meditation & mindfulness</p>
-                    </div>
-                    <div class="demographic-card tertiary">
-                        <h4>Tertiary Users</h4>
-                        <p>Older Adults (46+)</p>
-                        <p>Deeper spiritual connection</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="competitor-analysis">
-                <h3>Competitor Analysis</h3>
+            <div class="competitive-analysis">
+                <h3>Competitive Landscape</h3>
                 <div class="competitor-grid">
-                    <div class="competitor-card">
-                        <h4>Mind: Spiritual Awakening</h4>
+                    <div class="competitor-category">
+                        <h4>Meditation Apps</h4>
                         <ul>
-                            <li>Freemium model with premium content</li>
-                            <li>Focus on spiritual abilities</li>
-                            <li>Remote viewing & lucid dreaming</li>
+                            <li>Calm</li>
+                            <li>Headspace</li>
+                            <li>Insight Timer</li>
                         </ul>
                     </div>
-                    <div class="competitor-card">
-                        <h4>Headspace</h4>
+                    
+                    <div class="competitor-category">
+                        <h4>Spiritual Platforms</h4>
                         <ul>
-                            <li>Subscription-only ($69.99/year)</li>
-                            <li>Strong brand recognition</li>
-                            <li>High-quality content & UX</li>
+                            <li>Gaia</li>
+                            <li>MindValley</li>
                         </ul>
                     </div>
-                    <div class="competitor-card">
-                        <h4>Calm</h4>
+                    
+                    <div class="competitor-category">
+                        <h4>Wellness Gamification</h4>
                         <ul>
-                            <li>Subscription ($69.99/year)</li>
-                            <li>Sleep content focus</li>
-                            <li>Celebrity partnerships</li>
+                            <li>Fabulous</li>
+                            <li>Habitica</li>
                         </ul>
                     </div>
-                    <div class="competitor-card">
-                        <h4>Insight Timer</h4>
-                        <ul>
-                            <li>Primarily free with premium features</li>
-                            <li>Largest free meditation library</li>
-                            <li>Strong community features</li>
-                        </ul>
+                </div>
+            </div>
+
+            <div class="unique-differentiators">
+                <h3>QUANNEX Unique Differentiators</h3>
+                <div class="differentiator-grid">
+                    <div class="differentiator-card">
+                        <i class="fas fa-atom"></i>
+                        <h4>Quantum Integration</h4>
+                        <p>Integration of quantum physics and spirituality</p>
+                    </div>
+                    
+                    <div class="differentiator-card">
+                        <i class="fas fa-user-clock"></i>
+                        <h4>Future Self Connection</h4>
+                        <p>Unique concept for personal development</p>
+                    </div>
+                    
+                    <div class="differentiator-card">
+                        <i class="fas fa-layer-group"></i>
+                        <h4>13-Stage Evolution</h4>
+                        <p>Comprehensive development system</p>
+                    </div>
+                    
+                    <div class="differentiator-card">
+                        <i class="fas fa-road"></i>
+                        <h4>Mastery Paths</h4>
+                        <p>Five specialized development paths</p>
+                    </div>
+                    
+                    <div class="differentiator-card">
+                        <i class="fas fa-flask"></i>
+                        <h4>Scientific Validation</h4>
+                        <p>Rigorous scientific framework</p>
+                    </div>
+                    
+                    <div class="differentiator-card">
+                        <i class="fas fa-gamepad"></i>
+                        <h4>QXP System</h4>
+                        <p>Advanced gamification platform</p>
                     </div>
                 </div>
             </div>
@@ -540,7 +1196,7 @@
             </div>
             
             <h3>Conversion Strategy</h3>
-            <p>To maximize conversion from free to paid tiers, QUANEX will implement the following strategies:</p>
+            <p>To maximize conversion from free to paid tiers, QUANNEX will implement the following strategies:</p>
             <ul>
                 <li><strong>Value Demonstration:</strong> Free tier provides enough value to demonstrate the app's effectiveness while creating natural progression points that encourage upgrades</li>
                 <li><strong>Strategic Feature Gating:</strong> Core features available in free tier, with more advanced and personalized features in paid tiers</li>
@@ -550,19 +1206,19 @@
             </ul>
             
             <h3>Additional Revenue Streams</h3>
-            <p>Beyond the core subscription model, QUANEX will explore these additional revenue opportunities:</p>
+            <p>Beyond the core subscription model, QUANNEX will explore these additional revenue opportunities:</p>
             <ul>
                 <li><strong>Enterprise Solutions:</strong> Customized versions for corporate wellness programs, educational institutions, and wellness centers</li>
-                <li><strong>Merchandise:</strong> Physical products aligned with the QUANEX brand (meditation accessories, apparel, etc.)</li>
+                <li><strong>Merchandise:</strong> Physical products aligned with the QUANNEX brand (meditation accessories, apparel, etc.)</li>
                 <li><strong>Events:</strong> Virtual and in-person consciousness development workshops and retreats</li>
-                <li><strong>Content Licensing:</strong> Licensing QUANEX content and methodology to other platforms</li>
+                <li><strong>Content Licensing:</strong> Licensing QUANNEX content and methodology to other platforms</li>
                 <li><strong>API Access:</strong> Providing API access for developers to build complementary applications</li>
             </ul>
         </div>
         
         <div class="content-section">
             <h2>Initial Funding Strategy</h2>
-            <p>To support development and launch, QUANEX will implement a multi-faceted funding approach:</p>
+            <p>To support development and launch, QUANNEX will implement a multi-faceted funding approach:</p>
             
             <div class="funding-options">
                 <div class="funding-option">
@@ -581,7 +1237,7 @@
                 
                 <div class="funding-option">
                     <h3>Lifetime Subscriptions</h3>
-                    <p>Limited-time offers for lifetime access to QUANEX at a premium one-time price, creating immediate revenue while building a dedicated user base.</p>
+                    <p>Limited-time offers for lifetime access to QUANNEX at a premium one-time price, creating immediate revenue while building a dedicated user base.</p>
                     <p>Tiered lifetime options with different benefit levels and exclusivity.</p>
                     <div class="funding-goal">Price: €149 - €199</div>
                 </div>
@@ -591,7 +1247,7 @@
             <p>Leveraging Hanze University's startup support programs like Start-Up City and Incubator Cube050 can provide additional resources, mentorship, and potential funding opportunities.</p>
             
             <h3>Future Funding Rounds</h3>
-            <p>After establishing initial traction and user base, QUANEX may pursue:</p>
+            <p>After establishing initial traction and user base, QUANNEX may pursue:</p>
             <ul>
                 <li><strong>Angel Investment:</strong> From investors interested in consciousness technology and wellness applications</li>
                 <li><strong>Venture Capital:</strong> For scaling operations and accelerating development of advanced features</li>
@@ -605,9 +1261,9 @@
                 <div class="financial-card">
                     <h3>MVP Phase (0-6 Months)</h3>
                     <ul>
-                        <li><strong>Development Cost:</strong> $100,000 - $150,000</li>
-                        <li><strong>Marketing Budget:</strong> $20,000 - $30,000</li>
-                        <li><strong>Revenue Potential:</strong> $10,000 - $20,000/month</li>
+                        <li><strong>Development Cost:</strong> $50,000 - $75,000</li>
+                        <li><strong>Marketing Budget:</strong> $10,000 - $15,000</li>
+                        <li><strong>Revenue Potential:</strong> $5,000 - $10,000/month</li>
                         <li><strong>Funding Sources:</strong>
                             <ul>
                                 <li>Crowdfunding campaign</li>
@@ -621,9 +1277,9 @@
                 <div class="financial-card">
                     <h3>Phase 2 (6-12 Months)</h3>
                     <ul>
-                        <li><strong>Development Cost:</strong> $150,000 - $200,000</li>
-                        <li><strong>Marketing Budget:</strong> $30,000 - $50,000</li>
-                        <li><strong>Revenue Potential:</strong> $30,000 - $50,000/month</li>
+                        <li><strong>Development Cost:</strong> $75,000 - $100,000</li>
+                        <li><strong>Marketing Budget:</strong> $15,000 - $25,000</li>
+                        <li><strong>Revenue Potential:</strong> $15,000 - $25,000/month</li>
                         <li><strong>Funding Sources:</strong>
                             <ul>
                                 <li>Revenue from MVP phase</li>
@@ -637,9 +1293,9 @@
                 <div class="financial-card">
                     <h3>Phase 3 (12-18 Months)</h3>
                     <ul>
-                        <li><strong>Development Cost:</strong> $200,000 - $300,000</li>
-                        <li><strong>Marketing Budget:</strong> $50,000 - $100,000</li>
-                        <li><strong>Revenue Potential:</strong> $100,000 - $200,000/month</li>
+                        <li><strong>Development Cost:</strong> $100,000 - $150,000</li>
+                        <li><strong>Marketing Budget:</strong> $25,000 - $50,000</li>
+                        <li><strong>Revenue Potential:</strong> $50,000 - $100,000/month</li>
                         <li><strong>Funding Sources:</strong>
                             <ul>
                                 <li>Revenue from Phase 2</li>
@@ -653,9 +1309,9 @@
                 <div class="financial-card">
                     <h3>Phase 4 (18+ Months)</h3>
                     <ul>
-                        <li><strong>Development Cost:</strong> $300,000 - $500,000+</li>
-                        <li><strong>Marketing Budget:</strong> $100,000 - $200,000+</li>
-                        <li><strong>Revenue Potential:</strong> $300,000 - $500,000+/month</li>
+                        <li><strong>Development Cost:</strong> $150,000 - $250,000</li>
+                        <li><strong>Marketing Budget:</strong> $50,000 - $100,000</li>
+                        <li><strong>Revenue Potential:</strong> $150,000 - $300,000/month</li>
                         <li><strong>Funding Sources:</strong>
                             <ul>
                                 <li>Revenue from Phase 3</li>
@@ -669,62 +1325,164 @@
         </div>
 
         <div class="content-section">
-            <h2>Revenue Model</h2>
-            <div class="pricing-table">
-                <div class="pricing-tier free-tier">
-                    <h3 class="tier-name">Free Tier</h3>
-                    <div class="tier-price">$0</div>
-                    <ul class="tier-features">
-                        <li>Basic quantum parameter tracking</li>
-                        <li>Limited meditation sessions</li>
-                        <li>Basic astral body visualization (Stage 1)</li>
-                        <li>Community access</li>
-                        <li>Basic QXP system</li>
-                    </ul>
+            <h2>Risk Assessment & Mitigation</h2>
+            
+            <div class="risk-matrix">
+                <div class="risk-category">
+                    <h3>Development Complexity</h3>
+                    <div class="risk-details">
+                        <p class="risk-level">Medium Risk</p>
+                        <p class="risk-description">Advanced features in later phases may present technical challenges</p>
+                        <div class="mitigation">
+                            <h4>Mitigation Strategy</h4>
+                            <ul>
+                                <li>Phased development approach</li>
+                                <li>Clear MVP definition</li>
+                                <li>Technical feasibility assessment</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="pricing-tier standard-tier">
-                    <h3 class="tier-name">Standard Tier</h3>
-                    <div class="tier-price">$19.99/mo</div>
-                    <ul class="tier-features">
-                        <li>Advanced quantum parameter tracking</li>
-                        <li>Unlimited meditation sessions</li>
-                        <li>Advanced astral body visualization (Stages 1-3)</li>
-                        <li>Priority community access</li>
-                        <li>Enhanced QXP system</li>
-                        <li>Basic Divine Intelligence guidance</li>
-                        <li>Network meditation features</li>
-                    </ul>
+                <div class="risk-category">
+                    <h3>Market Saturation</h3>
+                    <div class="risk-details">
+                        <p class="risk-level">Medium Risk</p>
+                        <p class="risk-description">Increasing competition in meditation and wellness app space</p>
+                        <div class="mitigation">
+                            <h4>Mitigation Strategy</h4>
+                            <ul>
+                                <li>Focus on unique differentiators</li>
+                                <li>Target specific consciousness bands</li>
+                                <li>Continuous market research</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="pricing-tier master-tier">
-                    <h3 class="tier-name">Master Tier</h3>
-                    <div class="tier-price">$49.99/mo</div>
-                    <ul class="tier-features">
-                        <li>Complete quantum parameter tracking</li>
-                        <li>Unlimited premium meditation sessions</li>
-                        <li>Full astral body visualization (All stages)</li>
-                        <li>VIP community access</li>
-                        <li>Advanced QXP system</li>
-                        <li>Advanced Divine Intelligence guidance</li>
-                        <li>Full network meditation features</li>
-                        <li>Sacred geometry integration</li>
-                        <li>Personalized development path</li>
-                        <li>Priority support</li>
-                    </ul>
+                <div class="risk-category">
+                    <h3>User Retention</h3>
+                    <div class="risk-details">
+                        <p class="risk-level">High Risk</p>
+                        <p class="risk-description">Maintaining engagement over time</p>
+                        <div class="mitigation">
+                            <h4>Mitigation Strategy</h4>
+                            <ul>
+                                <li>Robust gamification system</li>
+                                <li>Community features</li>
+                                <li>Regular content updates</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-category">
+                    <h3>Funding Gaps</h3>
+                    <div class="risk-details">
+                        <p class="risk-level">High Risk</p>
+                        <p class="risk-description">Insufficient initial funding to reach key development milestones</p>
+                        <div class="mitigation">
+                            <h4>Mitigation Strategy</h4>
+                            <ul>
+                                <li>Multi-faceted funding approach</li>
+                                <li>Clear feature prioritization</li>
+                                <li>Strategic partnerships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="risk-category">
+                    <h3>Credibility Challenges</h3>
+                    <div class="risk-details">
+                        <p class="risk-level">Medium Risk</p>
+                        <p class="risk-description">Balancing spiritual concepts with scientific credibility</p>
+                        <div class="mitigation">
+                            <h4>Mitigation Strategy</h4>
+                            <ul>
+                                <li>Comprehensive scientific validation framework</li>
+                                <li>Multi-consciousness band approach</li>
+                                <li>Academic partnerships</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="content-section">
-            <h2>Revenue Growth Projection</h2>
-            <div class="chart-container">
-                <h3 class="chart-title">Monthly Revenue Projection</h3>
-                <div class="revenue-chart">
-                    <div class="chart-bar" data-value="$20K" data-label="MVP"></div>
-                    <div class="chart-bar" data-value="$50K" data-label="Phase 2"></div>
-                    <div class="chart-bar" data-value="$200K" data-label="Phase 3"></div>
-                    <div class="chart-bar" data-value="$500K" data-label="Phase 4"></div>
+            <h2>Revenue Projections</h2>
+            <div class="revenue-visualization">
+                <div class="revenue-chart-container">
+                    <div class="chart-header">
+                        <h3>5-Year Revenue Projection</h3>
+                        <div class="chart-legend">
+                            <span class="legend-item"><i class="fas fa-square" style="color: var(--primary-color)"></i> Subscription Revenue</span>
+                            <span class="legend-item"><i class="fas fa-square" style="color: var(--secondary-color)"></i> Enterprise Revenue</span>
+                            <span class="legend-item"><i class="fas fa-square" style="color: var(--accent-color)"></i> Additional Streams</span>
+                        </div>
+                    </div>
+                    <div class="revenue-chart">
+                        <div class="chart-bar" data-value="$1.2M" data-label="Year 1" style="height: 20%">
+                            <div class="bar-segment subscription" style="height: 60%"></div>
+                            <div class="bar-segment enterprise" style="height: 30%"></div>
+                            <div class="bar-segment additional" style="height: 10%"></div>
+                        </div>
+                        <div class="chart-bar" data-value="$3.6M" data-label="Year 2" style="height: 40%">
+                            <div class="bar-segment subscription" style="height: 55%"></div>
+                            <div class="bar-segment enterprise" style="height: 35%"></div>
+                            <div class="bar-segment additional" style="height: 10%"></div>
+                        </div>
+                        <div class="chart-bar" data-value="$7.2M" data-label="Year 3" style="height: 60%">
+                            <div class="bar-segment subscription" style="height: 50%"></div>
+                            <div class="bar-segment enterprise" style="height: 40%"></div>
+                            <div class="bar-segment additional" style="height: 10%"></div>
+                        </div>
+                        <div class="chart-bar" data-value="$14.4M" data-label="Year 4" style="height: 80%">
+                            <div class="bar-segment subscription" style="height: 45%"></div>
+                            <div class="bar-segment enterprise" style="height: 45%"></div>
+                            <div class="bar-segment additional" style="height: 10%"></div>
+                        </div>
+                        <div class="chart-bar" data-value="$28.8M" data-label="Year 5" style="height: 100%">
+                            <div class="bar-segment subscription" style="height: 40%"></div>
+                            <div class="bar-segment enterprise" style="height: 50%"></div>
+                            <div class="bar-segment additional" style="height: 10%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="revenue-breakdown">
+                    <div class="breakdown-card">
+                        <h4>Year 1 Revenue Breakdown</h4>
+                        <div class="breakdown-chart">
+                            <div class="pie-chart" data-percentages="60,30,10">
+                                <div class="pie-segment subscription"></div>
+                                <div class="pie-segment enterprise"></div>
+                                <div class="pie-segment additional"></div>
+                            </div>
+                            <div class="breakdown-legend">
+                                <div class="legend-item">Subscription: 60%</div>
+                                <div class="legend-item">Enterprise: 30%</div>
+                                <div class="legend-item">Additional: 10%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="breakdown-card">
+                        <h4>Year 5 Revenue Breakdown</h4>
+                        <div class="breakdown-chart">
+                            <div class="pie-chart" data-percentages="40,50,10">
+                                <div class="pie-segment subscription"></div>
+                                <div class="pie-segment enterprise"></div>
+                                <div class="pie-segment additional"></div>
+                            </div>
+                            <div class="breakdown-legend">
+                                <div class="legend-item">Subscription: 40%</div>
+                                <div class="legend-item">Enterprise: 50%</div>
+                                <div class="legend-item">Additional: 10%</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -899,52 +1657,927 @@
                 </div>
             </div>
         </div>
-        
-        <a href="index.html" class="back-button">Back to Home</a>
-    </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <div class="quantum-symbol-small"></div>
-                <h3>QUANEX</h3>
-            </div>
-            <div class="footer-tagline">
-                <p>Bridging Quantum Physics and Consciousness</p>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2024 QUANEX. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy.html">Privacy Policy</a> | 
-                    <a href="terms.html">Terms of Use</a> | 
-                    <a href="https://github.com/yourusername/QUANEX/blob/main/LICENSE" target="_blank">License</a>
+        <div class="content-section">
+            <h2>Market Analysis & Positioning</h2>
+            <div class="market-analysis-grid">
+                <div class="market-growth-card">
+                    <div class="growth-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="growth-content">
+                        <h3>Market Opportunity</h3>
+                        <div class="growth-stats">
+                            <div class="stat">
+                                <span class="value">$2.63B</span>
+                                <span class="label">Projected 2028 Market</span>
+                            </div>
+                            <div class="stat">
+                                <span class="value">31.2%</span>
+                                <span class="label">CAGR</span>
+                            </div>
+                        </div>
+                        <p>Our business model is strategically positioned to capture a significant share of this rapidly growing market.</p>
+                    </div>
+                </div>
+
+                <div class="market-segments">
+                    <h3>Target Market Segments</h3>
+                    <div class="segment-cards">
+                        <div class="segment-card">
+                            <div class="segment-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>Primary Users (25-45)</h4>
+                            <p>Spiritual growth & consciousness expansion</p>
+                            <div class="segment-stats">
+                                <span class="value">45%</span>
+                                <span class="label">Target Share</span>
+                            </div>
+                        </div>
+
+                        <div class="segment-card">
+                            <div class="segment-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Secondary Users (18-24)</h4>
+                            <p>Exploring meditation & mindfulness</p>
+                            <div class="segment-stats">
+                                <span class="value">30%</span>
+                                <span class="label">Target Share</span>
+                            </div>
+                        </div>
+
+                        <div class="segment-card">
+                            <div class="segment-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <h4>Tertiary Users (46+)</h4>
+                            <p>Deeper spiritual connection</p>
+                            <div class="segment-stats">
+                                <span class="value">25%</span>
+                                <span class="label">Target Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competitive-positioning">
+                    <h3>Competitive Advantage</h3>
+                    <div class="competitor-comparison">
+                        <div class="comparison-card">
+                            <h4>QUANNEX vs. Competitors</h4>
+                            <div class="comparison-features">
+                                <div class="feature">
+                                    <span class="feature-name">Business Model</span>
+                                    <div class="feature-comparison">
+                                        <span class="quannex">Freemium + Premium</span>
+                                        <span class="competitors">Mostly Subscription-only</span>
+                                    </div>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-name">Pricing Strategy</span>
+                                    <div class="feature-comparison">
+                                        <span class="quannex">Tiered & Flexible</span>
+                                        <span class="competitors">Fixed Pricing</span>
+                                    </div>
+                                </div>
+                                <div class="feature">
+                                    <span class="feature-name">Content Focus</span>
+                                    <div class="feature-comparison">
+                                        <span class="quannex">Comprehensive Spiritual Growth</span>
+                                        <span class="competitors">Limited Scope</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+
+        <!-- New Business Model Canvas Section -->
+        <div class="content-section">
+            <h2>Interactive Business Model Canvas</h2>
+            
+            <!-- Accessibility Navigation -->
+            <nav class="accessibility-nav" aria-label="Business Model Navigation">
+                <button class="skip-link" onclick="focusMainContent()">Skip to main content</button>
+                <div class="view-navigation" role="tablist">
+                    <button class="viz-control active" data-view="canvas" role="tab" aria-selected="true" aria-controls="canvas-view">
+                        <i class="fas fa-th-large" aria-hidden="true"></i>
+                        <span>Canvas View</span>
+                    </button>
+                    <button class="viz-control" data-view="metrics" role="tab" aria-selected="false" aria-controls="metrics-view">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <span>Key Metrics</span>
+                    </button>
+                    <button class="viz-control" data-view="segments" role="tab" aria-selected="false" aria-controls="segments-view">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        <span>Customer Segments</span>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- View Overview Sections -->
+            <div class="view-overview" id="canvas-overview">
+                <h3>Canvas Overview</h3>
+                <p>Explore the complete business model through an interactive canvas. Click on any section to expand and learn more about each component of our business strategy.</p>
+                <div class="key-points">
+                    <div class="key-point">
+                        <i class="fas fa-lightbulb" aria-hidden="true"></i>
+                        <span>Click any section to expand</span>
+                    </div>
+                    <div class="key-point">
+                        <i class="fas fa-mouse-pointer" aria-hidden="true"></i>
+                        <span>Hover for additional details</span>
+                    </div>
+                    <div class="key-point">
+                        <i class="fas fa-keyboard" aria-hidden="true"></i>
+                        <span>Use Tab to navigate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-overview" id="metrics-overview" style="display: none;">
+                <h3>Key Metrics Overview</h3>
+                <p>Track our business performance through key metrics and projections. Each chart provides detailed insights into different aspects of our business model.</p>
+                <div class="metrics-summary">
+                    <div class="summary-card">
+                        <h4>Revenue Growth</h4>
+                        <p>Projected growth from $1.2M to $28.8M over 5 years</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Customer Distribution</h4>
+                        <p>60% Free Tier, 30% Premium, 10% Master Tier</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Market Penetration</h4>
+                        <p>Targeting 5% market share by Year 5</p>
+                    </div>
+                </div>
+                <button class="scroll-to-details" onclick="scrollToSection('metrics-view')" aria-label="View detailed metrics">
+                    <span>View</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="view-overview" id="segments-overview" style="display: none;">
+                <h3>Customer Segments Overview</h3>
+                <p>Understand our target audience through detailed demographic analysis and market segmentation.</p>
+                <div class="segments-summary">
+                    <div class="summary-card">
+                        <h4>Primary Segment</h4>
+                        <p>45% market share, Age 25-55, Spiritual growth focus</p>
+                    </div>
+                    <div class="summary-card">
+                        <h4>Secondary Segment</h4>
+                        <p>30% market share, Age 18-24, Mindfulness exploration</p>
+                    </div>
+                </div>
+                <button class="scroll-to-details" onclick="scrollToSection('segments-view')" aria-label="View detailed segments">
+                    <span>View</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <style>
+                .scroll-to-details {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    margin: 2rem auto 0;
+                    padding: 1rem 2rem;
+                    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+                    color: white;
+                    border: none;
+                    border-radius: 30px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .scroll-to-details::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(
+                        90deg,
+                        transparent,
+                        rgba(255, 255, 255, 0.2),
+                        transparent
+                    );
+                    transition: 0.5s;
+                }
+
+                .scroll-to-details:hover::before {
+                    left: 100%;
+                }
+
+                .scroll-to-details:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                }
+
+                .scroll-to-details i {
+                    transition: transform 0.3s ease;
+                }
+
+                .scroll-to-details:hover i {
+                    transform: translateY(3px);
+                }
+
+                .scroll-to-details:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+                }
+
+                @keyframes bounce {
+                    0%, 20%, 50%, 80%, 100% {
+                        transform: translateY(0);
+                    }
+                    40% {
+                        transform: translateY(-10px);
+                    }
+                    60% {
+                        transform: translateY(-5px);
+                    }
+                }
+
+                .scroll-to-details i {
+                    animation: bounce 2s infinite;
+                }
+            </style>
+
+            <script>
+                function scrollToSection(sectionId) {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        section.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Add a highlight effect
+                        section.classList.add('highlight-section');
+                        setTimeout(() => {
+                            section.classList.remove('highlight-section');
+                        }, 2000);
+                    }
+                }
+
+                // Add highlight animation styles
+                const style = document.createElement('style');
+                style.textContent = `
+                    .highlight-section {
+                        animation: highlight 2s ease-out;
+                    }
+
+                    @keyframes highlight {
+                        0% {
+                            box-shadow: 0 0 0 0 rgba(110, 0, 255, 0.7);
+                        }
+                        70% {
+                            box-shadow: 0 0 0 20px rgba(110, 0, 255, 0);
+                        }
+                        100% {
+                            box-shadow: 0 0 0 0 rgba(110, 0, 255, 0);
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+            </script>
+
+            <!-- Canvas View -->
+            <div class="canvas-container active-view" id="canvas-view" role="tabpanel" aria-labelledby="canvas-tab">
+                <div class="canvas-grid">
+                    <!-- Customer Segments -->
+                    <div class="canvas-block customer-segments">
+                        <h3>Customer Segments</h3>
+                        <div class="segment-card primary">
+                            <h4>Primary Early Adopters</h4>
+                            <ul>
+                                <li>Spiritual growth seekers (25-55)</li>
+                                <li>Meditation practitioners</li>
+                                <li>Consciousness expansion enthusiasts</li>
+                                <li>Quantum physics enthusiasts</li>
+                                <li>Personal development focused</li>
+                            </ul>
+                        </div>
+                        <div class="segment-card secondary">
+                            <h4>Secondary Market</h4>
+                            <ul>
+                                <li>Mindfulness beginners (18-24)</li>
+                                <li>Scientific-minded individuals</li>
+                                <li>Wellness tech early adopters</li>
+                                <li>Digital nomads</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Value Propositions -->
+                    <div class="canvas-block value-propositions">
+                        <h3>Value Propositions</h3>
+                        <div class="value-card">
+                            <h4>Core Value</h4>
+                            <p>AI-guided quantum consciousness expansion platform</p>
+                        </div>
+                        <div class="value-features">
+                            <ul>
+                                <li>13-Stage Evolution System</li>
+                                <li>Quantum Energy (QE) Framework</li>
+                                <li>Future Self Integration</li>
+                                <li>Divine Intelligence (DI) Guidance</li>
+                                <li>Metatron Cube UI/UX</li>
+                                <li>Scientific Validation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Channels -->
+                    <div class="canvas-block channels">
+                        <h3>Channels</h3>
+                        <div class="channel-card">
+                            <h4>Awareness/Acquisition</h4>
+                            <ul>
+                                <li>Kickstarter Campaign</li>
+                                <li>Spiritual/Wellness Communities</li>
+                                <li>Quantum Physics Forums</li>
+                                <li>Meditation Apps Integration</li>
+                                <li>Academic Partnerships</li>
+                            </ul>
+                        </div>
+                        <div class="channel-card">
+                            <h4>Distribution</h4>
+                            <ul>
+                                <li>iOS/Android App Stores</li>
+                                <li>Direct Web Platform</li>
+                                <li>Enterprise Solutions</li>
+                                <li>Educational Institutions</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Customer Relationships -->
+                    <div class="canvas-block relationships">
+                        <h3>Customer Relationships</h3>
+                        <div class="relationship-card">
+                            <h4>Engagement Strategy</h4>
+                            <ul>
+                                <li>Daily DI Guidance</li>
+                                <li>QE Progress Tracking</li>
+                                <li>Community Forums</li>
+                                <li>Mastery Paths</li>
+                                <li>Regular Content Updates</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Streams -->
+                    <div class="canvas-block revenue">
+                        <h3>Revenue Streams</h3>
+                        <div class="revenue-card">
+                            <h4>Primary Revenue</h4>
+                            <ul>
+                                <li>Freemium Model</li>
+                                <li>Premium Subscriptions</li>
+                                <li>Master Tier Access</li>
+                                <li>Lifetime Memberships</li>
+                            </ul>
+                        </div>
+                        <div class="revenue-card">
+                            <h4>Secondary Revenue</h4>
+                            <ul>
+                                <li>Enterprise Solutions</li>
+                                <li>Educational Licensing</li>
+                                <li>Workshop/Retreat Events</li>
+                                <li>Merchandise</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Key Resources -->
+                    <div class="canvas-block resources">
+                        <h3>Key Resources</h3>
+                        <div class="resource-card">
+                            <h4>Intellectual Property</h4>
+                            <ul>
+                                <li>QE Framework</li>
+                                <li>DI AI System</li>
+                                <li>13-Stage Evolution</li>
+                                <li>Metatron Cube Design</li>
+                            </ul>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Technical Resources</h4>
+                            <ul>
+                                <li>Lovable.dev Platform</li>
+                                <li>Supabase Backend</li>
+                                <li>AI/ML Infrastructure</li>
+                                <li>Cloud Services</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Key Activities -->
+                    <div class="canvas-block activities">
+                        <h3>Key Activities</h3>
+                        <div class="activity-card">
+                            <h4>Development</h4>
+                            <ul>
+                                <li>App Development</li>
+                                <li>AI/ML Integration</li>
+                                <li>Content Creation</li>
+                                <li>Scientific Research</li>
+                            </ul>
+                        </div>
+                        <div class="activity-card">
+                            <h4>Operations</h4>
+                            <ul>
+                                <li>Community Management</li>
+                                <li>User Support</li>
+                                <li>Content Updates</li>
+                                <li>Performance Monitoring</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Key Partnerships -->
+                    <div class="canvas-block partnerships">
+                        <h3>Key Partnerships</h3>
+                        <div class="partnership-card">
+                            <h4>Strategic Partners</h4>
+                            <ul>
+                                <li>Academic Institutions</li>
+                                <li>Wellness Platforms</li>
+                                <li>Meditation Apps</li>
+                                <li>Research Organizations</li>
+                            </ul>
+                        </div>
+                        <div class="partnership-card">
+                            <h4>Technology Partners</h4>
+                            <ul>
+                                <li>Cloud Providers</li>
+                                <li>AI/ML Services</li>
+                                <li>Payment Processors</li>
+                                <li>Analytics Platforms</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Cost Structure -->
+                    <div class="canvas-block costs">
+                        <h3>Cost Structure</h3>
+                        <div class="cost-card">
+                            <h4>Development Costs</h4>
+                            <ul>
+                                <li>App Development</li>
+                                <li>AI/ML Development</li>
+                                <li>UI/UX Design</li>
+                                <li>Content Production</li>
+                            </ul>
+                        </div>
+                        <div class="cost-card">
+                            <h4>Operational Costs</h4>
+                            <ul>
+                                <li>Server Infrastructure</li>
+                                <li>Marketing & Growth</li>
+                                <li>Customer Support</li>
+                                <li>Content Updates</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics View -->
+            <div class="metrics-container" id="metrics-view" role="tabpanel" aria-labelledby="metrics-tab">
+                <button class="back-to-overview" onclick="scrollToSection('metrics-overview')" aria-label="Back to metrics overview">
+                    <i class="fas fa-chevron-up"></i>
+                    <span>Back to Overview</span>
+                </button>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Revenue Projection</h3>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="label">Year 1</span>
+                                <span class="value">$1.2M</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="label">Year 3</span>
+                                <span class="value">$7.2M</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="label">Year 5</span>
+                                <span class="value">$28.8M</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Customer Acquisition</h3>
+                        <div class="chart-container">
+                            <canvas id="acquisitionChart"></canvas>
+                        </div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="label">Free Tier</span>
+                                <span class="value">60%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="label">Premium</span>
+                                <span class="value">30%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="label">Master</span>
+                                <span class="value">10%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Market Penetration</h3>
+                        <div class="chart-container">
+                            <canvas id="marketChart"></canvas>
+                        </div>
+                        <div class="metric-details">
+                            <div class="metric-item">
+                                <span class="label">Current</span>
+                                <span class="value">0.1%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="label">Year 3</span>
+                                <span class="value">2.5%</span>
+                            </div>
+                            <div class="metric-item">
+                                <span class="label">Year 5</span>
+                                <span class="value">5%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer Segments View -->
+            <div class="segments-container" id="segments-view" role="tabpanel" aria-labelledby="segments-tab">
+                <button class="back-to-overview" onclick="scrollToSection('segments-overview')" aria-label="Back to segments overview">
+                    <i class="fas fa-chevron-up"></i>
+                    <span>Back to Overview</span>
+                </button>
+                <div class="segments-grid">
+                    <div class="segment-visualization">
+                        <h3>Customer Demographics</h3>
+                        <div class="demographic-chart">
+                            <canvas id="demographicChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="segment-metrics">
+                        <div class="segment-metric-card">
+                            <h4>Primary Segment</h4>
+                            <div class="segment-stats">
+                                <div class="stat">
+                                    <span class="value">45%</span>
+                                    <span class="label">Market Share</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="value">25-55</span>
+                                    <span class="label">Age Range</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="segment-metric-card">
+                            <h4>Secondary Segment</h4>
+                            <div class="segment-stats">
+                                <div class="stat">
+                                    <span class="value">30%</span>
+                                    <span class="label">Market Share</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="value">18-24</span>
+                                    <span class="label">Age Range</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <style>
+                .back-to-overview {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    margin: 0 0 1.5rem;
+                    padding: 0.6rem 1.2rem;
+                    background: rgba(255, 255, 255, 0.1);
+                    color: var(--light-text);
+                    border: 1px solid rgba(255, 255, 255, 0.2);
+                    border-radius: 20px;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    letter-spacing: 0.5px;
+                }
+
+                .back-to-overview:hover {
+                    background: rgba(255, 255, 255, 0.15);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                }
+
+                .back-to-overview i {
+                    font-size: 0.8rem;
+                    transition: transform 0.3s ease;
+                }
+
+                .back-to-overview:hover i {
+                    transform: translateY(-2px);
+                }
+
+                .back-to-overview:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+                }
+
+                @keyframes float {
+                    0%, 100% {
+                        transform: translateY(0);
+                    }
+                    50% {
+                        transform: translateY(-3px);
+                    }
+                }
+
+                .back-to-overview i {
+                    animation: float 2s infinite;
+                }
+            </style>
+        </div>
+    </div>
+
+    <footer></footer>
     
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <script>
-        // Back to Top Button Functionality
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        // Add interactive features to the business model canvas
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvasBlocks = document.querySelectorAll('.canvas-block');
+            let activeBlock = null;
+            
+            canvasBlocks.forEach(block => {
+                // Click to expand
+                block.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (activeBlock && activeBlock !== this) {
+                        activeBlock.classList.remove('expanded');
+                    }
+                    
+                    this.classList.toggle('expanded');
+                    activeBlock = this.classList.contains('expanded') ? this : null;
+                });
+                
+                // Hover effects
+                block.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('expanded')) {
+                        this.style.transform = 'translateY(-5px) scale(1.02)';
+                    }
+                });
+                
+                block.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('expanded')) {
+                        this.style.transform = '';
+                    }
+                });
+            });
+            
+            // Close expanded block when clicking outside
+            document.addEventListener('click', function(e) {
+                if (activeBlock && !activeBlock.contains(e.target)) {
+                    activeBlock.classList.remove('expanded');
+                    activeBlock = null;
+                }
+            });
+            
+            // Add smooth scroll to sections
+            const sectionLinks = document.querySelectorAll('.resource-nav-item');
+            sectionLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Add intersection observer for fade-in effects
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            canvasBlocks.forEach(block => {
+                observer.observe(block);
             });
         });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // View switching with accessibility
+            const controls = document.querySelectorAll('.viz-control');
+            const views = document.querySelectorAll('.canvas-container, .metrics-container, .segments-container');
+            const overviews = document.querySelectorAll('.view-overview');
+            
+            controls.forEach(control => {
+                control.addEventListener('click', function() {
+                    const view = this.dataset.view;
+                    
+                    // Update controls
+                    controls.forEach(c => {
+                        c.classList.remove('active');
+                        c.setAttribute('aria-selected', 'false');
+                    });
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                    
+                    // Update views
+                    views.forEach(v => v.classList.remove('active-view'));
+                    document.querySelector(`#${view}-view`).classList.add('active-view');
+                    
+                    // Update overviews
+                    overviews.forEach(o => o.style.display = 'none');
+                    document.querySelector(`#${view}-overview`).style.display = 'block';
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    const activeControl = document.querySelector('.viz-control[aria-selected="true"]');
+                    if (activeControl) {
+                        activeControl.focus();
+                    }
+                }
+            });
+
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                    datasets: [{
+                        label: 'Revenue Projection',
+                        data: [1.2, 3.6, 7.2, 14.4, 28.8],
+                        borderColor: 'rgb(110, 0, 255)',
+                        backgroundColor: 'rgba(110, 0, 255, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Acquisition Chart
+            const acquisitionCtx = document.getElementById('acquisitionChart').getContext('2d');
+            new Chart(acquisitionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Free Tier', 'Premium', 'Master'],
+                    datasets: [{
+                        data: [60, 30, 10],
+                        backgroundColor: [
+                            'rgba(110, 0, 255, 0.8)',
+                            'rgba(0, 184, 255, 0.8)',
+                            'rgba(255, 0, 230, 0.8)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            // Market Chart
+            const marketCtx = document.getElementById('marketChart').getContext('2d');
+            new Chart(marketCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Current', 'Year 3', 'Year 5'],
+                    datasets: [{
+                        label: 'Market Penetration',
+                        data: [0.1, 2.5, 5],
+                        backgroundColor: 'rgba(110, 0, 255, 0.8)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Demographic Chart
+            const demographicCtx = document.getElementById('demographicChart').getContext('2d');
+            new Chart(demographicCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['Age 18-24', 'Age 25-34', 'Age 35-44', 'Age 45-54', 'Age 55+'],
+                    datasets: [{
+                        label: 'Primary Segment',
+                        data: [20, 40, 30, 10, 5],
+                        backgroundColor: 'rgba(110, 0, 255, 0.2)',
+                        borderColor: 'rgb(110, 0, 255)',
+                        pointBackgroundColor: 'rgb(110, 0, 255)'
+                    }, {
+                        label: 'Secondary Segment',
+                        data: [50, 30, 15, 5, 0],
+                        backgroundColor: 'rgba(0, 184, 255, 0.2)',
+                        borderColor: 'rgb(0, 184, 255)',
+                        pointBackgroundColor: 'rgb(0, 184, 255)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            beginAtZero: true,
+                            max: 50
+                        }
+                    }
+                }
+            });
+        });
+
+        function focusMainContent() {
+            const activeView = document.querySelector('.active-view');
+            if (activeView) {
+                activeView.focus();
+            }
+        }
     </script>
 </body>
 </html>

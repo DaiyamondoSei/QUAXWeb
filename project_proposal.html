@@ -3,40 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUANEX: Project Proposal</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>QUANNEX: Project Proposal</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
     <style>
         .content-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 150px auto 50px;
             padding: 2rem;
             background-color: rgba(5, 5, 32, 0.8);
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 100px;
+            min-height: 100vh;
         }
         
         .content-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
         }
         
         .content-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .content-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 3px;
+        }
+        
+        .table-of-contents {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table-of-contents h2 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .table-of-contents ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .table-of-contents li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .table-of-contents a {
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .table-of-contents a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .table-of-contents i {
+            margin-right: 0.5rem;
+            color: var(--accent-color);
         }
         
         .content-section {
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .content-section:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
         
         .content-section h2 {
             color: var(--secondary-color);
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
         
         .content-section h3 {
@@ -45,8 +141,42 @@
             font-size: 1.4rem;
         }
         
+        .content-section p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--medium-text);
+        }
+        
+        .content-section ul, .content-section ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+            color: var(--medium-text);
+        }
+        
+        .content-section li::marker {
+            color: var(--accent-color);
+        }
+        
+        .highlight-box {
+            background: rgba(110, 0, 255, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
         .back-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             margin-top: 2rem;
             padding: 0.8rem 1.5rem;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -59,97 +189,81 @@
             box-shadow: var(--glow-primary);
         }
         
+        .back-button i {
+            margin-right: 0.5rem;
+        }
+        
         .back-button:hover {
             transform: translateY(-3px);
             box-shadow: var(--glow-secondary);
         }
-
-        .resource-navigation {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .resource-nav-item {
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            box-shadow: var(--glow-primary);
-        }
-
-        .resource-nav-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--glow-secondary);
-            color: white;
-        }
-
-        .resource-nav-item.current {
-            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
-            pointer-events: none;
+        
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 1rem;
+                margin-top: 100px;
+            }
+            
+            .content-header h1 {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 1rem;
+            }
+            
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .table-of-contents ul {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header>
-        <a href="index.html" class="logo-container">
-            <div class="logo">
-                <div class="quantum-symbol"></div>
-                <h1>QUANEX</h1>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html#vision">Vision</a></li>
-                <li><a href="index.html#framework">Framework</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#science">Science</a></li>
-                <li><a href="index.html#roadmap">Roadmap</a></li>
-                <li><a href="index.html#resources">Resources</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
 
     <div class="content-container">
         <div class="content-header">
-            <h1>QUANEX: Project Proposal</h1>
-        </div>
-
-        <div class="resource-navigation">
-            <a href="index.html" class="resource-nav-item">Home</a>
-            <a href="project_proposal.html" class="resource-nav-item current">Project Proposal</a>
-            <a href="business_model.html" class="resource-nav-item">Business Model</a>
-            <a href="academic_alignment.html" class="resource-nav-item">Academic Alignment</a>
-            <a href="scientific_validation.html" class="resource-nav-item">Scientific Validation</a>
-            <a href="advanced_progression.html" class="resource-nav-item">Progression System</a>
-            <a href="implementation_plan.html" class="resource-nav-item">Implementation Plan</a>
-            <a href="app_screens.html" class="resource-nav-item">App Screens</a>
-            <a href="curriculum.html" class="resource-nav-item">4-Week Curriculum</a>
+            <h1>QUANNEX: Project Proposal</h1>
+            <p>A Revolutionary Approach to Consciousness Development</p>
         </div>
         
-        <div class="content-section">
+        <div class="table-of-contents">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#executive-summary"><i class="fas fa-file-alt"></i> Executive Summary</a></li>
+                <li><a href="#vision-concept"><i class="fas fa-lightbulb"></i> Vision and Concept</a></li>
+                <li><a href="#key-features"><i class="fas fa-star"></i> Key Features</a></li>
+                <li><a href="#scientific-validation"><i class="fas fa-flask"></i> Scientific Validation</a></li>
+                <li><a href="#implementation"><i class="fas fa-code"></i> Implementation Strategy</a></li>
+                <li><a href="#business-model"><i class="fas fa-chart-line"></i> Business Model</a></li>
+            </ul>
+        </div>
+        
+        <div class="content-section" id="executive-summary">
             <h2>Executive Summary</h2>
-            <p>QUANEX (Quantum Nexus) is a revolutionary consciousness accelerator app that bridges spirituality and quantum physics through a gamified experience. It guides users on a journey to develop extraordinary abilities like remote viewing, telepathy, intuition, and lucid dreaming through a structured framework based on five quantum parameters.</p>
-            <p>At its core, QUANEX is built on the concept of the Future Self Connection - the understanding that your fully realized potential already exists in a quantum superposition state. Rather than learning new abilities, users synchronize with their already-mastered future self through guided practices, challenges, and a comprehensive progression system.</p>
-            <p>This proposal outlines the vision, framework, features, implementation strategy, and business model for QUANEX, presenting a viable path to creating a transformative app that can generate significant user engagement and revenue while contributing to consciousness evolution.</p>
+            <p>QUANNEX (Quantum Nexus) represents a groundbreaking fusion of quantum physics and spiritual development, creating a unique platform for consciousness acceleration. This innovative app bridges ancient wisdom with modern scientific understanding, offering users a structured path to developing extraordinary abilities through a gamified experience.</p>
+            
+            <div class="highlight-box">
+                <h4>Core Innovation</h4>
+                <p>The Future Self Connection concept revolutionizes traditional learning approaches by positioning consciousness development as synchronization with one's already-mastered future self, rather than learning new abilities from scratch.</p>
+            </div>
+            
+            <p>This proposal outlines our comprehensive vision, framework, features, implementation strategy, and business model, presenting a viable path to creating a transformative app that can generate significant user engagement and revenue while contributing to global consciousness evolution.</p>
         </div>
         
-        <div class="content-section">
+        <div class="content-section" id="vision-concept">
             <h2>Vision and Concept</h2>
-            <p>QUANEX aims to revolutionize spiritual development by creating an accessible, gamified platform that makes consciousness expansion engaging, measurable, and scientifically grounded. The app serves as a bridge between ancient wisdom and modern quantum understanding, providing users with a structured path to developing abilities that have traditionally been considered supernatural.</p>
+            <p>QUANNEX aims to revolutionize spiritual development by creating an accessible, gamified platform that makes consciousness expansion engaging, measurable, and scientifically grounded. The app serves as a bridge between ancient wisdom and modern quantum understanding, providing users with a structured path to developing abilities that have traditionally been considered supernatural.</p>
             
             <h3>Core Concept: Future Self Connection</h3>
             <p>The central narrative framework positions consciousness development not as learning new abilities, but as synchronizing with your already-mastered future self. This approach frames the journey as accessing abilities that already exist in a quantum superposition state, with practices focused on alignment and resonance with this future state of mastery.</p>
@@ -158,7 +272,7 @@
             <p>The app features an AI guide called Divine Intelligence that represents the user's future self, providing personalized guidance for development based on the user's goals, practices, and progress. DI analyzes meditation sessions, dreams, and practice results to create a customized development path.</p>
             
             <h3>Five Quantum Parameters Framework</h3>
-            <p>All abilities and practices in QUANEX are organized around five fundamental quantum parameters:</p>
+            <p>All abilities and practices in QUANNEX are organized around five fundamental quantum parameters:</p>
             <ul>
                 <li><strong>Coherence:</strong> Internal harmony and alignment of energy systems</li>
                 <li><strong>Entanglement:</strong> Connection beyond physical limitations</li>
@@ -168,7 +282,7 @@
             </ul>
         </div>
         
-        <div class="content-section">
+        <div class="content-section" id="key-features">
             <h2>Key Features</h2>
             
             <h3>13-Stage Astral Body Evolution System</h3>
@@ -195,41 +309,35 @@
                 <li><strong>Mind Mastery:</strong> Telepathy, clairvoyance, remote viewing, mind-to-mind connection</li>
                 <li><strong>Energy Mastery:</strong> Energy healing, aura expansion, elemental manipulation, chi control</li>
                 <li><strong>Dimensional Mastery:</strong> Astral projection, quantum jumping, timeline awareness, dreamwalking</li>
-                <li><strong>Manifestation Mastery:</strong> Law of assumption/attraction, shifting realities, thought-to-form materialization, manifestation of events</li>
-                <li><strong>Earth Integration Mastery:</strong> Deep planetary connection, natural flow of synchronicity, elemental understanding, harmony with the universe</li>
+                <li><strong>Manifestation Mastery:</strong> Law of assumption/attraction, shifting realities, thought-to-form materialization</li>
+                <li><strong>Earth Integration Mastery:</strong> Deep planetary connection, natural flow of synchronicity, elemental understanding</li>
             </ul>
             
-            <h3>Network Meditation</h3>
-            <p>A feature showing how many people are meditating collectively to provide energetical support, visualizing the global meditation community and allowing users to participate in collective consciousness experiences.</p>
-            
-            <h3>Dream Integration</h3>
-            <p>Users input their dreams which are processed by Divine Intelligence and visualized as evolving astral bodies with geometric figures, stars, galaxies, and chakras, creating a personalized visual representation of consciousness development.</p>
-            
-            <h3>Sacred Geometry Integration</h3>
-            <p>Geometric patterns are integrated throughout the app as both educational content and interactive elements, connecting ancient wisdom with quantum principles.</p>
-            
-            <h3>Quantum Experience Points (QXP)</h3>
-            <p>A gamification system where users earn points through completing training exercises, successfully applying abilities in real life, completing quantum challenges, and journaling reflections. QXP measures resonance with the user's future self rather than just learning progress.</p>
-            
-            <h3>4-Week Curriculum</h3>
-            <p>A structured program for developing foundational abilities:</p>
-            <ul>
-                <li><strong>Week 1:</strong> Foundation and Awareness - Establishing mindfulness, energy awareness, and intuition</li>
-                <li><strong>Week 2:</strong> Expanding Perception - Developing telepathy, clairvoyance, and aura reading</li>
-                <li><strong>Week 3:</strong> Advanced Practices - Integrating abilities and exploring remote viewing, healing, and astral projection</li>
-                <li><strong>Week 4:</strong> Mastery and Integration - Refining all abilities and exploring ethical use</li>
-            </ul>
-            
-            <h3>Challenge System</h3>
-            <p>Real-world missions to test and verify developing abilities, such as sending telepathic messages, feeling and expanding auras, creating synchronicities with specific symbols, and more.</p>
+            <div class="highlight-box">
+                <h4>Innovative Features</h4>
+                <ul>
+                    <li>Network Meditation visualization showing collective consciousness</li>
+                    <li>Dream Integration with AI analysis and visualization</li>
+                    <li>Sacred Geometry interactive elements</li>
+                    <li>Quantum Experience Points (QXP) gamification system</li>
+                    <li>4-Week Structured Curriculum</li>
+                    <li>Real-world Challenge System</li>
+                </ul>
+            </div>
         </div>
         
-        <div class="content-section">
+        <div class="content-section" id="scientific-validation">
             <h2>Scientific Validation Framework</h2>
-            <p>QUANEX balances spiritual exploration with scientific credibility through a comprehensive validation framework:</p>
+            <p>QUANNEX balances spiritual exploration with scientific credibility through a comprehensive validation framework:</p>
             
             <h3>Research Foundation</h3>
-            <p>The app incorporates research from institutions like the Institute of Noetic Sciences, HeartMath Institute, Princeton Engineering Anomalies Research, and University of Virginia's Division of Perceptual Studies.</p>
+            <p>The app incorporates research from leading institutions:</p>
+            <ul>
+                <li>Institute of Noetic Sciences</li>
+                <li>HeartMath Institute</li>
+                <li>Princeton Engineering Anomalies Research</li>
+                <li>University of Virginia's Division of Perceptual Studies</li>
+            </ul>
             
             <h3>Dual Explanation System</h3>
             <p>Each practice and ability is presented with both traditional and scientific explanations, allowing users to engage through their preferred framework.</p>
@@ -247,9 +355,9 @@
             </ul>
         </div>
         
-        <div class="content-section">
+        <div class="content-section" id="implementation">
             <h2>Implementation Strategy</h2>
-            <p>QUANEX will be developed in four phases:</p>
+            <p>QUANNEX will be developed in four phases, each building upon the previous to create a comprehensive consciousness development platform:</p>
             
             <h3>Phase 1: MVP (0-6 Months)</h3>
             <ul>
@@ -294,83 +402,47 @@
             </ul>
         </div>
         
-        <div class="content-section">
+        <div class="content-section" id="business-model">
             <h2>Business Model</h2>
             
             <h3>Monetization Strategy</h3>
-            <p>QUANEX will use a freemium model with tiered subscriptions:</p>
+            <p>QUANNEX will use a freemium model with tiered subscriptions:</p>
             <ul>
-                <li><strong>Free Tier:</strong> Basic features, limited practices, first stage of astral body evolution</li>
-                <li><strong>Standard Tier ($7.99/month or $69.99/year):</strong> Full access to practices, challenges, and first 5 stages of evolution</li>
-                <li><strong>Master Tier ($12.99/month or $99.99/year):</strong> Complete access to all features, stages, and advanced guidance</li>
+                <li><strong>Basic (Free):</strong> Core features, limited practice sessions</li>
+                <li><strong>Pro ($9.99/month):</strong> Full feature access, advanced analytics</li>
+                <li><strong>Master ($19.99/month):</strong> Premium features, personalized coaching</li>
+                <li><strong>Enterprise:</strong> Custom solutions for organizations</li>
             </ul>
             
-            <h3>Initial Funding</h3>
+            <h3>Revenue Streams</h3>
             <ul>
-                <li><strong>Crowdfunding Campaign:</strong> $25,000-50,000 goal</li>
-                <li><strong>Early Access Program:</strong> $2.99-4.99/month during development</li>
-                <li><strong>Pre-sales:</strong> Lifetime subscriptions at €149-199</li>
+                <li>Subscription fees</li>
+                <li>Premium content and courses</li>
+                <li>Enterprise solutions</li>
+                <li>Affiliate partnerships</li>
+                <li>Merchandise and physical products</li>
             </ul>
             
-            <h3>Financial Projections</h3>
-            <ul>
-                <li><strong>Year 1:</strong> 100,000 users (20% conversion), $1.2-1.5M revenue</li>
-                <li><strong>Year 3:</strong> 500,000 users (30% conversion), $8-10M revenue</li>
-            </ul>
+            <div class="highlight-box">
+                <h4>Growth Strategy</h4>
+                <ul>
+                    <li>Community-driven development</li>
+                    <li>Strategic partnerships with research institutions</li>
+                    <li>Content marketing and educational outreach</li>
+                    <li>Integration with existing wellness platforms</li>
+                </ul>
+            </div>
         </div>
         
-        <div class="content-section">
-            <h2>Academic Integration</h2>
-            <p>QUANEX can be integrated with an International Finance & Control program through these focus areas:</p>
-            <ul>
-                <li><strong>Business Model Innovation:</strong> Analyzing innovative subscription and freemium models in wellness technol<response clipped><NOTE>To save on context only part of this file has been shown to you. You should retry this tool after you have searched inside the file with `grep -n` in order to find the line numbers of what you are looking for.</NOTE>
-        </div>
-        
-        <a href="index.html" class="back-button">Back to Home</a>
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
     </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <div class="quantum-symbol-small"></div>
-                <h3>QUANEX</h3>
-            </div>
-            <div class="footer-tagline">
-                <p>Bridging Quantum Physics and Consciousness</p>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2024 QUANEX. All rights reserved.</p>
-                <div class="legal-links">
-                    <a href="privacy.html">Privacy Policy</a> | 
-                    <a href="terms.html">Terms of Use</a> | 
-                    <a href="https://github.com/yourusername/QUANEX/blob/main/LICENSE" target="_blank">License</a>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <footer></footer>
     
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <script>
-        // Back to Top Button Functionality
-        const backToTopButton = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
 </body>
 </html>

@@ -3,237 +3,545 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Screen Inventory - QUANEX Foundation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>App Screens - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
+    <style>
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            background: none;
+        }
+        
+        .app-page-content {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            background: none;
+        }
+
+        .screen-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 0 4rem;
+            overflow: hidden;
+            background: none;
+            border-bottom: 1px solid rgba(110, 0, 255, 0.15);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            border-radius: 24px;
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(110, 0, 255, 0.1),
+                inset 0 0 20px rgba(0, 184, 255, 0.05);
+        }
+
+        .screen-title-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .screen-title-container h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+
+        .screen-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--primary-color),
+                var(--secondary-color),
+                var(--accent-color));
+            opacity: 0.7;
+            filter: blur(1px);
+            animation: glowLine 3s ease-in-out infinite;
+        }
+
+        .screen-section {
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .screen-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .screen-card {
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05),
+                rgba(255, 0, 230, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .screen-card:hover::before {
+            opacity: 1;
+        }
+
+        .screen-image {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .screen-image img {
+            width: 100%;
+            height: auto;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .screen-card:hover .screen-image img {
+            transform: scale(1.02);
+        }
+
+        .screen-description {
+            padding: 1rem 0;
+        }
+
+        .screen-description h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .screen-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .screen-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+
+        .screen-features i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        .screen-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .screen-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+
+        .screen-card:hover .screen-tag {
+            background: rgba(110, 0, 255, 0.2);
+            border-color: rgba(110, 0, 255, 0.4);
+        }
+
+        .screen-nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .screen-nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .screen-nav-btn i {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .screen-nav-btn span {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .screen-btn-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(110, 0, 255, 0.4),
+                rgba(0, 184, 255, 0.2),
+                rgba(255, 0, 230, 0.4));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .screen-nav-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(110, 0, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
+        }
+
+        .screen-nav-btn:hover .screen-btn-glow {
+            opacity: 0.8;
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+
+        .screen-nav-btn:hover i {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        @keyframes btnGlow {
+            0%, 100% {
+                opacity: 0.4;
+                filter: blur(3px);
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-page-content {
+                padding: 0 1rem;
+            }
+
+            .screen-nav-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .screen-nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .screen-title-container h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header class="app-pages-nav">
-        <nav>
-            <a href="index.html" class="logo">
-                <div class="quantum-symbol">
-                    <div class="quantum-core"></div>
-                    <div class="quantum-orbit"></div>
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
+
+    <div class="app-container">
+        <main class="app-page-content">
+            <section class="screen-hero">
+                <div class="hero-content">
+                    <div class="screen-title-container">
+                        <h1>App Interface Screens</h1>
+                        <div class="screen-underline"></div>
+                    </div>
+                    <p class="subtitle">Explore the Quantum Nexus Interface</p>
+                    <div class="screen-nav-buttons">
+                        <a href="app_features.html" class="screen-nav-btn">
+                            <i class="fas fa-cogs"></i>
+                            <span>App Features</span>
+                            <div class="screen-btn-glow"></div>
+                        </a>
+                        <a href="consciousness_accelerator.html" class="screen-nav-btn">
+                            <i class="fas fa-brain"></i>
+                            <span>Consciousness App</span>
+                            <div class="screen-btn-glow"></div>
+                        </a>
+                        <a href="quantum_parameters.html" class="screen-nav-btn">
+                            <i class="fas fa-atom"></i>
+                            <span>Quantum States</span>
+                            <div class="screen-btn-glow"></div>
+                        </a>
+                    </div>
                 </div>
-                <h1>QUANEX</h1>
-            </a>
-            <ul>
-                <li><a href="consciousness_accelerator.html">Overview</a></li>
-                <li><a href="quantum_parameters.html">Parameters</a></li>
-                <li><a href="app_features.html">Features</a></li>
-                <li><a href="app_screens.html" class="active">Screens</a></li>
-            </ul>
-        </nav>
-    </header>
+            </section>
 
-    <main class="app-page-content">
-        <section class="hero app-hero">
-            <div class="hero-content">
-                <h1>App Screen Inventory</h1>
-                <p class="subtitle">Comprehensive Overview of QUANEX App Interface</p>
-            </div>
-            <div class="quantum-visualization">
-                <div class="quantum-circle"></div>
-                <div class="constellation-bg"></div>
-            </div>
-        </section>
-
-        <section class="content">
-            <div class="section-container">
-                <h2>Core Screens for MVP</h2>
-                
-                <div class="screen-section">
-                    <h3>Priority 1 (First Wave)</h3>
-                    <div class="screen-grid">
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-door-open"></i></div>
-                            <h4>Welcome & Onboarding</h4>
-                            <ul>
-                                <li>Welcome screen with app concept introduction</li>
-                                <li>Future Self Connection visualization</li>
-                                <li>User profile creation</li>
-                                <li>Consciousness band assessment</li>
-                                <li>Dream input interface</li>
-                            </ul>
+            <section class="screen-section">
+                <h2>Main Interface Screens</h2>
+                <div class="screen-grid">
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/main-hub.png" alt="Quantum Nexus Hub">
                         </div>
-
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-home"></i></div>
-                            <h4>Home Dashboard</h4>
-                            <ul>
-                                <li>Daily practice recommendations</li>
-                                <li>QXP status and level</li>
-                                <li>Astral body visualization</li>
-                                <li>Active challenges</li>
-                                <li>Meditation timer</li>
+                        <div class="screen-description">
+                            <h3>Quantum Nexus Hub</h3>
+                            <p>The central navigation point featuring the Metatron Cube interface, providing access to all core features and quantum states.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Interactive Metatron Cube</li>
+                                <li><i class="fas fa-check-circle"></i> Quantum State Navigation</li>
+                                <li><i class="fas fa-check-circle"></i> Progress Overview</li>
                             </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Navigation</span>
+                                <span class="screen-tag">Hub</span>
+                                <span class="screen-tag">Core</span>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-clock"></i></div>
-                            <h4>Daily Practice</h4>
-                            <ul>
-                                <li>Practice schedule</li>
-                                <li>Guided sessions</li>
-                                <li>Progress tracking</li>
-                                <li>Reflection prompts</li>
-                            </ul>
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/meditation.png" alt="Meditation Interface">
                         </div>
-
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-user-astronaut"></i></div>
-                            <h4>Astral Body Visualization</h4>
-                            <ul>
-                                <li>Interactive 3D visualization</li>
-                                <li>Evolution stage indicators</li>
-                                <li>Stage attributes</li>
-                                <li>Future preview</li>
+                        <div class="screen-description">
+                            <h3>Meditation Interface</h3>
+                            <p>Dedicated space for meditation practices with customizable timers, guidance options, and progress tracking.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Customizable Timer</li>
+                                <li><i class="fas fa-check-circle"></i> Guided Options</li>
+                                <li><i class="fas fa-check-circle"></i> Progress Tracking</li>
                             </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Meditation</span>
+                                <span class="screen-tag">Practice</span>
+                                <span class="screen-tag">Timer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/progress.png" alt="Progress Tracking">
+                        </div>
+                        <div class="screen-description">
+                            <h3>Progress Tracking</h3>
+                            <p>Visual representation of your quantum energy accumulation and consciousness evolution journey.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> QE Points Display</li>
+                                <li><i class="fas fa-check-circle"></i> State Progression</li>
+                                <li><i class="fas fa-check-circle"></i> Achievement Tracking</li>
+                            </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Progress</span>
+                                <span class="screen-tag">Tracking</span>
+                                <span class="screen-tag">Visualization</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="screen-section">
-                    <h3>Priority 2 (Second Wave)</h3>
-                    <div class="screen-grid">
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-atom"></i></div>
-                            <h4>Quantum Parameters Hub</h4>
-                            <ul>
-                                <li>Visual parameter representation</li>
-                                <li>Progress indicators</li>
-                                <li>Practice recommendations</li>
-                                <li>Educational content</li>
-                            </ul>
+            <section class="screen-section">
+                <h2>Feature Screens</h2>
+                <div class="screen-grid">
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/di-guide.png" alt="DI Guide Interface">
                         </div>
-
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-road"></i></div>
-                            <h4>Mastery Paths</h4>
-                            <ul>
-                                <li>Mind Mastery path</li>
-                                <li>Energy Mastery path</li>
-                                <li>Dimensional Mastery path</li>
-                                <li>Manifestation Mastery path</li>
-                                <li>Earth Integration path</li>
+                        <div class="screen-description">
+                            <h3>DI Guide Interface</h3>
+                            <p>Your personalized AI companion providing guidance and insights throughout your journey.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Adaptive Communication</li>
+                                <li><i class="fas fa-check-circle"></i> Contextual Insights</li>
+                                <li><i class="fas fa-check-circle"></i> Progress-Based Guidance</li>
                             </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">AI</span>
+                                <span class="screen-tag">Guidance</span>
+                                <span class="screen-tag">Personalization</span>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-calendar-alt"></i></div>
-                            <h4>4-Week Program</h4>
-                            <ul>
-                                <li>Week overview</li>
-                                <li>Daily practice schedule</li>
-                                <li>Practice timer</li>
-                                <li>Reflection interface</li>
-                                <li>Progress tracking</li>
-                            </ul>
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/future-self.png" alt="Future Self Connection">
                         </div>
-
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-chart-line"></i></div>
-                            <h4>Progress Tracking</h4>
-                            <ul>
-                                <li>QXP earning system</li>
-                                <li>Progress analytics</li>
-                                <li>Achievement gallery</li>
-                                <li>Daily streak tracking</li>
+                        <div class="screen-description">
+                            <h3>Future Self Connection</h3>
+                            <p>Interface for connecting with your future potential and refining your vision.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Vision Definition</li>
+                                <li><i class="fas fa-check-circle"></i> Milestone Exercises</li>
+                                <li><i class="fas fa-check-circle"></i> Progress Visualization</li>
                             </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Future</span>
+                                <span class="screen-tag">Vision</span>
+                                <span class="screen-tag">Connection</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/community.png" alt="Community Hub">
+                        </div>
+                        <div class="screen-description">
+                            <h3>Community Hub</h3>
+                            <p>Connect with other practitioners and participate in collective consciousness activities.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Practice Groups</li>
+                                <li><i class="fas fa-check-circle"></i> Global Meditations</li>
+                                <li><i class="fas fa-check-circle"></i> Collective Activities</li>
+                            </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Community</span>
+                                <span class="screen-tag">Connection</span>
+                                <span class="screen-tag">Collective</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="screen-section">
-                    <h3>Priority 3 (Third Wave)</h3>
-                    <div class="screen-grid">
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-trophy"></i></div>
-                            <h4>Challenge System</h4>
-                            <ul>
-                                <li>Category-based challenges</li>
-                                <li>Verification mechanism</li>
-                                <li>Results tracking</li>
-                                <li>Community participation</li>
-                            </ul>
+            <section class="screen-section">
+                <h2>Advanced Feature Screens</h2>
+                <div class="screen-grid">
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/astral.png" alt="Astral Visualization">
                         </div>
-
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-users"></i></div>
-                            <h4>Network Meditation</h4>
-                            <ul>
-                                <li>Global meditation map</li>
-                                <li>Active meditators counter</li>
-                                <li>Collective energy visualization</li>
-                                <li>Group meditation scheduling</li>
+                        <div class="screen-description">
+                            <h3>Astral Visualization</h3>
+                            <p>Advanced interface for tracking and visualizing astral experiences and energy body evolution.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Energy Body Visualization</li>
+                                <li><i class="fas fa-check-circle"></i> Dream Analysis</li>
+                                <li><i class="fas fa-check-circle"></i> Evolution Tracking</li>
                             </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Astral</span>
+                                <span class="screen-tag">Visualization</span>
+                                <span class="screen-tag">Evolution</span>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-flask"></i></div>
-                            <h4>Scientific Framework</h4>
-                            <ul>
-                                <li>Dual explanation toggle</li>
-                                <li>Research library</li>
-                                <li>Measurement tools</li>
-                                <li>Progress analytics</li>
-                            </ul>
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/sacred-geometry.png" alt="Sacred Geometry">
                         </div>
-
-                        <div class="screen-card">
-                            <div class="screen-icon"><i class="fas fa-cog"></i></div>
-                            <h4>Settings & Profile</h4>
-                            <ul>
-                                <li>Profile management</li>
-                                <li>Notification preferences</li>
-                                <li>Display settings</li>
-                                <li>Privacy controls</li>
+                        <div class="screen-description">
+                            <h3>Sacred Geometry</h3>
+                            <p>Interactive sacred geometry patterns for meditation and consciousness exploration.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Pattern Library</li>
+                                <li><i class="fas fa-check-circle"></i> Interactive Focus</li>
+                                <li><i class="fas fa-check-circle"></i> Breathing Sync</li>
                             </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Geometry</span>
+                                <span class="screen-tag">Patterns</span>
+                                <span class="screen-tag">Meditation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="screen-card">
+                        <div class="screen-image">
+                            <img src="images/screens/abilities.png" alt="Advanced Abilities">
+                        </div>
+                        <div class="screen-description">
+                            <h3>Advanced Abilities</h3>
+                            <p>Dedicated interface for developing and tracking advanced consciousness abilities.</p>
+                            <ul class="screen-features">
+                                <li><i class="fas fa-check-circle"></i> Training Paths</li>
+                                <li><i class="fas fa-check-circle"></i> Skill Development</li>
+                                <li><i class="fas fa-check-circle"></i> Progress Tracking</li>
+                            </ul>
+                            <div class="screen-tags">
+                                <span class="screen-tag">Abilities</span>
+                                <span class="screen-tag">Training</span>
+                                <span class="screen-tag">Development</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
+        </main>
+    </div>
 
-            <div class="section-container">
-                <h2>Design Considerations</h2>
-                
-                <div class="design-section">
-                    <h3>Visual Style</h3>
-                    <ul>
-                        <li>Cosmic aesthetic with sacred geometry elements</li>
-                        <li>Dark background with vibrant blue/purple accents</li>
-                        <li>Constellation and particle effects</li>
-                        <li>Holographic interface elements</li>
-                    </ul>
-                </div>
-
-                <div class="design-section">
-                    <h3>User Experience Flow</h3>
-                    <ul>
-                        <li>Intuitive progression from basic to advanced features</li>
-                        <li>Clear progress and achievement indicators</li>
-                        <li>Seamless practice and tracking transitions</li>
-                        <li>Dual paths for different user preferences</li>
-                    </ul>
-                </div>
-
-                <div class="design-section">
-                    <h3>Accessibility</h3>
-                    <ul>
-                        <li>Multiple consciousness band entry points</li>
-                        <li>Adjustable text size and contrast</li>
-                        <li>Alternative navigation options</li>
-                        <li>Screen reader compatibility</li>
-                        <li>Colorblind-friendly palette</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <script src="scripts.js"></script>
+    <footer></footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html> 

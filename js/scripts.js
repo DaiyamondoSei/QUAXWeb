@@ -1,4 +1,4 @@
-// QUANEX Website Scripts
+// QUANNEX Website Scripts
 
 document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
@@ -227,24 +227,22 @@ if (backToTop) {
 // Quantum Parameter Interactions
 document.addEventListener('DOMContentLoaded', () => {
     // Mouse tracking effect for parameters
-    document.querySelectorAll('.parameter').forEach(parameter => {
-        parameter.addEventListener('mousemove', (e) => {
-            const rect = parameter.getBoundingClientRect();
+    document.querySelectorAll('.parameter-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;
-            parameter.style.setProperty('--mouse-x', `${x}%`);
-            parameter.style.setProperty('--mouse-y', `${y}%`);
+            card.style.setProperty('--mouse-x', `${x}%`);
+            card.style.setProperty('--mouse-y', `${y}%`);
         });
-    });
 
-    // Create quantum particles
-    document.querySelectorAll('.parameter').forEach(parameter => {
+        // Create quantum particles
         const particlesContainer = document.createElement('div');
         particlesContainer.className = 'quantum-particles';
-        parameter.appendChild(particlesContainer);
+        card.appendChild(particlesContainer);
 
-        // Create 10 particles for each parameter
-        for (let i = 0; i < 10; i++) {
+        // Create 15 particles for each parameter card
+        for (let i = 0; i < 15; i++) {
             const particle = document.createElement('div');
             particle.className = 'quantum-particle';
             particle.style.left = `${Math.random() * 100}%`;
@@ -252,22 +250,29 @@ document.addEventListener('DOMContentLoaded', () => {
             particle.style.animationDelay = `${Math.random() * 3}s`;
             particlesContainer.appendChild(particle);
         }
+
+        // Add click event for mobile devices
+        card.addEventListener('click', () => {
+            card.classList.toggle('expanded');
+        });
     });
 
     // Add index to parameter details items for staggered animation
-    document.querySelectorAll('.parameter-details li').forEach((item, index) => {
+    document.querySelectorAll('.parameter-details li, .parameter-details p').forEach((item, index) => {
         item.style.setProperty('--index', index);
+        item.style.animationDelay = `${index * 0.05}s`;
     });
 
-    // Intersection Observer for parameter cards
+    // Add intersection observer for parameter cards
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, {
+        threshold: 0.1
+    });
 
     document.querySelectorAll('.parameter-card').forEach(card => {
         observer.observe(card);

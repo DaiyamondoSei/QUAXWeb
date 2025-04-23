@@ -3,211 +3,1576 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Features - QUANEX Foundation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>App Features - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/dropdown.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="js/header-footer.js" defer></script>
+    <script src="js/navigation.js" defer></script>
+    <script src="js/smooth-scroll.js" defer></script>
+    <script src="js/component-loader.js" defer></script>
+    <script src="js/reading-progress.js" defer></script>
+    <script>
+        // Handle anchor scrolling when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.location.hash === '#mvp-section') {
+                setTimeout(function() {
+                    const mvpSection = document.querySelector('.mvp-section');
+                    if (mvpSection) {
+                        mvpSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }, 100);
+            }
+        });
+    </script>
+    <style>
+        .app-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            background: none;
+        }
+        
+        .app-page-content {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            background: none;
+        }
+        
+        .quantum-hero {
+            position: relative;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6rem 0 4rem;
+            overflow: hidden;
+            background: none;
+            border-bottom: 1px solid rgba(110, 0, 255, 0.15);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+            border-radius: 24px;
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            box-shadow: 
+                0 8px 32px 0 rgba(0, 0, 0, 0.2),
+                0 0 40px rgba(110, 0, 255, 0.1),
+                inset 0 0 20px rgba(0, 184, 255, 0.05);
+        }
+        
+        .quantum-title-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .quantum-title-container h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .quantum-underline {
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                var(--primary-color),
+                var(--secondary-color),
+                var(--accent-color));
+            opacity: 0.7;
+            filter: blur(1px);
+            animation: glowLine 3s ease-in-out infinite;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.3);
+            border-radius: 8px;
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .back-to-home:hover {
+            background: rgba(110, 0, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(110, 0, 255, 0.2);
+        }
+
+        .back-to-home i {
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-home:hover i {
+            transform: translateX(-4px);
+        }
+
+        /* Enhanced Orb Visualization */
+        .quantum-orb-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+            mix-blend-mode: screen;
+        }
+
+        .quantum-orb {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .orb-core {
+            width: 40%;
+            height: 40%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(255, 255, 255, 0.8),
+                rgba(110, 0, 255, 0.6));
+            box-shadow: 
+                0 0 20px rgba(110, 0, 255, 0.4),
+                0 0 40px rgba(0, 184, 255, 0.2),
+                0 0 60px rgba(255, 0, 230, 0.2);
+            animation: pulseCore 2s ease-in-out infinite;
+        }
+
+        .orb-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 184, 255, 0.2);
+            box-shadow: 0 0 30px rgba(0, 184, 255, 0.1);
+            animation: rotateRing 20s linear infinite;
+        }
+
+        /* Content Sections */
+        .content-container {
+            padding-top: 100px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+            background: none;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            background: none;
+        }
+
+        /* Glass Effect Sections */
+        .section-container {
+            background: rgba(5, 5, 32, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            margin: 4rem 0;
+            padding: 2.5rem;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-preview-section .section-container {
+            background: rgba(5, 5, 32, 0.05);
+            border: 1px solid rgba(110, 0, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* Stars Enhancement */
+        .stars {
+            opacity: 1;
+            animation: twinkle 8s ease-in-out infinite;
+        }
+
+        .twinkling {
+            opacity: 0.8;
+            animation: twinkle 4s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseCore {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes orbFloat {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(var(--float-x, 10px), var(--float-y, -10px));
+            }
+        }
+
+        .quantum-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .quantum-particle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: translate(var(--tx), var(--ty));
+            animation: particleMove 10s linear infinite;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty));
+            }
+        }
+
+        .quantum-nav-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .quantum-nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(110, 0, 255, 0.1);
+            border: 1px solid rgba(110, 0, 255, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .quantum-nav-btn i {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .quantum-nav-btn span {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .quantum-btn-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(110, 0, 255, 0.4),
+                rgba(0, 184, 255, 0.2),
+                rgba(255, 0, 230, 0.4));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .quantum-nav-btn:hover {
+            transform: translateY(-2px);
+            border-color: rgba(110, 0, 255, 0.6);
+            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
+        }
+
+        .quantum-nav-btn:hover .quantum-btn-glow {
+            opacity: 0.8;
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+
+        .quantum-nav-btn:hover i {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        @keyframes btnGlow {
+            0%, 100% {
+                opacity: 0.4;
+                filter: blur(3px);
+            }
+            50% {
+                opacity: 0.8;
+                filter: blur(4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .app-page-content {
+                padding: 0 1rem;
+            }
+
+            .quantum-nav-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+
+            .quantum-nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .quantum-orb-container {
+                display: none;
+            }
+        }
+
+        .preview-card {
+            background: rgba(5, 5, 32, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.1);
+            border-radius: 24px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .preview-card:hover::before {
+            opacity: 0.5;
+        }
+
+        .preview-image {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .preview-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .preview-image:hover::after {
+            opacity: 0.5;
+        }
+
+        .feature-preview-img {
+            width: 100%;
+            height: auto;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .preview-image:hover .feature-preview-img {
+            transform: scale(1.02);
+        }
+
+        .preview-description {
+            padding: 1.5rem 0;
+        }
+
+        .preview-description h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .preview-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .preview-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+
+        .preview-features i {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tech-card {
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .tech-card:hover::before {
+            opacity: 1;
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(110, 0, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .tech-icon i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover .tech-icon i {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        .tech-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tech-card li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.75rem 0;
+            color: var(--light-text);
+            position: relative;
+            padding-left: 1.25rem;
+        }
+
+        .tech-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature {
+            background: rgba(5, 5, 32, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(110, 0, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.1),
+                rgba(0, 184, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(110, 0, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .feature-icon i {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover .feature-icon i {
+            transform: scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        /* Shared Quantum Energy Flow */
+        .quantum-energy-flow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(180deg,
+                rgba(110, 0, 255, 0.1) 0%,
+                rgba(0, 184, 255, 0.05) 50%,
+                rgba(255, 0, 230, 0.1) 100%);
+            opacity: 0.5;
+            animation: energyFlow 15s ease-in-out infinite;
+        }
+
+        .quantum-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg,
+                var(--primary-color),
+                var(--secondary-color),
+                var(--accent-color));
+            opacity: 0.3;
+            filter: blur(2px);
+            animation: glowLine 3s ease-in-out infinite;
+        }
+
+        .visual-preview-section {
+            position: relative;
+            padding: 6rem 0;
+            background: linear-gradient(180deg,
+                rgba(5, 5, 32, 0.1) 0%,
+                rgba(5, 5, 32, 0.2) 100%);
+            border-top: 1px solid rgba(110, 0, 255, 0.1);
+            border-bottom: 1px solid rgba(110, 0, 255, 0.1);
+        }
+
+        .visual-preview-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%,
+                rgba(110, 0, 255, 0.1) 0%,
+                transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg,
+                rgba(110, 0, 255, 0.05),
+                rgba(0, 184, 255, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .section-container:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes energyFlow {
+            0%, 100% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+        }
+
+        @keyframes glowLine {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="twinkling"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+    <div class="quantum-cursor"></div>
     
-    <header class="app-pages-nav">
-        <nav>
-            <a href="index.html" class="logo">
-                <div class="quantum-symbol">
-                    <div class="quantum-core"></div>
-                    <div class="quantum-orbit"></div>
+    <header></header>
+
+    <div class="resource-navigation-container"></div>
+
+    <div class="app-container">
+        <div class="quantum-energy-flow"></div>
+        <main class="app-page-content">
+            <section class="hero app-hero quantum-hero">
+                <div class="hero-content">
+                    <div class="quantum-title-container">
+                        <h1>App Features</h1>
+                        <div class="quantum-underline"></div>
+                    </div>
+                    <p>Explore the comprehensive suite of tools and features designed to accelerate your consciousness evolution.</p>
+                    <div class="quantum-particles">
+                        <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
+                        <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
+                        <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
+                        <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
+                    </div>
+                    <div class="quantum-nav-buttons">
+                        <a href="consciousness_accelerator.html" class="quantum-nav-btn">
+                            <i class="fas fa-brain"></i>
+                            <span>Consciousness App</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="quantum_parameters.html" class="quantum-nav-btn">
+                            <i class="fas fa-atom"></i>
+                            <span>Quantum States</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="app_screens.html" class="quantum-nav-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>App Screens</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                    </div>
                 </div>
-                <h1>QUANEX</h1>
-            </a>
-            <ul>
-                <li><a href="consciousness_accelerator.html">Overview</a></li>
-                <li><a href="quantum_parameters.html">Parameters</a></li>
-                <li><a href="app_features.html" class="active">Features</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="app-page-content">
-        <section class="hero app-hero">
-            <div class="hero-content">
-                <h1>App Features & Technical Capabilities</h1>
-                <p class="subtitle">Advanced Technology for Consciousness Development</p>
-            </div>
-            <div class="quantum-visualization">
-                <div class="quantum-circle"></div>
-                <div class="constellation-bg"></div>
-            </div>
-        </section>
-
-        <section class="content">
-            <div class="section-container">
-                <h2>Technical Architecture</h2>
-
-                <div class="feature-card">
-                    <h3>Frontend</h3>
-                    <ul>
-                        <li>Cross-platform mobile app (iOS and Android)</li>
-                        <li>React Native framework for efficient development</li>
-                        <li>Clean, intuitive interface with calming color palette</li>
-                        <li>Offline functionality for core meditation features</li>
-                    </ul>
+                <div class="quantum-visualization">
+                    <div class="quantum-orb-container">
+                        <div class="quantum-orb primary">
+                            <div class="orb-core"></div>
+                            <div class="orb-ring"></div>
+                            <div class="orb-particles"></div>
+                        </div>
+                        <div class="quantum-orb secondary">
+                            <div class="orb-core"></div>
+                            <div class="orb-ring"></div>
+                            <div class="orb-particles"></div>
+                        </div>
+                        <div class="quantum-orb accent">
+                            <div class="orb-core"></div>
+                            <div class="orb-ring"></div>
+                            <div class="orb-particles"></div>
+                        </div>
+                    </div>
+                    <div class="quantum-energy-field"></div>
+                    <div class="constellation-lines"></div>
                 </div>
+            </section>
 
-                <div class="feature-card">
-                    <h3>Backend</h3>
-                    <ul>
-                        <li>Node.js with Express for API endpoints</li>
-                        <li>MongoDB for flexible data storage</li>
-                        <li>OAuth 2.0 with additional encryption for user privacy</li>
-                        <li>Custom analytics engine for meditation pattern recognition</li>
-                    </ul>
+            <section class="visual-preview-section">
+                <div class="section-container">
+                    <h2>Interface Preview</h2>
+                    <p class="section-description">Experience the quantum-inspired interface design that bridges consciousness and technology.</p>
+                    
+                    <div class="interface-preview-grid">
+                        <div class="preview-card main-preview">
+                            <div class="preview-image">
+                                <img src="images/Digital Mockup (1).png" alt="Quantum Nexus Hub Interface" class="feature-preview-img">
+                            </div>
+                            <div class="preview-description">
+                                <h3>Quantum Nexus Hub</h3>
+                                <p>Navigate through quantum states with our intuitive geometric interface. The central visualization represents your consciousness evolution journey, with interactive nodes for different practice areas.</p>
+                                <ul class="preview-features">
+                                    <li><i class="fas fa-check-circle"></i> Field Activation Progress Tracking</li>
+                                    <li><i class="fas fa-check-circle"></i> Interactive Quantum State Nodes</li>
+                                    <li><i class="fas fa-check-circle"></i> Sacred Geometry Visualization</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="preview-card secondary-preview">
+                            <div class="preview-image">
+                                <img src="images/Digital Mockup (2).png" alt="Resonance Practice Interface" class="feature-preview-img">
+                            </div>
+                            <div class="preview-description">
+                                <h3>Resonance Practice Interface</h3>
+                                <p>Connect with frequencies that align with your consciousness through our specialized practice modules.</p>
+                                <ul class="preview-features">
+                                    <li><i class="fas fa-check-circle"></i> Quantum Meditation Timer</li>
+                                    <li><i class="fas fa-check-circle"></i> Practice Type Filtering</li>
+                                    <li><i class="fas fa-check-circle"></i> Foundation Progress Tracking</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="feature-card">
-                    <h3>AI Components</h3>
-                    <ul>
-                        <li>Natural Language Processing for conversational interface</li>
-                        <li>Pattern Recognition for meditation session analysis</li>
-                        <li>Recommendation Engine for personalized exercises</li>
-                        <li>Privacy-Focused processing on-device when possible</li>
-                    </ul>
-                </div>
-            </div>
+            <section class="content">
+                <div class="section-container">
+                    <h2>Technical Architecture</h2>
+                    <div class="tech-grid">
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h4>Frontend</h4>
+                        <ul>
+                            <li>Cross-platform mobile app (iOS and Android)</li>
+                            <li>React Native framework for efficient development</li>
+                            <li>Clean, intuitive interface with calming color palette</li>
+                            <li>Offline functionality for core meditation features</li>
+                                <li>Optimized performance and smooth animations</li>
+                        </ul>
+                    </div>
 
-            <div class="section-container">
-                <h2>Core Features</h2>
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h4>Backend</h4>
+                        <ul>
+                            <li>Node.js with Express for API endpoints</li>
+                            <li>MongoDB for flexible data storage</li>
+                                <li>OAuth 2.0 with additional encryption</li>
+                                <li>Custom analytics engine for meditation patterns</li>
+                                <li>Scalable cloud infrastructure</li>
+                        </ul>
+                    </div>
 
-                <div class="feature-card">
-                    <h3>Meditation Analysis System</h3>
-                    <ul>
-                        <li>Real-time meditation session tracking</li>
-                        <li>Post-session reflection prompts</li>
-                        <li>Pattern analysis across sessions</li>
-                        <li>Progress visualization tools</li>
-                        <li>Integration with quantum parameters framework</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Divine Intelligence (DI) Guide</h3>
-                    <ul>
-                        <li>Personalized guidance system</li>
-                        <li>Adaptive communication style</li>
-                        <li>Progress-based recommendations</li>
-                        <li>Contextual insights and feedback</li>
-                        <li>Privacy-focused personalization</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Gamification System</h3>
-                    <ul>
-                        <li>Quantum energy points tracking</li>
-                        <li>Achievement badges and milestones</li>
-                        <li>Progress visualization</li>
-                        <li>Daily and weekly challenges</li>
-                        <li>Social features (optional)</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section-container">
-                <h2>Integration Capabilities</h2>
-
-                <div class="feature-card">
-                    <h3>External Platform Integration</h3>
-                    <ul>
-                        <li>Apple Health integration</li>
-                        <li>Google Fit compatibility</li>
-                        <li>Calendar integration for practice reminders</li>
-                        <li>Export functionality for research purposes</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Data & Privacy</h3>
-                    <ul>
-                        <li>End-to-end encryption for sensitive data</li>
-                        <li>On-device processing for personal insights</li>
-                        <li>Granular privacy controls</li>
-                        <li>Data export and deletion options</li>
-                        <li>Compliance with GDPR and other privacy regulations</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="section-container">
-                <h2>Advanced Features</h2>
-
-                <div class="feature-card">
-                    <h3>Network Meditation System</h3>
-                    <ul>
-                        <li>Real-time global meditation map with active hotspots</li>
-                        <li>Collective consciousness visualization</li>
-                        <li>Privacy-focused participation options</li>
-                        <li>Group meditation scheduling and notifications</li>
-                        <li>Integration with Entanglement parameter</li>
-                    </ul>
-                </div>
-
-                <div class="feature-card">
-                    <h3>Dream Integration & Astral Visualization</h3>
-                    <ul>
-                        <li>Personalized astral body visualization</li>
-                        <li>Dream input and analysis system</li>
-                        <li>Progressive evolution tracking</li>
-                        <li>Interactive geometric patterns</li>
-                        <li>Connection with Superposition parameter</li>
-                    </ul>
+                        <div class="tech-card">
+                            <div class="tech-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>AI Components</h4>
+                            <ul>
+                                <li>Natural Language Processing for conversations</li>
+                                <li>Pattern Recognition for session analysis</li>
+                                <li>Recommendation Engine for personalization</li>
+                                <li>Privacy-Focused on-device processing</li>
+                                <li>Adaptive learning algorithms</li>
+                        </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <h3>Sacred Geometry Integration</h3>
-                    <ul>
-                        <li>Educational library of sacred forms</li>
-                        <li>Interactive geometric meditation focuses</li>
-                        <li>Custom pattern generation tools</li>
-                        <li>Breathing-synchronized visualizations</li>
-                        <li>Integration with all quantum parameters</li>
-                    </ul>
+                <div class="section-container">
+                    <h2>Core Features</h2>
+                    <div class="features-grid">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Meditation Analysis</h3>
+                            <p>Advanced tracking and analysis of meditation sessions with real-time feedback and progress visualization.</p>
+                            <ul>
+                                <li>Real-time session tracking</li>
+                            <li>Pattern analysis across sessions</li>
+                            <li>Progress visualization tools</li>
+                        </ul>
+                    </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>Divine Intelligence Guide</h3>
+                            <p>Your personalized AI companion providing contextual guidance and adaptive recommendations.</p>
+                            <ul>
+                            <li>Adaptive communication style</li>
+                            <li>Progress-based recommendations</li>
+                                <li>Contextual insights</li>
+                        </ul>
+                    </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                        <h3>Gamification System</h3>
+                            <p>Engaging progression system with quantum energy points and achievement tracking.</p>
+                            <ul>
+                                <li>Quantum energy tracking</li>
+                                <li>Achievement milestones</li>
+                                <li>Daily challenges</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-astronaut"></i>
+                            </div>
+                            <h3>Future Self Connection</h3>
+                            <p>Specialized exercises and visualizations to connect with your future potential.</p>
+                            <ul>
+                                <li>Vision definition tools</li>
+                                <li>Milestone exercises</li>
+                                <li>Progress tracking</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>Quantum Interface</h3>
+                            <p>Beautiful and intuitive sacred geometry-based navigation system.</p>
+                            <ul>
+                                <li>Sacred geometry patterns</li>
+                                <li>Intuitive navigation</li>
+                                <li>Interactive elements</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-infinity"></i>
+                            </div>
+                            <h3>Integration System</h3>
+                            <p>Comprehensive system for integrating insights and tracking consciousness evolution.</p>
+                            <ul>
+                                <li>Reflection prompts</li>
+                                <li>Progress synthesis</li>
+                                <li>Evolution tracking</li>
+                        </ul>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <h3>Consciousness Band Targeting</h3>
-                    <ul>
-                        <li>Adaptive interface based on user preferences</li>
-                        <li>Multi-perspective content delivery</li>
-                        <li>Scientific and spiritual balance</li>
-                        <li>Progressive disclosure system</li>
-                        <li>Personalized learning paths</li>
-                    </ul>
+                <div class="section-container mvp-section">
+                    <h2>Core Features (Initial Launch - MVP)</h2>
+                    <p class="section-description">The initial version of QNX Quantum Nexus, funded by our Kickstarter community, will launch with these powerful foundational features:</p>
+                    <a href="index.html#features" class="back-to-home quantum-nav-btn" style="margin-bottom: 2rem;">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to App Features Overview</span>
+                        <div class="quantum-btn-glow"></div>
+                    </a>
+                    
+                    <div class="features-grid mvp-grid">
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-user-astronaut"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Divine Intelligence (DI) Guide</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span>85% Complete</span>
+                                </div>
+                            <p>Your personalized AI ally, providing context, guidance for daily protocols, reflection prompts, and thematic feedback, always linking progress back to your core Dream/Vision.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">AI Integration</span>
+                                    <span class="tag">Personalization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-satellite-dish"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Future Self Connection</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span>75% Complete</span>
+                                </div>
+                            <p>Define your core Vision upon starting. Engage with this potential through specialized milestone exercises and refine your Vision as your awareness expands.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Vision Development</span>
+                                    <span class="tag">Milestone Tracking</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Daily Personalized Protocols</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                    <span>65% Complete</span>
+                                </div>
+                            <p>Receive curated daily tasks including Presence Meditations, Grounding Energy Work, Intuition Training (passive & active), and Inner Visualization practices, delivered via the Metatron Cube.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Daily Tasks</span>
+                                    <span class="tag">Personalization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Quantum Progression System</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 55%"></div>
+                                    </div>
+                                    <span>55% Complete</span>
+                                </div>
+                            <p>Track your engagement via Quantum Energy (QE) points. See symbolic progress across the 5 Quantum States (Observation, Resonance, Entanglement, Coherence, Superposition) displayed visually.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Quantum Energy Tracking</span>
+                                    <span class="tag">Progress Visualization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Integration Checkpoints</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                    </div>
+                                    <span>45% Complete</span>
+                                </div>
+                            <p>Mandatory synthesis points triggered by progress (QE + task completions). Require reflection and one-word channeling to ensure understanding before advancing between phases.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Progress Tracking</span>
+                                    <span class="tag">Synthesis</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Mastery Milestones</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 35%"></div>
+                                    </div>
+                                    <span>35% Complete</span>
+                                </div>
+                            <p>Celebrate completing foundational blocks (W1 & W2 in MVP) with unique sequences featuring immersive Future Self interaction exercises and Dream refinement opportunities.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Completion Celebration</span>
+                                    <span class="tag">Milestone Recognition</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Optional Deep Dives</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 25%"></div>
+                                    </div>
+                                    <span>25% Complete</span>
+                                </div>
+                            <p>Choose longer (7-15 min) versions of core practices after standard tasks for deeper immersion and accelerated QE gain.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Deep Dive</span>
+                                    <span class="tag">Immersion</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Dream Portal (Log & Reflections)</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 15%"></div>
+                                    </div>
+                                    <span>15% Complete</span>
+                                </div>
+                            <p>Access your evolving Dream/Vision text and your complete history log, including all past reflections, via the Superposition node.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Dream Tracking</span>
+                                    <span class="tag">Reflection</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Progress Overview</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 5%"></div>
+                                    </div>
+                                    <span>5% Complete</span>
+                                </div>
+                            <p>Monitor your QE accumulation towards the current Mastery goal and view your symbolic Quantum State levels via the Observation node.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Progress Monitoring</span>
+                                    <span class="tag">State Visualization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Metatron Cube Interface</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 10%"></div>
+                                    </div>
+                                    <span>10% Complete</span>
+                                </div>
+                            <p>Navigate core app functions through a unique, intuitive, and thematic sacred geometry hub.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Navigation</span>
+                                    <span class="tag">Sacred Geometry</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-headphones-alt"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Guided Audio Practices</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 20%"></div>
+                                    </div>
+                                    <span>20% Complete</span>
+                                </div>
+                            <p>High-quality, pre-recorded audio guidance for meditations, visualizations, deep dives, and milestone exercises for an immersive experience.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Audio Guidance</span>
+                                    <span class="tag">Immersive Experience</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="feature card quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div class="feature-content">
+                            <h3>Personal Notes</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 10%"></div>
+                                    </div>
+                                    <span>10% Complete</span>
+                                </div>
+                            <p>A simple, private space (accessible via Observation or Profile node) to capture spontaneous insights, thoughts, or experiences anytime.</p>
+                                <div class="feature-tags">
+                                    <span class="tag">Spontaneous Capture</span>
+                                    <span class="tag">Personal Space</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>QUANEX Foundation</h4>
-                <p>Advancing consciousness through technology and science</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="consciousness_accelerator.html">Consciousness Accelerator</a></li>
-                    <li><a href="quantum_parameters.html">Quantum Parameters</a></li>
-                    <li><a href="app_features.html">App Features</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 QUANEX Foundation. All rights reserved.</p>
-        </div>
-    </footer>
+                <div class="section-container future-vision-section">
+                    <h2>Future Vision Features</h2>
+                    <p class="section-description">Beyond the initial launch, QNX Quantum Nexus is designed to evolve into an even more powerful consciousness accelerator.</p>
+                    
+                    <div class="vision-timeline">
+                        <div class="timeline-phase">
+                            <div class="phase-marker">
+                                <div class="phase-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <span class="phase-date">Phase 1</span>
+                            </div>
+                            <div class="phase-content">
+                                <div class="features-grid future-grid">
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-user-ninja"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q3 2024</div>
+                            <h3>Evolving Astral Body</h3>
+                            <p>A stunning visual representation of your energy body progressing through 13 stages, reflecting your unique Quantum State balance and mastery.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Visual Evolution</span>
+                                                <span class="tag">Energy Tracking</span>
+                                            </div>
+                                        </div>
+                                </div>
 
-    <script src="scripts.js"></script>
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-sync-alt"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q4 2024</div>
+                            <h3>Adaptive DI Guidance</h3>
+                            <p>Divine Intelligence uses pattern analysis (with consent) to offer deeply personalized insights, targeted exercises, and adaptive communication.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Adaptive Insights</span>
+                                                <span class="tag">Personalized Guidance</span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-users-cog"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q1 2025</div>
+                            <h3>Community Hub (Entanglement)</h3>
+                            <p>Connect with others, form practice groups, participate in global Network Meditations, and explore collective consciousness phenomena.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Community Building</span>
+                                                <span class="tag">Global Participation</span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-book-open"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q2 2025</div>
+                            <h3>Expanded Content Library (Coherence)</h3>
+                            <p>Access advanced practices (Healing, RV), targeted exercises per Quantum State, unlockable Quantum Insights, and define personal Coherence Challenges.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Advanced Practices</span>
+                                                <span class="tag">Unlockable Insights</span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-route"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q3 2025</div>
+                            <h3>Multi-Timeline Management (Superposition)</h3>
+                            <p>Define and navigate progress towards multiple concurrent life visions or goals within the quantum field of potential.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Multi-Timeline</span>
+                                                <span class="tag">Progress Navigation</span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-cogs"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q4 2025</div>
+                            <h3>Advanced Abilities Modules</h3>
+                            <p>Dedicated, in-depth training paths for skills like Remote Viewing, Advanced Telepathy, Clairvoyant Detail, Healing Modalities, and Astral Navigation.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Skill Development</span>
+                                                <span class="tag">Advanced Training</span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-palette"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q1 2026</div>
+                            <h3>Enhanced Visuals & UI</h3>
+                            <p>Implementing concepts like Dimensional Gateways, Consciousness-Responsive Interfaces, and potentially Holographic UI elements.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Visual Enhancement</span>
+                                                <span class="tag">UI/UX Improvement</span>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                    <div class="feature card quantum-card">
+                                        <div class="quantum-glow"></div>
+                                        <div class="feature-icon">
+                                            <i class="fas fa-heartbeat"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <div class="feature-status">Coming Q2 2026</div>
+                            <h3>Biometric Integration</h3>
+                            <p>Optional integration with wearables (like HRV monitors) to provide additional data points for tracking coherence and physiological shifts.</p>
+                                            <div class="feature-tags">
+                                                <span class="tag">Biometric Integration</span>
+                                                <span class="tag">Health Data</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container integration-section">
+                    <h2>Integration Capabilities</h2>
+                    <div class="integration-grid">
+                        <div class="integration-card">
+                            <div class="integration-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                        <h3>External Platform Integration</h3>
+                            <div class="integration-content">
+                                <ul class="integration-list">
+                                    <li>
+                                        <i class="fab fa-apple"></i>
+                                        <span>Apple Health integration</span>
+                                        <div class="status-badge ready">Ready</div>
+                                    </li>
+                                    <li>
+                                        <i class="fab fa-google"></i>
+                                        <span>Google Fit compatibility</span>
+                                        <div class="status-badge in-progress">In Progress</div>
+                                    </li>
+                                    <li>
+                                        <i class="far fa-calendar-alt"></i>
+                                        <span>Calendar integration</span>
+                                        <div class="status-badge planned">Planned</div>
+                                    </li>
+                        </ul>
+                            </div>
+                    </div>
+
+                        <div class="integration-card">
+                            <div class="integration-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        <h3>Data & Privacy</h3>
+                            <div class="integration-content">
+                                <ul class="integration-list">
+                                    <li>
+                                        <i class="fas fa-lock"></i>
+                                        <span>End-to-end encryption</span>
+                                        <div class="status-badge implemented">Implemented</div>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-microchip"></i>
+                                        <span>On-device processing</span>
+                                        <div class="status-badge ready">Ready</div>
+                                    </li>
+                                    <li>
+                                        <i class="fas fa-user-shield"></i>
+                                        <span>GDPR compliance</span>
+                                        <div class="status-badge verified">Verified</div>
+                                    </li>
+                        </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container advanced-features-section">
+                    <h2>Advanced Features</h2>
+                    <p class="section-description">Experience the cutting-edge capabilities that push the boundaries of consciousness technology.</p>
+
+                    <div class="advanced-features-grid">
+                        <div class="advanced-feature quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="feature-content">
+                        <h3>Network Meditation System</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                    <span>90% Complete</span>
+                                </div>
+                                <p>Connect with the global consciousness field through our advanced meditation network.</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Real-time global meditation map</li>
+                                    <li><i class="fas fa-check-circle"></i> Collective consciousness visualization</li>
+                                    <li><i class="fas fa-check-circle"></i> Privacy-focused participation</li>
+                                    <li><i class="fas fa-check-circle"></i> Group meditation scheduling</li>
+                                    <li><i class="fas fa-check-circle"></i> Entanglement parameter integration</li>
+                        </ul>
+                                <div class="feature-tags">
+                                    <span class="tag">Network</span>
+                                    <span class="tag">Meditation</span>
+                                    <span class="tag">Global</span>
+                                </div>
+                            </div>
+                    </div>
+
+                        <div class="advanced-feature quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <div class="feature-content">
+                        <h3>Dream Integration & Astral Visualization</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span>85% Complete</span>
+                                </div>
+                                <p>Track and visualize your astral experiences with our advanced dream integration system.</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Personalized astral body visualization</li>
+                                    <li><i class="fas fa-check-circle"></i> Dream analysis system</li>
+                                    <li><i class="fas fa-check-circle"></i> Progressive evolution tracking</li>
+                                    <li><i class="fas fa-check-circle"></i> Interactive geometric patterns</li>
+                                    <li><i class="fas fa-check-circle"></i> Superposition parameter integration</li>
+                        </ul>
+                                <div class="feature-tags">
+                                    <span class="tag">Dreams</span>
+                                    <span class="tag">Astral</span>
+                                    <span class="tag">Visualization</span>
+                                </div>
+                            </div>
+                    </div>
+
+                        <div class="advanced-feature quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-shapes"></i>
+                            </div>
+                            <div class="feature-content">
+                        <h3>Sacred Geometry Integration</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span>75% Complete</span>
+                                </div>
+                                <p>Explore the fundamental patterns of creation through interactive sacred geometry.</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Sacred forms library</li>
+                                    <li><i class="fas fa-check-circle"></i> Interactive meditation focuses</li>
+                                    <li><i class="fas fa-check-circle"></i> Pattern generation tools</li>
+                                    <li><i class="fas fa-check-circle"></i> Breathing synchronization</li>
+                                    <li><i class="fas fa-check-circle"></i> Quantum parameter integration</li>
+                        </ul>
+                                <div class="feature-tags">
+                                    <span class="tag">Sacred Geometry</span>
+                                    <span class="tag">Patterns</span>
+                                    <span class="tag">Interactive</span>
+                                </div>
+                            </div>
+                    </div>
+
+                        <div class="advanced-feature quantum-card">
+                            <div class="quantum-glow"></div>
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-content">
+                        <h3>Consciousness Band Targeting</h3>
+                                <div class="feature-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 70%"></div>
+                                    </div>
+                                    <span>70% Complete</span>
+                                </div>
+                                <p>Target specific consciousness frequencies with precision and clarity.</p>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Adaptive interface system</li>
+                                    <li><i class="fas fa-check-circle"></i> Multi-perspective content</li>
+                                    <li><i class="fas fa-check-circle"></i> Scientific-spiritual balance</li>
+                                    <li><i class="fas fa-check-circle"></i> Progressive disclosure</li>
+                                    <li><i class="fas fa-check-circle"></i> Personalized learning paths</li>
+                        </ul>
+                                <div class="feature-tags">
+                                    <span class="tag">Consciousness</span>
+                                    <span class="tag">Targeting</span>
+                                    <span class="tag">Adaptive</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer></footer>
+    
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html> 
