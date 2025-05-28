@@ -5,7 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     dropdowns.forEach(dropdown => {
         const toggle = dropdown.querySelector('.dropdown-toggle');
         const menu = dropdown.querySelector('.dropdown-menu');
+        if (!toggle || !menu) return;
         const items = menu.querySelectorAll('[role="menuitem"]');
+        if (!items.length) return;
         
         toggle.addEventListener('keydown', (e) => {
             switch(e.key) {
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     modals.forEach(modal => {
         const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (!focusableElements.length) return;
         const firstFocusable = focusableElements[0];
         const lastFocusable = focusableElements[focusableElements.length - 1];
         

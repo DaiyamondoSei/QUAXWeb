@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - QUANNEX Foundation</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mobile.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26J2F9R185"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-26J2F9R185');
+    </script>
+    <script src="js/analytics.js" defer></script>
+    <script src="js/header-footer.js" defer></script>
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a23;
+            overflow: hidden;
+        }
+        .success-content {
+            background: rgba(20, 20, 40, 0.85);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37), 0 0 16px 2px #7f00ff44;
+            backdrop-filter: blur(18px);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .success-content h1 {
+            font-size: 2.5rem;
+            color: #00eaff;
+            text-shadow: 0 0 8px #00eaff, 0 0 24px #7f00ff, 0 0 2px #fff;
+            margin-bottom: 1rem;
+        }
+        .success-content p {
+            color: var(--light-text, #e0e0ff);
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .success-check {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            animation: popIn 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            text-shadow: 0 0 12px #4CAF50, 0 0 24px #00eaff;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            80% { transform: scale(1.15); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(90deg, #7f00ff 0%, #00eaff 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-family: var(--font-heading, inherit);
+            font-weight: 600;
+            box-shadow: 0 0 12px 2px #00eaff, 0 0 32px 4px #7f00ff;
+            border: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-button:hover {
+            background: linear-gradient(90deg, #00eaff 0%, #7f00ff 100%);
+            transform: translateY(-2px) scale(1.04);
+            color: #fff;
+        }
+        @media (max-width: 500px) {
+            .success-content {
+                padding: 2rem 0.5rem;
+            }
+            .success-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <main class="success-page">
+        <div class="success-content">
+            <div class="success-check" aria-hidden="true">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Thank You!</h1>
+            <p>Your message has been received.<br>We'll get back to you as soon as possible.</p>
+            <a href="index.html" class="back-button" aria-label="Back to Home">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+        </div>
+    </main>
+    <footer>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/company/quannex-foundation/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/your_quantum_nexus?igsh=MWx4ZDV4a2g0NXdyaQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/your-org" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://discord.gg/dZ95cJmw" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+        </div>
+    </footer>
+</body>
+</html> 

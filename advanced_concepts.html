@@ -3,179 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Quantum Concepts - QUANNEX</title>
+    <meta name="description" content="Dive into advanced quantum concepts and consciousness development through QUANNEX's innovative framework, exploring the intersection of quantum physics and spiritual growth. Discover quantum consciousness, energy fields, and transformative technologies.">
+    <meta name="keywords" content="quantum consciousness, advanced quantum concepts, consciousness development, quantum physics, spiritual growth, energy fields, quantum technology, consciousness framework">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="QUANNEX Foundation">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Advanced Quantum Concepts - QUANNEX | Consciousness Technology">
+    <meta property="og:description" content="Explore the cutting-edge intersection of quantum physics and consciousness development through QUANNEX's innovative framework and transformative technologies.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quannex.earth/advanced_concepts.html">
+    <meta property="og:image" content="https://quannex.earth/images/quantum-concepts-og.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Advanced Quantum Concepts - QUANNEX | Consciousness Technology">
+    <meta name="twitter:description" content="Explore the cutting-edge intersection of quantum physics and consciousness development through QUANNEX's innovative framework and transformative technologies.">
+    <meta name="twitter:image" content="https://quannex.earth/images/quantum-concepts-og.jpg">
+    
+    <link rel="canonical" href="https://quannex.earth/advanced_concepts.html">
+    <title>Advanced Quantum Concepts - QUANNEX | Consciousness Technology Framework</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="stylesheet" href="styles/academic_styles.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/dropdown.css">
     <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="styles/staged_disclosure.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <!-- Scripts -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26J2F9R185"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-26J2F9R185');
+    </script>
+    <script src="js/analytics.js" defer></script>
     <script src="js/header-footer.js" defer></script>
     <script src="js/navigation.js" defer></script>
     <script src="js/smooth-scroll.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="js/script.js" defer></script>
     <script src="js/component-loader.js" defer></script>
     <script src="js/reading-progress.js" defer></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize staged disclosure functionality
-            const stages = document.querySelectorAll('.stage');
-            const paths = document.querySelectorAll('.path');
-            
-            // Function to close all other stages
-            function closeOtherStages(currentStage) {
-                stages.forEach(stage => {
-                    if (stage !== currentStage) {
-                        stage.classList.remove('expanded');
-                        const details = stage.querySelector('.stage-details');
-                        const toggle = stage.querySelector('.toggle-details');
-                        if (details) {
-                            details.classList.remove('active');
-                            details.style.display = 'none';
-                        }
-                        if (toggle) toggle.textContent = 'More';
-                    }
-                });
-            }
-
-            // Function to close all other paths
-            function closeOtherPaths(currentPath) {
-                paths.forEach(path => {
-                    if (path !== currentPath) {
-                        const details = path.querySelector('.path-details');
-                        const toggle = path.querySelector('.toggle-details');
-                        if (details) {
-                            details.style.display = 'none';
-                        }
-                        if (toggle) toggle.textContent = 'More';
-                    }
-                });
-            }
-
-            // Handle stage toggling
-            stages.forEach(stage => {
-                const toggleBtn = stage.querySelector('.toggle-details');
-                const details = stage.querySelector('.stage-details');
-                
-                if (toggleBtn && details) {
-                    toggleBtn.addEventListener('click', function(e) {
-                        e.stopPropagation(); // Prevent event bubbling
-                        
-                        // Close other stages
-                        closeOtherStages(stage);
-                        
-                        // Toggle current stage
-                        const isExpanded = stage.classList.contains('expanded');
-                        stage.classList.toggle('expanded');
-                        
-                        if (isExpanded) {
-                            details.classList.remove('active');
-                            details.style.display = 'none';
-                            toggleBtn.textContent = 'More';
-                        } else {
-                            details.style.display = 'block';
-                            // Use setTimeout to ensure display:block is applied before adding active class
-                            setTimeout(() => {
-                                details.classList.add('active');
-                            }, 10);
-                            toggleBtn.textContent = 'Less';
-                        }
-                    });
-                }
-            });
-
-            // Handle path toggling
-            paths.forEach(path => {
-                const toggleBtn = path.querySelector('.toggle-details');
-                const details = path.querySelector('.path-details');
-                
-                if (toggleBtn && details) {
-                    toggleBtn.addEventListener('click', function(e) {
-                        e.stopPropagation(); // Prevent event bubbling
-                        
-                        // Close other paths
-                        closeOtherPaths(path);
-                        
-                        // Toggle current path
-                        const isExpanded = details.style.display === 'block';
-                        details.style.display = isExpanded ? 'none' : 'block';
-                        toggleBtn.textContent = isExpanded ? 'More' : 'Less';
-                    });
-                }
-            });
-
-            // Close stage when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.stage') && !e.target.closest('.path')) {
-                    // Close all stages
-                    stages.forEach(stage => {
-                        stage.classList.remove('expanded');
-                        const details = stage.querySelector('.stage-details');
-                        const toggle = stage.querySelector('.toggle-details');
-                        if (details) {
-                            details.classList.remove('active');
-                            details.style.display = 'none';
-                        }
-                        if (toggle) toggle.textContent = 'More';
-                    });
-                    
-                    // Close all paths
-                    paths.forEach(path => {
-                        const details = path.querySelector('.path-details');
-                        const toggle = path.querySelector('.toggle-details');
-                        if (details) {
-                            details.style.display = 'none';
-                        }
-                        if (toggle) toggle.textContent = 'More';
-                    });
-                }
-            });
-
-            // Initialize smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-
-            // Back to Top Button Functionality
-            const backToTopButton = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Add hover effects for paths
-            paths.forEach(path => {
-                path.addEventListener('mouseenter', function() {
-                    this.classList.add('path-hover');
-                });
-                
-                path.addEventListener('mouseleave', function() {
-                    this.classList.remove('path-hover');
-                });
-            });
-        });
+    
+    <!-- Structured Data for Educational Content -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Advanced Quantum Concepts and Consciousness Development",
+        "description": "An in-depth exploration of quantum consciousness, energy fields, and transformative technologies through QUANNEX's innovative framework.",
+        "provider": {
+            "@type": "Organization",
+            "name": "QUANNEX Foundation",
+            "sameAs": "https://quannex.earth"
+        },
+        "educationalLevel": "Advanced",
+        "about": {
+            "@type": "Thing",
+            "name": "Quantum Consciousness and Technology"
+        },
+        "teaches": [
+            "Quantum Consciousness",
+            "Energy Field Theory",
+            "Consciousness Development",
+            "Quantum Technology Applications"
+        ]
+    }
     </script>
+    
+    <!-- Breadcrumb Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://quannex.earth"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Advanced Concepts",
+            "item": "https://quannex.earth/advanced_concepts.html"
+        }]
+    }
+    </script>
+    
     <style>
         .content-container {
             padding-top: 100px; /* Add space for fixed header */
@@ -231,7 +150,7 @@
 
         .stages-container .stage.expanded {
             z-index: 10;
-            margin-bottom: 300px; /* Add space for expanded content */
+            margin-bottom: 400px; /* Increased space for expanded content */
         }
 
         .stage-number {
@@ -305,19 +224,21 @@
             position: absolute;
             left: 0;
             right: 0;
-            top: 100%;
+            top: calc(100% + 10px); /* Add some spacing from the stage */
             z-index: 2;
             opacity: 0;
             visibility: hidden;
             transform: translateY(-10px);
             transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            pointer-events: none; /* Prevent interaction when hidden */
         }
 
         .stage-details.active {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
+            pointer-events: auto; /* Enable interaction when visible */
         }
 
         .stage-details h4 {
@@ -536,31 +457,181 @@
         }
 
         /* Path Styles */
+        .path {
+            background: rgba(5, 5, 32, 0.5);
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: visible;
+            margin-bottom: 1rem;
+            z-index: 1;
+        }
+
+        .path.expanded {
+            z-index: 10;
+            margin-bottom: 400px; /* Space for expanded content */
+        }
+
         .path-icon {
+            width: 48px;
+            height: 48px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            box-shadow: var(--glow-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 0 15px rgba(110, 0, 255, 0.5);
+        }
+
+        .path-icon i {
+            font-size: 1.5rem;
+            color: var(--light-text);
         }
 
         .path h3 {
             color: var(--secondary-color);
+            margin: 0.75rem 0;
+            position: relative;
+            z-index: 1;
+            text-shadow: var(--glow-primary);
+            font-size: 1.3rem;
+            line-height: 1.2;
+            text-align: center;
         }
 
-        .path:hover {
-            border-color: rgba(110, 0, 255, 0.4);
-            box-shadow: var(--shadow-hover);
+        .path p {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            margin-bottom: 1rem;
         }
 
-        .stage-progression h4 {
-            color: var(--secondary-color);
+        .path ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
         }
 
-        .stage-progression strong {
+        .path ul li {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .path ul li::before {
+            content: '•';
             color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            text-shadow: 0 0 10px var(--primary-color);
         }
 
-        /* Add styles for the expanded state */
-        .stage.expanded {
-            z-index: 10; /* Match z-index with details */
+        .path-details {
+            background: rgba(5, 5, 32, 0.95);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(100% + 10px);
+            z-index: 2;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        .path-details.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .path-details h4 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+            text-shadow: var(--glow-primary);
+            font-size: 1.1rem;
+        }
+
+        .path-details h4:first-child {
+            margin-top: 0;
+        }
+
+        .path-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+
+        .path-details ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .path-details ul li {
+            color: var(--medium-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .path-details ul li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .paths-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .paths-container .toggle-details {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text);
+            border: none;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+
+        .paths-container .toggle-details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(110, 0, 255, 0.4);
+        }
+
+        .paths-container .toggle-details.active {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
         }
 
         /* Learning Metrics specific styling */
@@ -664,7 +735,281 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Base responsive container */
+        .advanced-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Responsive typography */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+                padding: 0 1rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .staged-disclosure .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Responsive grid layouts */
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .stages-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .protocol-features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .paths-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .engine-features {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+
+            .implementation-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 1rem;
+            }
+        }
+
+        /* Responsive card styles */
+        @media (max-width: 768px) {
+            .stage, .path, .feature-card, .engine-feature, .implementation-card {
+                padding: 1rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .stage.expanded, .path.expanded {
+                margin-bottom: 300px; /* Reduced space for mobile */
+            }
+
+            .stage-details, .path-details {
+                padding: 1rem;
+                top: calc(100% + 5px); /* Reduced spacing for mobile */
+            }
+
+            .stage-number, .path-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+            }
+
+            .path-icon i {
+                font-size: 1.2rem;
+            }
+
+            .stage h3, .path h3 {
+                font-size: 1.2rem;
+                margin: 0.5rem 0;
+            }
+
+            .stage p, .path p {
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .stage ul li, .path ul li {
+                font-size: 0.85rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .toggle-details {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Responsive section spacing */
+        @media (max-width: 768px) {
+            .content-container {
+                padding-top: 80px; /* Reduced for mobile */
+            }
+
+            section {
+                margin: 1.5rem 0;
+                padding: 1rem 0;
+            }
+
+            .section-header {
+                margin-bottom: 1rem;
+            }
+
+            .section-divider {
+                margin: 0.75rem 0 1.5rem;
+            }
+
+            .staged-disclosure {
+                padding: 1rem;
+                margin: 1.5rem 0;
+            }
+
+            .back-to-landing {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+                margin-top: 0.75rem;
+            }
+        }
+
+        /* Responsive navigation and header */
+        @media (max-width: 768px) {
+            .resource-navigation-container {
+                padding: 0.5rem 1rem;
+            }
+
+            .back-to-top {
+                right: 1rem;
+                bottom: 1rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .back-to-top i {
+                font-size: 1rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (max-width: 768px) {
+            .toggle-details, .back-to-landing, .view-resources {
+                min-height: 44px; /* Minimum touch target size */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .stage, .path {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            /* Prevent text selection on interactive elements */
+            .toggle-details, .back-to-landing, .view-resources {
+                user-select: none;
+                -webkit-user-select: none;
+            }
+        }
+
+        /* Landscape mode optimizations */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .stages-container, .paths-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stage.expanded, .path.expanded {
+                margin-bottom: 250px;
+            }
+
+            .content-container {
+                padding-top: 70px;
+            }
+        }
+
+        /* Small screen optimizations */
+        @media (max-width: 480px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .staged-disclosure .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .stage-details h4, .path-details h4 {
+                font-size: 1rem;
+                margin: 1rem 0 0.75rem;
+            }
+
+            .stage ul li, .path ul li {
+                font-size: 0.8rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .protocol-features .feature i {
+                font-size: 1.5rem;
+            }
+
+            .protocol-features .feature h3 {
+                font-size: 1.1rem;
+            }
+
+            .protocol-features .feature p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* High-DPI screen optimizations */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .stage-number, .path-icon {
+                box-shadow: 0 0 20px rgba(110, 0, 255, 0.6);
+            }
+
+            .toggle-details {
+                box-shadow: 0 4px 20px rgba(110, 0, 255, 0.4);
+            }
+        }
+
+        /* Dark mode optimizations */
+        @media (prefers-color-scheme: dark) {
+            .stage-details, .path-details {
+                background: rgba(5, 5, 32, 0.98);
+            }
+
+            .stage, .path {
+                background: rgba(5, 5, 32, 0.6);
+            }
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            .stage-details, .path-details,
+            .toggle-details, .back-to-landing,
+            .stage, .path, .feature-card {
+                transition: none;
+            }
+
+            .stage.expanded, .path.expanded {
+                margin-bottom: auto;
+            }
+        }
     </style>
+<link rel="stylesheet" href="styles/waitlist-cta.css">
 </head>
 <body>
     <div class="stars" aria-hidden="true"></div>
@@ -749,7 +1094,7 @@
                             </div>
                             <div class="progress-text">85% Complete</div>
                         </div>
-                        <div class="stage-details" style="display: none;">
+                        <div class="stage-details">
                             <h4>Learning Objectives</h4>
                             <ul>
                                 <li>Understand quantum superposition and its relationship to consciousness</li>
@@ -808,7 +1153,7 @@
                             </div>
                             <div class="progress-text">65% Complete</div>
                         </div>
-                        <div class="stage-details" style="display: none;">
+                        <div class="stage-details">
                             <h4>Learning Objectives</h4>
                             <ul>
                                 <li>Master consciousness-quantum interface</li>
@@ -869,7 +1214,7 @@
                             </div>
                             <div class="progress-text">40% Complete</div>
                         </div>
-                        <div class="stage-details" style="display: none;">
+                        <div class="stage-details">
                             <h4>Learning Objectives</h4>
                             <ul>
                                 <li>Explore quantum entanglement in consciousness</li>
@@ -930,7 +1275,7 @@
                             </div>
                             <div class="progress-text">25% Complete</div>
                         </div>
-                        <div class="stage-details" style="display: none;">
+                        <div class="stage-details">
                             <h4>Learning Objectives</h4>
                             <ul>
                                 <li>Master unified field awareness</li>
@@ -991,7 +1336,7 @@
                             </div>
                             <div class="progress-text">15% Complete</div>
                         </div>
-                        <div class="stage-details" style="display: none;">
+                        <div class="stage-details">
                             <h4>Learning Objectives</h4>
                             <ul>
                                 <li>Explore multidimensional consciousness</li>
@@ -1091,7 +1436,7 @@
                                 <li><strong>Transcendence:</strong> Quantum mind mastery</li>
                             </ul>
                         </div>
-                        <div class="path-details" style="display: none;">
+                        <div class="path-details">
                             <h4>Quantum Mechanics Integration</h4>
                             <ul>
                                 <li>Observer effect in consciousness</li>
@@ -1130,7 +1475,7 @@
                                 <li><strong>Transcendence:</strong> Energy mastery</li>
                             </ul>
                         </div>
-                        <div class="path-details" style="display: none;">
+                        <div class="path-details">
                             <h4>Quantum Mechanics Integration</h4>
                             <ul>
                                 <li>Quantum field theory applications</li>
@@ -1169,7 +1514,7 @@
                                 <li><strong>Transcendence:</strong> Dimensional mastery</li>
                             </ul>
                         </div>
-                        <div class="path-details" style="display: none;">
+                        <div class="path-details">
                             <h4>Quantum Mechanics Integration</h4>
                             <ul>
                                 <li>Multiverse theory applications</li>
@@ -1208,7 +1553,7 @@
                                 <li><strong>Transcendence:</strong> Creation mastery</li>
                             </ul>
                         </div>
-                        <div class="path-details" style="display: none;">
+                        <div class="path-details">
                             <h4>Quantum Mechanics Integration</h4>
                             <ul>
                                 <li>Wave function collapse in creation</li>
@@ -1247,7 +1592,7 @@
                                 <li><strong>Transcendence:</strong> Universal mastery</li>
                             </ul>
                         </div>
-                        <div class="path-details" style="display: none;">
+                        <div class="path-details">
                             <h4>Quantum Mechanics Integration</h4>
                             <ul>
                                 <li>Quantum field theory in nature</li>
@@ -1345,5 +1690,20 @@
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Add Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Advanced Concepts</span>
+                <meta itemprop="position" content="2" />
+            </li>
+        </ol>
+    </nav>
+<script src="js/waitlist-cta.js" defer></script>
 </body>
 </html> 

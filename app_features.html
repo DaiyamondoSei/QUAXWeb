@@ -2,13 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Features - QUANNEX Foundation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#050520">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="QUANNEX App Features - Advanced Consciousness Expansion Tools & Quantum Technology">
+    <meta name="description" content="Discover QUANNEX's revolutionary suite of consciousness expansion tools and features. Experience quantum-inspired technology, personalized AI guidance, advanced consciousness tracking, and future self integration capabilities designed to accelerate your spiritual evolution.">
+    <meta name="keywords" content="consciousness expansion tools, quantum technology features, consciousness tracking app, future self integration, personalized AI guidance, quantum consciousness features, consciousness evolution tools, spiritual technology features, consciousness accelerator app, quantum state visualization, divine intelligence guide, meditation analysis">
+    <meta name="author" content="QUANNEX">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <link rel="canonical" href="https://quannex.earth/app_features.html">
+    <title>QUANNEX App Features - Advanced Consciousness Expansion Tools & Quantum Technology</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/dropdown.css">
     <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    
+    <!-- Scripts -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26J2F9R185"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-26J2F9R185');
+    </script>
+    <script src="js/analytics.js" defer></script>
     <script src="js/header-footer.js" defer></script>
     <script src="js/navigation.js" defer></script>
     <script src="js/smooth-scroll.js" defer></script>
@@ -27,43 +53,104 @@
             }
         });
     </script>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quannex.earth/app_features.html">
+    <meta property="og:title" content="QUANNEX App Features - Advanced Consciousness Expansion Tools & Quantum Technology">
+    <meta property="og:description" content="Discover QUANNEX's revolutionary suite of consciousness expansion tools and features. Experience quantum-inspired technology, personalized AI guidance, and advanced consciousness tracking capabilities.">
+    <meta property="og:image" content="https://quannex.earth/images/app_features_preview.jpg.webp">
+    <meta property="og:image:alt" content="QUANNEX Consciousness Accelerator app features showcase including quantum visualization and AI guidance interface">
+    <meta property="og:site_name" content="QUANNEX">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- X (formerly Twitter) Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@quannex">
+    <meta name="twitter:creator" content="@quannex">
+    <meta name="twitter:url" content="https://quannex.earth/app_features.html">
+    <meta name="twitter:title" content="QUANNEX App Features - Advanced Consciousness Expansion Tools & Quantum Technology">
+    <meta name="twitter:description" content="Discover QUANNEX's revolutionary suite of consciousness expansion tools and features. Experience quantum-inspired technology, personalized AI guidance, and advanced consciousness tracking capabilities.">
+    <meta name="twitter:image" content="https://quannex.earth/images/app_features_preview.jpg.webp">
+    <meta name="twitter:image:alt" content="QUANNEX Consciousness Accelerator app features showcase including quantum visualization and AI guidance interface">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "QUANNEX App Features - Advanced Consciousness Expansion Tools & Quantum Technology",
+        "description": "Discover QUANNEX's revolutionary suite of consciousness expansion tools and features. Experience quantum-inspired technology, personalized AI guidance, advanced consciousness tracking, and future self integration capabilities designed to accelerate your spiritual evolution.",
+        "image": "https://quannex.earth/images/app_features_preview.jpg.webp",
+        "author": {
+            "@type": "Organization",
+            "name": "QUANNEX",
+            "url": "https://quannex.earth",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://quannex.earth/images/quannex-logo.png"
+            }
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "QUANNEX",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://quannex.earth/images/quannex-logo.png"
+            }
+        },
+        "datePublished": "2024-01-01",
+        "dateModified": "2024-03-20",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://quannex.earth/app_features.html"
+        },
+        "keywords": "consciousness expansion tools, quantum technology, AI guidance, consciousness tracking, future self integration, quantum visualization",
+        "articleSection": "App Features",
+        "inLanguage": "en-US"
+    }
+    </script>
+    
     <style>
+        /* Base Mobile-First Styles */
         .app-container {
             width: 100%;
             max-width: 100%;
             margin: 0;
             padding: 0;
             position: relative;
-            overflow: hidden;
-            background: none;
+            overflow-x: hidden;
         }
         
         .app-page-content {
             width: 100%;
             max-width: 1440px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 clamp(1rem, 5vw, 2rem);
             position: relative;
-            background: none;
         }
         
         .quantum-hero {
             position: relative;
-            min-height: 60vh;
+            min-height: auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 6rem 0 4rem;
+            justify-content: center;
+            padding: clamp(2rem, 4vh, 3rem) 0;
             overflow: hidden;
+            border-bottom: none;
+            gap: 1.5rem;
             background: none;
-            border-bottom: 1px solid rgba(110, 0, 255, 0.15);
+            margin-top: -2rem;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 2rem;
-            border-radius: 24px;
+            padding: clamp(1.5rem, 4vw, 2rem);
+            width: min(100%, 800px);
+            border-radius: clamp(16px, 4vw, 24px);
             background: rgba(5, 5, 32, 0.2);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -72,24 +159,23 @@
                 0 8px 32px 0 rgba(0, 0, 0, 0.2),
                 0 0 40px rgba(110, 0, 255, 0.1),
                 inset 0 0 20px rgba(0, 184, 255, 0.05);
-        }
-        
-        .quantum-title-container {
-            position: relative;
-            margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .quantum-title-container h1 {
-            font-size: 3.5rem;
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
             line-height: 1.2;
             background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
             z-index: 2;
+            text-align: center;
+            margin-bottom: clamp(1.5rem, 4vw, 2rem);
         }
-        
-        .quantum-underline {
+
+        .hero-content h1::after {
+            content: '';
             position: absolute;
             bottom: -10px;
             left: 0;
@@ -104,57 +190,98 @@
             animation: glowLine 3s ease-in-out infinite;
         }
 
-        .back-to-home {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(110, 0, 255, 0.1);
-            border: 1px solid rgba(110, 0, 255, 0.3);
-            border-radius: 8px;
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        .quantum-nav-buttons {
+            display: flex;
+            gap: 1.5rem;
             margin-top: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .back-to-home:hover {
-            background: rgba(110, 0, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(110, 0, 255, 0.2);
+        .quantum-nav-btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: rgba(110, 0, 255, 0.15);
+            border: 1px solid rgba(110, 0, 255, 0.4);
+            border-radius: 12px;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            min-width: 200px;
+            justify-content: center;
         }
 
-        .back-to-home i {
-            transition: transform 0.3s ease;
+        .quantum-nav-btn i {
+            font-size: 1.4rem;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
         }
 
-        .back-to-home:hover i {
-            transform: translateX(-4px);
+        .quantum-nav-btn span {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
-        /* Enhanced Orb Visualization */
+        .quantum-btn-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(110, 0, 255, 0.4),
+                rgba(0, 184, 255, 0.2),
+                rgba(255, 0, 230, 0.4));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .quantum-nav-btn:hover {
+            transform: translateY(-3px);
+            border-color: rgba(110, 0, 255, 0.8);
+            box-shadow: 
+                0 8px 20px rgba(110, 0, 255, 0.3),
+                0 0 30px rgba(0, 184, 255, 0.2);
+        }
+
+        .quantum-nav-btn:hover .quantum-btn-glow {
+            opacity: 0.8;
+            animation: btnGlow 2s ease-in-out infinite;
+        }
+
+        .quantum-nav-btn:hover i {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Mobile Orb Visualization */
         .quantum-orb-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: min(300px, 80vw);
+            height: min(300px, 80vw);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0.9;
             mix-blend-mode: screen;
+            margin: 0 auto;
         }
 
         .quantum-orb {
             position: absolute;
-            width: 100px;
-            height: 100px;
+            width: min(100px, 30vw);
+            height: min(100px, 30vw);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
         }
 
         .orb-core {
@@ -181,19 +308,10 @@
             animation: rotateRing 20s linear infinite;
         }
 
-        /* Content Sections */
-        .content-container {
-            padding-top: 100px;
-            min-height: 100vh;
-            position: relative;
-            z-index: 1;
-            background: none;
-        }
-
+        /* Content Sections - Mobile Optimized */
         .content {
             position: relative;
             z-index: 2;
-            background: none;
         }
 
         /* Glass Effect Sections */
@@ -203,17 +321,35 @@
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(110, 0, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-            margin: 4rem 0;
-            padding: 2.5rem;
-            border-radius: 16px;
+            margin: clamp(2rem, 6vh, 4rem) 0;
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            border-radius: clamp(12px, 3vw, 16px);
             position: relative;
             overflow: hidden;
         }
 
-        .visual-preview-section .section-container {
-            background: rgba(5, 5, 32, 0.05);
-            border: 1px solid rgba(110, 0, 255, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        .visual-preview-section {
+            position: relative;
+            padding: 6rem 0;
+            background: linear-gradient(180deg,
+                rgba(5, 5, 32, 0.1) 0%,
+                rgba(5, 5, 32, 0.2) 100%);
+            border-top: 1px solid rgba(110, 0, 255, 0.1);
+            border-bottom: 1px solid rgba(110, 0, 255, 0.1);
+        }
+
+        .visual-preview-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 0%,
+                rgba(110, 0, 255, 0.1) 0%,
+                transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         /* Stars Enhancement */
@@ -286,102 +422,6 @@
             }
             100% {
                 transform: translate(var(--tx), var(--ty));
-            }
-        }
-
-        .quantum-nav-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .quantum-nav-btn {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1.5rem;
-            background: rgba(110, 0, 255, 0.1);
-            border: 1px solid rgba(110, 0, 255, 0.3);
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .quantum-nav-btn i {
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            transition: all 0.3s ease;
-        }
-
-        .quantum-nav-btn span {
-            font-family: var(--font-heading);
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .quantum-btn-glow {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, 
-                rgba(110, 0, 255, 0.4),
-                rgba(0, 184, 255, 0.2),
-                rgba(255, 0, 230, 0.4));
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: -1;
-        }
-
-        .quantum-nav-btn:hover {
-            transform: translateY(-2px);
-            border-color: rgba(110, 0, 255, 0.6);
-            box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
-        }
-
-        .quantum-nav-btn:hover .quantum-btn-glow {
-            opacity: 0.8;
-            animation: btnGlow 2s ease-in-out infinite;
-        }
-
-        .quantum-nav-btn:hover i {
-            color: var(--accent-color);
-            transform: scale(1.1);
-        }
-
-        @keyframes btnGlow {
-            0%, 100% {
-                opacity: 0.4;
-                filter: blur(3px);
-            }
-            50% {
-                opacity: 0.8;
-                filter: blur(4px);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .app-page-content {
-                padding: 0 1rem;
-            }
-
-            .quantum-nav-buttons {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-
-            .quantum-nav-btn {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .quantum-orb-container {
-                display: none;
             }
         }
 
@@ -673,30 +713,6 @@
             animation: glowLine 3s ease-in-out infinite;
         }
 
-        .visual-preview-section {
-            position: relative;
-            padding: 6rem 0;
-            background: linear-gradient(180deg,
-                rgba(5, 5, 32, 0.1) 0%,
-                rgba(5, 5, 32, 0.2) 100%);
-            border-top: 1px solid rgba(110, 0, 255, 0.1);
-            border-bottom: 1px solid rgba(110, 0, 255, 0.1);
-        }
-
-        .visual-preview-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 50% 0%,
-                rgba(110, 0, 255, 0.1) 0%,
-                transparent 70%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
         .section-container:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
@@ -737,7 +753,27 @@
                 opacity: 0.6;
             }
         }
+
+        @media (max-width: 767px) {
+            .quantum-nav-buttons {
+                gap: 1rem;
+            }
+            
+            .quantum-nav-btn {
+                padding: 0.875rem 1.5rem;
+                min-width: 160px;
+            }
+            
+            .quantum-nav-btn i {
+                font-size: 1.2rem;
+            }
+            
+            .quantum-nav-btn span {
+                font-size: 1rem;
+            }
+        }
     </style>
+<link rel="stylesheet" href="styles/waitlist-cta.css">
 </head>
 <body>
     <div class="stars" aria-hidden="true"></div>
@@ -751,65 +787,19 @@
     <div class="app-container">
         <div class="quantum-energy-flow"></div>
         <main class="app-page-content">
-            <section class="hero app-hero quantum-hero">
-                <div class="hero-content">
-                    <div class="quantum-title-container">
-                        <h1>App Features</h1>
-                        <div class="quantum-underline"></div>
-                    </div>
-                    <p>Explore the comprehensive suite of tools and features designed to accelerate your consciousness evolution.</p>
-                    <div class="quantum-particles">
-                        <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
-                        <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
-                        <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
-                        <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
-                    </div>
-                    <div class="quantum-nav-buttons">
-                        <a href="consciousness_accelerator.html" class="quantum-nav-btn">
-                            <i class="fas fa-brain"></i>
-                            <span>Consciousness App</span>
-                            <div class="quantum-btn-glow"></div>
-                        </a>
-                        <a href="quantum_parameters.html" class="quantum-nav-btn">
-                            <i class="fas fa-atom"></i>
-                            <span>Quantum States</span>
-                            <div class="quantum-btn-glow"></div>
-                        </a>
-                        <a href="app_screens.html" class="quantum-nav-btn">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>App Screens</span>
-                            <div class="quantum-btn-glow"></div>
-                        </a>
-                    </div>
-                </div>
-                <div class="quantum-visualization">
-                    <div class="quantum-orb-container">
-                        <div class="quantum-orb primary">
-                            <div class="orb-core"></div>
-                            <div class="orb-ring"></div>
-                            <div class="orb-particles"></div>
-                        </div>
-                        <div class="quantum-orb secondary">
-                            <div class="orb-core"></div>
-                            <div class="orb-ring"></div>
-                            <div class="orb-particles"></div>
-                        </div>
-                        <div class="quantum-orb accent">
-                            <div class="orb-core"></div>
-                            <div class="orb-ring"></div>
-                            <div class="orb-particles"></div>
-                        </div>
-                    </div>
-                    <div class="quantum-energy-field"></div>
-                    <div class="constellation-lines"></div>
-                </div>
-            </section>
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li aria-current="page">App Features</li>
+                </ol>
+            </nav>
 
             <section class="visual-preview-section">
                 <div class="section-container">
                     <h2>Interface Preview</h2>
                     <p class="section-description">Experience the quantum-inspired interface design that bridges consciousness and technology.</p>
-                    
+
                     <div class="interface-preview-grid">
                         <div class="preview-card main-preview">
                             <div class="preview-image">
@@ -840,6 +830,29 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quantum-hero">
+                <div class="hero-content">
+                    <h1>Explore Our Features</h1>
+                    <div class="quantum-nav-buttons">
+                        <a href="consciousness_accelerator.html" class="quantum-nav-btn">
+                            <i class="fas fa-brain"></i>
+                            <span>Consciousness App</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="quantum_parameters.html" class="quantum-nav-btn">
+                            <i class="fas fa-atom"></i>
+                            <span>Quantum States</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
+                        <a href="app_screens.html" class="quantum-nav-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>App Screens</span>
+                            <div class="quantum-btn-glow"></div>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -1574,5 +1587,6 @@
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+<script src="js/waitlist-cta.js" defer></script>
 </body>
 </html> 

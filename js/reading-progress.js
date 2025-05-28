@@ -40,4 +40,11 @@ class ReadingProgress {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ReadingProgress();
+    document.querySelectorAll('.progress-bar[data-percentage]').forEach(function(bar) {
+        var fill = bar.querySelector('.progress-fill');
+        var percent = bar.getAttribute('data-percentage');
+        if (fill && percent) {
+            fill.style.width = percent + '%';
+        }
+    });
 }); 

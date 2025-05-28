@@ -1,0 +1,117 @@
+.scroll-nav {
+    display: none; /* Hidden by default on desktop */
+}
+
+@media (max-width: 768px) {
+    .scroll-nav {
+        display: block;
+        width: 100%;
+        background: var(--bottom-nav-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--bottom-nav-border);
+        padding: 8px 0;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        z-index: 990;
+        position: relative;
+    }
+
+    .scroll-nav-container {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+        padding: 0 var(--mobile-padding);
+        gap: 20px;
+        position: relative;
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            #000 var(--mobile-padding),
+            #000 calc(100% - var(--mobile-padding)),
+            transparent
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            #000 var(--mobile-padding),
+            #000 calc(100% - var(--mobile-padding)),
+            transparent
+        );
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .scroll-nav-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scroll-nav-item {
+        display: inline-block;
+        white-space: nowrap;
+        color: var(--bottom-nav-inactive);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 6px 4px;
+        position: relative;
+        transition: all var(--mobile-transition);
+    }
+
+    .scroll-nav-item.active {
+        color: var(--bottom-nav-active);
+        transform: scale(1.05);
+    }
+
+    .scroll-nav-item.active::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--bottom-nav-active);
+        border-radius: 2px;
+        transform-origin: center;
+        animation: scaleIn 0.2s ease;
+    }
+
+    @keyframes scaleIn {
+        from {
+            transform: scaleX(0);
+        }
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    .scroll-fade-left,
+    .scroll-fade-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: var(--mobile-padding);
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.8;
+    }
+
+    .scroll-fade-left {
+        left: 0;
+        background: linear-gradient(to right, var(--bottom-nav-bg), transparent);
+    }
+
+    .scroll-fade-right {
+        right: 0;
+        background: linear-gradient(to left, var(--bottom-nav-bg), transparent);
+    }
+
+    /* Adjust main content to account for scroll nav */
+    main {
+        padding-top: calc(var(--header-height) + var(--scroll-nav-height)) !important;
+    }
+} 

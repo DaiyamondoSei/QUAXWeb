@@ -42,31 +42,19 @@ function createParticle(container) {
     });
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', () => {
-    initQuantumParticles();
-    
-    // Initialize staged learning system
+// Initialize staged learning system
+function initStagedLearning() {
     const learningStages = document.querySelectorAll('.stages-container .stage');
+    
     learningStages.forEach(stage => {
         // Initialize progress bars
-        const progressBar = stage.querySelector('.progress');
-        if (progressBar) {
-            const progress = progressBar.style.width || '0%';
-            const progressText = stage.querySelector('.progress-text');
-            if (progressText) {
-                progressText.textContent = progress;
-            }
-        }
-
+        initProgressBar(stage);
+        
         // Initialize stage details
         const details = stage.querySelector('.stage-details');
         if (details) {
-            details.style.display = 'none';
-            details.style.opacity = '0';
-            details.style.maxHeight = '0';
-            details.style.overflow = 'hidden';
-            details.style.transition = 'all 0.3s ease-in-out';
+            // Remove any inline styles that might interfere
+            details.removeAttribute('style');
         }
 
         // Add click handler for toggle button
@@ -76,56 +64,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                const details = stage.querySelector('.stage-details');
-                if (details) {
-                    const isHidden = details.style.display === 'none' || details.style.display === '';
-                    
-                    if (isHidden) {
-                        // Show details
-                        details.style.display = 'block';
-                        requestAnimationFrame(() => {
-                            details.style.opacity = '1';
-                            details.style.maxHeight = details.scrollHeight + 'px';
-                            this.textContent = 'Less';
-                            this.classList.add('active');
-                        });
-                    } else {
-                        // Hide details
-                        details.style.opacity = '0';
-                        details.style.maxHeight = '0';
-                        this.textContent = 'More';
-                        this.classList.remove('active');
-                        setTimeout(() => {
-                            details.style.display = 'none';
-                        }, 300);
-                    }
-                }
+                toggleStageDetails(stage, details, this);
             });
         }
     });
+}
 
-    // Handle toggle buttons for quantum mastery paths
-    document.querySelectorAll('.paths-container .toggle-details').forEach(button => {
-        button.addEventListener('click', function() {
-            const path = this.closest('.path');
-            const details = path.querySelector('.path-details');
-            
-            // Toggle the clicked details
-            if (details.style.display === 'none' || details.style.display === '') {
-                details.style.display = 'block';
-                setTimeout(() => {
-                    details.classList.add('active');
-                    this.textContent = 'Show Less';
-                }, 10);
-            } else {
-                details.classList.remove('active');
-                this.textContent = 'Show Details';
-                setTimeout(() => {
-                    details.style.display = 'none';
-                }, 300);
+function initProgressBar(stage) {
+    const progressBar = stage.querySelector('.progress');
+    if (progressBar) {
+        const progress = progressBar.style.width || '0%';
+        const progressText = stage.querySelector('.progress-text');
+        if (progressText) {
+            progressText.textContent = progress;
+        }
+    }
+}
+
+function toggleStageDetails(stage, details, button) {
+    const isHidden = !details.classList.contains('active');
+    
+    // Close any other open stages first
+    document.querySelectorAll('.stage.expanded').forEach(expandedStage => {
+        if (expandedStage !== stage) {
+            const expandedDetails = expandedStage.querySelector('.stage-details');
+            const expandedButton = expandedStage.querySelector('.toggle-details');
+            if (expandedDetails && expandedButton) {
+                expandedDetails.classList.remove('active');
+                expandedStage.classList.remove('expanded');
+                expandedButton.textContent = 'More';
+                expandedButton.classList.remove('active');
             }
-        });
+        }
     });
+    
+    if (isHidden) {
+        // Show details
+        details.classList.add('active');
+        stage.classList.add('expanded');
+        button.textContent = 'Less';
+        button.classList.add('active');
+    } else {
+        // Hide details
+        details.classList.remove('active');
+        stage.classList.remove('expanded');
+        button.textContent = 'More';
+        button.classList.remove('active');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    initQuantumParticles();
+    initStagedLearning();
+    
+    // Handle toggle buttons for quantum mastery paths
+    initQuantumMasteryPaths();
 
     // Smooth scrolling for quantum state cards
     const quantumCards = document.querySelectorAll('.quantum-state-card');
@@ -276,4 +270,60 @@ document.addEventListener('DOMContentLoaded', () => {
     stageElements.forEach(stage => {
         stage.removeEventListener('click', null);
     });
-}); 
+});
+
+function initQuantumMasteryPaths() {
+    const paths = document.querySelectorAll('.paths-container .path');
+    
+    paths.forEach(path => {
+        // Initialize path details
+        const details = path.querySelector('.path-details');
+        if (details) {
+            // Remove any inline styles that might interfere
+            details.removeAttribute('style');
+        }
+
+        // Add click handler for toggle button
+        const toggleButton = path.querySelector('.toggle-details');
+        if (toggleButton) {
+            toggleButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                togglePathDetails(path, details, this);
+            });
+        }
+    });
+}
+
+function togglePathDetails(path, details, button) {
+    const isHidden = !details.classList.contains('active');
+    
+    // Close any other open paths first
+    document.querySelectorAll('.path.expanded').forEach(expandedPath => {
+        if (expandedPath !== path) {
+            const expandedDetails = expandedPath.querySelector('.path-details');
+            const expandedButton = expandedPath.querySelector('.toggle-details');
+            if (expandedDetails && expandedButton) {
+                expandedDetails.classList.remove('active');
+                expandedPath.classList.remove('expanded');
+                expandedButton.textContent = 'More';
+                expandedButton.classList.remove('active');
+            }
+        }
+    });
+    
+    if (isHidden) {
+        // Show details
+        details.classList.add('active');
+        path.classList.add('expanded');
+        button.textContent = 'Less';
+        button.classList.add('active');
+    } else {
+        // Hide details
+        details.classList.remove('active');
+        path.classList.remove('expanded');
+        button.textContent = 'More';
+        button.classList.remove('active');
+    }
+} 

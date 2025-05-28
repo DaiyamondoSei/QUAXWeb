@@ -292,3 +292,48 @@ document.addEventListener('DOMContentLoaded', () => {
     transform: translateY(0);
 }
 */
+
+// Consolidated Intersection Observer for animations
+const animationObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const target = entry.target;
+            
+            // Add appropriate animation class based on element type
+            if (target.classList.contains('quantum-state-card')) {
+                target.classList.add('animate-in');
+            } else if (target.classList.contains('section')) {
+                target.classList.add('scroll-animate');
+            } else if (target.classList.contains('feature')) {
+                target.classList.add('animate-feature');
+            } else if (target.classList.contains('resource-card')) {
+                target.classList.add('animate-resource');
+            }
+            
+            // Unobserve after animation is triggered
+            animationObserver.unobserve(target);
+        }
+    });
+}, {
+    threshold: 0.2,
+    rootMargin: '0px 0px -10% 0px'
+});
+
+// Initialize animations on DOM content loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Observe all elements that need animation
+    document.querySelectorAll('.quantum-state-card, section:not(.hero), .feature, .resource-card').forEach(element => {
+        animationObserver.observe(element);
+    });
+    
+    // Remove any existing animation observers to prevent duplicates
+    if (window.scrollObserver) {
+        window.scrollObserver.disconnect();
+    }
+    if (window.featureObserver) {
+        window.featureObserver.disconnect();
+    }
+    
+    // Store the observer instance globally
+    window.animationObserver = animationObserver;
+});

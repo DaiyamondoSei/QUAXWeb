@@ -58,9 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4>QUANNEX Foundation</h4>
                     <p>Advancing consciousness through technology and science</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/company/quannex-foundation/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/your_quantum_nexus?igsh=MWx4ZDV4a2g0NXdyaQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://github.com/quannex" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://discord.gg/dZ95cJmw" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Join our Discord"><i class="fab fa-discord"></i></a>
                     </div>
                     <div class="contact-info">
                         <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
@@ -113,4 +114,79 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: 'smooth'
         });
     });
+
+    // Enhanced Hero Animation
+    const heroSection = document.querySelector('section.hero');
+    if (heroSection) {
+        const heroHeadline = heroSection.querySelector('.hero-content h1');
+        const heroContent = heroSection.querySelector('.hero-content');
+        const ctaButtons = heroSection.querySelector('.cta-buttons');
+        const heroImage = heroSection.querySelector('.hero-image');
+
+        // Trigger initial animations
+        setTimeout(() => {
+            heroHeadline?.classList.add('download-animate');
+            heroContent?.classList.add('download-animate');
+            ctaButtons?.classList.add('download-animate');
+            heroImage?.classList.add('download-animate');
+        }, 350);
+
+        // Scroll-triggered animations for other sections
+        const animateOnScroll = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        };
+
+        const scrollObserver = new IntersectionObserver(animateOnScroll, {
+            threshold: 0.2,
+            rootMargin: '0px 0px -10% 0px'
+        });
+
+        // Observe sections for scroll animation
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            section.classList.add('scroll-animate');
+            scrollObserver.observe(section);
+        });
+    }
+
+    // Resource section scroll indicator logic
+    (function() {
+        const grid = document.querySelector('.resources-grid');
+        const dots = document.querySelectorAll('.resources-indicator .dot');
+        const cards = document.querySelectorAll('.resources-grid .resource-card');
+        if (!grid || !dots.length || !cards.length) return;
+
+        // Helper: get the index of the most visible card
+        function getMostVisibleCardIndex() {
+            let maxVisible = 0, maxIndex = 0;
+            cards.forEach((card, i) => {
+                const rect = card.getBoundingClientRect();
+                const visible = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+                if (visible > maxVisible) {
+                    maxVisible = visible;
+                    maxIndex = i;
+                }
+            });
+            return maxIndex;
+        }
+
+        // IntersectionObserver for separation of concerns
+        const observer = new IntersectionObserver(() => {
+            const idx = getMostVisibleCardIndex();
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+        }, { threshold: 0.5 });
+
+        cards.forEach(card => observer.observe(card));
+
+        // Optional: click dot to scroll to card
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                cards[i].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+            });
+        });
+    })();
 }); 

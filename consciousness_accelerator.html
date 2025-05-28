@@ -2,19 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consciousness Accelerator App - QUANNEX Foundation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#050520">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Consciousness Accelerator App - Advanced Quantum Consciousness Training Platform | QUANNEX">
+    <meta name="description" content="Transform your consciousness with QUANNEX's revolutionary Consciousness Accelerator app. Experience structured quantum consciousness training, personalized learning paths, and advanced future self integration techniques. Bridge spirituality and quantum physics through our innovative mobile platform.">
+    <meta name="keywords" content="consciousness accelerator app, quantum consciousness training, future self integration, consciousness expansion techniques, quantum physics spirituality, personalized consciousness learning, advanced consciousness platform, quantum state awareness, consciousness transformation app, spiritual technology">
+    <meta name="author" content="QUANNEX">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <link rel="canonical" href="https://quannex.earth/consciousness_accelerator.html">
+    <title>Consciousness Accelerator App - Advanced Quantum Consciousness Training Platform | QUANNEX</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://quannex.earth/consciousness_accelerator.html">
+    <meta property="og:title" content="Consciousness Accelerator App - Advanced Quantum Consciousness Training Platform | QUANNEX">
+    <meta property="og:description" content="Transform your consciousness with QUANNEX's revolutionary Consciousness Accelerator app. Experience structured quantum consciousness training and personalized learning paths.">
+    <meta property="og:image" content="https://quannex.earth/images/consciousness_accelerator_preview.jpg.webp">
+    <meta property="og:image:alt" content="QUANNEX Consciousness Accelerator app interface showing quantum consciousness visualization and training modules">
+    
+    <!-- X (formerly Twitter) Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://quannex.earth/consciousness_accelerator.html">
+    <meta name="twitter:title" content="Consciousness Accelerator App - Advanced Quantum Consciousness Training Platform | QUANNEX">
+    <meta name="twitter:description" content="Transform your consciousness with QUANNEX's revolutionary Consciousness Accelerator app. Experience structured quantum consciousness training and personalized learning paths.">
+    <meta name="twitter:image" content="https://quannex.earth/images/consciousness_accelerator_preview.jpg.webp">
+    <meta name="twitter:image:alt" content="QUANNEX Consciousness Accelerator app interface showing quantum consciousness visualization and training modules">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "QUANNEX Consciousness Accelerator",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "Web, iOS, Android",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Transform your consciousness with QUANNEX's revolutionary Consciousness Accelerator app. Experience structured quantum consciousness training and personalized learning paths.",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "120",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "QUANNEX",
+            "url": "https://quannex.earth"
+        },
+        "keywords": "consciousness accelerator, quantum consciousness, future self integration, consciousness training",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "featureList": [
+            "Structured quantum consciousness training",
+            "Personalized learning paths",
+            "Future self integration",
+            "Quantum state awareness",
+            "Advanced consciousness techniques"
+        ]
+    }
+    </script>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="stylesheet" href="styles/progress-visualization.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/dropdown.css">
     <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <script src="js/header-footer.js" defer></script>
     <script src="js/navigation.js" defer></script>
     <script src="js/smooth-scroll.js" defer></script>
     <script src="js/component-loader.js" defer></script>
     <script src="js/reading-progress.js" defer></script>
+    <script src="js/quantum-visualization.js" defer></script>
+    <script src="js/progress-tracking.js" defer></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-26J2F9R185"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-26J2F9R185');
+    </script>
     <style>
         .app-container {
             width: 100%;
@@ -35,66 +116,7 @@
             background: none;
         }
         
-        .quantum-hero {
-            position: relative;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 6rem 0 4rem;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(110, 0, 255, 0.15);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-            border-radius: 24px;
-            background: rgba(5, 5, 32, 0.2);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(110, 0, 255, 0.15);
-            box-shadow: 
-                0 8px 32px 0 rgba(0, 0, 0, 0.2),
-                0 0 40px rgba(110, 0, 255, 0.1),
-                inset 0 0 20px rgba(0, 184, 255, 0.05);
-        }
-
-        .quantum-title-container h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            z-index: 2;
-        }
-
-        .quantum-underline {
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                var(--primary-color),
-                var(--secondary-color),
-                var(--accent-color));
-            opacity: 0.7;
-            filter: blur(1px);
-            animation: glowLine 3s ease-in-out infinite;
-        }
-
-        .quantum-hero .subtitle {
-            font-size: 1.5rem;
-            color: var(--medium-text);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            position: relative;
-            z-index: 2;
-        }
-
+        /* Navigation Buttons Styles */
         .quantum-nav-buttons {
             display: flex;
             gap: 1rem;
@@ -162,127 +184,6 @@
             transform: scale(1.1);
         }
 
-        .consciousness-visualization {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 50%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: none;
-            opacity: 0.9;
-            mix-blend-mode: screen;
-        }
-
-        .consciousness-sphere {
-            position: relative;
-            width: 300px;
-            height: 300px;
-        }
-
-        .sphere-core {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%,
-                rgba(255, 255, 255, 0.8),
-                rgba(110, 0, 255, 0.6));
-            box-shadow: 
-                0 0 50px rgba(110, 0, 255, 0.4),
-                0 0 100px rgba(0, 184, 255, 0.2),
-                0 0 150px rgba(255, 0, 230, 0.2);
-            animation: pulseSphere 4s ease-in-out infinite;
-        }
-
-        .sphere-rings {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-        }
-
-        .sphere-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            border: 2px solid rgba(0, 184, 255, 0.2);
-            box-shadow: 0 0 30px rgba(0, 184, 255, 0.1);
-            animation: rotateRing 20s linear infinite;
-        }
-
-        .sphere-ring:nth-child(1) {
-            width: 200px;
-            height: 200px;
-            animation-duration: 20s;
-        }
-
-        .sphere-ring:nth-child(2) {
-            width: 250px;
-            height: 250px;
-            animation-duration: 25s;
-            animation-direction: reverse;
-        }
-
-        .sphere-ring:nth-child(3) {
-            width: 300px;
-            height: 300px;
-            animation-duration: 30s;
-        }
-
-        .consciousness-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .consciousness-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
-            animation: particleFloat 6s ease-in-out infinite;
-        }
-
-        @keyframes pulseSphere {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 1;
-            }
-        }
-
-        @keyframes rotateRing {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        @keyframes particleFloat {
-            0%, 100% {
-                transform: translate(0, 0);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translate(var(--tx, 20px), var(--ty, 20px));
-                opacity: 0.8;
-            }
-        }
-
         @keyframes btnGlow {
             0%, 100% {
                 opacity: 0.4;
@@ -299,19 +200,6 @@
                 padding: 0 1rem;
             }
 
-            .quantum-hero {
-                min-height: auto;
-                padding: 4rem 0 2rem;
-            }
-
-            .quantum-title-container h1 {
-                font-size: 2.5rem;
-            }
-
-            .quantum-hero .subtitle {
-                font-size: 1.2rem;
-            }
-
             .quantum-nav-buttons {
                 flex-direction: column;
                 gap: 0.75rem;
@@ -320,10 +208,6 @@
             .quantum-nav-btn {
                 width: 100%;
                 justify-content: center;
-            }
-
-            .consciousness-visualization {
-                display: none;
             }
         }
 
@@ -367,14 +251,378 @@
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(110, 0, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(110, 0, 255, 0.1);
             margin: 4rem 0;
             padding: 2.5rem;
             border-radius: 16px;
             position: relative;
             overflow: hidden;
         }
+
+        .section-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(110, 0, 255, 0.3),
+                rgba(0, 184, 255, 0.3),
+                transparent);
+            opacity: 0.5;
+        }
+
+        .section-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(0, 184, 255, 0.3),
+                rgba(110, 0, 255, 0.3),
+                transparent);
+            opacity: 0.5;
+        }
+
+        /* Hero Section Styles */
+        .hero-section {
+            text-align: center;
+            padding: 6rem 2rem 3rem 2rem;
+            background: rgba(5, 5, 32, 0.85);
+            border-radius: 15px;
+            margin: 3.5rem 0 3rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 32px 0 rgba(110, 0, 255, 0.18), 0 2px 32px 0 rgba(0,0,0,0.25);
+            position: relative;
+            overflow: hidden;
+            animation: heroFadeIn 1.2s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 30%, rgba(110, 0, 255, 0.13) 0%, transparent 80%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-section h1 {
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(90deg, #6e00ff 20%, #00b8ff 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 32px rgba(110, 0, 255, 0.5), 0 0 8px rgba(0, 184, 255, 0.5), 0 2px 8px rgba(0,0,0,0.25);
+            font-weight: 700;
+            letter-spacing: 2px;
+            animation: heroTextUp 1.2s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .hero-section p {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.35rem;
+            color: #e6faff;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+            font-weight: 400;
+            animation: heroTextUp 1.4s 0.2s cubic-bezier(0.4,0,0.2,1) backwards;
+        }
+
+        .hero-section .quantum-nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem auto 0 auto;
+            z-index: 2;
+            position: relative;
+            flex-wrap: wrap;
+            animation: heroTextUp 1.6s 0.4s cubic-bezier(0.4,0,0.2,1) backwards;
+        }
+
+        .hero-section .quantum-nav-btn {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            padding: 1rem 2.2rem;
+            border-radius: 10px;
+            background: rgba(110, 0, 255, 0.13);
+            border: 1.5px solid rgba(110, 0, 255, 0.32);
+            color: #fff;
+            box-shadow: 0 0 12px 0 rgba(110, 0, 255, 0.08);
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Quantum Visualization Styles */
+        .quantum-visualization-container {
+            width: 100%;
+            height: 400px;
+            margin: 2rem 0;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .quantum-canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .quantum-controls {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .quantum-control-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(110, 0, 255, 0.2);
+            border: 1px solid rgba(110, 0, 255, 0.4);
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quantum-control-btn:hover {
+            background: rgba(110, 0, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced Progress Tracking */
+        .progress-insights {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .insight-card {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(110, 0, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(110, 0, 255, 0.2);
+        }
+
+        .insight-card h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Scientific Integration */
+        .scientific-integration {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .research-card {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: rgba(110, 0, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(110, 0, 255, 0.2);
+        }
+
+        .research-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+
+        .research-content {
+            flex: 1;
+        }
+
+        .research-content h4 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Accessibility Improvements */
+        .accessibility-controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            display: flex;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .accessibility-btn {
+            padding: 0.5rem;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .accessibility-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Community Features */
+        .community-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .community-card {
+            padding: 1rem;
+            background: rgba(110, 0, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(110, 0, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .community-card:hover {
+            transform: translateY(-2px);
+            background: rgba(110, 0, 255, 0.15);
+        }
+
+        /* Section Heading Styles */
+        .section-container h2 {
+            font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+            font-size: 2.4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #6e00ff 20%, #00b8ff 80%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 24px rgba(110, 0, 255, 0.4), 0 0 6px rgba(0, 184, 255, 0.4);
+            font-weight: 700;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(110, 0, 255, 0.8),
+                rgba(0, 184, 255, 0.8));
+            border-radius: 2px;
+            box-shadow: 0 0 8px rgba(110, 0, 255, 0.4);
+        }
+
+        .section-container h3 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.6rem;
+            margin: 2rem 0 1rem 0;
+            color: #00b8ff;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 12px rgba(0, 184, 255, 0.3);
+        }
+
+        .section-container h4 {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #6e00ff;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            text-shadow: 0 0 8px rgba(110, 0, 255, 0.2);
+        }
+
+        /* Update progress visualization section */
+        .progress-visualization h2 {
+            margin-bottom: 2rem;
+        }
+
+        /* Update scientific integration section */
+        .scientific-integration .research-content h4 {
+            color: #00b8ff;
+            text-shadow: 0 0 8px rgba(0, 184, 255, 0.2);
+        }
+
+        /* Update community section */
+        .community-section .community-card h4 {
+            color: #00b8ff;
+            text-shadow: 0 0 8px rgba(0, 184, 255, 0.2);
+        }
+
+        /* Update insight cards */
+        .insight-card h4 {
+            color: #00b8ff;
+            text-shadow: 0 0 8px rgba(0, 184, 255, 0.2);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-container h2 {
+                font-size: 2rem;
+            }
+
+            .section-container h3 {
+                font-size: 1.4rem;
+            }
+
+            .section-container h4 {
+                font-size: 1.1rem;
+            }
+        }
     </style>
+<link rel="stylesheet" href="styles/waitlist-cta.css">
 </head>
 <body>
     <div class="stars" aria-hidden="true"></div>
@@ -387,51 +635,37 @@
 
     <div class="app-container">
         <main class="app-page-content">
-            <section class="hero app-hero quantum-hero">
-                <div class="hero-content">
-                    <div class="quantum-title-container">
-                        <h1>Consciousness Accelerator App</h1>
-                        <div class="quantum-underline"></div>
-                    </div>
-                    <p class="subtitle">Bridging Spirituality and Quantum Physics Through Gamified Learning</p>
-                    <div class="quantum-nav-buttons">
-                        <a href="quantum_parameters.html" class="quantum-nav-btn">
-                            <i class="fas fa-atom"></i>
-                            <span>Quantum States</span>
-                            <div class="quantum-btn-glow"></div>
-                        </a>
-                        <a href="app_features.html" class="quantum-nav-btn">
-                            <i class="fas fa-cube"></i>
-                            <span>App Features</span>
-                            <div class="quantum-btn-glow"></div>
-                        </a>
-                        <a href="app_screens.html" class="quantum-nav-btn">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>App Screens</span>
-                            <div class="quantum-btn-glow"></div>
-                        </a>
-                    </div>
-                </div>
-                <div class="consciousness-visualization">
-                    <div class="consciousness-sphere">
-                        <div class="sphere-core"></div>
-                        <div class="sphere-rings">
-                            <div class="sphere-ring"></div>
-                            <div class="sphere-ring"></div>
-                            <div class="sphere-ring"></div>
-                        </div>
-                        <div class="consciousness-particles">
-                            <div class="consciousness-particle" style="--tx: 30px; --ty: -20px; top: 30%; left: 40%;"></div>
-                            <div class="consciousness-particle" style="--tx: -25px; --ty: 30px; top: 50%; left: 60%;"></div>
-                            <div class="consciousness-particle" style="--tx: 20px; --ty: 25px; top: 70%; left: 45%;"></div>
-                            <div class="consciousness-particle" style="--tx: -30px; --ty: -25px; top: 40%; left: 55%;"></div>
-                            <div class="consciousness-particle" style="--tx: 25px; --ty: 30px; top: 60%; left: 50%;"></div>
-                        </div>
-                    </div>
-                </div>
+            <!-- Breadcrumb Navigation -->
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <ol>
+                    <li><a href="index.html">Home</a></li>
+                    <li aria-current="page">Consciousness Accelerator</li>
+                </ol>
+            </nav>
+
+            <section class="hero-section">
+                <h1>Consciousness Accelerator</h1>
+                <p>Experience the fusion of quantum physics and spiritual development through our revolutionary mobile application</p>
             </section>
 
             <section class="content">
+                <div class="quantum-nav-buttons" style="margin-bottom: 2rem;">
+                    <a href="quantum_parameters.html" class="quantum-nav-btn">
+                        <i class="fas fa-atom"></i>
+                        <span>Quantum States</span>
+                        <div class="quantum-btn-glow"></div>
+                    </a>
+                    <a href="app_features.html" class="quantum-nav-btn">
+                        <i class="fas fa-cube"></i>
+                        <span>App Features</span>
+                        <div class="quantum-btn-glow"></div>
+                    </a>
+                    <a href="app_screens.html" class="quantum-nav-btn">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>App Screens</span>
+                        <div class="quantum-btn-glow"></div>
+                    </a>
+                </div>
                 <div class="section-container">
                     <h2>Core Concept</h2>
                     <p>The Consciousness Accelerator is a revolutionary mobile application designed to bridge the gap between spirituality and quantum physics. Through structured, incremental learning experiences, users can expand their consciousness and develop spiritual abilities in an engaging, gamified environment.</p>
@@ -578,8 +812,112 @@
                         <li>Learning path adjustments</li>
                     </ul>
                 </div>
+
+                <div class="section-container">
+                    <h2>Interactive Quantum Visualization</h2>
+                    <p>Experience your consciousness journey through an interactive quantum visualization. Observe how your practice affects your quantum state and consciousness parameters in real-time.</p>
+                    <div class="quantum-visualization-container">
+                        <canvas id="quantumCanvas" class="quantum-canvas"></canvas>
+                        <div class="quantum-controls">
+                            <button class="quantum-control-btn" id="resetVisualization">Reset</button>
+                            <button class="quantum-control-btn" id="toggleAnimation">Pause</button>
+                            <button class="quantum-control-btn" id="exportData">Export</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container progress-insights">
+                    <h2>Enhanced Progress Insights</h2>
+                    <div class="insight-card">
+                        <h4>Consciousness Expansion Rate</h4>
+                        <p>Your consciousness is expanding at an optimal rate, showing significant growth in quantum awareness parameters.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <h4>Meditation Consistency</h4>
+                        <p>Your meditation practice shows remarkable consistency, with 85% of sessions completed as scheduled.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="insight-card">
+                        <h4>Quantum Parameter Alignment</h4>
+                        <p>Your quantum parameters are showing strong alignment, indicating balanced consciousness development.</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container scientific-integration">
+                    <h2>Scientific Integration</h2>
+                    <p>Our platform is grounded in scientific research and quantum physics principles, validated by leading researchers in consciousness studies.</p>
+                    <div class="research-card">
+                        <div class="research-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="research-content">
+                            <h4>Quantum Consciousness Research</h4>
+                            <p>Integration with latest findings in quantum consciousness research, including studies from leading institutions.</p>
+                        </div>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="research-content">
+                            <h4>Neuroscientific Validation</h4>
+                            <p>Methods validated through neuroscientific research on meditation and consciousness expansion.</p>
+                        </div>
+                    </div>
+                    <div class="research-card">
+                        <div class="research-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="research-content">
+                            <h4>Data-Driven Insights</h4>
+                            <p>Advanced analytics and machine learning algorithms process your practice data to provide personalized insights.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-container community-section">
+                    <h2>Community Connection</h2>
+                    <p>Connect with fellow consciousness explorers and share your journey in our supportive community.</p>
+                    <div class="community-grid">
+                        <div class="community-card">
+                            <h4>Group Meditations</h4>
+                            <p>Join synchronized group meditation sessions for amplified quantum effects.</p>
+                        </div>
+                        <div class="community-card">
+                            <h4>Experience Sharing</h4>
+                            <p>Share and learn from others' consciousness expansion experiences.</p>
+                        </div>
+                        <div class="community-card">
+                            <h4>Research Collaboration</h4>
+                            <p>Participate in consciousness research studies and contribute to scientific understanding.</p>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
+    </div>
+
+    <div class="accessibility-controls" role="toolbar" aria-label="Accessibility Controls">
+        <button class="accessibility-btn" id="increaseFont" aria-label="Increase font size">
+            <i class="fas fa-text-height"></i>
+        </button>
+        <button class="accessibility-btn" id="decreaseFont" aria-label="Decrease font size">
+            <i class="fas fa-text-height fa-flip-vertical"></i>
+        </button>
+        <button class="accessibility-btn" id="toggleHighContrast" aria-label="Toggle high contrast">
+            <i class="fas fa-adjust"></i>
+        </button>
+        <button class="accessibility-btn" id="toggleReducedMotion" aria-label="Toggle reduced motion">
+            <i class="fas fa-running"></i>
+        </button>
     </div>
 
     <footer></footer>
@@ -587,5 +925,6 @@
     <button class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+<script src="js/waitlist-cta.js" defer></script>
 </body>
 </html> 

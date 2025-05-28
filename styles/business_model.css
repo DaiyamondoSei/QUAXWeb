@@ -1,5 +1,107 @@
 /* Business Model Page Styles */
 
+/* Base Content Visibility */
+.content-container,
+.content-header,
+.content-section,
+.market-stats-container,
+.stat-card,
+.competitive-analysis,
+.competitor-grid,
+.competitor-category,
+.unique-differentiators,
+.differentiator-grid,
+.differentiator-card,
+.risk-matrix,
+.risk-category,
+.revenue-streams,
+.revenue-category,
+.revenue-details,
+.tier,
+.stream,
+.revenue-projection,
+.projection-chart,
+.revenue-visualization,
+.revenue-chart-container,
+.canvas-container,
+.canvas-grid,
+.canvas-block,
+.metrics-container,
+.segments-container,
+.financial-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* Animation System */
+.scroll-animate,
+.fade-in,
+.slide-up,
+.scale-in {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.scroll-animate.animate-in,
+.fade-in.animate-in,
+.slide-up.animate-in,
+.scale-in.animate-in {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Remove any problematic animation delays */
+.animate-in * {
+    transition-delay: 0s !important;
+}
+
+/* Performance optimizations */
+.hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .fade-in,
+    .slide-up,
+    .scale-in,
+    .canvas-block,
+    .stat-card,
+    .differentiator-card,
+    .tier,
+    .stream,
+    .financial-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Low-end device optimizations */
+.low-end-device .scroll-animate,
+.low-end-device .fade-in,
+.low-end-device .slide-up,
+.low-end-device .scale-in,
+.low-end-device .canvas-block,
+.low-end-device .stat-card,
+.low-end-device .differentiator-card,
+.low-end-device .tier,
+.low-end-device .stream,
+.low-end-device .financial-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
 /* Market Analysis Styles */
 .market-stats-container {
     display: grid;

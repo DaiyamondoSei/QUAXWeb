@@ -131,22 +131,6 @@
     margin-top: 1.5rem;
 }
 
-.progress-bar {
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-}
-
-.progress-bar::after {
-    content: '';
-    display: block;
-    height: 100%;
-    background: var(--gradient-primary);
-    border-radius: 3px;
-}
-
 .tech-progress span {
     font-size: 0.9rem;
     color: var(--medium-text);

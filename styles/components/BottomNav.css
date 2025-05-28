@@ -1,0 +1,52 @@
+/* Bottom Navigation */
+.bottom-nav {
+    display: none; /* Hidden by default on desktop */
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: var(--bottom-nav-height);
+        background: var(--bottom-nav-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-top: 1px solid var(--bottom-nav-border);
+        z-index: 1000;
+        padding: 0 var(--mobile-padding);
+        transition: transform var(--mobile-transition);
+    }
+
+    .bottom-nav.hidden {
+        transform: translateY(100%);
+    }
+
+    .bottom-nav-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--bottom-nav-inactive);
+        text-decoration: none;
+        transition: color var(--mobile-transition);
+    }
+
+    .bottom-nav-item:hover,
+    .bottom-nav-item.active {
+        color: var(--bottom-nav-active);
+    }
+
+    .bottom-nav-label {
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    /* Adjust main content padding to account for bottom nav */
+    main {
+        padding-bottom: calc(var(--bottom-nav-height) + var(--mobile-padding));
+    }
+} 
