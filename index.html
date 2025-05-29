@@ -145,6 +145,9 @@
 
     <!-- Optimize resource loading -->
     <!-- <link rel="preload" href="fonts/your-main-font.woff2" as="font" type="font/woff2" crossorigin> -->
+
+    <!-- IMPORTANT: ConsentManager CMP script must always be the FIRST script in <head> for GDPR/CCPA compliance. Do NOT move or remove. -->
+    <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/ed8f9885626c9.js" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="0"></script>
 </head>
 <body class="home">
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -937,6 +940,24 @@
         </div>
     </div>
 
+    <!-- Hidden static waitlist form for Netlify detection -->
+    <form name="waitlist-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html" style="display:none">
+        <input type="hidden" name="form-name" value="waitlist-form" />
+        <div class="hidden">
+            <input name="bot-field" />
+        </div>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <select name="interest">
+            <option value="consciousness">Consciousness Expansion</option>
+            <option value="quantum">Quantum State Awareness</option>
+            <option value="future-self">Future Self Integration</option>
+            <option value="personal-growth">Personal Growth</option>
+            <option value="research">Research & Development</option>
+        </select>
+        <input type="checkbox" name="privacy-consent" />
+    </form>
+
     <style>
     /* Waitlist Button Styles */
     .waitlist-cta {
@@ -1177,5 +1198,7 @@
         }
     });
     </script>
+
+    <script src="js/waitlist-cta.js" defer></script>
 </body>
 </html>

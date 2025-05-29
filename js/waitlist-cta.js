@@ -71,17 +71,62 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.body.appendChild(modal);
 
-    // Add modal functions to window object
+    // Store the last focused element before opening a modal
+    let lastFocusedElement = null;
+
+    // Utility: Get all focusable elements in a container
+    function getFocusableElements(container) {
+        return Array.from(container.querySelectorAll(
+            'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )).filter(el => el.offsetParent !== null);
+    }
+
+    // Focus trap handler
+    function trapFocus(modal) {
+        const focusableEls = getFocusableElements(modal);
+        if (focusableEls.length === 0) return;
+        let firstEl = focusableEls[0];
+        let lastEl = focusableEls[focusableEls.length - 1];
+        function handleTab(e) {
+            if (e.key !== 'Tab') return;
+            if (focusableEls.length === 1) {
+                e.preventDefault();
+                firstEl.focus();
+                return;
+            }
+            if (!e.shiftKey && document.activeElement === lastEl) {
+                e.preventDefault();
+                firstEl.focus();
+            } else if (e.shiftKey && document.activeElement === firstEl) {
+                e.preventDefault();
+                lastEl.focus();
+            }
+        }
+        modal.addEventListener('keydown', handleTab);
+        // Remove handler on close
+        modal._removeTrapFocus = () => modal.removeEventListener('keydown', handleTab);
+    }
+
+    // Open Waitlist Modal with focus management
     window.openWaitlistModal = function() {
         const modal = document.getElementById('waitlistModal');
+        lastFocusedElement = document.activeElement;
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        // Focus first focusable element
+        setTimeout(() => {
+            const focusable = getFocusableElements(modal);
+            if (focusable.length) focusable[0].focus();
+        }, 10);
+        trapFocus(modal);
     };
 
     window.closeWaitlistModal = function() {
         const modal = document.getElementById('waitlistModal');
         modal.classList.remove('active');
         document.body.style.overflow = '';
+        if (modal._removeTrapFocus) modal._removeTrapFocus();
+        if (lastFocusedElement) setTimeout(() => lastFocusedElement.focus(), 10);
     };
 
     // Close modal when clicking outside
@@ -121,15 +166,89 @@ document.addEventListener('DOMContentLoaded', function() {
     const waitlistForm = document.querySelector('form[name="waitlist-form"]');
     if (waitlistForm) {
         const submitButton = waitlistForm.querySelector('.submit-button');
-        
-        waitlistForm.addEventListener('submit', function(e) {
+        waitlistForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
             if (!waitlistForm.checkValidity()) {
-                e.preventDefault();
+                waitlistForm.reportValidity();
                 return;
             }
-            
             submitButton.classList.add('loading');
             submitButton.disabled = true;
+            const formData = new FormData(waitlistForm);
+            try {
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                showSuccessModal();
+            } catch (error) {
+                alert('There was an error. Please try again.');
+                submitButton.classList.remove('loading');
+                submitButton.disabled = false;
+            }
         });
     }
+
+    // Success Modal logic
+    function showSuccessModal() {
+        closeWaitlistModal();
+        let successModal = document.getElementById('successModal');
+        if (!successModal) {
+            successModal = document.createElement('div');
+            successModal.id = 'successModal';
+            successModal.className = 'modal active';
+            successModal.setAttribute('role', 'dialog');
+            successModal.setAttribute('aria-modal', 'true');
+            successModal.innerHTML = `
+                <div class="modal-content">
+                    <button class="modal-close" onclick="closeSuccessModal()" aria-label="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h2>Thank you!</h2>
+                    <p style="margin-bottom: 0.5rem;">We will activate your quantum synchronization protocol soon.</p>
+                    <div style="margin-top: 1.5rem; font-size: 1.1rem; color: var(--accent-color, #00B8FF); font-weight: 600;">- Quannex Foundation</div>
+                </div>
+            `;
+            document.body.appendChild(successModal);
+        } else {
+            successModal.classList.add('active');
+        }
+        document.body.style.overflow = 'hidden';
+        // Focus management for success modal
+        setTimeout(() => {
+            const focusable = getFocusableElements(successModal);
+            if (focusable.length) focusable[0].focus();
+        }, 10);
+        trapFocus(successModal);
+        // Auto-dismiss after 4 seconds with fade-out
+        setTimeout(() => {
+            if (successModal.classList.contains('active')) {
+                successModal.classList.add('fade-out');
+                setTimeout(() => {
+                    closeSuccessModal();
+                    successModal.classList.remove('fade-out');
+                }, 500); // match fade-out duration
+            }
+        }, 4000);
+    }
+    window.closeSuccessModal = function() {
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (modal._removeTrapFocus) modal._removeTrapFocus();
+        if (lastFocusedElement) setTimeout(() => lastFocusedElement.focus(), 10);
+    };
+
+    // Add fade-out CSS via JS if not present
+    (function ensureFadeOutCSS() {
+        if (!document.getElementById('success-modal-fadeout-style')) {
+            const style = document.createElement('style');
+            style.id = 'success-modal-fadeout-style';
+            style.innerHTML = `
+                #successModal.fade-out { opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+            `;
+            document.head.appendChild(style);
+        }
+    })();
 }); 
