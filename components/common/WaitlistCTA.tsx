@@ -170,7 +170,6 @@ const WaitlistCTA: React.FC<WaitlistCTAProps> = ({ variant = 'nav', className = 
                             <div className="form-group">
                                 <label className="checkbox-container">
                                     <input type="checkbox" name="privacy-consent" required />
-                                    <span className="checkmark"></span>
                                     I agree to receive updates about the beta launch and agree to the processing of my data according to the{' '}
                                     <a href="/privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
                                 </label>

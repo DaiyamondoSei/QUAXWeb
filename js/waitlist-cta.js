@@ -57,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="form-group">
                     <label class="checkbox-container">
                         <input type="checkbox" name="privacy-consent" required>
-                        <span class="checkmark"></span>
                         I agree to receive updates about the beta launch and agree to the processing of my data according to the <a href="privacy.html" target="_blank">Privacy Policy</a>
                     </label>
                 </div>
