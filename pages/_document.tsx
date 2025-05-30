@@ -17,6 +17,10 @@ export default function Document() {
           data-cmp-host="a.delivery.consentmanager.net"
           data-cmp-cdn="cdn.consentmanager.net"
           data-cmp-codesrc="0"
+          data-cmp-gdpr-applies="true"
+          data-cmp-gdpr-applies-globally="true"
+          data-cmp-language="en"
+          data-cmp-region="eu"
         />
         <Main />
         <NextScript />
