@@ -48,7 +48,7 @@ Crawl-delay: 10</parameter>
         "@type": "WebApplication",
         "name": "QUANNEX: Quantum Nexus",
         "description": "Your AI Guide to Expanded Consciousness & Future Self Integration",
-        "url": "https://quannex.com",
+        "url": "https://quannex.earth",
         "applicationCategory": "EducationalApplication",
         "operatingSystem": "Web",
         "offers": {
@@ -63,8 +63,8 @@ Crawl-delay: 10</parameter>
         },
         "author": {
             "@type": "Organization",
-            "name": "QUANNEX",
-            "url": "https://quannex.com"
+            "name": "QUANNEX Foundation",
+            "url": "https://quannex.earth"
         }
     }
     </script>
@@ -170,7 +170,7 @@ Crawl-delay: 10</parameter>
 <parameter name="code_edit"><?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://quannex.com/</loc>
+        <loc>https://quannex.earth/</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -182,73 +182,73 @@ Crawl-delay: 10</parameter>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://quannex.com/quantum_parameters.html</loc>
+        <loc>https://quannex.earth/quantum_parameters.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://quannex.com/app_features.html</loc>
+        <loc>https://quannex.earth/app_features.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://quannex.com/academic_alignment.html</loc>
+        <loc>https://quannex.earth/academic_alignment.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.com/scientific_validation.html</loc>
+        <loc>https://quannex.earth/scientific_validation.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.com/technical_implementation.html</loc>
+        <loc>https://quannex.earth/technical_implementation.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.com/consciousness_bands.html</loc>
+        <loc>https://quannex.earth/consciousness_bands.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.com/advanced_progression.html</loc>
+        <loc>https://quannex.earth/advanced_progression.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://quannex.com/implementation_plan.html</loc>
+        <loc>https://quannex.earth/implementation_plan.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://quannex.com/app_screens.html</loc>
+        <loc>https://quannex.earth/app_screens.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://quannex.com/contact.html</loc>
+        <loc>https://quannex.earth/contact.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://quannex.com/privacy.html</loc>
+        <loc>https://quannex.earth/privacy.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://quannex.com/terms.html</loc>
+        <loc>https://quannex.earth/terms.html</loc>
         <lastmod>2024-04-18</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
@@ -272,10 +272,10 @@ Crawl-delay: 10</parameter>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-XXXXXXXXXX', {
-    'cookie_domain': 'quannex.com',
+gtag('config', 'G-26J2F9R185', {
+    'cookie_domain': 'quannex.earth',
     'linker': {
-        'domains': ['quannex.com']
+        'domains': ['quannex.earth']
     }
 });
 
