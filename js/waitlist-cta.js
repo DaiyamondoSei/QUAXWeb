@@ -165,27 +165,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const waitlistForm = document.querySelector('form[name="waitlist-form"]');
     if (waitlistForm) {
         const submitButton = waitlistForm.querySelector('.submit-button');
-        waitlistForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
+        waitlistForm.addEventListener('submit', function(e) {
             if (!waitlistForm.checkValidity()) {
-                waitlistForm.reportValidity();
+                e.preventDefault();
                 return;
             }
+            
+            // Show loading state
             submitButton.classList.add('loading');
             submitButton.disabled = true;
+            
+            // Prevent the default form submission
+            e.preventDefault();
+            
+            // Submit the form programmatically
             const formData = new FormData(waitlistForm);
-            try {
-                await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
-                });
-                showSuccessModal();
-            } catch (error) {
-                alert('There was an error. Please try again.');
+            fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success modal instead of redirecting
+                    showSuccessModal();
+                    // Reset form
+                    waitlistForm.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting the form. Please try again.');
+            })
+            .finally(() => {
                 submitButton.classList.remove('loading');
                 submitButton.disabled = false;
-            }
+            });
         });
     }
 

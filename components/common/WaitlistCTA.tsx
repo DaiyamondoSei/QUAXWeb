@@ -43,36 +43,21 @@ const WaitlistCTA: React.FC<WaitlistCTAProps> = ({ variant = 'nav', className = 
         document.body.style.overflow = '';
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         const form = e.currentTarget;
         const submitButton = form.querySelector('.submit-button') as HTMLButtonElement;
 
         if (!form.checkValidity()) {
+            e.preventDefault();
             return;
         }
 
+        // Just show loading state, let Netlify handle the submission
         submitButton.classList.add('loading');
         submitButton.disabled = true;
-
-        try {
-            const formData = new FormData(form);
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData as any).toString()
-            });
-
-            if (response.ok) {
-                router.push('/success.html');
-            } else {
-                throw new Error('Form submission failed');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            submitButton.classList.remove('loading');
-            submitButton.disabled = false;
-        }
+        
+        // The form will naturally submit to Netlify
+        // No need for manual fetch or handling
     };
 
     const buttonClasses = {
