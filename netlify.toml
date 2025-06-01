@@ -2,7 +2,33 @@
   publish = "."
   command = ""
 
-# Redirects for SPA-like behavior
+# Redirects for static assets (must come before SPA fallback)
+[[redirects]]
+  from = "/styles/*"
+  to = "/styles/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/js/*"
+  to = "/js/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/images/*"
+  to = "/images/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/public/*"
+  to = "/public/:splat"
+  status = 200
+
+# SPA fallback for all other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -19,10 +45,10 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
     Content-Security-Policy = """
       default-src 'self' https://cdn.consentmanager.net https://a.delivery.consentmanager.net;
-      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.consentmanager.net https://a.delivery.consentmanager.net;
-      style-src 'self' 'unsafe-inline' https://cdn.consentmanager.net;
-      img-src 'self' data: https://cdn.consentmanager.net;
-      font-src 'self' data:;
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.consentmanager.net https://a.delivery.consentmanager.net https://www.googletagmanager.com https://identity.netlify.com;
+      style-src 'self' 'unsafe-inline' https://cdn.consentmanager.net https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+      img-src 'self' data: https: https://i.imgur.com https://imgur.com;
+      font-src 'self' data: https: https://fonts.gstatic.com https://cdnjs.cloudflare.com;
       connect-src 'self' https://a.delivery.consentmanager.net;
       frame-src 'self' https://cdn.consentmanager.net;
       object-src 'none';
