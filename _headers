@@ -3,6 +3,11 @@
   X-XSS-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https:;
+  Content-Security-Policy: default-src 'self'; \
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://identity.netlify.com https://cdn.consentmanager.net https://a.delivery.consentmanager.net; \
+    style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.consentmanager.net; \
+    img-src 'self' data: https:; \
+    font-src 'self' data: https: https://cdnjs.cloudflare.com; \
+    connect-src 'self' https:; 
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Permissions-Policy: camera=(), microphone=(), geolocation=() 
