@@ -129,18 +129,23 @@ const UnifiedNavigation: React.FC<UnifiedNavigationProps> = ({
                     </nav>
 
                     {/* Mobile Menu Button with Waitlist */}
-                    <div className="md:hidden flex items-center gap-2">
+                    <div className="md:hidden flex items-center gap-2 relative z-[1001]">
                         <WaitlistCTA variant="nav" className="!py-2 !px-3 text-sm" />
-                    <button
-                            className="p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
-                        onClick={toggleMenu}
-                        aria-expanded={isMenuOpen}
-                        aria-label="Toggle menu"
-                        aria-controls="mobile-menu"
-                        style={{ minHeight: 'var(--mobile-touch-target)', minWidth: 'var(--mobile-touch-target)' }}
-                    >
-                        {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                    </button>
+                        <button
+                            className="p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 bg-white/80 backdrop-blur-sm"
+                            onClick={toggleMenu}
+                            aria-expanded={isMenuOpen}
+                            aria-label="Toggle menu"
+                            aria-controls="mobile-menu"
+                            style={{ 
+                                minHeight: 'var(--mobile-touch-target)', 
+                                minWidth: 'var(--mobile-touch-target)',
+                                position: 'relative',
+                                zIndex: 1001
+                            }}
+                        >
+                            {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+                        </button>
                     </div>
                 </div>
             </header>
@@ -155,11 +160,20 @@ const UnifiedNavigation: React.FC<UnifiedNavigationProps> = ({
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             className={cn(
-                                "fixed inset-0 md:hidden",
+                                "fixed inset-0 md:hidden z-[1001]",
                                 hasBackdropFilter ? "bg-black/50 backdrop-blur-sm" : "bg-black/75"
                             )}
                             onClick={toggleMenu}
                             aria-hidden="true"
+                            style={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                width: '100%',
+                                height: '100%'
+                            }}
                         />
 
                         {/* Menu Panel */}
@@ -170,12 +184,15 @@ const UnifiedNavigation: React.FC<UnifiedNavigationProps> = ({
                             exit={{ x: '100%' }}
                             transition={{ type: 'spring', damping: 20 }}
                             className={cn(
-                                "fixed top-16 right-0 bottom-0 w-64 md:hidden",
+                                "fixed top-0 right-0 bottom-0 w-64 md:hidden",
                                 hasBackdropFilter ? "bg-white/95 backdrop-blur-md" : "bg-white",
-                                "shadow-lg overflow-y-auto"
+                                "shadow-lg overflow-y-auto z-[1002]"
                             )}
                             role="navigation"
                             aria-label="Mobile menu"
+                            style={{
+                                paddingTop: 'var(--header-height)'
+                            }}
                         >
                             <div className="px-4 py-6 space-y-4">
                                 {mainNavItems.map(({ href, label }) => (

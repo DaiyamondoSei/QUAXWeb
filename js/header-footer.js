@@ -4,22 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     if (header) {
         header.innerHTML = `
-            <a href="index.html" class="logo-container">
-                <div class="logo">
-                    <div class="quantum-symbol">
-                        <div class="quantum-particles">
-                            <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
-                            <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
-                            <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
-                            <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
+            <div class="header-flex" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                <a href="index.html" class="logo-container" style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div class="logo">
+                        <div class="quantum-symbol">
+                            <div class="quantum-particles">
+                                <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
+                                <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
+                                <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
+                                <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
+                            </div>
                         </div>
+                        <h1 style="margin: 0; font-size: 1.5rem;">QUANNEX</h1>
                     </div>
-                    <h1>QUANNEX</h1>
+                    <p class="tagline" style="display: none;">Quantum Nexus: Bridge to Higher Consciousness</p>
+                </a>
+                <button class="mobile-menu-button" aria-label="Open menu" aria-expanded="false" tabindex="0" style="margin-left: auto; background: rgba(255,255,255,0.12); box-shadow: 0 2px 8px rgba(0,0,0,0.08); border: none; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.5rem; cursor: pointer; z-index: 1100;">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav" aria-label="Mobile navigation" style="position: fixed; top: 0; left: 0; width: 80vw; max-width: 320px; height: 100vh; background: rgba(5,5,32,0.98); box-shadow: 2px 0 16px rgba(0,0,0,0.12); transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); z-index: 1200; overflow-y: auto; padding: 0;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem 0.5rem 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.08); background: rgba(5,5,32,0.98);">
+                    <a href="index.html" class="logo-container" style="display: flex; align-items: center; gap: 0.5rem;">
+                        <div class="logo">
+                            <h1 style="margin: 0; font-size: 1.25rem; color: #fff;">QUANNEX</h1>
+                        </div>
+                    </a>
+                    <button class="mobile-menu-close" aria-label="Close menu" tabindex="0" style="background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-            </a>
-            <nav>
-                <ul>
+                <ul style="padding: 1.5rem 1.25rem; list-style: none; margin: 0; display: flex; flex-direction: column; gap: 1rem;">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="consciousness_accelerator.html">Consciousness Accelerator</a></li>
                     <li><a href="quantum_parameters.html">Quantum Parameters</a></li>
@@ -46,7 +61,61 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
+            <div class="nav-backdrop" tabindex="-1" aria-hidden="true" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1190; opacity: 0; pointer-events: none; transition: opacity 0.2s;"></div>
         `;
+
+        // Hamburger menu logic
+        const menuButton = header.querySelector('.mobile-menu-button:not(.close)');
+        const closeButton = header.querySelector('.mobile-menu-close');
+        const mobileNav = header.querySelector('.mobile-nav');
+        const navBackdrop = header.querySelector('.nav-backdrop');
+        const icon = menuButton.querySelector('i');
+
+        function openMenu() {
+            mobileNav.style.transform = 'translateX(0)';
+            navBackdrop.style.opacity = '1';
+            navBackdrop.style.pointerEvents = 'auto';
+            menuButton.setAttribute('aria-expanded', 'true');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+            document.body.classList.add('menu-open');
+        }
+        function closeMenu() {
+            mobileNav.style.transform = 'translateX(-100%)';
+            navBackdrop.style.opacity = '0';
+            navBackdrop.style.pointerEvents = 'none';
+            menuButton.setAttribute('aria-expanded', 'false');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+            document.body.classList.remove('menu-open');
+        }
+        menuButton.addEventListener('click', () => {
+            if (mobileNav.style.transform === 'translateX(0)') {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        // Attach direct event listener to the close button for reliability
+        if (closeButton) {
+            closeButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Close button clicked');
+                closeMenu();
+            });
+        }
+        // Remove event delegation for close button
+        // navBackdrop and ESC key logic remain unchanged
+        navBackdrop.addEventListener('click', closeMenu);
+        // Close menu on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+        // Close menu on navigation
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
     }
 
     // Footer Implementation
