@@ -37,10 +37,14 @@ class ProgressTracking {
 
     setupEventListeners() {
         // Accessibility controls
-        document.getElementById('increaseFont').addEventListener('click', () => this.adjustFontSize(1.1));
-        document.getElementById('decreaseFont').addEventListener('click', () => this.adjustFontSize(0.9));
-        document.getElementById('toggleHighContrast').addEventListener('click', () => this.toggleHighContrast());
-        document.getElementById('toggleReducedMotion').addEventListener('click', () => this.toggleReducedMotion());
+        const increaseFontBtn = document.getElementById('increaseFont');
+        if (increaseFontBtn) increaseFontBtn.addEventListener('click', () => this.adjustFontSize(1.1));
+        const decreaseFontBtn = document.getElementById('decreaseFont');
+        if (decreaseFontBtn) decreaseFontBtn.addEventListener('click', () => this.adjustFontSize(0.9));
+        const toggleHighContrastBtn = document.getElementById('toggleHighContrast');
+        if (toggleHighContrastBtn) toggleHighContrastBtn.addEventListener('click', () => this.toggleHighContrast());
+        const toggleReducedMotionBtn = document.getElementById('toggleReducedMotion');
+        if (toggleReducedMotionBtn) toggleReducedMotionBtn.addEventListener('click', () => this.toggleReducedMotion());
 
         // Progress update simulation (for demo purposes)
         setInterval(() => this.simulateProgressUpdate(), 5000);
