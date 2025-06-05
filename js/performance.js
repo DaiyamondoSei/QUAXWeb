@@ -48,10 +48,10 @@ document.addEventListener('DOMContentLoaded', function() {
 const CACHE_NAME = 'quannex-cache-v1';
 const urlsToCache = [
     '/',
-    '/styles.css',
-    '/footer.css',
-    '/dropdown.css',
-    '/vision.css',
+    '/styles/styles.css',
+    '/styles/footer.css',
+    '/styles/dropdown.css',
+    '/styles/vision.css',
     '/js/header-footer.js',
     '/js/smooth-scroll.js'
 ];
