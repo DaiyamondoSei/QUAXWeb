@@ -11,55 +11,8 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Mobile menu functionality
+// Mobile functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('header nav');
-    const body = document.body;
-
-    // Toggle mobile menu
-    mobileMenuToggle.addEventListener('click', function() {
-        nav.classList.toggle('active');
-        body.classList.toggle('menu-open');
-        
-        // Update aria-expanded
-        const isExpanded = nav.classList.contains('active');
-        mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
-        
-        // Update icon
-        const icon = mobileMenuToggle.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!nav.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
-            nav.classList.remove('active');
-            body.classList.remove('menu-open');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-            const icon = mobileMenuToggle.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
-        }
-    });
-
-    // Handle window resize
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            if (window.innerWidth > 767) {
-                nav.classList.remove('active');
-                body.classList.remove('menu-open');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                const icon = mobileMenuToggle.querySelector('i');
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
-        }, 250);
-    });
-
     // Lazy load images
     const lazyImages = document.querySelectorAll('img[data-src]');
     const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -201,119 +154,37 @@ const initBottomSheet = () => {
     }
 };
 
-// Enhanced Mobile Navigation
-const initMobileNavigation = () => {
-    const nav = document.querySelector('.main-nav');
-    if (!nav) return;
-
-    const navList = nav.querySelector('ul');
-    let isScrolling = false;
-    let startX = 0;
-    let scrollLeft = 0;
-
-    // Add scroll indicators
-    const leftIndicator = document.createElement('div');
-    leftIndicator.className = 'nav-scroll-indicator left';
-    leftIndicator.innerHTML = '<i class="fas fa-chevron-left"></i>';
-    
-    const rightIndicator = document.createElement('div');
-    rightIndicator.className = 'nav-scroll-indicator right';
-    rightIndicator.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    
-    nav.appendChild(leftIndicator);
-    nav.appendChild(rightIndicator);
-
-    // Check scroll position
-    const checkScroll = () => {
-        const canScrollLeft = nav.scrollLeft > 0;
-        const canScrollRight = nav.scrollLeft < (nav.scrollWidth - nav.clientWidth);
-        
-        nav.classList.toggle('can-scroll-left', canScrollLeft);
-        nav.classList.toggle('can-scroll-right', canScrollRight);
-    };
-
-    // Smooth scroll to active item
-    const scrollToActive = () => {
-        const activeItem = nav.querySelector('.active');
-        if (activeItem) {
-            const navRect = nav.getBoundingClientRect();
-            const activeRect = activeItem.getBoundingClientRect();
-            const scrollOffset = activeRect.left - navRect.left - (navRect.width / 2) + (activeRect.width / 2);
-            
-            nav.scrollTo({
-                left: nav.scrollLeft + scrollOffset,
-                behavior: 'smooth'
-            });
-        }
-    };
-
-    // Touch events for smooth scrolling
-    nav.addEventListener('touchstart', (e) => {
-        isScrolling = true;
-        startX = e.touches[0].pageX - nav.offsetLeft;
-        scrollLeft = nav.scrollLeft;
-        
-        nav.style.scrollBehavior = 'auto';
-        nav.style.cursor = 'grabbing';
-    });
-
-    nav.addEventListener('touchmove', (e) => {
-        if (!isScrolling) return;
-        
-        const x = e.touches[0].pageX - nav.offsetLeft;
-        const walk = (x - startX) * 2;
-        nav.scrollLeft = scrollLeft - walk;
-        
-        checkScroll();
-    });
-
-    nav.addEventListener('touchend', () => {
-        isScrolling = false;
-        nav.style.cursor = '';
-        nav.style.scrollBehavior = 'smooth';
-    });
-
-    // Initialize
-    window.addEventListener('resize', checkScroll);
-    nav.addEventListener('scroll', checkScroll);
-    checkScroll();
-    scrollToActive();
-
-    // Add active indicator
-    const activeIndicator = document.createElement('div');
-    activeIndicator.className = 'nav-active-indicator';
-    nav.appendChild(activeIndicator);
-
-    // Update active indicator position
-    const updateActiveIndicator = () => {
-        const activeItem = nav.querySelector('.active');
-        if (activeItem) {
-            const navRect = nav.getBoundingClientRect();
-            const activeRect = activeItem.getBoundingClientRect();
-            
-            activeIndicator.style.width = `${activeRect.width}px`;
-            activeIndicator.style.transform = `translateX(${activeRect.left - navRect.left}px)`;
-        }
-    };
-
-    // Update indicator on scroll and resize
-    nav.addEventListener('scroll', updateActiveIndicator);
-    window.addEventListener('resize', updateActiveIndicator);
-    updateActiveIndicator();
-};
-
 // Animation System
 class AnimationSystem {
     constructor() {
         this.observers = new Map();
         this.initializeAnimations();
         this.ensureContentVisibility();
+        this.ensureMultiSensoryVisibility();
+    }
+
+    ensureMultiSensoryVisibility() {
+        // Force visibility for multi-sensory section and its children
+        const multiSensorySection = document.querySelector('.multi-sensory');
+        if (multiSensorySection) {
+            multiSensorySection.style.opacity = '1';
+            multiSensorySection.style.visibility = 'visible';
+            multiSensorySection.style.transform = 'none';
+            
+            // Ensure all child elements are visible
+            const childElements = multiSensorySection.querySelectorAll('*');
+            childElements.forEach(element => {
+                element.style.opacity = '1';
+                element.style.visibility = 'visible';
+                element.style.transform = 'none';
+            });
+        }
     }
 
     ensureContentVisibility() {
         // Force visibility for all content elements
         const contentElements = document.querySelectorAll(
-            '.hero-content, .section, .card, .feature-card, .quantum-state-card, .resource-card, .scroll-animate'
+            '.hero-content, .section, .card, .feature-card, .quantum-state-card, .resource-card, .scroll-animate, .multi-sensory, .multi-sensory *'
         );
         
         contentElements.forEach(element => {
@@ -392,6 +263,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize animations
     const animationSystem = new AnimationSystem();
     
+    // Ensure multi-sensory section is visible
+    const multiSensorySection = document.querySelector('.multi-sensory');
+    if (multiSensorySection) {
+        multiSensorySection.style.opacity = '1';
+        multiSensorySection.style.visibility = 'visible';
+        multiSensorySection.style.transform = 'none';
+        
+        // Ensure all child elements are visible
+        const childElements = multiSensorySection.querySelectorAll('*');
+        childElements.forEach(element => {
+            element.style.opacity = '1';
+            element.style.visibility = 'visible';
+            element.style.transform = 'none';
+        });
+    }
+
     // Ensure all content is visible initially
     document.querySelectorAll('.hero-content, .section, .card, .feature-card, .quantum-state-card, .resource-card, .scroll-animate')
         .forEach(element => {
@@ -404,7 +291,6 @@ document.addEventListener('DOMContentLoaded', function() {
     optimizeTouchInteractions();
     
     // Initialize other mobile features
-    initMobileNavigation();
     initBottomSheet();
 });
 

@@ -26,7 +26,6 @@ const htmlFiles = getAllHtmlFiles('.');
 // Regular expressions for finding CSS links
 const cssLinkRegex = /<link[^>]*href=["']([^"']*\.css)["'][^>]*>/g;
 const stylesCssRegex = /<link[^>]*href=["']styles\/styles\.css["'][^>]*>/;
-const mobileCssRegex = /<link[^>]*href=["']styles\/mobile\.css["'][^>]*>/;
 const responsiveCssRegex = /<link[^>]*href=["']styles\/responsive\.css["'][^>]*>/;
 
 // Process each HTML file
@@ -34,8 +33,6 @@ htmlFiles.forEach(file => {
     let content = fs.readFileSync(file, 'utf8');
     let originalContent = content;
 
-    // Check if mobile.css is already included
-    const mobileCssIncluded = mobileCssRegex.test(content);
     // Check if responsive.css is already included
     const responsiveCssIncluded = responsiveCssRegex.test(content);
 
@@ -61,29 +58,14 @@ htmlFiles.forEach(file => {
         let contentModified = false;
         let contentToInsert = '';
 
-        // Insert mobile.css if not already included
-        if (!mobileCssIncluded) {
-            contentToInsert += '\n    <link rel="stylesheet" href="styles/mobile.css">';
+        // Insert responsive.css if not already included
+        if (!responsiveCssIncluded) {
+            contentToInsert += '\n    <link rel="stylesheet" href="styles/responsive.css">';
             contentModified = true;
         }
 
-        // Insert responsive.css if not already included and if it's not already after mobile.css
-        // We'll check the final content after inserting mobile.css (if it was inserted)
-        let tempContent = content.slice(0, insertionPoint) + contentToInsert + content.slice(insertionPoint);
-        if (!responsiveCssIncluded || (mobileCssIncluded && tempContent.indexOf('styles/responsive.css') < tempContent.indexOf('styles/mobile.css'))) {
-             if (!responsiveCssIncluded) {
-                 contentToInsert += '\n    <link rel="stylesheet" href="styles/responsive.css">';
-                 contentModified = true;
-             } else if (mobileCssIncluded && tempContent.indexOf('styles/responsive.css') < tempContent.indexOf('styles/mobile.css')){
-                 // Responsive is included but in the wrong order, remove and re-add it.
-                 content = content.replace(responsiveCssRegex, '');
-                 contentToInsert += '\n    <link rel="stylesheet" href="styles/responsive.css">';
-                 contentModified = true;
-             }
-        }
-
         if (contentModified) {
-            // Re-calculate insertion point based on potentially modified content (responsive.css removed)
+            // Re-calculate insertion point based on potentially modified content
             let currentContent = content;
             const currentStylesCssMatch = currentContent.match(stylesCssRegex);
              let currentInsertionPoint = -1;

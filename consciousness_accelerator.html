@@ -73,7 +73,6 @@
     }
     </script>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="stylesheet" href="styles/progress-visualization.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/dropdown.css">
@@ -82,7 +81,6 @@
     <link rel="stylesheet" href="styles/responsive.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <script src="js/header-footer.js" defer></script>
-    <script src="js/navigation.js" defer></script>
     <script src="js/smooth-scroll.js" defer></script>
     <script src="js/component-loader.js" defer></script>
     <script src="js/reading-progress.js" defer></script>
@@ -96,6 +94,8 @@
       gtag('js', new Date());
       gtag('config', 'G-26J2F9R185');
     </script>
+    <!-- Critical JS Preload -->
+    <link rel="preload" href="js/header-footer.js" as="script">
 
     <style>
         .app-container {
@@ -117,8 +117,8 @@
             background: none;
         }
         
-        /* Navigation Buttons Styles */
-        .quantum-nav-buttons {
+        /* Navigation Buttons Styles - Scoped to page content only */
+        .app-page-content > .content > .quantum-nav-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 2rem;
@@ -126,7 +126,7 @@
             z-index: 2;
         }
 
-        .quantum-nav-btn {
+        .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn {
             position: relative;
             display: flex;
             align-items: center;
@@ -134,27 +134,27 @@
             padding: 0.75rem 1.5rem;
             background: rgba(110, 0, 255, 0.1);
             border: 1px solid rgba(110, 0, 255, 0.3);
-            border-radius: 8px;
+            border-radius: 7px;
             color: #fff;
             text-decoration: none;
             transition: all 0.3s ease;
             overflow: hidden;
         }
 
-        .quantum-nav-btn i {
-            font-size: 1.2rem;
+        .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn i {
+            font-size: 2.1rem;
             color: var(--secondary-color);
             transition: all 0.3s ease;
         }
 
-        .quantum-nav-btn span {
+        .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn span {
             font-family: var(--font-heading);
-            font-size: 0.9rem;
+            font-size: 1.5rem;
             font-weight: 500;
             letter-spacing: 0.5px;
         }
 
-        .quantum-btn-glow {
+        .app-page-content > .content > .quantum-nav-buttons .quantum-btn-glow {
             position: absolute;
             top: 0;
             left: 0;
@@ -169,18 +169,18 @@
             z-index: -1;
         }
 
-        .quantum-nav-btn:hover {
+        .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn:hover {
             transform: translateY(-2px);
             border-color: rgba(110, 0, 255, 0.6);
             box-shadow: 0 4px 15px rgba(110, 0, 255, 0.3);
         }
 
-        .quantum-nav-btn:hover .quantum-btn-glow {
+        .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn:hover .quantum-btn-glow {
             opacity: 0.8;
             animation: btnGlow 2s ease-in-out infinite;
         }
 
-        .quantum-nav-btn:hover i {
+        .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn:hover i {
             color: var(--accent-color);
             transform: scale(1.1);
         }
@@ -201,19 +201,19 @@
                 padding: 0 1rem;
             }
 
-            .quantum-nav-buttons {
+            .app-page-content > .content > .quantum-nav-buttons {
                 flex-direction: column;
                 gap: 0.75rem;
             }
 
-            .quantum-nav-btn {
+            .app-page-content > .content > .quantum-nav-buttons .quantum-nav-btn {
                 width: 100%;
                 justify-content: center;
             }
         }
 
         .content-container {
-            padding-top: 100px;
+            padding-top: var(--header-height);
             min-height: 100vh;
             position: relative;
             z-index: 1;
@@ -340,7 +340,7 @@
             animation: heroTextUp 1.4s 0.2s cubic-bezier(0.4,0,0.2,1) backwards;
         }
 
-        .hero-section .quantum-nav-buttons {
+        .hero-section > .quantum-nav-buttons {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
@@ -351,7 +351,7 @@
             animation: heroTextUp 1.6s 0.4s cubic-bezier(0.4,0,0.2,1) backwards;
         }
 
-        .hero-section .quantum-nav-btn {
+        .hero-section > .quantum-nav-buttons > .quantum-nav-btn {
             font-family: 'Montserrat', Arial, sans-serif;
             font-size: 1.05rem;
             font-weight: 600;
@@ -481,30 +481,7 @@
 
         /* Accessibility Improvements */
         .accessibility-controls {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 1000;
-            display: flex;
-            gap: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .accessibility-btn {
-            padding: 0.5rem;
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .accessibility-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            display: none; /* Hide the accessibility controls */
         }
 
         /* Community Features */
@@ -905,21 +882,6 @@
                 </div>
             </section>
         </main>
-    </div>
-
-    <div class="accessibility-controls" role="toolbar" aria-label="Accessibility Controls">
-        <button class="accessibility-btn" id="increaseFont" aria-label="Increase font size">
-            <i class="fas fa-text-height"></i>
-        </button>
-        <button class="accessibility-btn" id="decreaseFont" aria-label="Decrease font size">
-            <i class="fas fa-text-height fa-flip-vertical"></i>
-        </button>
-        <button class="accessibility-btn" id="toggleHighContrast" aria-label="Toggle high contrast">
-            <i class="fas fa-adjust"></i>
-        </button>
-        <button class="accessibility-btn" id="toggleReducedMotion" aria-label="Toggle reduced motion">
-            <i class="fas fa-running"></i>
-        </button>
     </div>
 
     <footer></footer>

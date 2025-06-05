@@ -20,13 +20,11 @@
     
     <!-- Critical CSS Preload -->
     <link rel="preload" href="styles/styles.css" as="style">
-    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="preload" href="styles/footer.css" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
     
     <!-- Critical JS Preload -->
     <link rel="preload" href="js/header-footer.js" as="script">
-    <link rel="preload" href="js/navigation.js" as="script">
     
     <!-- Primary Meta Tags -->
     <meta name="title" content="QUANNEX: Quantum Nexus - Consciousness Accelerator & Future Self Integration">
@@ -114,6 +112,7 @@
     <link rel="stylesheet" href="styles/breadcrumbs.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/waitlist-cta.css">
     
     <!-- Scripts -->
     <!-- Google tag (gtag.js) -->
@@ -126,7 +125,6 @@
     </script>
     <script src="js/analytics.js" defer></script>
     <script src="js/header-footer.js" defer></script>
-    <script src="js/navigation.js" defer></script>
     <script src="js/smooth-scroll.js" defer></script>
     <script src="js/component-loader.js" defer></script>
     <script src="js/reading-progress.js" defer></script>
@@ -156,60 +154,10 @@
     <div class="quantum-cursor" aria-hidden="true"></div>
     
     <!-- Floating Waitlist CTA -->
-    <button class="floating-waitlist-cta" onclick="openWaitlistModal()" aria-label="Join Beta Waitlist">
-        <span class="button-text">Join Beta Waitlist</span>
-        <i class="fas fa-rocket"></i>
-    </button>
 
-    <header>
-        <a href="index.html" class="logo-container" aria-label="QUANNEX Home">
-            <div class="logo" role="img" aria-label="QUANNEX Logo">
-                <div class="quantum-symbol" aria-hidden="true">
-                    <div class="quantum-particles">
-                        <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
-                        <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
-                        <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
-                        <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
-                    </div>
-                </div>
-                <span class="logo-text">QUANNEX</span>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav role="navigation" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html" aria-current="page">Home</a></li>
-                <li><a href="consciousness_accelerator.html">Consciousness Accelerator</a></li>
-                <li><a href="quantum_parameters.html">Quantum Parameters</a></li>
-                <li><a href="app_features.html">App Features</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-                <li><a href="advanced_concepts.html">Advanced</a></li>
-                <li class="dropdown">
-                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        Resources
-                        <span class="sr-only">(click to expand)</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-label="Resources submenu">
-                        <li role="none"><a href="project_proposal.html" role="menuitem"><i class="fas fa-file-alt" aria-hidden="true"></i> Project Proposal</a></li>
-                        <li role="none"><a href="business_model.html" role="menuitem"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Model</a></li>
-                        <li role="none"><a href="academic_alignment.html" role="menuitem"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Alignment</a></li>
-                        <li role="none"><a href="scientific_validation.html" role="menuitem"><i class="fas fa-flask" aria-hidden="true"></i> Scientific Validation</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
-                <li class="waitlist-cta">
-                    <button class="waitlist-button" onclick="openWaitlistModal()">
-                        <span class="button-text">Join Beta Waitlist</span>
-                        <i class="fas fa-rocket"></i>
-                    </button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <header></header>
 
-    <div class="resource-navigation-container" role="navigation" aria-label="Resource navigation"></div>
-
-    <main role="main">
+    <main id="main-content">
         <!-- Breadcrumb Navigation -->
         <nav class="breadcrumb home-hide" aria-label="Breadcrumb">
             <ol>

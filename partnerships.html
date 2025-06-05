@@ -83,13 +83,11 @@
     
     <!-- Critical CSS Preload -->
     <link rel="preload" href="styles/styles.css" as="style">
-    <link rel="stylesheet" href="styles/mobile.css">
     <link rel="preload" href="styles/footer.css" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
     
     <!-- Critical JS Preload -->
     <link rel="preload" href="js/header-footer.js" as="script">
-    <link rel="preload" href="js/navigation.js" as="script">
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles/styles.css">
@@ -110,7 +108,6 @@
     </script>
     <script src="js/analytics.js" defer></script>
     <script src="js/header-footer.js" defer></script>
-    <script src="js/navigation.js" defer></script>
     <script src="js/smooth-scroll.js" defer></script>
     <script src="js/component-loader.js" defer></script>
     <script src="js/reading-progress.js" defer></script>
@@ -127,45 +124,7 @@
     <div class="twinkling" aria-hidden="true"></div>
     <div class="quantum-cursor" aria-hidden="true"></div>
     
-    <header>
-        <a href="index.html" class="logo-container" aria-label="QUANNEX Home">
-            <div class="logo" role="img" aria-label="QUANNEX Logo">
-                <div class="quantum-symbol" aria-hidden="true">
-                    <div class="quantum-particles">
-                        <div class="quantum-particle" style="--tx: 20px; --ty: -20px;"></div>
-                        <div class="quantum-particle" style="--tx: -20px; --ty: 20px;"></div>
-                        <div class="quantum-particle" style="--tx: 15px; --ty: 15px;"></div>
-                        <div class="quantum-particle" style="--tx: -15px; --ty: -15px;"></div>
-                    </div>
-                </div>
-                <h1>QUANNEX</h1>
-            </div>
-            <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
-        </a>
-        <nav role="navigation" aria-label="Main navigation">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="consciousness_accelerator.html">Consciousness Accelerator</a></li>
-                <li><a href="quantum_parameters.html">Quantum Parameters</a></li>
-                <li><a href="app_features.html">App Features</a></li>
-                <li><a href="academic_alignment.html">Academic</a></li>
-                <li><a href="advanced_concepts.html">Advanced</a></li>
-                <li class="dropdown">
-                    <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        Resources
-                        <span class="sr-only">(click to expand)</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-label="Resources submenu">
-                        <li role="none"><a href="project_proposal.html" role="menuitem"><i class="fas fa-file-alt" aria-hidden="true"></i> Project Proposal</a></li>
-                        <li role="none"><a href="business_model.html" role="menuitem"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Model</a></li>
-                        <li role="none"><a href="academic_alignment.html" role="menuitem"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Alignment</a></li>
-                        <li role="none"><a href="scientific_validation.html" role="menuitem"><i class="fas fa-flask" aria-hidden="true"></i> Scientific Validation</a></li>
-                    </ul>
-                </li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <header></header>
 
     <main id="main-content" role="main">
         <section class="hero" aria-labelledby="partnerships-title">

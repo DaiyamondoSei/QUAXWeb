@@ -6,10 +6,8 @@ const CRITICAL_RESOURCES = [
     '/',
     '/offline.html',
     '/styles/styles.css',
-    '/styles/mobile.css',
     '/styles/footer.css',
     '/js/header-footer.js',
-    '/js/navigation.js',
     '/images/quantum_visualization_fluid_small.jpg.webp',
     '/fonts/your-main-font.woff2'
 ];

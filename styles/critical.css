@@ -8,13 +8,13 @@
     --text-color-muted: rgba(255, 255, 255, 0.7);
     
     /* Layout */
-    --header-height: 60px;
+    --header-height: 56px;
     --mobile-padding: 1rem;
     --section-spacing: 4rem;
     --content-max-width: 1200px;
     
     /* Mobile Navigation */
-    --bottom-nav-height: 60px;
+    --bottom-nav-height: 56px;
     --bottom-nav-bg: rgba(5, 5, 32, 0.95);
     --bottom-nav-border: rgba(255, 255, 255, 0.1);
     --bottom-nav-active: #6E00FF;

@@ -11,7 +11,7 @@
     --text-color-muted: rgba(255, 255, 255, 0.7);
     
     /* Layout */
-    --header-height: 60px;
+    --header-height: 56px;
     --mobile-padding: 1rem;
     --section-spacing: 4rem;
     --content-max-width: 1200px;
@@ -30,13 +30,13 @@
     --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Mobile Navigation */
-    --bottom-nav-height: 60px;
+    --bottom-nav-height: 56px;
     --bottom-nav-bg: rgba(5, 5, 32, 0.95);
     --bottom-nav-border: rgba(255, 255, 255, 0.1);
     --bottom-nav-active: #6E00FF;
     --bottom-nav-inactive: #999;
     --mobile-transition: 0.2s ease;
-    --scroll-nav-height: 49px;
+    --scroll-nav-height: 40px;
 
     /* Primary Colors */
     --primary-50: #f0f9ff;
@@ -146,6 +146,18 @@ a {
     h4 { font-size: 1.25rem; }
     h5 { font-size: 1.125rem; }
     h6 { font-size: 1rem; }
+
+    /* Hide desktop navigation on mobile - increased specificity */
+    header .desktop-nav {
+        display: none !important;
+    }
+}
+
+/* Hide mobile navigation on desktop - increased specificity */
+@media (min-width: 769px) {
+    header .mobile-nav {
+        display: none !important;
+    }
 }
 
 /* Animations */

@@ -18,21 +18,23 @@ document.addEventListener('DOMContentLoaded', function() {
         lazyImages.forEach(img => imageObserver.observe(img));
     }
 
-    // Preload critical resources
-    const preloadResources = [
-        '/styles.css',
-        '/footer.css',
-        '/dropdown.css',
-        '/vision.css'
-    ];
+    // Preload critical resources only if served over HTTP(S)
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+        const preloadResources = [
+            'styles/styles.css',
+            'styles/footer.css',
+            'styles/dropdown.css',
+            'styles/vision.css'
+        ];
 
-    preloadResources.forEach(resource => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = resource;
-        link.as = 'style';
-        document.head.appendChild(link);
-    });
+        preloadResources.forEach(resource => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.href = resource;
+            link.as = 'style';
+            document.head.appendChild(link);
+        });
+    }
 
     // Add loading="lazy" to non-critical images
     document.querySelectorAll('img:not(.hero-image img)').forEach(img => {
@@ -51,7 +53,6 @@ const urlsToCache = [
     '/dropdown.css',
     '/vision.css',
     '/js/header-footer.js',
-    '/js/navigation.js',
     '/js/smooth-scroll.js'
 ];
 

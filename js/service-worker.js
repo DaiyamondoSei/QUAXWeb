@@ -3,10 +3,8 @@ const STATIC_ASSETS = [
     '/',
     '/index.html',
     '/styles/styles.css',
-    '/styles/mobile.css',
     '/styles/accessibility.css',
     '/js/mobile.js',
-    '/js/navigation.js',
     '/images/quantum_visualization_fluid.jpg.webp',
     '/images/quantum_visualization_fluid-placeholder.webp',
     // Add other critical assets here

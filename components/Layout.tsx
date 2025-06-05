@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UnifiedNavigation from './UnifiedNavigation';
 import cn from 'classnames';
 
@@ -15,6 +15,17 @@ const Layout: React.FC<LayoutProps> = ({
     showBottomNav = true,
     className
 }) => {
+    // Check for static header script
+    useEffect(() => {
+        const staticHeaderScript = document.querySelector('script[src*="header-footer.js"]');
+        if (staticHeaderScript) {
+            console.error(
+                'WARNING: The static header-footer.js script is detected while using the React Layout component. ' +
+                'This will cause header duplication. Please remove the static header script from this page.'
+            );
+        }
+    }, []);
+
     return (
         <div className="min-h-screen bg-white">
             <UnifiedNavigation
