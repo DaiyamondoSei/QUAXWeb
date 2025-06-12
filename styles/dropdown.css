@@ -117,14 +117,14 @@ header nav ul li .dropdown-toggle {
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
+    font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     transition: all 0.3s ease;
     cursor: pointer;
     outline: none;
     display: flex;
-    align-items: center;
+    align-items: top;
     gap: 0.5rem;
     font-family: inherit;
     font-weight: 400;
@@ -132,7 +132,7 @@ header nav ul li .dropdown-toggle {
     height: 100%;
     vertical-align: middle;
     margin: 0;
-    line-height: 1.1;
+    line-height: 0.5;
     position: relative;
     top: 0;
     box-sizing: border-box;

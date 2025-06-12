@@ -46,6 +46,23 @@ function createParticle(container) {
 function initStagedLearning() {
     const learningStages = document.querySelectorAll('.stages-container .stage');
     
+    // Clean up any stuck states first
+    learningStages.forEach(stage => {
+        const details = stage.querySelector('.stage-details');
+        const button = stage.querySelector('.toggle-details');
+        
+        if (details && button) {
+            // Reset to closed state
+            details.classList.remove('active');
+            stage.classList.remove('expanded');
+            button.textContent = 'More';
+            button.classList.remove('active');
+            
+            // Remove any inline styles that might interfere
+            details.removeAttribute('style');
+        }
+    });
+    
     learningStages.forEach(stage => {
         // Initialize progress bars
         initProgressBar(stage);
@@ -82,6 +99,12 @@ function initProgressBar(stage) {
 }
 
 function toggleStageDetails(stage, details, button) {
+    // Add error handling and validation
+    if (!stage || !details || !button) {
+        console.error('Missing required elements for toggleStageDetails');
+        return;
+    }
+    
     const isHidden = !details.classList.contains('active');
     
     // Close any other open stages first
@@ -104,6 +127,11 @@ function toggleStageDetails(stage, details, button) {
         stage.classList.add('expanded');
         button.textContent = 'Less';
         button.classList.add('active');
+        
+        // Ensure proper scroll behavior
+        setTimeout(() => {
+            stage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
     } else {
         // Hide details
         details.classList.remove('active');
@@ -168,14 +196,6 @@ document.addEventListener('DOMContentLoaded', () => {
         stage.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
             this.style.boxShadow = 'none';
-        });
-        
-        // Add click effect for stage cards
-        stage.addEventListener('click', function(e) {
-            if (!e.target.closest('.interactive-elements')) {
-                const details = this.querySelector('.stage-details');
-                details.style.display = details.style.display === 'none' ? 'block' : 'none';
-            }
         });
     });
 
@@ -275,6 +295,23 @@ document.addEventListener('DOMContentLoaded', () => {
 function initQuantumMasteryPaths() {
     const paths = document.querySelectorAll('.paths-container .path');
     
+    // Clean up any stuck states first
+    paths.forEach(path => {
+        const details = path.querySelector('.path-details');
+        const button = path.querySelector('.toggle-details');
+        
+        if (details && button) {
+            // Reset to closed state
+            details.classList.remove('active');
+            path.classList.remove('expanded');
+            button.textContent = 'More';
+            button.classList.remove('active');
+            
+            // Remove any inline styles that might interfere
+            details.removeAttribute('style');
+        }
+    });
+    
     paths.forEach(path => {
         // Initialize path details
         const details = path.querySelector('.path-details');
@@ -297,6 +334,12 @@ function initQuantumMasteryPaths() {
 }
 
 function togglePathDetails(path, details, button) {
+    // Add error handling and validation
+    if (!path || !details || !button) {
+        console.error('Missing required elements for togglePathDetails');
+        return;
+    }
+    
     const isHidden = !details.classList.contains('active');
     
     // Close any other open paths first
@@ -319,6 +362,11 @@ function togglePathDetails(path, details, button) {
         path.classList.add('expanded');
         button.textContent = 'Less';
         button.classList.add('active');
+        
+        // Ensure proper scroll behavior
+        setTimeout(() => {
+            path.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
     } else {
         // Hide details
         details.classList.remove('active');

@@ -28,11 +28,23 @@
   to = "/public/:splat"
   status = 200
 
-# SPA fallback for all other routes
+# Blog routes - ensure they work with Next.js
+[[redirects]]
+  from = "/entanglement-log"
+  to = "/entanglement-log"
+  status = 200
+
+[[redirects]]
+  from = "/entanglement-log/*"
+  to = "/entanglement-log/:splat"
+  status = 200
+
+# SPA fallback for all other routes (but not blog routes)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  conditions = {Path = {match = "^(?!entanglement-log).*"}}
 
 # Security headers
 [[headers]]

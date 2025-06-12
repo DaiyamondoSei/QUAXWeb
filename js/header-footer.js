@@ -281,6 +281,27 @@ if (window.headerFooterInitialized) {
         if (header) {
             // Desktop header HTML structure
             const desktopHeaderHTML = `
+                <div class="entanglement-log-container desktop-only">
+                    <a href="entanglement-log.html" class="entanglement-log-btn" tabindex="0" aria-label="Read the Entanglement Log (Blog)">
+                        <span class="quantum-icon" aria-hidden="true">
+                          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="14" cy="14" r="10" stroke="#00FFD0" stroke-width="2.2" fill="url(#qg)"/>
+                            <ellipse cx="14" cy="14" rx="7" ry="2.5" stroke="#6E00FF" stroke-width="1.2" fill="none"/>
+                            <ellipse cx="14" cy="14" rx="2.5" ry="7" stroke="#00B8FF" stroke-width="1.2" fill="none"/>
+                            <circle cx="14" cy="14" r="2.2" fill="#00FFD0"/>
+                            <defs>
+                              <radialGradient id="qg" cx="0.5" cy="0.5" r="0.5" fx="0.5" fy="0.5">
+                                <stop offset="0%" stop-color="#00FFD0" stop-opacity="0.7"/>
+                                <stop offset="100%" stop-color="#6E00FF" stop-opacity="0.2"/>
+                              </radialGradient>
+                            </defs>
+                          </svg>
+                        </span>
+                        <span class="entanglement-log-glow"></span>
+                        <span class="entanglement-log-text">Entanglement Log</span>
+                    <span class="ripple"></span>
+                    </a>
+                </div>
                 <a href="index.html" class="logo-container" aria-label="QUANNEX Home">
                     <div class="logo" role="img" aria-label="QUANNEX Logo">
                         <div class="quantum-symbol" aria-hidden="true">
@@ -293,7 +314,7 @@ if (window.headerFooterInitialized) {
                         </div>
                         <span class="logo-text" tabindex="0" aria-label="QUANNEX Logo Text">QUANNEX</span>
                     </div>
-                    <p class="tagline">Quantum Nexus: Bridge to Higher Consciousness</p>
+                    <p class="tagline">Quantum Nexus: Develop Your Quantum Cognition</p>
                 </a>
                 <nav role="navigation" aria-label="Main navigation">
                     <ul>
@@ -360,6 +381,7 @@ if (window.headerFooterInitialized) {
                     </div>
                     <ul class="mobile-nav-list">
                         <li><a href="index.html" ${window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') ? 'aria-current="page"' : ''}>Home</a></li>
+                        <li><a href="entanglement-log.html" ${window.location.pathname.includes('entanglement-log.html') ? 'aria-current="page"' : ''}><i class="fas fa-blog" aria-hidden="true"></i> Entanglement Log</a></li>
                         <li><a href="consciousness_accelerator.html" ${window.location.pathname.includes('consciousness_accelerator.html') ? 'aria-current="page"' : ''}>Consciousness Accelerator</a></li>
                         <li><a href="quantum_parameters.html" ${window.location.pathname.includes('quantum_parameters.html') ? 'aria-current="page"' : ''}>Quantum Parameters</a></li>
                         <li><a href="app_features.html" ${window.location.pathname.includes('app_features.html') ? 'aria-current="page"' : ''}>App Features</a></li>
@@ -593,38 +615,53 @@ if (window.headerFooterInitialized) {
         const footer = document.querySelector('footer');
         if (footer) {
             footer.innerHTML = `
-                <div class="footer-content">
-                    <div class="footer-section foundation-section">
-                        <h4>QUANNEX Foundation</h4>
+                <div class="footer-content" role="contentinfo">
+                    <section class="footer-section foundation-section" aria-labelledby="footer-foundation-title">
+                        <h4 id="footer-foundation-title">QUANNEX Foundation</h4>
                         <p>Advancing consciousness through technology and science</p>
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/company/quannex-foundation/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://www.instagram.com/your_quantum_nexus?igsh=MWx4ZDV4a2g0NXdyaQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="https://github.com/quannex" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://discord.gg/dZ95cJmw" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Join our Discord"><i class="fab fa-discord"></i></a>
+                        <div class="social-links" aria-label="Social Media Links">
+                            <a href="https://www.linkedin.com/company/quannex-foundation/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                <span class="visually-hidden">LinkedIn</span>
+                            </a>
+                            <a href="https://www.instagram.com/your_quantum_nexus?igsh=MWx4ZDV4a2g0NXdyaQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                                <span class="visually-hidden">Instagram</span>
+                            </a>
+                            <a href="https://github.com/quannex" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <span class="visually-hidden">GitHub</span>
+                            </a>
+                            <a href="https://discord.gg/nYT7qb6BwZ" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Join our Discord">
+                                <i class="fab fa-discord" aria-hidden="true"></i>
+                                <span class="visually-hidden">Discord</span>
+                            </a>
                         </div>
-                        <div class="contact-info">
-                            <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Quick Navigation</h4>
+                        <address class="contact-info" aria-label="Contact Information">
+                            <a href="contact.html">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <span>Contact Us</span>
+                            </a>
+                        </address>
+                    </section>
+                    <nav class="footer-section" aria-labelledby="footer-quick-nav-title">
+                        <h4 id="footer-quick-nav-title">Quick Navigation</h4>
                         <ul>
-                            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                            <li><a href="consciousness_accelerator.html"><i class="fas fa-brain"></i> Consciousness Accelerator</a></li>
-                            <li><a href="quantum_parameters.html"><i class="fas fa-atom"></i> Quantum Parameters</a></li>
-                            <li><a href="app_features.html"><i class="fas fa-mobile-alt"></i> App Features</a></li>
+                            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span>Home</span></a></li>
+                            <li><a href="consciousness_accelerator.html"><i class="fas fa-brain" aria-hidden="true"></i> <span>Consciousness Accelerator</span></a></li>
+                            <li><a href="quantum_parameters.html"><i class="fas fa-atom" aria-hidden="true"></i> <span>Quantum Parameters</span></a></li>
+                            <li><a href="app_features.html"><i class="fas fa-mobile-alt" aria-hidden="true"></i> <span>App Features</span></a></li>
                         </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>Resources</h4>
+                    </nav>
+                    <nav class="footer-section" aria-labelledby="footer-resources-title">
+                        <h4 id="footer-resources-title">Resources</h4>
                         <ul>
-                            <li><a href="academic_alignment.html"><i class="fas fa-graduation-cap"></i> Academic Alignment</a></li>
-                            <li><a href="scientific_validation.html"><i class="fas fa-flask"></i> Scientific Validation</a></li>
-                            <li><a href="advanced_concepts.html"><i class="fas fa-lightbulb"></i> Advanced Concepts</a></li>
-                            <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                            <li><a href="academic_alignment.html"><i class="fas fa-graduation-cap" aria-hidden="true"></i> <span>Academic Alignment</span></a></li>
+                            <li><a href="scientific_validation.html"><i class="fas fa-flask" aria-hidden="true"></i> <span>Scientific Validation</span></a></li>
+                            <li><a href="advanced_concepts.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span>Advanced Concepts</span></a></li>
+                            <li><a href="privacy.html"><i class="fas fa-shield-alt" aria-hidden="true"></i> <span>Privacy Policy</span></a></li>
                         </ul>
-                    </div>
+                    </nav>
                 </div>
                 <div class="footer-bottom">
                     <p>&copy; ${new Date().getFullYear()} QUANNEX Foundation. All rights reserved.</p>
@@ -743,5 +780,25 @@ if (window.headerFooterInitialized) {
                 </div>
             `;
         }
+
+        // Add entanglement log button styles and animation
+        // Enhanced styles are now in styles/styles.css
+
+        // Add ripple effect to entanglement log button
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('.entanglement-log-btn');
+            if (!btn) return;
+            let ripple = btn.querySelector('.ripple');
+            if (ripple) ripple.remove();
+            ripple = document.createElement('span');
+            ripple.className = 'ripple';
+            const rect = btn.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+            btn.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+        }, false);
     });
 } 
