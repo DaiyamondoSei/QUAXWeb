@@ -8,7 +8,7 @@
 }
 
 .feature-group-title {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--light-text);
     margin-bottom: 1rem;
     padding-bottom: 0.5rem;
@@ -42,7 +42,7 @@
 }
 
 .feature h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 0.5rem;
     color: var(--light-text);
 }

@@ -1,6 +1,20 @@
 /* Footer Styles - Consolidated Implementation */
 /* ============================================= */
 
+/* Ensure all required CSS variables are available */
+:root {
+    /* Essential variables that might not be loaded yet */
+    --primary-color: #6E00FF;
+    --secondary-color: #00B8FF;
+    --accent-color: #ff00e6;
+    --light-text: #ffffff;
+    --medium-text: rgba(255, 255, 255, 0.7);
+    --border-light: 1px solid rgba(255, 255, 255, 0.1);
+    --glow-primary: 0 0 10px rgba(74, 144, 226, 0.3);
+    --glow-accent: 0 0 20px rgba(80, 227, 194, 0.4);
+    --bg-card: rgba(255, 255, 255, 0.08);
+}
+
 /* Base Footer Styles */
 footer {
     background: rgba(3, 3, 18, 0.95);
