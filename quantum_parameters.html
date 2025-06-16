@@ -67,7 +67,6 @@
     }
     </script>
     <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="/styles/footer.css">
     <link rel="stylesheet" href="styles/dropdown.css">
     <link rel="stylesheet" href="styles/reading-progress.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -116,13 +115,13 @@
         
         .quantum-hero {
             position: relative;
-            min-height: 70vh;
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8rem 0 4rem;
+            padding: 1rem 0 3rem;
             overflow: hidden;
-            border-bottom: 1px solid rgba(110, 0, 255, 0.1);
+            border-bottom: 100px solid rgba(110, 0, 255, 0.1);
             box-shadow: 
                 inset 0 20px 30px rgba(0, 0, 0, 0.2),
                 inset 0 -20px 30px rgba(0, 0, 0, 0.2);
@@ -192,7 +191,7 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 2.5rem;
+            padding: 0.5rem;
             border-radius: 24px;
             background: rgba(5, 5, 32, 0.2);
             backdrop-filter: blur(12px);
@@ -216,24 +215,28 @@
 
         .quantum-title-container {
             position: relative;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .quantum-title-container h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
+            font-size: 4.5rem;
+            line-height: 5.5;
             background: linear-gradient(135deg, var(--light-text) 0%, var(--medium-text) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: relative;
+            margin-left: 100px;
+            margin-top: 100px;
+            margin-right: 100px;
+            margin-bottom: 50px;
             z-index: 2;
         }
 
         .quantum-underline {
             position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
+            bottom: -15px;
+            left: 100px;
+            width: 80%;
             height: 2px;
             background: linear-gradient(90deg, 
                 var(--primary-color),
@@ -247,8 +250,8 @@
         .quantum-hero .subtitle {
             font-size: 1.5rem;
             color: var(--medium-text);
-            margin-bottom: 2rem;
-            max-width: 600px;
+            margin-bottom: 1rem;
+            max-width: 12000px;
             position: relative;
             z-index: 2;
         }
@@ -256,7 +259,10 @@
         .quantum-nav-buttons {
             display: flex;
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 5rem;
+            margin-left: 200px;
+            margin-right: 200px;
+            margin-bottom: 200px;
             position: relative;
             z-index: 2;
         }
@@ -266,7 +272,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.75rem 1.5rem;
+            padding: 2.1rem 2.1rem;
             background: rgba(110, 0, 255, 0.1);
             border: 1px solid rgba(110, 0, 255, 0.3);
             border-radius: 8px;
@@ -277,7 +283,7 @@
         }
 
         .quantum-nav-btn i {
-            font-size: 1.2rem;
+            font-size: 3rem;
             color: var(--secondary-color);
             transition: all 0.3s ease;
         }
@@ -325,7 +331,7 @@
             position: absolute;
             right: 0;
             top: 0;
-            width: 50%;
+            width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
@@ -335,8 +341,8 @@
 
         .parameters-sphere {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
         }
 
         .parameters-core {
@@ -368,14 +374,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            border-radius: 50%;
-            border: 2px solid rgba(0, 184, 255, 0.3);
+            border-radius: 21%;
+            border: 7px solid rgba(0, 184, 255, 0.3);
             animation: rotateRing 20s linear infinite;
         }
 
         .parameters-ring:nth-child(1) {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             animation-duration: 20s;
         }
 
@@ -402,10 +408,10 @@
 
         .parameters-particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #fff;
-            border-radius: 50%;
+            width: 21px;
+            height: 21px;
+            background: #fcfcfc;
+            border-radius: 100%;
             animation: particleFloat 6s ease-in-out infinite;
         }
 

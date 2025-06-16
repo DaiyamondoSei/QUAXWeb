@@ -49,7 +49,6 @@ export default function EntanglementLog({ posts }) {
         <meta name="twitter:description" content="Explore the Entanglement Log: Quantum-inspired articles, insights, and updates from the QUANNEX community." />
         <link rel="canonical" href="https://quannex.earth/entanglement-log" />
         <link rel="stylesheet" href="/styles/styles.css" />
-        <link rel="stylesheet" href="/styles/footer.css" />
         <link rel="stylesheet" href="/styles/dropdown.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
         <link rel="stylesheet" href="/styles/responsive.css" />

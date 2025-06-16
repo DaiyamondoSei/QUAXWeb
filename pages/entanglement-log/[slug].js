@@ -87,7 +87,6 @@ export default function EntanglementPost({ frontmatter, mdxSource, slug }) {
         <meta name="twitter:description" content={frontmatter.excerpt} />
         <link rel="canonical" href={`https://quannex.earth/entanglement-log/${slug}`} />
         <link rel="stylesheet" href="/styles/styles.css" />
-        <link rel="stylesheet" href="/styles/footer.css" />
         <link rel="stylesheet" href="/styles/dropdown.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
         <link rel="stylesheet" href="/styles/responsive.css" />

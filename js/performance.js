@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (location.protocol === 'http:' || location.protocol === 'https:') {
         const preloadResources = [
             'styles/styles.css',
-            'styles/footer.css',
             'styles/dropdown.css',
             'styles/vision.css'
         ];
@@ -49,7 +48,6 @@ const CACHE_NAME = 'quannex-cache-v1';
 const urlsToCache = [
     '/',
     '/styles/styles.css',
-    '/styles/footer.css',
     '/styles/dropdown.css',
     '/styles/vision.css',
     '/js/header-footer.js',
