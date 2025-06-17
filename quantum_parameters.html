@@ -258,13 +258,14 @@
 
         .quantum-nav-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             margin-top: 5rem;
             margin-left: 200px;
             margin-right: 200px;
             margin-bottom: 200px;
             position: relative;
             z-index: 2;
+            flex-wrap: wrap;
         }
 
         .quantum-nav-btn {
@@ -272,14 +273,17 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 2.1rem 2.1rem;
+            padding: 1.2rem 2.2rem;
             background: rgba(110, 0, 255, 0.1);
             border: 1px solid rgba(110, 0, 255, 0.3);
-            border-radius: 8px;
+            border-radius: 12px;
             color: var(--light-text);
             text-decoration: none;
             transition: all 0.3s ease;
             overflow: hidden;
+            min-width: 180px;
+            flex: 1 1 200px;
+            justify-content: center;
         }
 
         .quantum-nav-btn i {
@@ -290,8 +294,8 @@
 
         .quantum-nav-btn span {
             font-family: var(--font-heading);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 1.15rem;
+            font-weight: 600;
             letter-spacing: 0.5px;
             color: var(--light-text);
         }
@@ -474,11 +478,14 @@
             .quantum-nav-buttons {
                 flex-direction: column;
                 gap: 0.75rem;
+                margin-left: 0;
+                margin-right: 0;
             }
 
             .quantum-nav-btn {
                 width: 100%;
-                justify-content: center;
+                min-width: 140px;
+                padding: 1rem 1.2rem;
             }
 
             .parameters-visualization {
