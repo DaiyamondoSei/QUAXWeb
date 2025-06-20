@@ -660,6 +660,7 @@ if (window.headerFooterInitialized) {
                             <li><a href="scientific_validation.html"><i class="fas fa-flask" aria-hidden="true"></i> <span>Scientific Validation</span></a></li>
                             <li><a href="advanced_concepts.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span>Advanced Concepts</span></a></li>
                             <li><a href="privacy.html"><i class="fas fa-shield-alt" aria-hidden="true"></i> <span>Privacy Policy</span></a></li>
+                            <li><a href="terms.html"><i class="fas fa-file-contract" aria-hidden="true"></i> <span>Terms of Service</span></a></li>
                         </ul>
                     </nav>
                 </div>

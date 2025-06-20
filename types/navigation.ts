@@ -19,7 +19,7 @@ export const mainNavItems: NavItem[] = [
 
 export const bottomNavItems: NavItem[] = [
     { href: '/', label: 'Home', icon: 'home' },
-    { href: '/search', label: 'Search', icon: 'search' },
+    // { href: '/search', label: 'Search', icon: 'search' },
     { href: '/create', label: 'Create', icon: 'plus' },
     { href: '/profile', label: 'Profile', icon: 'user' }
 ]; 

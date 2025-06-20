@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 id="waitlistModalTitle">Join the QUANNEX Beta Waitlist</h2>
             <p>Be among the first to experience the future of consciousness acceleration. Sign up now to get early access to our beta version.</p>
             
-            <form name="waitlist-form" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/success.html">
+            <form name="waitlist-form" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                 <input type="hidden" name="form-name" value="waitlist-form" />
                 <div class="hidden">
                     <input name="bot-field" />

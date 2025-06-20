@@ -138,4 +138,172 @@
 [[redirects]]
   from = "/dropdown.css"
   to = "/styles/dropdown.css"
-  status = 200 
+  status = 200
+
+[[redirects]]
+  from = "http://quannex.earth/*"
+  to = "https://www.quannex.earth/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.quannex.earth/*"
+  to = "https://www.quannex.earth/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://quannex.earth/*"
+  to = "https://www.quannex.earth/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/success.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/privacy.html"
+  to = "/privacy"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/terms.html"
+  to = "/terms"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/partnerships.html"
+  to = "/partnerships"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/curriculum.html"
+  to = "/curriculum"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/scientific_validation.html"
+  to = "/scientific_validation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/consciousness_bands.html"
+  to = "/consciousness_bands"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/consciousness_accelerator.html"
+  to = "/consciousness_accelerator"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/app_screens.html"
+  to = "/app_screens"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/project_proposal.html"
+  to = "/project_proposal"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/advanced_concepts.html"
+  to = "/advanced_concepts"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/academic_alignment.html"
+  to = "/academic_alignment"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/app_features.html"
+  to = "/app_features"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/business_model.html"
+  to = "/business_model"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/implementation_plan.html"
+  to = "/implementation_plan"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/quantum_parameters.html"
+  to = "/quantum_parameters"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/understanding-quantum-self.html"
+  to = "/understanding-quantum-self"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/technical_implementation.html"
+  to = "/technical_implementation"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/quantum-mind.html"
+  to = "/quantum-mind"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/future-self-integration.html"
+  to = "/future-self-integration"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/entanglement-log.html"
+  to = "/entanglement-log"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/entangled-realities.html"
+  to = "/entangled-realities"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/advanced_progression.html"
+  to = "/advanced_progression"
+  status = 301
+  force = true 

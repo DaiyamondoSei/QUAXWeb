@@ -2,92 +2,128 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://quannex.earth/</loc>
-        <lastmod>2025-01-15</lastmod>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/consciousness_accelerator.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/consciousness_accelerator</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/understanding-quantum-self.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/understanding-quantum-self</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/quantum_parameters.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/quantum_parameters</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/app_features.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/app_features</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/academic_alignment.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/academic_alignment</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/scientific_validation.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/scientific_validation</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/technical_implementation.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/technical_implementation</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/consciousness_bands.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/consciousness_bands</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/advanced_progression.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/advanced_progression</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/implementation_plan.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/implementation_plan</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/app_screens.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/app_screens</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/contact.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/contact</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/privacy.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/privacy</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://quannex.earth/terms.html</loc>
-        <lastmod>2025-01-15</lastmod>
+        <loc>https://quannex.earth/terms</loc>
+        <lastmod>2025-06-20</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://quannex.earth/partnerships</loc>
+        <lastmod>2025-06-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.earth/project_proposal</loc>
+        <lastmod>2025-06-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.earth/entanglement-log</loc>
+        <lastmod>2025-06-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.earth/entangled-realities</loc>
+        <lastmod>2025-06-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.earth/quantum-mind</loc>
+        <lastmod>2025-06-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://quannex.earth/future-self-integration</loc>
+        <lastmod>2025-06-20</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
     </url>
 </urlset> 
