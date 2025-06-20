@@ -39,12 +39,12 @@
   to = "/entanglement-log/:splat"
   status = 200
 
-# SPA fallback for all other routes (but not blog routes)
+# SPA fallback for all other routes (but not blog routes or any .html file)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-  conditions = {Path = {match = "^(?!entanglement-log).*"}}
+  conditions = {Path = {match = "^(?!entanglement-log)(?!.*\\.html$).*"}}
 
 # Security headers
 [[headers]]
