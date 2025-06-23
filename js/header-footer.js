@@ -282,7 +282,7 @@ if (window.headerFooterInitialized) {
             // Desktop header HTML structure
             const desktopHeaderHTML = `
                 <div class="entanglement-log-container desktop-only">
-                    <a href="entanglement-log.html" class="entanglement-log-btn" tabindex="0" aria-label="Read the Entanglement Log (Blog)">
+                    <a href="entanglement-log" class="entanglement-log-btn" tabindex="0" aria-label="Read the Entanglement Log (Blog)">
                         <span class="quantum-icon" aria-hidden="true">
                           <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="14" cy="14" r="10" stroke="#00FFD0" stroke-width="2.2" fill="url(#qg)"/>
@@ -302,7 +302,7 @@ if (window.headerFooterInitialized) {
                     <span class="ripple"></span>
                     </a>
                 </div>
-                <a href="index.html" class="logo-container" aria-label="QUANNEX Home">
+                <a href="/" class="logo-container" aria-label="QUANNEX Home">
                     <div class="logo" role="img" aria-label="QUANNEX Logo">
                         <div class="quantum-symbol" aria-hidden="true">
                             <div class="quantum-particles">
@@ -318,32 +318,32 @@ if (window.headerFooterInitialized) {
                 </a>
                 <nav role="navigation" aria-label="Main navigation">
                     <ul>
-                        <li><a href="index.html" ${window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') ? 'aria-current="page"' : ''}>Home</a></li>
-                        <li><a href="consciousness_accelerator.html" ${window.location.pathname.includes('consciousness_accelerator.html') ? 'aria-current="page"' : ''}>Consciousness Accelerator</a></li>
-                        <li><a href="quantum_parameters.html" ${window.location.pathname.includes('quantum_parameters.html') ? 'aria-current="page"' : ''}>Quantum Parameters</a></li>
-                        <li><a href="app_features.html" ${window.location.pathname.includes('app_features.html') ? 'aria-current="page"' : ''}>App Features</a></li>
-                        <li><a href="academic_alignment.html" ${window.location.pathname.includes('academic_alignment.html') ? 'aria-current="page"' : ''}>Academic</a></li>
-                        <li><a href="advanced_concepts.html" ${window.location.pathname.includes('advanced_concepts.html') ? 'aria-current="page"' : ''}>Advanced</a></li>
+                        <li><a href="/" ${window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') ? 'aria-current="page"' : ''}>Home</a></li>
+                        <li><a href="consciousness_accelerator" ${window.location.pathname.includes('consciousness_accelerator') ? 'aria-current="page"' : ''}>Consciousness Accelerator</a></li>
+                        <li><a href="quantum_parameters" ${window.location.pathname.includes('quantum_parameters') ? 'aria-current="page"' : ''}>Quantum Parameters</a></li>
+                        <li><a href="app_features" ${window.location.pathname.includes('app_features') ? 'aria-current="page"' : ''}>App Features</a></li>
+                        <li><a href="academic_alignment" ${window.location.pathname.includes('academic_alignment') ? 'aria-current="page"' : ''}>Academic</a></li>
+                        <li><a href="advanced_concepts" ${window.location.pathname.includes('advanced_concepts') ? 'aria-current="page"' : ''}>Advanced</a></li>
                         <li class="dropdown">
                             <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
                                 Resources
                                 <span class="sr-only">(click to expand)</span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-label="Resources submenu">
-                                <li role="none"><a href="project_proposal.html" role="menuitem"><i class="fas fa-file-alt" aria-hidden="true"></i> Project Proposal</a></li>
-                                <li role="none"><a href="business_model.html" role="menuitem"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Model</a></li>
-                                <li role="none"><a href="academic_alignment.html" role="menuitem"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Alignment</a></li>
-                                <li role="none"><a href="scientific_validation.html" role="menuitem"><i class="fas fa-flask" aria-hidden="true"></i> Scientific Validation</a></li>
-                                <li role="none"><a href="technical_implementation.html" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i> Technical Implementation</a></li>
-                                <li role="none"><a href="consciousness_bands.html" role="menuitem"><i class="fas fa-brain" aria-hidden="true"></i> Consciousness Bands</a></li>
-                                <li role="none"><a href="advanced_progression.html" role="menuitem"><i class="fas fa-level-up-alt" aria-hidden="true"></i> Progression System</a></li>
-                                <li role="none"><a href="implementation_plan.html" role="menuitem"><i class="fas fa-tasks" aria-hidden="true"></i> Implementation Plan</a></li>
-                                <li role="none"><a href="app_screens.html" role="menuitem"><i class="fas fa-mobile-alt" aria-hidden="true"></i> App Screen Inventory</a></li>
-                                <li role="none"><a href="curriculum.html" role="menuitem"><i class="fas fa-book" aria-hidden="true"></i> 4-Week Curriculum</a></li>
-                                <li role="none"><a href="partnerships.html" role="menuitem"><i class="fas fa-handshake" aria-hidden="true"></i> Partnerships</a></li>
+                                <li role="none"><a href="project_proposal" role="menuitem"><i class="fas fa-file-alt" aria-hidden="true"></i> Project Proposal</a></li>
+                                <li role="none"><a href="business_model" role="menuitem"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Model</a></li>
+                                <li role="none"><a href="academic_alignment" role="menuitem"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Alignment</a></li>
+                                <li role="none"><a href="scientific_validation" role="menuitem"><i class="fas fa-flask" aria-hidden="true"></i> Scientific Validation</a></li>
+                                <li role="none"><a href="technical_implementation" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i> Technical Implementation</a></li>
+                                <li role="none"><a href="consciousness_bands" role="menuitem"><i class="fas fa-brain" aria-hidden="true"></i> Consciousness Bands</a></li>
+                                <li role="none"><a href="advanced_progression" role="menuitem"><i class="fas fa-level-up-alt" aria-hidden="true"></i> Progression System</a></li>
+                                <li role="none"><a href="implementation_plan" role="menuitem"><i class="fas fa-tasks" aria-hidden="true"></i> Implementation Plan</a></li>
+                                <li role="none"><a href="app_screens" role="menuitem"><i class="fas fa-mobile-alt" aria-hidden="true"></i> App Screen Inventory</a></li>
+                                <li role="none"><a href="curriculum" role="menuitem"><i class="fas fa-book" aria-hidden="true"></i> 4-Week Curriculum</a></li>
+                                <li role="none"><a href="partnerships" role="menuitem"><i class="fas fa-handshake" aria-hidden="true"></i> Partnerships</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html" ${window.location.pathname.includes('contact.html') ? 'aria-current="page"' : ''}>Contact</a></li>
+                        <li><a href="contact" ${window.location.pathname.includes('contact') ? 'aria-current="page"' : ''}>Contact</a></li>
                     </ul>
                 </nav>
             `;
@@ -351,7 +351,7 @@ if (window.headerFooterInitialized) {
             // Mobile header HTML structure
             const mobileHeaderHTML = `
                 <div class="header-flex">
-                    <a href="index.html" class="logo-container" aria-label="QUANNEX Home">
+                    <a href="/" class="logo-container" aria-label="QUANNEX Home">
                         <div class="logo">
                             <div class="quantum-symbol">
                                 <div class="quantum-particles">
@@ -370,7 +370,7 @@ if (window.headerFooterInitialized) {
                 </div>
                 <nav class="mobile-nav" aria-label="Mobile navigation">
                     <div class="mobile-nav-header">
-                        <a href="index.html" class="logo-container">
+                        <a href="/" class="logo-container">
                             <div class="logo">
                                 <h1>QUANNEX</h1>
                             </div>
@@ -380,33 +380,33 @@ if (window.headerFooterInitialized) {
                         </button>
                     </div>
                     <ul class="mobile-nav-list">
-                        <li><a href="index.html" ${window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') ? 'aria-current="page"' : ''}>Home</a></li>
-                        <li><a href="entanglement-log.html" ${window.location.pathname.includes('entanglement-log.html') ? 'aria-current="page"' : ''}><i class="fas fa-blog" aria-hidden="true"></i> Entanglement Log</a></li>
-                        <li><a href="consciousness_accelerator.html" ${window.location.pathname.includes('consciousness_accelerator.html') ? 'aria-current="page"' : ''}>Consciousness Accelerator</a></li>
-                        <li><a href="quantum_parameters.html" ${window.location.pathname.includes('quantum_parameters.html') ? 'aria-current="page"' : ''}>Quantum Parameters</a></li>
-                        <li><a href="app_features.html" ${window.location.pathname.includes('app_features.html') ? 'aria-current="page"' : ''}>App Features</a></li>
-                        <li><a href="academic_alignment.html" ${window.location.pathname.includes('academic_alignment.html') ? 'aria-current="page"' : ''}>Academic</a></li>
-                        <li><a href="advanced_concepts.html" ${window.location.pathname.includes('advanced_concepts.html') ? 'aria-current="page"' : ''}>Advanced</a></li>
+                        <li><a href="/" ${window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') ? 'aria-current="page"' : ''}>Home</a></li>
+                        <li><a href="entanglement-log" ${window.location.pathname.includes('entanglement-log') ? 'aria-current="page"' : ''}><i class="fas fa-blog" aria-hidden="true"></i> Entanglement Log</a></li>
+                        <li><a href="consciousness_accelerator" ${window.location.pathname.includes('consciousness_accelerator') ? 'aria-current="page"' : ''}>Consciousness Accelerator</a></li>
+                        <li><a href="quantum_parameters" ${window.location.pathname.includes('quantum_parameters') ? 'aria-current="page"' : ''}>Quantum Parameters</a></li>
+                        <li><a href="app_features" ${window.location.pathname.includes('app_features') ? 'aria-current="page"' : ''}>App Features</a></li>
+                        <li><a href="academic_alignment" ${window.location.pathname.includes('academic_alignment') ? 'aria-current="page"' : ''}>Academic</a></li>
+                        <li><a href="advanced_concepts" ${window.location.pathname.includes('advanced_concepts') ? 'aria-current="page"' : ''}>Advanced</a></li>
                         <li class="dropdown">
                             <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false" tabindex="0">
                                 Resources
                                 <span class="sr-only">(click to expand)</span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-label="Resources submenu" style="display: none;">
-                                <li role="none"><a href="project_proposal.html" role="menuitem"><i class="fas fa-file-alt" aria-hidden="true"></i> Project Proposal</a></li>
-                                <li role="none"><a href="business_model.html" role="menuitem"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Model</a></li>
-                                <li role="none"><a href="academic_alignment.html" role="menuitem"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Alignment</a></li>
-                                <li role="none"><a href="scientific_validation.html" role="menuitem"><i class="fas fa-flask" aria-hidden="true"></i> Scientific Validation</a></li>
-                                <li role="none"><a href="technical_implementation.html" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i> Technical Implementation</a></li>
-                                <li role="none"><a href="consciousness_bands.html" role="menuitem"><i class="fas fa-brain" aria-hidden="true"></i> Consciousness Bands</a></li>
-                                <li role="none"><a href="advanced_progression.html" role="menuitem"><i class="fas fa-level-up-alt" aria-hidden="true"></i> Progression System</a></li>
-                                <li role="none"><a href="implementation_plan.html" role="menuitem"><i class="fas fa-tasks" aria-hidden="true"></i> Implementation Plan</a></li>
-                                <li role="none"><a href="app_screens.html" role="menuitem"><i class="fas fa-mobile-alt" aria-hidden="true"></i> App Screen Inventory</a></li>
-                                <li role="none"><a href="curriculum.html" role="menuitem"><i class="fas fa-book" aria-hidden="true"></i> 4-Week Curriculum</a></li>
-                                <li role="none"><a href="partnerships.html" role="menuitem"><i class="fas fa-handshake" aria-hidden="true"></i> Partnerships</a></li>
+                                <li role="none"><a href="project_proposal" role="menuitem"><i class="fas fa-file-alt" aria-hidden="true"></i> Project Proposal</a></li>
+                                <li role="none"><a href="business_model" role="menuitem"><i class="fas fa-chart-line" aria-hidden="true"></i> Business Model</a></li>
+                                <li role="none"><a href="academic_alignment" role="menuitem"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Alignment</a></li>
+                                <li role="none"><a href="scientific_validation" role="menuitem"><i class="fas fa-flask" aria-hidden="true"></i> Scientific Validation</a></li>
+                                <li role="none"><a href="technical_implementation" role="menuitem"><i class="fas fa-code" aria-hidden="true"></i> Technical Implementation</a></li>
+                                <li role="none"><a href="consciousness_bands" role="menuitem"><i class="fas fa-brain" aria-hidden="true"></i> Consciousness Bands</a></li>
+                                <li role="none"><a href="advanced_progression" role="menuitem"><i class="fas fa-level-up-alt" aria-hidden="true"></i> Progression System</a></li>
+                                <li role="none"><a href="implementation_plan" role="menuitem"><i class="fas fa-tasks" aria-hidden="true"></i> Implementation Plan</a></li>
+                                <li role="none"><a href="app_screens" role="menuitem"><i class="fas fa-mobile-alt" aria-hidden="true"></i> App Screen Inventory</a></li>
+                                <li role="none"><a href="curriculum" role="menuitem"><i class="fas fa-book" aria-hidden="true"></i> 4-Week Curriculum</a></li>
+                                <li role="none"><a href="partnerships" role="menuitem"><i class="fas fa-handshake" aria-hidden="true"></i> Partnerships</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html" ${window.location.pathname.includes('contact.html') ? 'aria-current="page"' : ''}>Contact</a></li>
+                        <li><a href="contact" ${window.location.pathname.includes('contact') ? 'aria-current="page"' : ''}>Contact</a></li>
                     </ul>
                 </nav>
                 <div class="nav-backdrop" tabindex="-1" aria-hidden="true" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.5); z-index: 1190; opacity: 0; pointer-events: none; transition: opacity 0.2s;"></div>
@@ -638,7 +638,7 @@ if (window.headerFooterInitialized) {
                             </a>
                         </div>
                         <address class="contact-info" aria-label="Contact Information">
-                            <a href="contact.html">
+                            <a href="contact">
                                 <i class="fas fa-envelope" aria-hidden="true"></i>
                                 <span>Contact Us</span>
                             </a>
@@ -647,20 +647,20 @@ if (window.headerFooterInitialized) {
                     <nav class="footer-section" aria-labelledby="footer-quick-nav-title">
                         <h4 id="footer-quick-nav-title">Quick Navigation</h4>
                         <ul>
-                            <li><a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span>Home</span></a></li>
-                            <li><a href="consciousness_accelerator.html"><i class="fas fa-brain" aria-hidden="true"></i> <span>Consciousness Accelerator</span></a></li>
-                            <li><a href="quantum_parameters.html"><i class="fas fa-atom" aria-hidden="true"></i> <span>Quantum Parameters</span></a></li>
-                            <li><a href="app_features.html"><i class="fas fa-mobile-alt" aria-hidden="true"></i> <span>App Features</span></a></li>
+                            <li><a href="/"><i class="fas fa-home" aria-hidden="true"></i> <span>Home</span></a></li>
+                            <li><a href="consciousness_accelerator"><i class="fas fa-brain" aria-hidden="true"></i> <span>Consciousness Accelerator</span></a></li>
+                            <li><a href="quantum_parameters"><i class="fas fa-atom" aria-hidden="true"></i> <span>Quantum Parameters</span></a></li>
+                            <li><a href="app_features"><i class="fas fa-mobile-alt" aria-hidden="true"></i> <span>App Features</span></a></li>
                         </ul>
                     </nav>
                     <nav class="footer-section" aria-labelledby="footer-resources-title">
                         <h4 id="footer-resources-title">Resources</h4>
                         <ul>
-                            <li><a href="academic_alignment.html"><i class="fas fa-graduation-cap" aria-hidden="true"></i> <span>Academic Alignment</span></a></li>
-                            <li><a href="scientific_validation.html"><i class="fas fa-flask" aria-hidden="true"></i> <span>Scientific Validation</span></a></li>
-                            <li><a href="advanced_concepts.html"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span>Advanced Concepts</span></a></li>
-                            <li><a href="privacy.html"><i class="fas fa-shield-alt" aria-hidden="true"></i> <span>Privacy Policy</span></a></li>
-                            <li><a href="terms.html"><i class="fas fa-file-contract" aria-hidden="true"></i> <span>Terms of Service</span></a></li>
+                            <li><a href="academic_alignment"><i class="fas fa-graduation-cap" aria-hidden="true"></i> <span>Academic Alignment</span></a></li>
+                            <li><a href="scientific_validation"><i class="fas fa-flask" aria-hidden="true"></i> <span>Scientific Validation</span></a></li>
+                            <li><a href="advanced_concepts"><i class="fas fa-lightbulb" aria-hidden="true"></i> <span>Advanced Concepts</span></a></li>
+                            <li><a href="privacy"><i class="fas fa-shield-alt" aria-hidden="true"></i> <span>Privacy Policy</span></a></li>
+                            <li><a href="terms"><i class="fas fa-file-contract" aria-hidden="true"></i> <span>Terms of Service</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -766,15 +766,15 @@ if (window.headerFooterInitialized) {
         if (resourceNav) {
             resourceNav.innerHTML = `
                 <div class="resource-navigation">
-                    <a href="academic_alignment.html" class="resource-link">
+                    <a href="academic_alignment" class="resource-link">
                         <i class="fas fa-graduation-cap"></i>
                         <span>Academic Alignment</span>
                     </a>
-                    <a href="scientific_validation.html" class="resource-link">
+                    <a href="scientific_validation" class="resource-link">
                         <i class="fas fa-flask"></i>
                         <span>Scientific Validation</span>
                     </a>
-                    <a href="advanced_concepts.html" class="resource-link">
+                    <a href="advanced_concepts" class="resource-link">
                         <i class="fas fa-lightbulb"></i>
                         <span>Advanced Concepts</span>
                     </a>

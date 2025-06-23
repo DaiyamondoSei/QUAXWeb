@@ -29,7 +29,7 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://quannex.earth/contact.html">
+    <meta property="og:url" content="https://quannex.earth/contact">
     <meta property="og:title" content="Contact Quannex Foundation | Connect for Consciousness Technology Collaboration">
     <meta property="og:description" content="Connect with Quannex Foundation for collaboration opportunities, support, and inquiries about our consciousness technology platform and quantum-inspired solutions. Join us in shaping the future of consciousness development.">
     <meta property="og:image" content="https://quannex.earth/images/contact_preview.jpg.webp">
@@ -41,7 +41,7 @@
     <meta name="x:card" content="summary_large_image">
     <meta name="x:site" content="@quannex">
     <meta name="x:creator" content="@quannex">
-    <meta name="x:url" content="https://quannex.earth/contact.html">
+    <meta name="x:url" content="https://quannex.earth/contact">
     <meta name="x:title" content="Contact Quannex Foundation | Connect for Consciousness Technology Collaboration">
     <meta name="x:description" content="Connect with Quannex Foundation for collaboration opportunities, support, and inquiries about our consciousness technology platform and quantum-inspired solutions. Join us in shaping the future of consciousness development.">
     <meta name="x:image" content="https://quannex.earth/images/contact_preview.jpg.webp">
@@ -91,7 +91,7 @@
         "@type": "ContactPage",
         "name": "Contact Quannex Foundation",
         "description": "Connect with Quannex Foundation for collaboration opportunities, support, and inquiries about our consciousness technology platform and quantum-inspired solutions.",
-        "url": "https://quannex.earth/contact.html",
+        "url": "https://quannex.earth/contact",
         "mainEntity": {
             "@type": "Organization",
             "name": "Quannex Foundation",
@@ -143,7 +143,7 @@
             "@type": "ListItem",
             "position": 2,
             "name": "Contact",
-            "item": "https://quannex.earth/contact.html"
+            "item": "https://quannex.earth/contact"
         }]
     }
     </script>
@@ -155,19 +155,7 @@
     <div class="twinkling"></div>
     <div class="quantum-cursor"></div>
     
-    <header>
-        <nav class="desktop-nav static-fallback-nav" aria-label="Desktop navigation">
-            <span style="color: red; font-weight: bold;">STATIC NAV</span>
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="consciousness_accelerator.html" class="nav-link">Consciousness Accelerator</a>
-            <a href="quantum_parameters.html" class="nav-link">Quantum Parameters</a>
-            <a href="app_features.html" class="nav-link">App Features</a>
-            <a href="academic.html" class="nav-link">Academic</a>
-            <a href="advanced.html" class="nav-link">Advanced</a>
-            <a href="resources.html" class="nav-link">Resources</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-        </nav>
-    </header>
+    <header></header>
 
     <main class="contact-page">
         <div class="contact-content">
@@ -180,7 +168,7 @@
                 <div class="partnership-content">
                     <h2>Ready to Transform the Future Together?</h2>
                     <p>Join our network of innovative partners and be part of the quantum revolution. Let's create something extraordinary.</p>
-                    <a href="partnerships.html" class="partnership-button">
+                    <a href="partnerships" class="partnership-button">
                         <span class="button-text">Explore Partnership Opportunities</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
@@ -328,9 +316,7 @@
                     body: new URLSearchParams(formData).toString()
                 });
                 if (response.ok) {
-                    // Instead of redirecting to /success.html, trigger the success popup/modal
-                    // TODO: Call your showSuccessPopup() or equivalent function here
-                    // Example: showSuccessPopup();
+                    showFeedback('Message sent successfully!', 'success');
                 } else {
                     throw new Error('Network response was not ok');
                 }

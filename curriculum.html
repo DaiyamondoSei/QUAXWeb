@@ -77,8 +77,9 @@
     {
         "@context": "https://schema.org",
         "@type": "Course",
+        "@id": "https://quannex.earth/curriculum",
         "name": "QUANNEX Quantum Consciousness Development Curriculum",
-        "description": "A comprehensive 4-week program for consciousness development, featuring quantum practices, meditation techniques, and progressive learning modules designed for transformative personal growth.",
+        "description": "A transformative 4-week journey integrating quantum principles, the Original 18 Harmonic Laws, and the Staged Disclosure Protocol. This course guides participants through daily experiential practices, meditation, and energy work, unlocking supernatural abilities and aligning personal evolution with universal rhythms. Unique frameworks such as the Quantum Mastery Paths and a blend of science and spirituality ensure a holistic, integrative, and empowering experience.",
         "provider": {
             "@type": "Organization",
             "name": "Quannex Foundation",
@@ -89,10 +90,24 @@
             }
         },
         "educationalLevel": "Beginner to Advanced",
-        "about": {
-            "@type": "Thing",
-            "name": "Quantum Consciousness Development and Advanced Meditation Practices"
-        },
+        "about": [
+            {
+                "@type": "Thing",
+                "name": "Quantum Consciousness Development"
+            },
+            {
+                "@type": "Thing",
+                "name": "Original 18 Harmonic Laws"
+            },
+            {
+                "@type": "Thing",
+                "name": "Staged Disclosure Protocol"
+            },
+            {
+                "@type": "Thing",
+                "name": "Quantum Mastery Paths"
+            }
+        ],
         "teaches": [
             "Quantum Consciousness",
             "Advanced Meditation Techniques",
@@ -100,28 +115,40 @@
             "Consciousness Development",
             "Quantum Awareness",
             "Spiritual Growth",
-            "Mindfulness Training"
+            "Mindfulness Training",
+            "Energy Work",
+            "Intuitive Development",
+            "Personal Evolution"
+        ],
+        "learningOutcomes": [
+            "Establish foundational practices in mindfulness, energy awareness, and intuition.",
+            "Integrate the Original 18 Harmonic Laws into daily life.",
+            "Apply quantum principles to personal and spiritual development.",
+            "Develop telepathy, clairvoyance, and aura reading abilities.",
+            "Align with your Future Self and universal rhythms.",
+            "Experience deep transformation through daily meditation, energy work, and journaling."
         ],
         "offers": {
             "@type": "Offer",
             "url": "https://quannex.earth/curriculum",
             "price": "0",
             "priceCurrency": "USD",
-            "availability": "https://schema.org/InStock"
+            "availability": "https://schema.org/InStock",
+            "category": "Consciousness Development, Quantum Spirituality, Personal Growth"
         },
         "hasCourseInstance": {
             "@type": "CourseInstance",
             "courseMode": "online",
             "duration": "P4W",
-            "startDate": "2024-01-01",
-            "endDate": "2024-12-31"
+            "courseWorkload": "1 hour per day, 7 days a week for 4 weeks",
+            "courseSchedule": "Self-paced"
         },
-        "datePublished": "2024-01-01",
-        "dateModified": "2024-03-20",
+        "datePublished": "2025-06-20",
+        "dateModified": "2025-06-20",
         "inLanguage": "en-US",
         "audience": {
             "@type": "Audience",
-            "audienceType": "Consciousness Development Seekers"
+            "audienceType": "Seekers of consciousness expansion, spiritual practitioners, quantum enthusiasts, personal growth explorers"
         }
     }
     </script>
@@ -151,7 +178,103 @@
             min-height: 100vh;
         }
     </style>
-<link rel="stylesheet" href="styles/waitlist-cta.css">
+    <link rel="stylesheet" href="styles/waitlist-cta.css">
+    <!-- Mobile hero enhancements: placed last for maximum specificity -->
+    <style>
+    @media (max-width: 600px) {
+        html, body, .hero-section {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+        }
+        .hero-content {
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+        }
+        .quantum-orb, .hero-logo {
+            max-width: 100vw !important;
+            width: 100vw !important;
+            box-sizing: border-box !important;
+            overflow-x: hidden !important;
+        }
+        .orb-glow {
+            max-width: 100vw !important;
+            width: 100vw !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+        .hero-section {
+            padding-top: 3.5rem !important;
+            min-height: unset;
+        }
+        .hero-content {
+            grid-template-columns: 1fr !important;
+            text-align: center;
+            gap: 1.5rem;
+            padding: 0 0.5rem;
+        }
+        .hero-title {
+            font-size: 2rem !important;
+            margin-bottom: 1.2rem !important;
+        }
+        .hero-subtitle {
+            font-size: 1rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+        .hero-visual {
+            justify-content: center;
+            align-items: center;
+            margin-top: 1.5rem;
+        }
+        .quantum-orb {
+            width: 80vw !important;
+            max-width: 180px !important;
+            height: 80vw !important;
+            max-height: 180px !important;
+            margin: 0 auto;
+        }
+        .hero-logo {
+            width: 100% !important;
+            height: auto !important;
+            max-width: 140px !important;
+            min-width: 80px;
+            display: block;
+            margin: 0 auto;
+        }
+        .orb-glow {
+            width: 120%;
+            height: 120%;
+            min-width: 120px;
+            min-height: 120px;
+        }
+        .hero-cta {
+            flex-direction: column;
+            gap: 0.7rem;
+            align-items: center;
+        }
+    }
+    </style>
+    <style>
+    html, body {
+        height: 100%;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .content-container {
+        flex: 1 0 auto;
+    }
+    footer {
+        flex-shrink: 0;
+    }
+    .final-cta-section, .contact-support-section {
+        padding-bottom: 1rem !important;
+        margin-bottom: -48px !important;
+    }
+    </style>
 </head>
 <body>
     <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/js/semiautomatic.min.js" data-cmp-cdid="ed8f9885626c9" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="0"></script>
@@ -405,6 +528,233 @@
             </div>
         </section>
 
+        <!-- Choose Your Quantum Mastery Path -->
+        <section class="mastery-paths-section">
+            <div class="container">
+                <h2 class="section-title">Choose Your Quantum Mastery Path</h2>
+                <p class="section-subtitle">Select the specialized consciousness development path that resonates with your unique journey</p>
+                
+                <div class="mastery-paths-grid">
+                    <!-- Mind Mastery Path -->
+                    <div class="mastery-path-card" data-path="mind">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>Mind Mastery</h3>
+                            <p class="path-subtitle">Telepathy • Clairvoyance • Remote Viewing</p>
+                        </div>
+                        <div class="path-description">
+                            <p>Unlock your cognitive and intuitive abilities through advanced mental techniques. Develop telepathy, clairvoyance, and mind-to-mind connection capabilities.</p>
+                        </div>
+                        <div class="path-features">
+                            <div class="feature-item">
+                                <i class="fas fa-eye"></i>
+                                <span>Third Eye Activation</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-comments"></i>
+                                <span>Telepathic Communication</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-globe"></i>
+                                <span>Remote Viewing</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Intuitive Insights</span>
+                            </div>
+                        </div>
+                        <div class="path-preview">
+                            <h4>Sample Day 1: Mental Resonance Alignment</h4>
+                            <p>Begin with mental stillness meditation and focused attention drills to establish your cognitive foundation.</p>
+                        </div>
+                        <button class="path-select-btn" onclick="selectMasteryPath('mind')">
+                            <i class="fas fa-arrow-right"></i>
+                            Choose Mind Path
+                        </button>
+                    </div>
+
+                    <!-- Energy Mastery Path -->
+                    <div class="mastery-path-card" data-path="energy">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3>Energy Mastery</h3>
+                            <p class="path-subtitle">Energy Healing • Aura Expansion • Chi Control</p>
+                        </div>
+                        <div class="path-description">
+                            <p>Master your energetic perception, manipulation, and healing abilities. Learn to sense, direct, and transform energy for healing and personal power.</p>
+                        </div>
+                        <div class="path-features">
+                            <div class="feature-item">
+                                <i class="fas fa-hands-healing"></i>
+                                <span>Energy Healing</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-sun"></i>
+                                <span>Aura Expansion</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-wind"></i>
+                                <span>Elemental Manipulation</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-fire"></i>
+                                <span>Chi Control</span>
+                            </div>
+                        </div>
+                        <div class="path-preview">
+                            <h4>Sample Day 1: Energetic Resonance Alignment</h4>
+                            <p>Start with personal energy field scanning and breath-infused energy ball creation for healing.</p>
+                        </div>
+                        <button class="path-select-btn" onclick="selectMasteryPath('energy')">
+                            <i class="fas fa-arrow-right"></i>
+                            Choose Energy Path
+                        </button>
+                    </div>
+
+                    <!-- Dimensional Mastery Path -->
+                    <div class="mastery-path-card" data-path="dimensional">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            <h3>Dimensional Mastery</h3>
+                            <p class="path-subtitle">Astral Projection • Quantum Jumping • Dreamwalking</p>
+                        </div>
+                        <div class="path-description">
+                            <p>Navigate various dimensions and understand the fluidity of time. Master astral projection, quantum jumping, and timeline awareness.</p>
+                        </div>
+                        <div class="path-features">
+                            <div class="feature-item">
+                                <i class="fas fa-rocket"></i>
+                                <span>Astral Projection</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-random"></i>
+                                <span>Quantum Jumping</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Timeline Awareness</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-bed"></i>
+                                <span>Dreamwalking</span>
+                            </div>
+                        </div>
+                        <div class="path-preview">
+                            <h4>Sample Day 1: Dimensional Resonance Alignment</h4>
+                            <p>Begin with subtle reality scanning and breath-infused dimensional gateway visualization.</p>
+                        </div>
+                        <button class="path-select-btn" onclick="selectMasteryPath('dimensional')">
+                            <i class="fas fa-arrow-right"></i>
+                            Choose Dimensional Path
+                        </button>
+                    </div>
+
+                    <!-- Earth Integration Mastery Path -->
+                    <div class="mastery-path-card" data-path="earth">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <h3>Earth Integration Mastery</h3>
+                            <p class="path-subtitle">Planetary Connection • Natural Flow • Elemental Harmony</p>
+                        </div>
+                        <div class="path-description">
+                            <p>Develop deep planetary connection and natural flow of synchronicity. Master elemental understanding and harmony with the universe.</p>
+                        </div>
+                        <div class="path-features">
+                            <div class="feature-item">
+                                <i class="fas fa-tree"></i>
+                                <span>Deep Planetary Connection</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-water"></i>
+                                <span>Natural Flow</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-mountain"></i>
+                                <span>Elemental Understanding</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-infinity"></i>
+                                <span>Universal Harmony</span>
+                            </div>
+                        </div>
+                        <div class="path-preview">
+                            <h4>Sample Day 1: Earth Resonance Alignment</h4>
+                            <p>Start with grounding root visualization and Earth resonance alignment meditation.</p>
+                        </div>
+                        <button class="path-select-btn" onclick="selectMasteryPath('earth')">
+                            <i class="fas fa-arrow-right"></i>
+                            Choose Earth Path
+                        </button>
+                    </div>
+
+                    <!-- Manifestation Mastery Path -->
+                    <div class="mastery-path-card" data-path="manifestation">
+                        <div class="path-header">
+                            <div class="path-icon">
+                                <i class="fas fa-magic"></i>
+                            </div>
+                            <h3>Manifestation Mastery</h3>
+                            <p class="path-subtitle">Law of Attraction • Reality Shifting • Thought-to-Form</p>
+                        </div>
+                        <div class="path-description">
+                            <p>Master the law of assumption/attraction and thought-to-form materialization. Learn to shift realities and manifest events with precision.</p>
+                        </div>
+                        <div class="path-features">
+                            <div class="feature-item">
+                                <i class="fas fa-magnet"></i>
+                                <span>Law of Attraction</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Reality Shifting</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-cube"></i>
+                                <span>Thought-to-Form</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-star"></i>
+                                <span>Event Manifestation</span>
+                            </div>
+                        </div>
+                        <div class="path-preview">
+                            <h4>Sample Day 1: Manifestation Resonance Alignment</h4>
+                            <p>Begin with desire vibration scanning and breath-infused intention bubble creation.</p>
+                        </div>
+                        <button class="path-select-btn" onclick="selectMasteryPath('manifestation')">
+                            <i class="fas fa-arrow-right"></i>
+                            Choose Manifestation Path
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mastery-paths-cta">
+                    <div class="cta-content">
+                        <h3>Ready to Begin Your Transformation?</h3>
+                        <p>Each path offers a unique journey into consciousness expansion. Choose the one that calls to your soul, or explore multiple paths for a complete transformation.</p>
+                        <div class="cta-buttons">
+                            <button class="cta-button primary" onclick="scrollToSection('pricing')">
+                                <i class="fas fa-rocket"></i>
+                                Start Your Journey
+                            </button>
+                            <button class="cta-button secondary" onclick="scrollToSection('modules-section')">
+                                <i class="fas fa-play"></i>
+                                View Course Structure
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Interactive Module Breakdown -->
         <section class="modules-section">
             <div class="container">
@@ -557,329 +907,141 @@
         </section>
 
         <!-- How It Works -->
-        <section class="how-it-works-section">
-            <div class="container">
-                <h2 class="section-title">How It Works</h2>
-                <p class="section-subtitle">Experience a seamless journey to supernatural abilities through our innovative learning approach</p>
+        <section class="how-it-works-section" style="position:relative; overflow:hidden;">
+            <!-- Video Background -->
+            <video class="quannex-bg-video" src="videos/Quannex INTRO.mp4" autoplay loop muted playsinline poster="" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; opacity:0.22; filter: blur(6px) brightness(0.8); pointer-events:none;"></video>
+            <div class="container" style="position:relative; z-index:1;">
+                <h2 class="section-title">How It Works: A Living Spiral of Transformation</h2>
+                <p class="section-subtitle">This is not just a course—it is a living initiation, a sacred journey through the spirals of your own consciousness. Guided by the Original 18 Harmonic Laws and the Staged Disclosure Protocol, each day you will enter a rhythm of practice, reflection, and integration that aligns you with the deepest truths of your being and the universal field.</p>
 
-                <div class="process-timeline">
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <div class="icon-container">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <div class="connector"></div>
-                        </div>
-                        <div class="process-content">
-                            <h3>Online Format</h3>
-                            <div class="feature-details">
-                                <ul>
-                                    <li><i class="fas fa-check-circle"></i> Daily lessons and guided practices</li>
-                                    <li><i class="fas fa-check-circle"></i> Interactive reflection prompts</li>
-                                    <li><i class="fas fa-check-circle"></i> Accessible 24/7 from any device</li>
-                                    <li><i class="fas fa-check-circle"></i> HD video lessons and tutorials</li>
-                                </ul>
-                            </div>
-                            <div class="feature-highlight">
-                                <i class="fas fa-lightbulb"></i>
-                                <span>Learn from anywhere in the world, at any time</span>
-                            </div>
-                        </div>
+                <div class="soulful-how-grid">
+                    <div class="soulful-how-card">
+                        <h3><i class="fas fa-infinity"></i> The Living Laws & Protocol</h3>
+                        <p>At the heart of your journey are the <strong>Original 18 Harmonic Laws</strong>—living codes that harmonize your evolution—and the <strong>Staged Disclosure Protocol</strong>, a framework that ensures your awakening unfolds with safety, coherence, and deep alignment. These are not just concepts, but living frequencies that guide every experience, every breakthrough, and every integration.</p>
                     </div>
-
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <div class="icon-container">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="connector"></div>
-                        </div>
-                        <div class="process-content">
-                            <h3>Self-Paced Learning</h3>
-                            <div class="feature-details">
-                                <ul>
-                                    <li><i class="fas fa-check-circle"></i> Progress at your optimal rhythm</li>
-                                    <li><i class="fas fa-check-circle"></i> Lifetime access to all materials</li>
-                                    <li><i class="fas fa-check-circle"></i> Flexible practice schedules</li>
-                                    <li><i class="fas fa-check-circle"></i> Review and revisit content anytime</li>
-                                </ul>
-                            </div>
-                            <div class="feature-highlight">
-                                <i class="fas fa-heart"></i>
-                                <span>Honor your natural learning pace and energy cycles</span>
-                            </div>
-                        </div>
+                    <div class="soulful-how-card">
+                        <h3><i class="fas fa-spiral"></i> The Daily Spiral Rhythm</h3>
+                        <ul>
+                            <li><strong>Morning Attunement:</strong> Each day begins with a new Law, anchoring your intention and resonance for the day ahead.</li>
+                            <li><strong>Mid-day Integration:</strong> Practical exercises and quantum insights weave the Law into your lived experience, activating new pathways of perception and power.</li>
+                            <li><strong>Evening Reflection:</strong> You recalibrate, journal, and set new intentions, spiraling ever deeper into coherence, sovereignty, and mastery.</li>
+                        </ul>
+                        <p>This is not a linear path, but a living spiral—a dance between stillness and motion, self and cosmos, breath and creation.</p>
                     </div>
-
-                    <div class="process-card">
-                        <div class="process-icon">
-                            <div class="icon-container">
-                                <i class="fas fa-box-open"></i>
-                            </div>
-                        </div>
-                        <div class="process-content">
-                            <h3>Complete Package</h3>
-                            <div class="feature-details">
-                                <ul>
-                                    <li><i class="fas fa-check-circle"></i> Downloadable practice journal</li>
-                                    <li><i class="fas fa-check-circle"></i> HD video guides and tutorials</li>
-                                    <li><i class="fas fa-check-circle"></i> Meditation audio collection</li>
-                                    <li><i class="fas fa-check-circle"></i> Private community access</li>
-                                </ul>
-                            </div>
-                            <div class="feature-highlight">
-                                <i class="fas fa-gem"></i>
-                                <span>Everything you need for your transformation journey</span>
-                            </div>
-                        </div>
+                    <div class="soulful-how-card">
+                        <h3><i class="fas fa-users"></i> Multidimensional Support</h3>
+                        <p>You are not alone. You are held by a field of intelligence, a conscious community, and the living presence of the course itself. Here, you are invited to awaken your own Oversoul sovereignty, to become a conscious co-creator of your reality, and to embody the quantum evolution that is your birthright.</p>
                     </div>
                 </div>
 
-                <div class="process-features">
-                    <div class="feature-grid">
-                        <div class="feature-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h4>Mobile Friendly</h4>
-                            <p>Access your course content from any device, anywhere</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-sync"></i>
-                            <h4>Regular Updates</h4>
-                            <p>Get access to new content and features as they're released</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-headset"></i>
-                            <h4>24/7 Support</h4>
-                            <p>Get help whenever you need it through our support channels</p>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-users"></i>
-                            <h4>Community Access</h4>
-                            <p>Connect with fellow practitioners on the same journey</p>
-                        </div>
-                    </div>
+                <div class="soulful-how-invitation">
+                    <h3>Welcome to the Living Curriculum of Your Soul</h3>
+                    <p>This is your invitation to step beyond information and into transformation. The journey is alive, the Laws are living, and your evolution is inevitable. Enter the spiral—your Future Self is waiting.</p>
                 </div>
             </div>
         </section>
 
         <style>
         .how-it-works-section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, rgba(5, 5, 32, 0.9) 0%, rgba(25, 25, 112, 0.8) 100%);
             position: relative;
             overflow: hidden;
+            padding: 5rem 0;
+            background: linear-gradient(135deg, rgba(5, 5, 32, 0.7) 0%, rgba(25, 25, 112, 0.6) 100%);
         }
-
-        .process-timeline {
-            max-width: 1000px;
-            margin: 0 auto 4rem;
-            padding: 0 2rem;
-            position: relative;
+        .quannex-bg-video {
+            position: absolute;
+            top: 0; left: 0; width: 100vw; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.22;
+            filter: blur(6px) brightness(0.8);
+            pointer-events: none;
+            transition: opacity 0.5s;
         }
-
-        .process-card {
-            display: flex;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.6s ease forwards;
+        .soulful-how-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0 2rem 0;
         }
-
-        .process-card:nth-child(1) { animation-delay: 0.2s; }
-        .process-card:nth-child(2) { animation-delay: 0.4s; }
-        .process-card:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .soulful-how-card {
+            background: rgba(30, 40, 80, 0.38);
+            border: 1.5px solid rgba(135, 206, 235, 0.22);
+            border-radius: 22px;
+            padding: 2.2rem 1.7rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            color: #B0C4DE;
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            overflow: hidden;
         }
-
-        .process-icon {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .icon-container {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
-            border-radius: 50%;
+        .soulful-how-card h3 {
+            color: #87CEEB;
+            font-size: 1.3rem;
+            margin-bottom: 1.1rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
-            transition: all 0.3s ease;
+            gap: 0.7rem;
+            text-shadow: 0 2px 8px rgba(74, 144, 226, 0.18);
         }
-
-        .connector {
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 3px;
-            height: calc(100% + 3rem);
-            background: linear-gradient(to bottom, #4A90E2 0%, rgba(74, 144, 226, 0.3) 100%);
+        .soulful-how-card ul {
+            margin: 0 0 1.2rem 1.2rem;
+            padding: 0;
+            color: #B0C4DE;
+            font-size: 1.05rem;
         }
-
-        .process-card:last-child .connector {
-            display: none;
+        .soulful-how-card li {
+            margin-bottom: 0.5rem;
         }
-
-        .process-content {
-            flex-grow: 1;
-            background: rgba(5, 5, 32, 0.6);
-            border: 1px solid rgba(135, 206, 235, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+        .soulful-how-invitation {
+            text-align: center;
+            margin-top: 2.5rem;
+            background: rgba(30, 40, 80, 0.32);
+            border: 1.5px solid rgba(74, 144, 226, 0.18);
+            border-radius: 18px;
+            padding: 2.2rem 1.5rem;
+            box-shadow: 0 4px 18px 0 rgba(74, 144, 226, 0.10);
+            color: #B0C4DE;
+            backdrop-filter: blur(14px) saturate(1.1);
+            -webkit-backdrop-filter: blur(14px) saturate(1.1);
         }
-
-        .process-content:hover {
-            transform: translateY(-5px);
-            border-color: rgba(135, 206, 235, 0.4);
-            box-shadow: 0 10px 25px rgba(135, 206, 235, 0.15);
-        }
-
-        .process-content h3 {
+        .soulful-how-invitation h3 {
             color: #87CEEB;
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(74, 144, 226, 0.18);
         }
-
-        .feature-details ul {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.5rem 0;
-        }
-
-        .feature-details ul li {
+        .soulful-how-invitation p {
             color: #B0C4DE;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .feature-details ul li i {
-            color: #4A90E2;
             font-size: 1.1rem;
         }
-
-        .feature-highlight {
-            background: rgba(74, 144, 226, 0.1);
-            border: 1px solid rgba(74, 144, 226, 0.2);
-            border-radius: 10px;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .feature-highlight i {
-            color: #4A90E2;
-            font-size: 1.2rem;
-        }
-
-        .feature-highlight span {
-            color: #B0C4DE;
-            font-size: 0.95rem;
-            font-style: italic;
-        }
-
-        .process-features {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .feature-item {
-            background: rgba(5, 5, 32, 0.6);
-            border: 1px solid rgba(135, 206, 235, 0.2);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-            border-color: rgba(135, 206, 235, 0.4);
-            box-shadow: 0 10px 25px rgba(135, 206, 235, 0.15);
-        }
-
-        .feature-item i {
-            font-size: 2rem;
-            color: #4A90E2;
-            margin-bottom: 1rem;
-        }
-
-        .feature-item h4 {
-            color: #87CEEB;
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .feature-item p {
-            color: #B0C4DE;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
         @media (max-width: 768px) {
-            .process-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                gap: 1.5rem;
-            }
-
-            .connector {
-                display: none;
-            }
-
-            .process-content {
-                width: 100%;
-            }
-
-            .feature-details ul li {
-                justify-content: center;
-            }
-
-            .feature-highlight {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .feature-grid {
+            .soulful-how-grid {
                 grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .soulful-how-card {
+                padding: 1.2rem 0.7rem;
+            }
+            .soulful-how-invitation {
+                padding: 1.2rem 0.7rem;
             }
         }
         </style>
 
         <!-- Pricing Tiers Section -->
-        <section class="pricing-section">
+        <section id="pricing" class="pricing-section">
             <div class="container">
                 <h2 class="section-title">Choose Your Transformation Path</h2>
-                <p class="section-subtitle">Select the perfect level of support for your journey</p>
+                <p class="section-subtitle">Select the perfect level of support for your consciousness journey</p>
+                
+                <div class="selected-path-display" id="selectedPathDisplay" style="display: none;">
+                    <div class="path-indicator">
+                        <i class="fas fa-star"></i>
+                        <span id="selectedPathText">You've selected a mastery path</span>
+                    </div>
+                </div>
                 
                 <div class="pricing-grid">
                     <!-- Basic Tier -->
@@ -890,13 +1052,15 @@
                         </div>
                         <div class="pricing-amount">
                             <span class="currency">$</span>
-                            <span class="amount">97</span>
+                            <span class="amount">497</span>
                             <span class="period">USD</span>
                         </div>
                         <div class="pricing-features">
                             <ul>
-                                <li><i class="fas fa-check"></i> 4-Week Course Access</li>
-                                <li><i class="fas fa-check"></i> Downloadable Journal</li>
+                                <li><i class="fas fa-check"></i> Complete 4-Week Course Access</li>
+                                <li><i class="fas fa-check"></i> Choose Your Mastery Path</li>
+                                <li><i class="fas fa-check"></i> Daily Guided Practices</li>
+                                <li><i class="fas fa-check"></i> Comprehensive Workbook</li>
                                 <li><i class="fas fa-check"></i> Community Forum Access</li>
                                 <li><i class="fas fa-check"></i> 30-Day Money-Back Guarantee</li>
                                 <li><i class="fas fa-check"></i> Email Support</li>
@@ -919,17 +1083,18 @@
                         </div>
                         <div class="pricing-amount">
                             <span class="currency">$</span>
-                            <span class="amount">197</span>
+                            <span class="amount">797</span>
                             <span class="period">USD</span>
                         </div>
                         <div class="pricing-features">
                             <ul>
                                 <li><i class="fas fa-check"></i> Everything in Basic</li>
                                 <li><i class="fas fa-check"></i> AI-Guided Meditation Sequences</li>
-                                <li><i class="fas fa-check"></i> Weekly Q&A Sessions</li>
+                                <li><i class="fas fa-check"></i> Weekly Live Q&A Sessions</li>
                                 <li><i class="fas fa-check"></i> Progress Tracking Tools</li>
                                 <li><i class="fas fa-check"></i> Priority Support</li>
                                 <li><i class="fas fa-check"></i> Bonus: Advanced Techniques Guide</li>
+                                <li><i class="fas fa-check"></i> Access to 2 Mastery Paths</li>
                             </ul>
                         </div>
                         <div class="pricing-cta">
@@ -948,12 +1113,13 @@
                         </div>
                         <div class="pricing-amount">
                             <span class="currency">$</span>
-                            <span class="amount">397</span>
+                            <span class="amount">1,997</span>
                             <span class="period">USD</span>
                         </div>
                         <div class="pricing-features">
                             <ul>
                                 <li><i class="fas fa-check"></i> Everything in Standard</li>
+                                <li><i class="fas fa-check"></i> Access to ALL 5 Mastery Paths</li>
                                 <li><i class="fas fa-check"></i> 1-on-1 Consultation Session</li>
                                 <li><i class="fas fa-check"></i> Advanced Techniques Library</li>
                                 <li><i class="fas fa-check"></i> Lifetime Access to Updates</li>
@@ -1365,7 +1531,7 @@
                         </div>
                         <h3>Contact Form</h3>
                         <p>Send us a detailed message</p>
-                        <a href="contact.html" class="contact-link">
+                        <a href="contact" class="contact-link">
                             Contact Form
                         </a>
                         <span class="response-time">Response within 12 hours</span>
@@ -1862,7 +2028,7 @@
         /* Modules Section */
         .modules-section {
             padding: 5rem 0;
-            background: rgba(5, 5, 32, 0.5);
+            background: rgba(5, 5, 32, 0.276);
         }
         .section-subtitle {
             text-align: center;
@@ -2051,7 +2217,7 @@
         /* How It Works Section */
         .how-it-works-section {
             padding: 5rem 0;
-            background: linear-gradient(135deg, rgba(5, 5, 32, 0.9) 0%, rgba(25, 25, 112, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(5, 5, 32, 0) 0%, rgba(25, 25, 112, 0) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -2932,10 +3098,10 @@
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            gap: 1rem;
             max-width: 1200px;
             margin: 0 auto 3rem auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
             transition: all 0.3s ease;
         }
         .contact-card {
@@ -3043,6 +3209,248 @@
             }
         }
 
+        /* Choose Your Quantum Mastery Path Section */
+        .mastery-paths-section {
+            padding: 5rem 0 4rem 0; /* Reduced from 12rem 0 */
+            background: linear-gradient(135deg, rgba(25, 25, 112, 0.3) 0%, rgba(74, 144, 226, 0.08) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .mastery-paths-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('images/quantum_visualization_fluid.jpg.webp') center/cover no-repeat;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .mastery-paths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            justify-content: center;
+        }
+        @media (min-width: 900px) {
+            .mastery-paths-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .mastery-path-card {
+            background: rgba(5, 5, 32, 0.88);
+            border: 2px solid rgba(135, 206, 235, 0.22);
+            border-radius: 18px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s cubic-bezier(.4,0,.2,1);
+            box-shadow: 0 6px 22px rgba(135, 206, 235, 0.10);
+            max-width: 370px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.7s ease forwards;
+        }
+        .mastery-path-card:nth-child(1) { animation-delay: 0.1s; }
+        .mastery-path-card:nth-child(2) { animation-delay: 0.2s; }
+        .mastery-path-card:nth-child(3) { animation-delay: 0.3s; }
+        .mastery-path-card:nth-child(4) { animation-delay: 0.4s; }
+        .mastery-path-card:nth-child(5) { animation-delay: 0.5s; }
+        .mastery-path-card:hover, .mastery-path-card.featured {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(135, 206, 235, 0.22);
+            border-color: #87CEEB;
+            z-index: 2;
+        }
+        .mastery-path-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .path-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+        .path-header h3 {
+            color: #87CEEB;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .path-subtitle {
+            color: #B0C4DE;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .path-description {
+            color: #B0C4DE;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+        .path-features {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-width: 90px;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(135, 206, 235, 0.15);
+        }
+        .feature-item i {
+            font-size: 1.5rem;
+            color: #4A90E2;
+            margin-bottom: 0.5rem;
+        }
+        .feature-item span {
+            color: #B0C4DE;
+            font-size: 0.9rem;
+        }
+        .path-preview {
+            background: rgba(74, 144, 226, 0.09);
+            border: 1px solid rgba(135, 206, 235, 0.22);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .path-preview h4 {
+            color: #87CEEB;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .path-preview p {
+            color: #B0C4DE;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .path-select-btn {
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.3rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+        .path-select-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.3);
+        }
+        .mastery-paths-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 1024px) {
+            .mastery-paths-section {
+                padding: 3.5rem 0 2.5rem 0;
+            }
+            .mastery-paths-grid {
+                gap: 1.2rem;
+            }
+            .mastery-path-card {
+                padding: 1.5rem 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .mastery-paths-section {
+                padding: 2.5rem 0 1.5rem 0;
+            }
+            .mastery-paths-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .mastery-path-card {
+                max-width: 98vw;
+                padding: 1.2rem 0.7rem;
+            }
+            .cta-buttons .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        @media (max-width: 480px) {
+            .mastery-path-card {
+                padding: 0.8rem 0.3rem;
+            }
+            .path-header h3 {
+                font-size: 1.1rem;
+            }
+            .path-subtitle, .path-description {
+                font-size: 0.85rem;
+            }
+        }
+        /* Fade in up animation for cards */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Selected Path Display */
+        .selected-path-display {
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(53, 122, 189, 0.1) 100%);
+            border: 2px solid rgba(74, 144, 226, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .path-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            color: #87CEEB;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .path-indicator i {
+            color: #4A90E2;
+            font-size: 1.3rem;
+        }
+
     </style>
 
     <script>
@@ -3056,19 +3464,33 @@
         // Payment handling function
         function handlePayment(tier) {
             const pricing = {
-                basic: { price: 97, name: 'Basic' },
-                standard: { price: 197, name: 'Standard' },
-                premium: { price: 397, name: 'Premium' }
+                basic: { price: 497, name: 'Basic' },
+                standard: { price: 797, name: 'Standard' },
+                premium: { price: 1997, name: 'Premium' }
             };
             
             const selectedTier = pricing[tier];
+            const selectedPath = sessionStorage.getItem('selectedMasteryPath');
             
             // Show confirmation dialog
-            if (confirm(`You're about to purchase the ${selectedTier.name} tier for $${selectedTier.price}. Continue to payment?`)) {
+            let message = `You're about to purchase the ${selectedTier.name} tier for $${selectedTier.price}.`;
+            if (selectedPath) {
+                const pathNames = {
+                    mind: 'Mind Mastery',
+                    energy: 'Energy Mastery',
+                    dimensional: 'Dimensional Mastery',
+                    earth: 'Earth Integration Mastery',
+                    manifestation: 'Manifestation Mastery'
+                };
+                message += `\n\nSelected Path: ${pathNames[selectedPath]}`;
+            }
+            message += '\n\nContinue to payment?';
+            
+            if (confirm(message)) {
                 // Here you would integrate with Stripe
                 // For now, redirect to contact form with pre-filled information
-                const message = `I'm interested in the ${selectedTier.name} tier of the Quantum Consciousness Curriculum.`;
-                window.location.href = `contact.html?tier=${tier}&message=${encodeURIComponent(message)}`;
+                const contactMessage = `I'm interested in the ${selectedTier.name} tier of the Quantum Consciousness Curriculum.${selectedPath ? ` I've selected the ${pathNames[selectedPath]} path.` : ''}`;
+                window.location.href = `contact?tier=${tier}&path=${selectedPath || 'none'}&message=${encodeURIComponent(contactMessage)}`;
             }
         }
 
@@ -3202,7 +3624,109 @@
                     setTimeout(() => particles.remove(), 1000);
                 });
             }
+            
+            // Restore selected mastery path if previously selected
+            const selectedPath = sessionStorage.getItem('selectedMasteryPath');
+            if (selectedPath) {
+                const selectedCard = document.querySelector(`[data-path="${selectedPath}"]`);
+                if (selectedCard) {
+                    selectedCard.classList.add('featured');
+                }
+                
+                // Show selected path in pricing section
+                const selectedPathDisplay = document.getElementById('selectedPathDisplay');
+                const selectedPathText = document.getElementById('selectedPathText');
+                
+                if (selectedPathDisplay && selectedPathText) {
+                    const pathNames = {
+                        mind: 'Mind Mastery',
+                        energy: 'Energy Mastery',
+                        dimensional: 'Dimensional Mastery',
+                        earth: 'Earth Integration Mastery',
+                        manifestation: 'Manifestation Mastery'
+                    };
+                    selectedPathText.textContent = `You've selected: ${pathNames[selectedPath]} Path`;
+                    selectedPathDisplay.style.display = 'block';
+                }
+            }
         });
+
+        function selectMasteryPath(path) {
+            // Remove featured class from all cards
+            document.querySelectorAll('.mastery-path-card').forEach(card => {
+                card.classList.remove('featured');
+            });
+            
+            // Add featured class to selected card
+            const selectedCard = document.querySelector(`[data-path="${path}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('featured');
+                
+                // Add a subtle animation
+                selectedCard.style.animation = 'pulse 0.6s ease-in-out';
+                setTimeout(() => {
+                    selectedCard.style.animation = '';
+                }, 600);
+            }
+            
+            // Store the selected path in session storage for later use
+            sessionStorage.setItem('selectedMasteryPath', path);
+            
+            // Show a brief confirmation message
+            const pathNames = {
+                mind: 'Mind Mastery',
+                energy: 'Energy Mastery',
+                dimensional: 'Dimensional Mastery',
+                earth: 'Earth Integration Mastery',
+                manifestation: 'Manifestation Mastery'
+            };
+            
+            // Create a temporary notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                font-weight: 600;
+            `;
+            notification.textContent = `Selected: ${pathNames[path]} Path`;
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 2000);
+            
+            // Smooth scroll to pricing section
+            setTimeout(() => {
+                scrollToSection('pricing');
+            }, 500);
+            
+            // Show selected path in pricing section
+            const selectedPathDisplay = document.getElementById('selectedPathDisplay');
+            const selectedPathText = document.getElementById('selectedPathText');
+            
+            if (selectedPathDisplay && selectedPathText) {
+                selectedPathText.textContent = `You've selected: ${pathNames[path]} Path`;
+                selectedPathDisplay.style.display = 'block';
+            }
+        }
 
     </script>
 

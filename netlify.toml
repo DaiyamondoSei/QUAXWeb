@@ -159,12 +159,6 @@
   force = true
 
 [[redirects]]
-  from = "/success.html"
-  to = "/"
-  status = 301
-  force = true
-
-[[redirects]]
   from = "/privacy.html"
   to = "/privacy"
   status = 301
