@@ -2,68 +2,115 @@
   position: fixed;
   bottom: 104px; /* Above back-to-top button */
   right: 32px;
-  width: 64px;
-  height: 64px;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(12px);
+  width: 88px;
+  height: 88px;
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(16px);
   border-radius: 50%;
-  box-shadow: 0 4px 32px 0 #7f5cff55, 0 0 0 4px #00e6d855;
+  box-shadow: 0 4px 32px 0 #7f5cff77, 0 0 0 6px #00e6d877;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 1000;
-  border: 1.5px solid #7f5cff44;
-  transition: box-shadow 0.2s, background 0.2s;
+  border: 2px solid #7f5cff66;
+  transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
 }
 #quannex-chat-bubble:focus {
-  outline: 2px solid #00e6d8;
-  box-shadow: 0 0 0 6px #00e6d844, 0 4px 32px 0 #7f5cff55;
+  outline: 2.5px solid #00e6d8;
+  box-shadow: 0 0 0 8px #00e6d888, 0 4px 32px 0 #7f5cff77;
+}
+.quannex-logo-animated {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: quannex-pulse 2.2s infinite cubic-bezier(.4,0,.6,1);
+}
+@keyframes quannex-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 #00e6d822; }
+  70% { transform: scale(1.08); box-shadow: 0 0 24px 12px #00e6d822; }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 #00e6d822; }
 }
 #quannex-chat-bubble img {
-  width: 38px;
-  height: 38px;
-  filter: drop-shadow(0 0 8px #00e6d8cc);
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 0 12px #00e6d8cc);
+  transition: transform 0.2s;
+}
+#quannex-chat-bubble:hover img {
+  transform: scale(1.12) rotate(-4deg);
 }
 #quannex-chat-window {
   position: fixed;
   bottom: 180px;
   right: 32px;
-  width: 360px;
-  max-width: 95vw;
-  background: rgba(255,255,255,0.22);
-  backdrop-filter: blur(18px);
-  border-radius: 22px;
-  box-shadow: 0 8px 48px 0 #7f5cff55, 0 0 0 4px #00e6d855;
+  width: 400px;
+  max-width: 98vw;
+  background: rgba(255,255,255,0.28);
+  backdrop-filter: blur(22px);
+  border-radius: 28px;
+  box-shadow: 0 8px 48px 0 #7f5cff77, 0 0 0 6px #00e6d877;
   display: flex;
   flex-direction: column;
   z-index: 1001;
   overflow: hidden;
   font-family: 'Segoe UI', 'Arial', sans-serif;
-  border: 1.5px solid #7f5cff44;
+  border: 2px solid #7f5cff66;
+  animation: quannex-fadein 0.4s cubic-bezier(.4,0,.6,1);
+}
+@keyframes quannex-fadein {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+#quannex-chat-quantum-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 70% 30%, #00e6d822 0%, transparent 70%),
+              radial-gradient(circle at 30% 70%, #7f5cff22 0%, transparent 70%);
+  animation: quantum-bg-move 8s ease-in-out infinite alternate;
+}
+@keyframes quantum-bg-move {
+  0% { background-position: 70% 30%, 30% 70%; }
+  100% { background-position: 60% 40%, 40% 60%; }
+}
+#quannex-chat-window > *:not(#quannex-chat-quantum-bg) {
+  position: relative;
+  z-index: 1;
+}
+/* Accessibility: Ensure contrast and font size */
+#quannex-chat-window, #quannex-chat-header, #quannex-chat-messages, #quannex-chat-form, #quannex-chat-feedback {
+  font-size: 1.08rem;
+  color: #222;
 }
 #quannex-chat-header {
   background: linear-gradient(90deg, #7f5cff 60%, #00e6d8 100%);
   color: #fff;
-  padding: 18px 16px 16px 16px;
-  font-weight: 600;
+  padding: 22px 20px 18px 20px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 12px #7f5cff22;
+  box-shadow: 0 2px 16px #7f5cff33;
+  text-shadow: 0 2px 8px #7f5cff55;
 }
 #quannex-chat-header img {
   border-radius: 50%;
   background: #fff2;
-  box-shadow: 0 0 8px #00e6d8cc;
+  box-shadow: 0 0 12px #00e6d8cc;
+  width: 36px;
+  height: 36px;
 }
 #quannex-chat-close {
   background: none;
   border: none;
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 0 6px;
   transition: color 0.2s;
 }
 #quannex-chat-close:hover {
@@ -71,16 +118,15 @@
 }
 #quannex-chat-messages {
   flex: 1;
-  padding: 18px 16px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 0 0 18px 18px;
+  padding: 20px 18px 8px 18px;
+  background: rgba(255,255,255,0.13);
+  border-radius: 0 0 22px 22px;
   overflow-y: auto;
   max-height: 340px;
-  font-size: 1rem;
 }
 .quannex-message {
-  margin-bottom: 14px;
-  line-height: 1.6;
+  margin-bottom: 16px;
+  line-height: 1.7;
 }
 .quannex-message.user {
   text-align: right;
@@ -89,51 +135,98 @@
 .quannex-message.ai {
   text-align: left;
   color: #222;
-  background: rgba(127, 92, 255, 0.08);
-  border-radius: 12px;
-  padding: 10px 14px;
+  background: rgba(127, 92, 255, 0.10);
+  border-radius: 14px;
+  padding: 12px 16px;
   display: inline-block;
-  max-width: 90%;
-  box-shadow: 0 2px 8px #00e6d822;
+  max-width: 92%;
+  box-shadow: 0 2px 12px #00e6d822;
+}
+#quannex-chat-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 56px;
+}
+.quannex-logo-spinner {
+  animation: quannex-spin 1.2s linear infinite;
+  filter: drop-shadow(0 0 16px #00e6d8cc);
+}
+@keyframes quannex-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 #quannex-chat-form {
   display: flex;
   border-top: 1px solid #eee;
   background: rgba(255,255,255,0.18);
   backdrop-filter: blur(8px);
+  padding: 0 0 0 0;
 }
 #quannex-chat-input {
   flex: 1;
   border: none;
-  padding: 14px;
-  font-size: 1rem;
-  border-radius: 0 0 0 22px;
+  padding: 14px 12px;
+  font-size: 1.08rem;
+  border-radius: 0 0 0 28px;
   outline: none;
   background: transparent;
   color: #222;
+  resize: vertical;
+  min-height: 38px;
+  max-height: 90px;
+  line-height: 1.5;
 }
 #quannex-chat-form button[type="submit"] {
   background: linear-gradient(135deg, #7f5cff 60%, #00e6d8 100%);
   color: #fff;
   border: none;
-  border-radius: 0 0 22px 0;
-  font-size: 1.2rem;
-  padding: 0 22px;
+  border-radius: 0 0 28px 0;
+  font-size: 1.3rem;
+  padding: 0 26px;
   cursor: pointer;
   transition: background 0.2s;
 }
 #quannex-chat-form button[type="submit"]:hover {
   background: linear-gradient(135deg, #00e6d8 60%, #7f5cff 100%);
 }
+#quannex-chat-feedback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 16px 0;
+}
+#quannex-chat-feedback button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+#quannex-chat-feedback button:hover {
+  transform: scale(1.2);
+}
 @media (max-width: 600px) {
   #quannex-chat-window {
-    right: 8px;
-    bottom: 120px;
-    width: 98vw;
-    max-width: 98vw;
+    right: 4px;
+    bottom: 80px;
+    width: 99vw;
+    max-width: 99vw;
+    border-radius: 18px;
   }
   #quannex-chat-bubble {
-    right: 8px;
-    bottom: 40px;
+    right: 4px;
+    bottom: 16px;
+    width: 68px;
+    height: 68px;
+  }
+  .quannex-logo-animated {
+    width: 54px;
+    height: 54px;
+  }
+  #quannex-chat-bubble img {
+    width: 48px;
+    height: 48px;
   }
 } 

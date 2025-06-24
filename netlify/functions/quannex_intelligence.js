@@ -18,7 +18,7 @@ function cosineSimilarity(a, b) {
 let knowledge = null;
 function loadKnowledge() {
   if (!knowledge) {
-    const filePath = path.join(__dirname, '../../knowledge.json');
+    const filePath = path.join(__dirname, 'knowledge.json');
     knowledge = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
   }
   return knowledge;
