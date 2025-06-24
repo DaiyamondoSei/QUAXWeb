@@ -154,6 +154,20 @@
     <!-- Optimize resource loading -->
     <!-- <link rel="preload" href="fonts/your-main-font.woff2" as="font" type="font/woff2" crossorigin> -->
 
+    <!-- Divine Intelligence Chat Widget -->
+    <link rel="stylesheet" href="/styles/divine-chat-widget.css">
+    <div id="divine-chat-root"></div>
+    <script>
+      fetch('/components/common/DivineChatWidget.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('divine-chat-root').innerHTML = html;
+          var s = document.createElement('script');
+          s.src = '/js/divine-chat-widget.js';
+          document.body.appendChild(s);
+        });
+    </script>
+
 </head>
 <body class="home">
     <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/js/semiautomatic.min.js" data-cmp-cdid="ed8f9885626c9" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="0"></script>

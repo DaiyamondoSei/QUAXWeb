@@ -1,0 +1,121 @@
+#divine-chat-bubble {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, #7f5cff 60%, #00e6d8 100%);
+  color: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: box-shadow 0.2s;
+}
+#divine-chat-bubble:focus {
+  outline: 2px solid #00e6d8;
+  box-shadow: 0 0 0 4px #00e6d844;
+}
+#divine-chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 32px;
+  width: 340px;
+  max-width: 95vw;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+#divine-chat-header {
+  background: linear-gradient(90deg, #7f5cff 60%, #00e6d8 100%);
+  color: #fff;
+  padding: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#divine-chat-close {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s;
+}
+#divine-chat-close:hover {
+  color: #ffd700;
+}
+#divine-chat-messages {
+  flex: 1;
+  padding: 16px;
+  background: #f7f8fa;
+  overflow-y: auto;
+  max-height: 320px;
+  font-size: 1rem;
+}
+.divine-message {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.divine-message.user {
+  text-align: right;
+  color: #7f5cff;
+}
+.divine-message.ai {
+  text-align: left;
+  color: #222;
+  background: #eaf6f5;
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: inline-block;
+  max-width: 90%;
+}
+#divine-chat-form {
+  display: flex;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+#divine-chat-input {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 0 0 0 18px;
+  outline: none;
+}
+#divine-chat-form button[type="submit"] {
+  background: linear-gradient(135deg, #7f5cff 60%, #00e6d8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0 0 18px 0;
+  font-size: 1.2rem;
+  padding: 0 18px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#divine-chat-form button[type="submit"]:hover {
+  background: linear-gradient(135deg, #00e6d8 60%, #7f5cff 100%);
+}
+@media (max-width: 600px) {
+  #divine-chat-window {
+    right: 8px;
+    bottom: 80px;
+    width: 98vw;
+    max-width: 98vw;
+  }
+  #divine-chat-bubble {
+    right: 8px;
+    bottom: 16px;
+  }
+} 
