@@ -74,10 +74,10 @@ exports.handler = async function(event, context) {
   let questionEmbedding;
   try {
     const embeddingResult = await genAI.models.embedContent({
-      model: 'gemini-embedding-exp-03-07',
+      model: 'gemini-embedding-001',
       contents: userQuestion
     });
-    questionEmbedding = embeddingResult.embeddings;
+    questionEmbedding = embeddingResult.embeddings[0];
     console.log('Question embedded.');
   } catch (e) {
     console.error('Failed to embed question:', e);
