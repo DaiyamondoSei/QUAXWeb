@@ -1,9 +1,8 @@
+import { GoogleGenAI } from "@google/genai";
 const fs = require('fs');
 const path = require('path');
-import { GoogleGenAI } from "@google/genai";
 
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-const genAI = new GoogleGenAI({ apiKey: GOOGLE_API_KEY });
+const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 function cosineSimilarity(a, b) {
   let dot = 0.0, normA = 0.0, normB = 0.0;
@@ -30,6 +29,22 @@ function buildGeminiPrompt(userQuestion, topChunks) {
   let context = topChunks.map((c, i) => `Knowledge ${i+1}:\n${c.text}`).join("\n\n");
   return `${personaPrompt}\n\nRelevant Knowledge:\n${context}\n\nUser Question: ${userQuestion}\n\nQuannex Intelligence Answer:`;
 }
+
+// Optional: Helper functions for clarity
+const embed = async (contents) => {
+  return await genAI.models.embedContent({
+    model: 'text-embedding-004',
+    contents,
+    config: { taskType: "SEMANTIC_SIMILARITY" }
+  });
+};
+
+const chat = async (contents) => {
+  return await genAI.models.generateContent({
+    model: 'gemini-1.5-flash',
+    contents
+  });
+};
 
 exports.handler = async function(event, context) {
   console.log('Quannex Intelligence function invoked.');
@@ -73,11 +88,7 @@ exports.handler = async function(event, context) {
 
   let questionEmbedding;
   try {
-    const embeddingResult = await genAI.models.embedContent({
-      model: 'text-embedding-004',
-      contents: userQuestion,
-      config: { taskType: "SEMANTIC_SIMILARITY" }
-    });
+    const embeddingResult = await embed(userQuestion);
     questionEmbedding = embeddingResult.embeddings[0];
     console.log('Question embedded.');
   } catch (e) {
@@ -102,9 +113,8 @@ exports.handler = async function(event, context) {
   // Call Gemini to get the answer
   let geminiResponse;
   try {
-    const chat = await genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-    const result = await chat.generateContent(geminiPrompt);
-    geminiResponse = result.response.text();
+    const result = await chat(geminiPrompt);
+    geminiResponse = result.text;
     if (!geminiResponse || geminiResponse.trim() === '') {
       throw new Error('Empty response from Gemini');
     }
