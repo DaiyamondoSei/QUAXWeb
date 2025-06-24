@@ -42,7 +42,10 @@ const embed = async (contents) => {
 const chat = async (contents) => {
   return await genAI.models.generateContent({
     model: 'gemini-1.5-flash',
-    contents
+    contents,
+    generationConfig: {
+      maxOutputTokens: 121 // Limit answer length for conciseness
+    }
   });
 };
 
