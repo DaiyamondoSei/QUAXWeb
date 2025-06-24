@@ -1,9 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+import { GoogleGenAI } from "@google/genai";
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-const genAI = new GoogleGenerativeAI({ apiKey: GOOGLE_API_KEY });
+const genAI = new GoogleGenAI({ apiKey: GOOGLE_API_KEY });
 
 function cosineSimilarity(a, b) {
   let dot = 0.0, normA = 0.0, normB = 0.0;
@@ -74,8 +74,9 @@ exports.handler = async function(event, context) {
   let questionEmbedding;
   try {
     const embeddingResult = await genAI.models.embedContent({
-      model: 'gemini-embedding-001',
-      contents: userQuestion
+      model: 'text-embedding-004',
+      contents: userQuestion,
+      config: { taskType: "SEMANTIC_SIMILARITY" }
     });
     questionEmbedding = embeddingResult.embeddings[0];
     console.log('Question embedded.');
