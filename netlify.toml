@@ -289,4 +289,7 @@
   from = "/advanced_progression.html"
   to = "/advanced_progression"
   status = 301
-  force = true 
+  force = true
+
+[functions."quannex_intelligence"]
+  included_files = ["netlify/functions/knowledge.json"] 
