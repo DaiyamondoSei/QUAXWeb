@@ -8,9 +8,8 @@ from urllib.parse import urljoin, urlparse
 import time
 
 # Load API key from .env file
-# load_dotenv()
-# GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
-GOOGLE_API_KEY = "AIzaSyBqIETTuISkdzGzYXdL5hH0hr3WB91IwR8"
+load_dotenv()
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 configure(api_key=GOOGLE_API_KEY)
 
 def get_internal_links(base_url):
