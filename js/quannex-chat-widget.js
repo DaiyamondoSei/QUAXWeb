@@ -1,11 +1,11 @@
-// Divine Intelligence Chat Widget JS
+// Quannex Intelligence Chat Widget JS
 (function() {
-  const bubble = document.getElementById('divine-chat-bubble');
-  const windowEl = document.getElementById('divine-chat-window');
-  const closeBtn = document.getElementById('divine-chat-close');
-  const form = document.getElementById('divine-chat-form');
-  const input = document.getElementById('divine-chat-input');
-  const messages = document.getElementById('divine-chat-messages');
+  const bubble = document.getElementById('quannex-chat-bubble');
+  const windowEl = document.getElementById('quannex-chat-window');
+  const closeBtn = document.getElementById('quannex-chat-close');
+  const form = document.getElementById('quannex-chat-form');
+  const input = document.getElementById('quannex-chat-input');
+  const messages = document.getElementById('quannex-chat-messages');
 
   function showChat() {
     windowEl.style.display = 'flex';
@@ -20,7 +20,7 @@
 
   function addMessage(text, sender) {
     const div = document.createElement('div');
-    div.className = 'divine-message ' + sender;
+    div.className = 'quannex-message ' + sender;
     div.textContent = text;
     messages.appendChild(div);
     messages.scrollTop = messages.scrollHeight;
@@ -32,23 +32,23 @@
     if (!question) return;
     addMessage(question, 'user');
     input.value = '';
-    addMessage('Divine Intelligence is thinking...', 'ai');
+    addMessage('Quannex Intelligence is thinking...', 'ai');
     try {
-      const res = await fetch('/.netlify/functions/divine_intelligence', {
+      const res = await fetch('/.netlify/functions/quannex_intelligence', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question })
       });
       const data = await res.json();
-      messages.removeChild(messages.querySelector('.divine-message.ai:last-child'));
+      messages.removeChild(messages.querySelector('.quannex-message.ai:last-child'));
       if (data.answer) {
         addMessage(data.answer, 'ai');
       } else {
-        addMessage('Sorry, I could not find an answer. Please try again.', 'ai');
+        addMessage('Sorry, Quannex Intelligence could not find an answer. Please try again.', 'ai');
       }
     } catch (err) {
-      messages.removeChild(messages.querySelector('.divine-message.ai:last-child'));
-      addMessage('There was an error connecting to Divine Intelligence.', 'ai');
+      messages.removeChild(messages.querySelector('.quannex-message.ai:last-child'));
+      addMessage('There was an error connecting to Quannex Intelligence.', 'ai');
     }
   });
 })(); 

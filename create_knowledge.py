@@ -120,3 +120,4 @@ if __name__ == "__main__":
     print(f"Scraping complete! Data saved to raw_website_data.json.")
     # Now process and embed
     process_and_embed_all("raw_website_data.json", "knowledge.json") 
+    

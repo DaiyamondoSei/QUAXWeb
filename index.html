@@ -168,6 +168,20 @@
         });
     </script>
 
+    <!-- Quannex Intelligence Chat Widget -->
+    <link rel="stylesheet" href="/styles/quannex-chat-widget.css">
+    <div id="quannex-chat-root"></div>
+    <script>
+      fetch('/components/common/QuannexChatWidget.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('quannex-chat-root').innerHTML = html;
+          var s = document.createElement('script');
+          s.src = '/js/quannex-chat-widget.js';
+          document.body.appendChild(s);
+        });
+    </script>
+
 </head>
 <body class="home">
     <script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/js/semiautomatic.min.js" data-cmp-cdid="ed8f9885626c9" data-cmp-host="a.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="0"></script>

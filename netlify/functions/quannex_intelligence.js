@@ -2,11 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-// Load API key from environment variable
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 
-// Helper: Cosine similarity between two vectors
 function cosineSimilarity(a, b) {
   let dot = 0.0, normA = 0.0, normB = 0.0;
   for (let i = 0; i < a.length; i++) {
@@ -17,7 +15,6 @@ function cosineSimilarity(a, b) {
   return dot / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
-// Load knowledge.json once (cache in memory)
 let knowledge = null;
 function loadKnowledge() {
   if (!knowledge) {
@@ -27,15 +24,15 @@ function loadKnowledge() {
   return knowledge;
 }
 
-// Persona prompt for Quannex Foundation
-const personaPrompt = `You are the Divine Intelligence of the Quannex Foundation. You are wise, warm, and supportive, and your purpose is to expand consciousness, inspire growth, and provide clear, insightful guidance. Use the following knowledge to answer the user's question with clarity, compassion, and a sense of higher purpose. If the answer is not found in the knowledge, respond with honesty and encouragement to explore further.`;
+const personaPrompt = `You are Quannex Intelligence, the digital mind of the Quannex Foundation. You are wise, warm, and supportive, and your purpose is to expand consciousness, inspire growth, and provide clear, insightful guidance. Use the following knowledge to answer the user's question with clarity, compassion, and a sense of higher purpose. If the answer is not found in the knowledge, respond with honesty and encouragement to explore further.`;
 
 function buildGeminiPrompt(userQuestion, topChunks) {
   let context = topChunks.map((c, i) => `Knowledge ${i+1}:\n${c.text}`).join("\n\n");
-  return `${personaPrompt}\n\nRelevant Knowledge:\n${context}\n\nUser Question: ${userQuestion}\n\nDivine Intelligence Answer:`;
+  return `${personaPrompt}\n\nRelevant Knowledge:\n${context}\n\nUser Question: ${userQuestion}\n\nQuannex Intelligence Answer:`;
 }
 
 exports.handler = async function(event, context) {
+  console.log('Quannex Intelligence function invoked.');
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -43,11 +40,11 @@ exports.handler = async function(event, context) {
     };
   }
 
-  // Parse the incoming request
   let body;
   try {
     body = JSON.parse(event.body);
   } catch (e) {
+    console.error('Invalid JSON:', e);
     return {
       statusCode: 400,
       body: JSON.stringify({ error: 'Invalid JSON' })
@@ -62,18 +59,18 @@ exports.handler = async function(event, context) {
     };
   }
 
-  // Load knowledge
   let knowledgeData;
   try {
     knowledgeData = loadKnowledge();
+    console.log('Knowledge loaded.');
   } catch (e) {
+    console.error('Failed to load knowledge.json:', e);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed to load knowledge.json', details: e.message })
     };
   }
 
-  // Embed the user question
   let questionEmbedding;
   try {
     const embeddingResult = await genAI.embedContent({
@@ -81,20 +78,22 @@ exports.handler = async function(event, context) {
       content: userQuestion
     });
     questionEmbedding = embeddingResult.embedding;
+    console.log('Question embedded.');
   } catch (e) {
+    console.error('Failed to embed question:', e);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: 'Failed to embed question', details: e.message })
     };
   }
 
-  // Find top 3 most similar chunks
   const scored = knowledgeData.map(entry => ({
     ...entry,
     similarity: cosineSimilarity(questionEmbedding, entry.embedding)
   }));
   scored.sort((a, b) => b.similarity - a.similarity);
   const topChunks = scored.slice(0, 3);
+  console.log('Top chunks:', topChunks.map(c => c.similarity));
 
   // Compose the prompt for Gemini
   const geminiPrompt = buildGeminiPrompt(userQuestion, topChunks);
@@ -105,11 +104,12 @@ exports.handler = async function(event, context) {
     const chat = await genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const result = await chat.generateContent(geminiPrompt);
     geminiResponse = result.response.text();
+    if (!geminiResponse || geminiResponse.trim() === '') {
+      throw new Error('Empty response from Gemini');
+    }
   } catch (e) {
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to get response from Gemini', details: e.message })
-    };
+    console.error('Failed to get response from Gemini:', e);
+    geminiResponse = `I am Quannex Intelligence. I could not find a direct answer in my current knowledge, but I encourage you to explore further or rephrase your question. Your curiosity is valued!`;
   }
 
   return {
