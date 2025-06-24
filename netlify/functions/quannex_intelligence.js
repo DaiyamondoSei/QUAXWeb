@@ -3,7 +3,7 @@ const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
-const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
+const genAI = new GoogleGenerativeAI({ apiKey: GOOGLE_API_KEY });
 
 function cosineSimilarity(a, b) {
   let dot = 0.0, normA = 0.0, normB = 0.0;
@@ -73,11 +73,11 @@ exports.handler = async function(event, context) {
 
   let questionEmbedding;
   try {
-    const embeddingResult = await genAI.embedContent({
-      model: 'models/text-embedding-004',
-      content: userQuestion
+    const embeddingResult = await genAI.models.embedContent({
+      model: 'gemini-embedding-exp-03-07',
+      contents: userQuestion
     });
-    questionEmbedding = embeddingResult.embedding;
+    questionEmbedding = embeddingResult.embeddings;
     console.log('Question embedded.');
   } catch (e) {
     console.error('Failed to embed question:', e);
