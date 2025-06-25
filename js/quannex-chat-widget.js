@@ -10,6 +10,7 @@
   const feedback = document.getElementById('quannex-chat-feedback');
   const feedbackYes = document.getElementById('quannex-feedback-yes');
   const feedbackNo = document.getElementById('quannex-feedback-no');
+  const header = document.getElementById('quannex-chat-header');
 
   // Persistent state helpers
   function saveState(state) {
@@ -44,34 +45,118 @@
     }
   }
 
-  // Show/hide chat
-  function showChat() {
+  let isDragging = false;
+  let dragOffsetX = 0;
+  let dragOffsetY = 0;
+
+  // Helper to clamp values within viewport
+  function clamp(val, min, max) {
+    return Math.max(min, Math.min(val, max));
+  }
+
+  // Drag start
+  header.addEventListener('mousedown', function(e) {
+    if (e.button !== 0) return; // Only left mouse
+    isDragging = true;
+    const rect = windowEl.getBoundingClientRect();
+    dragOffsetX = e.clientX - rect.left;
+    dragOffsetY = e.clientY - rect.top;
+    windowEl.style.transition = 'none';
+    document.body.style.userSelect = 'none';
+  });
+
+  // Drag move
+  document.addEventListener('mousemove', function(e) {
+    if (!isDragging) return;
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const boxW = windowEl.offsetWidth;
+    const boxH = windowEl.offsetHeight;
+    let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
+    let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
+    windowEl.style.left = left + 'px';
+    windowEl.style.top = top + 'px';
+    windowEl.style.right = 'auto';
+    windowEl.style.bottom = 'auto';
+    windowEl.style.position = 'fixed';
+    windowEl.style.transform = 'none';
+  });
+
+  // Drag end
+  document.addEventListener('mouseup', function() {
+    if (isDragging) {
+      isDragging = false;
+      windowEl.style.transition = '';
+      document.body.style.userSelect = '';
+    }
+  });
+
+  // --- Animation helpers ---
+  function animateOpen() {
+    windowEl.classList.remove('quannex-chat-animate-out');
+    windowEl.classList.add('quannex-chat-animate-in');
     windowEl.style.display = 'flex';
-    setTimeout(() => input.focus(), 100);
+    setTimeout(() => input.focus(), 400);
+  }
+  function animateClose() {
+    windowEl.classList.remove('quannex-chat-animate-in');
+    windowEl.classList.add('quannex-chat-animate-out');
+    setTimeout(() => {
+      windowEl.style.display = 'none';
+    }, 380);
+  }
+
+  // Show/hide chat (with animation)
+  function showChat() {
+    windowEl.style.left = '';
+    windowEl.style.top = '';
+    windowEl.style.right = '';
+    windowEl.style.bottom = '';
+    windowEl.style.position = '';
+    windowEl.style.transform = '';
+    animateOpen();
     document.body.style.overflow = 'hidden';
     document.addEventListener('focus', trapFocus, true);
     saveState({ open: true });
+    setTimeout(() => {
+      document.addEventListener('mousedown', handleOutsideClick);
+    }, 10);
   }
   function hideChat() {
-    windowEl.style.display = 'none';
+    animateClose();
     document.body.style.overflow = '';
     document.removeEventListener('focus', trapFocus, true);
     bubble.focus();
     saveState({ open: false });
+    document.removeEventListener('mousedown', handleOutsideClick);
   }
-  bubble.addEventListener('click', showChat);
+
+  // Outside click handler
+  function handleOutsideClick(e) {
+    if (!windowEl.contains(e.target) && !bubble.contains(e.target)) {
+      hideChat();
+    }
+  }
+
+  bubble.addEventListener('click', function() {
+    if (windowEl.style.display === 'flex' || windowEl.classList.contains('quannex-chat-animate-in')) {
+      hideChat();
+    } else {
+      showChat();
+    }
+  });
   bubble.addEventListener('keypress', e => { if (e.key === 'Enter' || e.key === ' ') showChat(); });
   closeBtn.addEventListener('click', hideChat);
   document.addEventListener('keydown', function(e) {
-    if (windowEl.style.display !== 'none' && e.key === 'Escape') {
+    if ((windowEl.style.display !== 'none' && e.key === 'Escape') || (windowEl.classList.contains('quannex-chat-animate-in') && e.key === 'Escape')) {
       hideChat();
     }
   });
 
   // Message helpers
-  function addMessage(text, sender) {
+  function addMessage(text, sender, special) {
     const div = document.createElement('div');
-    div.className = 'quannex-message ' + sender;
+    div.className = 'quannex-message ' + sender + (special ? ' quannex-message-special' : '');
     div.textContent = text;
     messages.appendChild(div);
     messages.scrollTop = messages.scrollHeight;
@@ -157,7 +242,7 @@
   }
   // Add welcoming message if no history exists
   if (loadHistory().length === 0) {
-    addMessage('⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths', 'ai');
+    addMessage('⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', 'ai');
   }
   renderHistory();
 
@@ -182,7 +267,7 @@
       id,
       timestamp: Date.now(),
       messages: [
-        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths', sender: 'ai', ts: Date.now() },
+        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', sender: 'ai', ts: Date.now() },
         { text: 'Quannex is here to find coherence with you.', sender: 'ai', ts: Date.now(), special: true }
       ]
     };
@@ -309,22 +394,37 @@
     msgs.forEach(msg => {
       const div = document.createElement('div');
       div.className = 'quannex-message ' + msg.sender + (msg.special ? ' quannex-message-special' : '');
-      div.textContent = msg.text;
+      // Enhance all 'Quannex' mentions
+      let html = msg.text.replace(/(Quannex)/gi, '<span class="quannex-highlight">$1</span>');
+      div.innerHTML = html;
       messages.appendChild(div);
     });
     messages.scrollTop = messages.scrollHeight;
   }
   // --- Message Handling ---
-  function addMessage(text, sender) {
+  function addMessage(text, sender, special) {
     const session = getCurrentSession();
     if (!session) return;
-    session.messages.push({ text, sender, ts: Date.now() });
+    session.messages.push({ text, sender, ts: Date.now(), special });
     updateCurrentSessionMessages(session.messages);
     renderHistory();
   }
   // --- On Load: Session Bootstrapping ---
   if (!getCurrentSessionId() || !getCurrentSession()) {
-    createSession();
+    // Add 'coherence' message first, then welcome
+    const id = 'sess-' + Date.now();
+    const session = {
+      id,
+      timestamp: Date.now(),
+      messages: [
+        { text: 'Quannex is here to find coherence with you.', sender: 'ai', ts: Date.now(), special: true },
+        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', sender: 'ai', ts: Date.now() }
+      ]
+    };
+    const sessions = loadSessions();
+    sessions.push(session);
+    saveSessions(sessions);
+    setCurrentSessionId(id);
   }
   renderHistory();
 })(); 
