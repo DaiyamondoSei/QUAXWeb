@@ -36,23 +36,48 @@ def get_internal_links(base_url):
             print(f"Failed to fetch {url}: {e}")
     return list(visited)
 
+def extract_section_chunks(soup):
+    """
+    Extracts content by heading sections (h1-h6) for more context-rich chunks.
+    Returns a list of (heading, text) tuples.
+    """
+    chunks = []
+    headings = soup.find_all([f'h{i}' for i in range(1, 7)])
+    if not headings:
+        # Fallback: just return all visible text as one chunk
+        text = ' '.join(soup.stripped_strings)
+        return [("", text)]
+    for idx, heading in enumerate(headings):
+        section_title = heading.get_text(strip=True)
+        section_content = []
+        # Get all elements until the next heading of same or higher level
+        for sibling in heading.next_siblings:
+            if sibling.name and sibling.name.startswith('h') and int(sibling.name[1]) <= int(heading.name[1]):
+                break
+            if hasattr(sibling, 'get_text'):
+                section_content.append(sibling.get_text(" ", strip=True))
+        chunk_text = section_title + "\n" + " ".join(section_content)
+        if chunk_text.strip():
+            chunks.append((section_title, chunk_text.strip()))
+    return chunks
+
 def scrape_clean_text(url):
-    """Scrape and clean the main text content from a page."""
+    """Scrape and clean the main text content from a page, chunked by section."""
     try:
         resp = requests.get(url, timeout=10)
         soup = BeautifulSoup(resp.text, 'html.parser')
         # Remove scripts/styles
         for tag in soup(['script', 'style', 'noscript']):
             tag.decompose()
-        # Get visible text
-        text = ' '.join(soup.stripped_strings)
-        return text
+        # Extract section-based chunks
+        section_chunks = extract_section_chunks(soup)
+        return section_chunks
     except Exception as e:
         print(f"Error scraping {url}: {e}")
-        return ""
+        return []
 
 def batch_scrape(base_url, batch_size=10):
-    """Scrape all internal pages in batches and return a dict of url:text."""
+    """Scrape all internal pages in batches and return a dict of url:[(heading, text)]."""
     links = get_internal_links(base_url)
     print(f"Found {len(links)} pages to scrape.")
     data = {}
@@ -62,22 +87,27 @@ def batch_scrape(base_url, batch_size=10):
             print(f"Scraping: {url}")
             data[url] = scrape_clean_text(url)
         print(f"Processed batch {i//batch_size + 1} of {((len(links)-1)//batch_size)+1}")
-    return data 
+    return data
 
-def chunk_text(text, min_length=200):
-    print("Chunking text...")
-    paragraphs = [p.strip() for p in text.split('\n') if p.strip()]
+def chunk_text(section_chunks, min_length=200):
+    print("Chunking text by section...")
     chunks = []
-    current = ""
-    for p in paragraphs:
-        if len(current) + len(p) < min_length:
-            current += (" " if current else "") + p
-        else:
+    for heading, text in section_chunks:
+        # Further split if section is too long
+        if len(text) > 2 * min_length:
+            paragraphs = [p.strip() for p in text.split('\n') if p.strip()]
+            current = ""
+            for p in paragraphs:
+                if len(current) + len(p) < min_length:
+                    current += (" " if current else "") + p
+                else:
+                    if current:
+                        chunks.append({"heading": heading, "text": current})
+                    current = p
             if current:
-                chunks.append(current)
-            current = p
-    if current:
-        chunks.append(current)
+                chunks.append({"heading": heading, "text": current})
+        else:
+            chunks.append({"heading": heading, "text": text})
     print(f"Created {len(chunks)} chunks.")
     return chunks
 
@@ -87,8 +117,8 @@ def embed_chunks(chunks):
     for i, chunk in enumerate(chunks):
         try:
             print(f"Embedding chunk {i+1}/{len(chunks)}...")
-            embedding = embed_content(model="models/text-embedding-004", content=chunk)
-            embedded.append({"text": chunk, "embedding": embedding["embedding"]})
+            embedding = embed_content(model="models/text-embedding-004", content=chunk["text"])
+            embedded.append({"heading": chunk["heading"], "text": chunk["text"], "embedding": embedding["embedding"]})
         except Exception as e:
             print(f"Embedding failed for chunk {i+1}: {e}")
     print(f"Embedded {len(embedded)} chunks.")
@@ -99,9 +129,9 @@ def process_and_embed_all(raw_data_path, output_path):
     with open(raw_data_path, "r", encoding="utf-8") as f:
         data = json.load(f)
     all_entries = []
-    for url, text in data.items():
+    for url, section_chunks in data.items():
         print(f"Processing URL: {url}")
-        chunks = chunk_text(text)
+        chunks = chunk_text(section_chunks)
         embedded = embed_chunks(chunks)
         for entry in embedded:
             entry["url"] = url
