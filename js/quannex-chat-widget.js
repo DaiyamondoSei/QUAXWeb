@@ -37,6 +37,15 @@
       return JSON.parse(localStorage.getItem('quannex-chat-feedbacks')) || [];
     } catch { return []; }
   }
+  function savePosition(left, top) {
+    const state = loadState();
+    state.position = { left, top };
+    saveState(state);
+  }
+  function loadPosition() {
+    const state = loadState();
+    return state.position || null;
+  }
 
   // Focus trap
   function trapFocus(e) {
@@ -65,6 +74,12 @@
     document.body.style.userSelect = 'none';
   });
 
+  // Double-click header to reset position
+  header.addEventListener('dblclick', function(e) {
+    e.preventDefault();
+    resetToCenter();
+  });
+
   // Drag move
   document.addEventListener('mousemove', function(e) {
     if (!isDragging) return;
@@ -74,6 +89,19 @@
     const boxH = windowEl.offsetHeight;
     let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
     let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
+    
+    // Ensure the chat window stays within viewport bounds
+    if (left < 0) left = 0;
+    if (top < 0) top = 0;
+    if (left + boxW > winW) left = winW - boxW;
+    if (top + boxH > winH) top = winH - boxH;
+    
+    // Ensure minimum visibility - never let it go completely off-screen
+    if (left < -boxW + 50) left = -boxW + 50;
+    if (top < -boxH + 50) top = -boxH + 50;
+    if (left > winW - 50) left = winW - 50;
+    if (top > winH - 50) top = winH - 50;
+    
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
     windowEl.style.right = 'auto';
@@ -88,6 +116,11 @@
       isDragging = false;
       windowEl.style.transition = '';
       document.body.style.userSelect = '';
+      
+      // Save the final position
+      const left = parseInt(windowEl.style.left) || 0;
+      const top = parseInt(windowEl.style.top) || 0;
+      savePosition(left, top);
     }
   });
 
@@ -111,21 +144,45 @@
   windowEl.style.display = 'none';
   windowEl.classList.remove('quannex-chat-animate-in', 'quannex-chat-animate-out');
 
+  // Helper to reset position to center
+  function resetToCenter() {
+    const state = loadState();
+    delete state.position;
+    saveState(state);
+    showChat();
+  }
+
   // Show/hide chat (with animation)
   function showChat() {
-    windowEl.style.left = '';
-    windowEl.style.top = '';
-    windowEl.style.right = '';
-    windowEl.style.bottom = '';
-    windowEl.style.position = '';
-    windowEl.style.transform = '';
+    const savedPosition = loadPosition();
+    const isMobile = window.innerWidth <= 600;
+    
+    console.log('showChat called, savedPosition:', savedPosition, 'isMobile:', isMobile);
+    
+    if (savedPosition && savedPosition.left && savedPosition.top && !isMobile) {
+      // Restore saved position (only on desktop)
+      console.log('Restoring saved position:', savedPosition);
+      windowEl.style.position = 'fixed';
+      windowEl.style.left = savedPosition.left + 'px';
+      windowEl.style.top = savedPosition.top + 'px';
+      windowEl.style.right = 'auto';
+      windowEl.style.bottom = 'auto';
+      windowEl.style.transform = 'none';
+    } else {
+      // Use default centered position
+      console.log('Using default centered position');
+      windowEl.style.position = 'relative';
+      windowEl.style.left = '0';
+      windowEl.style.top = 'auto';
+      windowEl.style.right = 'auto';
+      windowEl.style.bottom = 'auto';
+      windowEl.style.transform = 'none';
+    }
+    
     animateOpen();
     document.body.style.overflow = 'hidden';
     document.addEventListener('focus', trapFocus, true);
     saveState({ open: true });
-    setTimeout(() => {
-      document.addEventListener('mousedown', handleOutsideClick);
-    }, 10);
   }
   function hideChat() {
     animateClose();
@@ -133,14 +190,6 @@
     document.removeEventListener('focus', trapFocus, true);
     bubble.focus();
     saveState({ open: false });
-    document.removeEventListener('mousedown', handleOutsideClick);
-  }
-
-  // Outside click handler
-  function handleOutsideClick(e) {
-    if (!windowEl.contains(e.target) && !bubble.contains(e.target)) {
-      hideChat();
-    }
   }
 
   bubble.addEventListener('click', function() {
@@ -392,7 +441,13 @@
     });
   }
   // --- Chat Rendering ---
+  function renderCoherenceMessage() {
+    const coherenceDiv = document.getElementById('quannex-chat-coherence-message');
+    if (!coherenceDiv) return;
+    coherenceDiv.innerHTML = `<div class="quannex-coherence-card"><span class="coherence-icon">⚛️</span> <span><strong>Quannex</strong> is here to help you find clarity and coherence. How can I assist you today?</span></div>`;
+  }
   function renderHistory(messagesOverride) {
+    renderCoherenceMessage();
     messages.innerHTML = '';
     const session = getCurrentSession();
     const msgs = messagesOverride || (session ? session.messages : []);
@@ -416,13 +471,12 @@
   }
   // --- On Load: Session Bootstrapping ---
   if (!getCurrentSessionId() || !getCurrentSession()) {
-    // Add 'coherence' message first, then welcome
+    // Add only the welcome message, coherence now handled separately
     const id = 'sess-' + Date.now();
     const session = {
       id,
       timestamp: Date.now(),
       messages: [
-        { text: 'Quannex is here to find coherence with you.', sender: 'ai', ts: Date.now(), special: true },
         { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', sender: 'ai', ts: Date.now() }
       ]
     };
@@ -432,4 +486,30 @@
     setCurrentSessionId(id);
   }
   renderHistory();
+
+  // Window resize handler to keep chat window in bounds
+  window.addEventListener('resize', function() {
+    if (windowEl.style.display === 'flex' || windowEl.classList.contains('quannex-chat-animate-in')) {
+      const savedPosition = loadPosition();
+      if (savedPosition && savedPosition.left && savedPosition.top) {
+        const winW = window.innerWidth;
+        const winH = window.innerHeight;
+        const boxW = windowEl.offsetWidth;
+        const boxH = windowEl.offsetHeight;
+        
+        let left = savedPosition.left;
+        let top = savedPosition.top;
+        
+        // Adjust position if it's now outside the viewport
+        if (left + boxW > winW) left = winW - boxW;
+        if (top + boxH > winH) top = winH - boxH;
+        if (left < 0) left = 0;
+        if (top < 0) top = 0;
+        
+        windowEl.style.left = left + 'px';
+        windowEl.style.top = top + 'px';
+        savePosition(left, top);
+      }
+    }
+  });
 })(); 

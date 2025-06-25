@@ -10,22 +10,27 @@
     <div class="twinkling"></div>
     <div id="quannex-chat-quantum-bg"></div>
     <div id="quannex-chat-header">
-      <img src="/images/quannex-logo-transparent.PNG" alt="Quannex Logo" style="width:36px;height:36px;margin-right:8px;vertical-align:middle;" />
-      <div class="quannex-header-text">
-        <span>Quannex Intelligence</span>
+      <div class="quannex-header-logo-group">
+        <div class="quannex-logo-glow">
+          <img src="/images/quannex-logo-transparent.PNG" alt="Quannex Logo" />
+        </div>
+        <div class="quannex-header-text">
+          <span>Quannex Intelligence</span>
+        </div>
       </div>
-      <button id="quannex-history-btn" aria-label="Open chat history" title="History" style="background:none;border:none;cursor:pointer;font-size:1.6rem;margin-right:8px;">
-        <!-- Quantum superposition-inspired icon (SVG) -->
+      <button id="quannex-history-btn" aria-label="Open chat history" title="View chat history" class="quannex-history-btn">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="13" cy="13" r="10" stroke="#00e6d8" stroke-width="2.2" fill="rgba(74,144,226,0.13)"/>
           <ellipse cx="13" cy="13" rx="7" ry="3.5" stroke="#7f5cff" stroke-width="1.5" fill="none"/>
           <ellipse cx="13" cy="13" rx="3.5" ry="7" stroke="#00e6d8" stroke-width="1.5" fill="none"/>
           <circle cx="13" cy="13" r="2.2" fill="#7f5cff"/>
         </svg>
+        <span class="history-cue" title="History">⏳</span>
       </button>
       <button id="quannex-chat-close" aria-label="Close chat">×</button>
     </div>
     <div id="quannex-chat-messages" aria-live="polite"></div>
+    <div id="quannex-chat-coherence-message"></div>
     <div id="quannex-chat-loader" style="display:none;justify-content:center;align-items:center;padding:16px;">
       <img src="/images/quannex-logo-transparent.PNG" alt="Loading..." class="quannex-logo-spinner" style="width:48px;height:48px;" />
     </div>
