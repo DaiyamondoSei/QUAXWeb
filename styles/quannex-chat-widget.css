@@ -69,6 +69,11 @@
   pointer-events: none;
 }
 #quannex-chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 480px;
+  min-height: 340px;
+  max-height: 90vh;
   position: relative;
   left: 0;
   right: 0;
