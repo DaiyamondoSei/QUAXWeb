@@ -93,9 +93,9 @@
 
   // --- Animation helpers ---
   function animateOpen() {
+    windowEl.style.display = 'flex';
     windowEl.classList.remove('quannex-chat-animate-out');
     windowEl.classList.add('quannex-chat-animate-in');
-    windowEl.style.display = 'flex';
     setTimeout(() => input.focus(), 400);
   }
   function animateClose() {
@@ -103,8 +103,12 @@
     windowEl.classList.add('quannex-chat-animate-out');
     setTimeout(() => {
       windowEl.style.display = 'none';
+      windowEl.classList.remove('quannex-chat-animate-out');
     }, 380);
   }
+  // On page load, ensure chatbox is hidden and animation classes are reset
+  windowEl.style.display = 'none';
+  windowEl.classList.remove('quannex-chat-animate-in', 'quannex-chat-animate-out');
 
   // Show/hide chat (with animation)
   function showChat() {
