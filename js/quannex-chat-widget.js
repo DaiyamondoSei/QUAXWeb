@@ -155,5 +155,175 @@
   if (loadState().open) {
     showChat();
   }
+  // Add welcoming message if no history exists
+  if (loadHistory().length === 0) {
+    addMessage('⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths', 'ai');
+  }
+  renderHistory();
+
+  // --- Session-based History ---
+  function saveSessions(sessions) {
+    localStorage.setItem('quannex-chat-sessions', JSON.stringify(sessions));
+  }
+  function loadSessions() {
+    try {
+      return JSON.parse(localStorage.getItem('quannex-chat-sessions')) || [];
+    } catch { return []; }
+  }
+  function getCurrentSessionId() {
+    return localStorage.getItem('quannex-current-session-id');
+  }
+  function setCurrentSessionId(id) {
+    localStorage.setItem('quannex-current-session-id', id);
+  }
+  function createSession() {
+    const id = 'sess-' + Date.now();
+    const session = {
+      id,
+      timestamp: Date.now(),
+      messages: [
+        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths', sender: 'ai', ts: Date.now() }
+      ]
+    };
+    const sessions = loadSessions();
+    sessions.push(session);
+    saveSessions(sessions);
+    setCurrentSessionId(id);
+    return session;
+  }
+  function getCurrentSession() {
+    const id = getCurrentSessionId();
+    if (!id) return null;
+    return loadSessions().find(s => s.id === id) || null;
+  }
+  function updateCurrentSessionMessages(messages) {
+    const id = getCurrentSessionId();
+    if (!id) return;
+    const sessions = loadSessions();
+    const idx = sessions.findIndex(s => s.id === id);
+    if (idx !== -1) {
+      sessions[idx].messages = messages;
+      saveSessions(sessions);
+    }
+  }
+  function deleteSession(id) {
+    let sessions = loadSessions();
+    sessions = sessions.filter(s => s.id !== id);
+    saveSessions(sessions);
+    // If current session deleted, start a new one
+    if (getCurrentSessionId() === id) {
+      const newSession = createSession();
+      renderHistory(newSession.messages);
+    }
+  }
+  function clearAllSessions() {
+    localStorage.removeItem('quannex-chat-sessions');
+    localStorage.removeItem('quannex-current-session-id');
+  }
+  // --- Modal Logic ---
+  const historyBtn = document.getElementById('quannex-history-btn');
+  const historyModal = document.getElementById('quannex-history-modal');
+  const historyClose = document.getElementById('quannex-history-close');
+  const historyClear = document.getElementById('quannex-history-clear');
+  const historyList = document.getElementById('quannex-history-list');
+  function openHistoryModal() {
+    renderSessionList();
+    historyModal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => historyClose.focus(), 100);
+  }
+  function closeHistoryModal() {
+    historyModal.style.display = 'none';
+    document.body.style.overflow = '';
+    windowEl.focus();
+  }
+  historyBtn.addEventListener('click', openHistoryModal);
+  historyClose.addEventListener('click', closeHistoryModal);
+  historyModal.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeHistoryModal();
+  });
+  historyClear.addEventListener('click', function() {
+    if (confirm('Clear all chat history? This cannot be undone.')) {
+      clearAllSessions();
+      createSession();
+      renderSessionList();
+      closeHistoryModal();
+      renderHistory();
+    }
+  });
+  function renderSessionList() {
+    const sessions = loadSessions();
+    historyList.innerHTML = '';
+    if (sessions.length === 0) {
+      historyList.innerHTML = '<div style="color:#e0e0ff;text-align:center;padding:32px 0;">No past conversations yet.</div>';
+      return;
+    }
+    sessions.forEach(session => {
+      const div = document.createElement('div');
+      div.className = 'quannex-history-session';
+      // Meta: date/time
+      const meta = document.createElement('div');
+      meta.className = 'quannex-history-session-meta';
+      meta.textContent = new Date(session.timestamp).toLocaleString();
+      // Preview: first user message or AI if no user
+      const preview = document.createElement('div');
+      preview.className = 'quannex-history-session-preview';
+      const firstUser = session.messages.find(m => m.sender === 'user');
+      preview.textContent = firstUser ? firstUser.text.slice(0, 60) : session.messages[0]?.text.slice(0, 60) || '(No messages)';
+      // Actions
+      const actions = document.createElement('div');
+      actions.className = 'quannex-history-session-actions';
+      // Open button
+      const openBtn = document.createElement('button');
+      openBtn.className = 'quannex-history-session-open';
+      openBtn.textContent = 'Open';
+      openBtn.onclick = function() {
+        setCurrentSessionId(session.id);
+        closeHistoryModal();
+        renderHistory();
+      };
+      // Delete button
+      const delBtn = document.createElement('button');
+      delBtn.className = 'quannex-history-session-delete';
+      delBtn.innerHTML = '🗑️';
+      delBtn.onclick = function() {
+        if (confirm('Delete this conversation?')) {
+          deleteSession(session.id);
+          renderSessionList();
+        }
+      };
+      actions.appendChild(openBtn);
+      actions.appendChild(delBtn);
+      div.appendChild(meta);
+      div.appendChild(preview);
+      div.appendChild(actions);
+      historyList.appendChild(div);
+    });
+  }
+  // --- Chat Rendering ---
+  function renderHistory(messagesOverride) {
+    messages.innerHTML = '';
+    const session = getCurrentSession();
+    const msgs = messagesOverride || (session ? session.messages : []);
+    msgs.forEach(msg => {
+      const div = document.createElement('div');
+      div.className = 'quannex-message ' + msg.sender;
+      div.textContent = msg.text;
+      messages.appendChild(div);
+    });
+    messages.scrollTop = messages.scrollHeight;
+  }
+  // --- Message Handling ---
+  function addMessage(text, sender) {
+    const session = getCurrentSession();
+    if (!session) return;
+    session.messages.push({ text, sender, ts: Date.now() });
+    updateCurrentSessionMessages(session.messages);
+    renderHistory();
+  }
+  // --- On Load: Session Bootstrapping ---
+  if (!getCurrentSessionId() || !getCurrentSession()) {
+    createSession();
+  }
   renderHistory();
 })(); 

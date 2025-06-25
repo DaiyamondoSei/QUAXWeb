@@ -44,7 +44,7 @@ const chat = async (contents) => {
     model: 'gemini-1.5-flash',
     contents,
     generationConfig: {
-      maxOutputTokens: 121 // Limit answer length for conciseness
+      maxOutputTokens: 72 // Limit answer length for conciseness
     }
   });
 };
