@@ -95,6 +95,7 @@
   function animateOpen() {
     windowEl.style.display = 'flex';
     windowEl.classList.remove('quannex-chat-animate-out');
+    void windowEl.offsetWidth; // Force reflow for animation
     windowEl.classList.add('quannex-chat-animate-in');
     setTimeout(() => input.focus(), 400);
   }
