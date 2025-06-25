@@ -182,7 +182,8 @@
       id,
       timestamp: Date.now(),
       messages: [
-        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths', sender: 'ai', ts: Date.now() }
+        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths', sender: 'ai', ts: Date.now() },
+        { text: 'Quannex is here to find coherence with you.', sender: 'ai', ts: Date.now(), special: true }
       ]
     };
     const sessions = loadSessions();
@@ -307,7 +308,7 @@
     const msgs = messagesOverride || (session ? session.messages : []);
     msgs.forEach(msg => {
       const div = document.createElement('div');
-      div.className = 'quannex-message ' + msg.sender;
+      div.className = 'quannex-message ' + msg.sender + (msg.special ? ' quannex-message-special' : '');
       div.textContent = msg.text;
       messages.appendChild(div);
     });

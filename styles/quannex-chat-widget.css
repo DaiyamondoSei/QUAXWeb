@@ -440,4 +440,11 @@
     padding-left: 10px;
     padding-right: 10px;
   }
+}
+.quannex-message-special {
+  font-style: italic;
+  color: #00e6d8;
+  background: rgba(0,230,216,0.10);
+  border-left: 4px solid #7f5cff;
+  box-shadow: 0 2px 16px #00e6d8cc;
 } 
