@@ -234,7 +234,7 @@
     feedbackArr.push({
       timestamp: Date.now(),
       value: val,
-      lastAI: (loadHistory().slice().reverse().find(m => m.sender === 'ai') || {}).text || ''
+      lastAI: ''
     });
     saveFeedback(feedbackArr);
     hideFeedback();
@@ -292,10 +292,11 @@
     showChat();
   }
   // Add welcoming message if no history exists
-  if (loadHistory().length === 0) {
-    addMessage('⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', 'ai');
+  if (!getCurrentSessionId() || !getCurrentSession()) {
+    createSession(); // Create a new session if none exists or current is invalid
   }
-  renderHistory();
+  renderHistory(getCurrentSession().messages);
+
 
   // --- Session-based History ---
   function saveSessions(sessions) {
@@ -384,7 +385,7 @@
       createSession();
       renderSessionList();
       closeHistoryModal();
-      renderHistory();
+      renderHistory(getCurrentSession().messages);
     }
   });
   function renderSessionList() {
@@ -416,7 +417,7 @@
       openBtn.onclick = function() {
         setCurrentSessionId(session.id);
         closeHistoryModal();
-        renderHistory();
+        renderHistory(getCurrentSession().messages);
       };
       // Delete button
       const delBtn = document.createElement('button');
@@ -463,13 +464,24 @@
     if (!session) return;
     session.messages.push({ text, sender, ts: Date.now(), special });
     updateCurrentSessionMessages(session.messages);
-    renderHistory();
+    renderHistory(session.messages);
   }
+
+  // New function for typing effect
+  async function typeMessage(element, text, delay = 20) {
+    element.textContent = ''; // Clear existing text
+    for (let i = 0; i < text.length; i++) {
+      element.textContent += text.charAt(i);
+      messages.scrollTop = messages.scrollHeight; // Scroll to bottom
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+
   // --- On Load: Session Bootstrapping ---
   if (!getCurrentSessionId() || !getCurrentSession()) {
     createSession(); // Create a new session if none exists or current is invalid
   }
-  renderHistory();
+  renderHistory(getCurrentSession().messages);
 
   // New Chat button functionality
   newChatBtn.addEventListener('click', function() {
@@ -504,6 +516,5 @@
       }
     }
   });
-  // Initial resize on load
   
 })();

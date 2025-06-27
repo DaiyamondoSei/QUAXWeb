@@ -77,11 +77,11 @@
   position: relative;
   left: 0;
   right: 0;
-  margin: 0 auto;
+  margin: 30px auto 0 auto; /* Added margin-top to detach header */
   pointer-events: auto;
   /* Neon animated border */
   box-shadow: 0 0 32px 8px #00e6d8cc, 0 0 0 4px #7f5cff88, 0 0 40px 8px #4A90E299;
-  border-radius: 28px;
+  border-radius: 0 0 28px 28px; /* Rounded only at the bottom */
   border: 2.5px solid #7f5cff88;
   overflow: hidden;
   animation: neon-glow 2.5s infinite alternate cubic-bezier(.4,0,.6,1);
@@ -163,12 +163,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 2px 16px #7f5cff33;
+  box-shadow: 0 0 32px 8px #00e6d8cc, 0 0 0 4px #7f5cff88, 0 0 40px 8px #4A90E299; /* Enhanced glow */
   text-shadow: 0 2px 8px #7f5cff55;
-  border-bottom: 2px solid #00e6d8cc;
-  cursor: move;
+  border-radius: 20px; /* Rounded corners */
+  cursor: grab;
   user-select: none;
-  position: relative;
+  position: absolute; /* Detached positioning */
+  top: -30px; /* Adjust as needed to detach */
+  left: 20px;
+  right: 20px;
+  z-index: 1003; /* Ensure it's above the chat window */
 }
 #quannex-chat-header::after {
   content: '⋮⋮';
@@ -202,7 +206,7 @@
 }
 #quannex-chat-messages {
   flex: 1;
-  padding: 20px 18px 8px 18px;
+  padding: 50px 18px 8px 18px; /* Adjusted padding-top */
   background: rgba(255,255,255,0.13);
   border-radius: 0 0 22px 22px;
   overflow-y: auto;
@@ -354,9 +358,11 @@
   align-items: flex-start;
 }
 .quannex-header-text span {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
+  font-size: 1.6rem; /* Larger font size */
+  font-weight: 900; /* Bolder font weight */
+  letter-spacing: 0.08em; /* Increased letter spacing */
+  color: #00e6d8; /* Vibrant color */
+  text-shadow: 0 0 10px #00e6d8, 0 0 20px #00e6d8; /* Neon glow effect */
 }
 .quannex-header-subtitle {
   font-size: 1.02rem;
@@ -610,7 +616,7 @@
 .quannex-highlight {
   color: #00e6d8;
   background: rgba(127, 92, 255, 0.10);
-  border-bottom: 2px solid #7f5cff;
+  
   border-radius: 4px;
   padding: 0 3px 1px 3px;
   font-weight: 700;
