@@ -3,6 +3,7 @@
   const bubble = document.getElementById('quannex-chat-bubble');
   const windowEl = document.getElementById('quannex-chat-window');
   const closeBtn = document.getElementById('quannex-chat-close');
+  const newChatBtn = document.getElementById('quannex-new-chat-btn');
   const form = document.getElementById('quannex-chat-form');
   const input = document.getElementById('quannex-chat-input');
   const messages = document.getElementById('quannex-chat-messages');
@@ -20,14 +21,6 @@
     try {
       return JSON.parse(localStorage.getItem('quannex-chat-state')) || {};
     } catch { return {}; }
-  }
-  function saveHistory(history) {
-    localStorage.setItem('quannex-chat-history', JSON.stringify(history));
-  }
-  function loadHistory() {
-    try {
-      return JSON.parse(localStorage.getItem('quannex-chat-history')) || [];
-    } catch { return []; }
   }
   function saveFeedback(feedbackArr) {
     localStorage.setItem('quannex-chat-feedbacks', JSON.stringify(feedbackArr));
@@ -63,16 +56,57 @@
     return Math.max(min, Math.min(val, max));
   }
 
-  // Drag start
-  header.addEventListener('mousedown', function(e) {
-    if (e.button !== 0) return; // Only left mouse
+  // Drag start handler
+  function dragStartHandler(e) {
+    // Prevent dragging on scrollbars or other interactive elements within the header
+    if (e.target !== header && e.target.closest('button, input, a')) {
+      return;
+    }
+    e.preventDefault();
     isDragging = true;
-    const rect = windowEl.getBoundingClientRect();
-    dragOffsetX = e.clientX - rect.left;
-    dragOffsetY = e.clientY - rect.top;
-    windowEl.style.transition = 'none';
-    document.body.style.userSelect = 'none';
-  });
+    
+    // Calculate offset from mouse pointer to the top-left corner of the chat window
+    dragOffsetX = e.clientX - windowEl.offsetLeft;
+    dragOffsetY = e.clientY - windowEl.offsetTop;
+    
+    // Prepare for dragging
+    windowEl.style.transition = 'none'; // Disable transitions for smooth dragging
+    document.body.style.userSelect = 'none'; // Prevent text selection
+    header.style.cursor = 'grabbing'; // Change cursor to indicate dragging
+  }
+
+  // Drag move handler
+  function dragMoveHandler(e) {
+    if (!isDragging) return;
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const boxW = windowEl.offsetWidth;
+    const boxH = windowEl.offsetHeight;
+
+    let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
+    let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
+
+    // Ensure minimum visibility - never let it go completely off-screen
+    left = clamp(left, -boxW + 50, winW - 50);
+    top = clamp(top, -boxH + 50, winH - 50);
+    
+    windowEl.style.left = left + 'px';
+    windowEl.style.top = top + 'px';
+  }
+
+  // Drag end handler
+  function dragEndHandler() {
+    if (isDragging) {
+      isDragging = false;
+      windowEl.style.transition = '';
+      document.body.style.userSelect = '';
+      header.style.cursor = 'grab';
+      
+      const left = parseInt(windowEl.style.left) || 0;
+      const top = parseInt(windowEl.style.top) || 0;
+      savePosition(left, top);
+    }
+  }
 
   // Double-click header to reset position
   header.addEventListener('dblclick', function(e) {
@@ -80,49 +114,9 @@
     resetToCenter();
   });
 
-  // Drag move
-  document.addEventListener('mousemove', function(e) {
-    if (!isDragging) return;
-    const winW = window.innerWidth;
-    const winH = window.innerHeight;
-    const boxW = windowEl.offsetWidth;
-    const boxH = windowEl.offsetHeight;
-    let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
-    let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
-    
-    // Ensure the chat window stays within viewport bounds
-    if (left < 0) left = 0;
-    if (top < 0) top = 0;
-    if (left + boxW > winW) left = winW - boxW;
-    if (top + boxH > winH) top = winH - boxH;
-    
-    // Ensure minimum visibility - never let it go completely off-screen
-    if (left < -boxW + 50) left = -boxW + 50;
-    if (top < -boxH + 50) top = -boxH + 50;
-    if (left > winW - 50) left = winW - 50;
-    if (top > winH - 50) top = winH - 50;
-    
-    windowEl.style.left = left + 'px';
-    windowEl.style.top = top + 'px';
-    windowEl.style.right = 'auto';
-    windowEl.style.bottom = 'auto';
-    windowEl.style.position = 'fixed';
-    windowEl.style.transform = 'none';
-  });
-
-  // Drag end
-  document.addEventListener('mouseup', function() {
-    if (isDragging) {
-      isDragging = false;
-      windowEl.style.transition = '';
-      document.body.style.userSelect = '';
-      
-      // Save the final position
-      const left = parseInt(windowEl.style.left) || 0;
-      const top = parseInt(windowEl.style.top) || 0;
-      savePosition(left, top);
-    }
-  });
+  // Add event listeners for dragging
+  document.addEventListener('mousemove', dragMoveHandler);
+  document.addEventListener('mouseup', dragEndHandler);
 
   // --- Animation helpers ---
   function animateOpen() {
@@ -154,35 +148,48 @@
 
   // Show/hide chat (with animation)
   function showChat() {
-    const savedPosition = loadPosition();
     const isMobile = window.innerWidth <= 600;
-    
-    console.log('showChat called, savedPosition:', savedPosition, 'isMobile:', isMobile);
-    
-    if (savedPosition && savedPosition.left && savedPosition.top && !isMobile) {
-      // Restore saved position (only on desktop)
-      console.log('Restoring saved position:', savedPosition);
-      windowEl.style.position = 'fixed';
-      windowEl.style.left = savedPosition.left + 'px';
-      windowEl.style.top = savedPosition.top + 'px';
-      windowEl.style.right = 'auto';
-      windowEl.style.bottom = 'auto';
-      windowEl.style.transform = 'none';
-    } else {
-      // Use default centered position
-      console.log('Using default centered position');
-      windowEl.style.position = 'relative';
-      windowEl.style.left = '0';
+    windowEl.style.position = 'fixed'; // Always fixed for consistent dragging behavior
+
+    if (isMobile) {
+      // On mobile, always center at the bottom
+      windowEl.style.left = '50%';
       windowEl.style.top = 'auto';
       windowEl.style.right = 'auto';
-      windowEl.style.bottom = 'auto';
-      windowEl.style.transform = 'none';
+      windowEl.style.bottom = '16px'; // Adjust as needed for mobile
+      windowEl.style.transform = 'translateX(-50%)';
+      // Disable dragging on mobile
+      header.style.cursor = 'default';
+      header.removeEventListener('mousedown', dragStartHandler);
+    } else {
+      // On desktop, restore saved position or center
+      const savedPosition = loadPosition();
+      if (savedPosition && savedPosition.left !== null && savedPosition.top !== null) {
+        windowEl.style.left = savedPosition.left + 'px';
+        windowEl.style.top = savedPosition.top + 'px';
+        windowEl.style.right = 'auto';
+        windowEl.style.bottom = 'auto';
+        windowEl.style.transform = 'none';
+      } else {
+        // Center the chat window if no saved position
+        const centerX = (window.innerWidth - windowEl.offsetWidth) / 2;
+        const centerY = (window.innerHeight - windowEl.offsetHeight) / 2;
+        windowEl.style.left = centerX + 'px';
+        windowEl.style.top = centerY + 'px';
+        windowEl.style.right = 'auto';
+        windowEl.style.bottom = 'auto';
+        windowEl.style.transform = 'none';
+      }
+      // Enable dragging on desktop
+      header.style.cursor = 'grab';
+      header.addEventListener('mousedown', dragStartHandler);
     }
     
     animateOpen();
     document.body.style.overflow = 'hidden';
     document.addEventListener('focus', trapFocus, true);
     saveState({ open: true });
+    resizeInput(); // Initialize textarea size
   }
   function hideChat() {
     animateClose();
@@ -206,24 +213,6 @@
       hideChat();
     }
   });
-
-  // Message helpers
-  function addMessage(text, sender, special) {
-    const div = document.createElement('div');
-    div.className = 'quannex-message ' + sender + (special ? ' quannex-message-special' : '');
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-    // Save to history
-    const history = loadHistory();
-    history.push({ text, sender });
-    saveHistory(history);
-  }
-  function renderHistory() {
-    messages.innerHTML = '';
-    const history = loadHistory();
-    history.forEach(msg => addMessage(msg.text, msg.sender));
-  }
 
   // Loader helpers
   function showLoader() {
@@ -260,6 +249,7 @@
     if (!question) return;
     addMessage(question, 'user');
     input.value = '';
+    resizeInput(); // Reset textarea size after sending
     showLoader();
     hideFeedback();
     try {
@@ -290,6 +280,13 @@
     }
   });
 
+  // Dynamic textarea resizing
+  function resizeInput() {
+    input.style.height = 'auto';
+    input.style.height = input.scrollHeight + 'px';
+  }
+  input.addEventListener('input', resizeInput);
+
   // Restore state/history on load
   if (loadState().open) {
     showChat();
@@ -315,14 +312,13 @@
   function setCurrentSessionId(id) {
     localStorage.setItem('quannex-current-session-id', id);
   }
-  function createSession() {
+  function createSession(initialMessages = []) {
     const id = 'sess-' + Date.now();
     const session = {
       id,
       timestamp: Date.now(),
-      messages: [
-        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', sender: 'ai', ts: Date.now() },
-        { text: 'Quannex is here to find coherence with you.', sender: 'ai', ts: Date.now(), special: true }
+      messages: initialMessages.length > 0 ? initialMessages : [
+        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', sender: 'ai', ts: Date.now() }
       ]
     };
     const sessions = loadSessions();
@@ -471,21 +467,17 @@
   }
   // --- On Load: Session Bootstrapping ---
   if (!getCurrentSessionId() || !getCurrentSession()) {
-    // Add only the welcome message, coherence now handled separately
-    const id = 'sess-' + Date.now();
-    const session = {
-      id,
-      timestamp: Date.now(),
-      messages: [
-        { text: '⚛️ Welcome to Quannex - Your Quantum Nexus! How can I - Quannex Intelligence assist you today? Feel free to ask anything about our platform, features, quantum consciousness or quantum mastery paths!', sender: 'ai', ts: Date.now() }
-      ]
-    };
-    const sessions = loadSessions();
-    sessions.push(session);
-    saveSessions(sessions);
-    setCurrentSessionId(id);
+    createSession(); // Create a new session if none exists or current is invalid
   }
   renderHistory();
+
+  // New Chat button functionality
+  newChatBtn.addEventListener('click', function() {
+    const newSession = createSession();
+    renderHistory(newSession.messages);
+    input.value = ''; // Clear input field
+    hideFeedback(); // Hide feedback buttons for new chat
+  });
 
   // Window resize handler to keep chat window in bounds
   window.addEventListener('resize', function() {
@@ -512,4 +504,6 @@
       }
     }
   });
-})(); 
+  // Initial resize on load
+  
+})();

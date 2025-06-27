@@ -206,7 +206,7 @@
   background: rgba(255,255,255,0.13);
   border-radius: 0 0 22px 22px;
   overflow-y: auto;
-  max-height: 340px;
+  max-height: calc(100vh - 200px); /* Adjusted for mobile responsiveness */
   color: #e0e0ff;
   background: rgba(30, 30, 60, 0.13);
 }
@@ -266,7 +266,6 @@
   color: #222;
   resize: vertical;
   min-height: 38px;
-  max-height: 90px;
   line-height: 1.5;
   background: rgba(255,255,255,0.18);
   border-radius: 18px;
@@ -302,7 +301,38 @@
   transform: scale(1.08);
 }
 #quannex-chat-feedback {
-  display: none !important;
+  display: flex; /* Changed from none !important */
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid #eee;
+  border-radius: 0 0 28px 28px;
+  color: #e0e0ff;
+  font-size: 0.95rem;
+  gap: 12px;
+}
+#quannex-chat-feedback span {
+  font-weight: 600;
+}
+#quannex-chat-feedback button {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  color: #e0e0ff;
+}
+#quannex-chat-feedback button:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #00e6d8;
+  transform: translateY(-2px);
+}
+#quannex-chat-feedback button:active {
+  transform: translateY(0);
 }
 /* Neon scrollbar */
 #quannex-chat-messages::-webkit-scrollbar {
@@ -338,14 +368,19 @@
 @media (max-width: 600px) {
   #quannex-chat-widget-wrapper {
     width: 98vw;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 1vw; /* Adjusted for mobile */
+    right: 1vw; /* Adjusted for mobile */
+    transform: none; /* Removed for mobile */
+    bottom: 16px; /* Adjusted for mobile */
+    top: auto; /* Ensure it's at the bottom */
   }
   #quannex-chat-window {
     width: 98vw;
-    min-width: unset;
+    min-width: unset; /* Removed min-width for mobile */
     max-width: 98vw;
     border-radius: 18px;
+    height: calc(100vh - 100px); /* Make it take up most of the screen height */
+    max-height: unset; /* Remove max-height restriction */
   }
   #quannex-chat-bubble {
     right: 4px;
