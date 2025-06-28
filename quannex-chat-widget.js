@@ -84,6 +84,31 @@
     top = clamp(top, -(boxH - minVisible), winH - minVisible);
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
+    windowEl.style.right = 'auto';
+    windowEl.style.bottom = 'auto';
+    windowEl.style.transform = 'none';
+  }
+
+  // Helper to reset chat window to center (desktop/tablet)
+  function resetChatWindowToCenter() {
+    const boxW = windowEl.offsetWidth || 420;
+    const boxH = windowEl.offsetHeight || 480;
+    const centerX = (window.innerWidth - boxW) / 2;
+    const centerY = (window.innerHeight - boxH) / 2;
+    windowEl.style.left = centerX + 'px';
+    windowEl.style.top = centerY + 'px';
+    windowEl.style.right = 'auto';
+    windowEl.style.bottom = 'auto';
+    windowEl.style.transform = 'none';
+  }
+
+  // Helper to set chat window to mobile default
+  function setChatWindowMobileDefault() {
+    windowEl.style.left = '50%';
+    windowEl.style.top = 'auto';
+    windowEl.style.right = 'auto';
+    windowEl.style.bottom = '16px';
+    windowEl.style.transform = 'translateX(-50%)';
   }
 
   // Drag start handler
@@ -117,6 +142,9 @@
     let top = clamp(e.clientY - dragOffsetY, -(boxH - minVisible), winH - minVisible);
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
+    windowEl.style.right = 'auto';
+    windowEl.style.bottom = 'auto';
+    windowEl.style.transform = 'none';
   }
 
   // Drag end handler
@@ -184,16 +212,29 @@
     const isMobile = window.innerWidth <= 600;
 
     if (isMobile) {
-      windowEl.style.left = '50%';
-      windowEl.style.top = 'auto';
-      windowEl.style.right = 'auto';
-      windowEl.style.bottom = '16px';
-      windowEl.style.transform = 'translateX(-50%)';
+      setChatWindowMobileDefault();
       header.style.cursor = 'default';
       header.removeEventListener('mousedown', dragStartHandler);
     } else {
       const savedPosition = loadPosition();
-      if (savedPosition && savedPosition.left !== null && savedPosition.top !== null) {
+      // Validate saved position
+      let valid = false;
+      if (savedPosition && typeof savedPosition.left === 'number' && typeof savedPosition.top === 'number') {
+        // Check if within viewport
+        const winW = window.innerWidth;
+        const winH = window.innerHeight;
+        const boxW = windowEl.offsetWidth;
+        const boxH = windowEl.offsetHeight;
+        if (
+          savedPosition.left >= -(boxW - 50) &&
+          savedPosition.left <= winW - 50 &&
+          savedPosition.top >= -(boxH - 50) &&
+          savedPosition.top <= winH - 50
+        ) {
+          valid = true;
+        }
+      }
+      if (valid) {
         windowEl.style.left = savedPosition.left + 'px';
         windowEl.style.top = savedPosition.top + 'px';
         windowEl.style.right = 'auto';
@@ -201,17 +242,7 @@
         windowEl.style.transform = 'none';
         clampChatWindowToViewport(); // Ensure it's not off-screen
       } else {
-        // Center the chat window if no saved position
-        windowEl.style.display = 'block'; // Ensure visible for measurement
-        const boxW = windowEl.offsetWidth || 420;
-        const boxH = windowEl.offsetHeight || 480;
-        const centerX = (window.innerWidth - boxW) / 2;
-        const centerY = (window.innerHeight - boxH) / 2;
-        windowEl.style.left = centerX + 'px';
-        windowEl.style.top = centerY + 'px';
-        windowEl.style.right = 'auto';
-        windowEl.style.bottom = 'auto';
-        windowEl.style.transform = 'none';
+        resetChatWindowToCenter();
       }
       header.style.cursor = 'grab';
       header.addEventListener('mousedown', dragStartHandler);
@@ -537,10 +568,18 @@
     hideFeedback(); // Hide feedback buttons for new chat
   });
 
-  // Add window resize listener to keep chat window visible
+  // Add window resize listener to keep chat window visible and correct mode
   window.addEventListener('resize', function() {
     if (window.innerWidth > 600) {
+      // Desktop/tablet: ensure only top/left are set, and clamp to viewport
       clampChatWindowToViewport();
+      header.style.cursor = 'grab';
+      header.addEventListener('mousedown', dragStartHandler);
+    } else {
+      // Mobile: ensure only bottom/left/transform are set
+      setChatWindowMobileDefault();
+      header.style.cursor = 'default';
+      header.removeEventListener('mousedown', dragStartHandler);
     }
   });
   
