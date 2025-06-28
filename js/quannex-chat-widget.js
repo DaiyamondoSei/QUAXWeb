@@ -29,6 +29,7 @@
     const feedbackYes = document.getElementById('quannex-feedback-yes');
     const feedbackNo = document.getElementById('quannex-feedback-no');
     const header = document.getElementById('quannex-chat-header');
+  const chatWindow = document.getElementById('quannex-chat-window');
 
     // Check if all required elements are found
     if (!bubble || !windowEl || !closeBtn || !newChatBtn || !form || !input || !messages || !loader || !feedback || !feedbackYes || !feedbackNo || !header) {
