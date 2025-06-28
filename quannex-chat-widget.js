@@ -101,10 +101,6 @@
     let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
     let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
 
-    // Ensure minimum visibility - never let it go completely off-screen
-    left = clamp(left, -boxW + 50, winW - 50);
-    top = clamp(top, -boxH + 50, winH - 50);
-    
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
   }
@@ -171,20 +167,16 @@
   function showChat() {
     console.log('Quannex Chat Widget: showChat called');
     const isMobile = window.innerWidth <= 600;
-    // Position is now handled in CSS, no need to set it here
 
     if (isMobile) {
-      // On mobile, always center at the bottom
       windowEl.style.left = '50%';
       windowEl.style.top = 'auto';
       windowEl.style.right = 'auto';
-      windowEl.style.bottom = '16px'; // Adjust as needed for mobile
+      windowEl.style.bottom = '16px';
       windowEl.style.transform = 'translateX(-50%)';
-      // Disable dragging on mobile
       header.style.cursor = 'default';
       header.removeEventListener('mousedown', dragStartHandler);
     } else {
-      // On desktop, restore saved position or center
       const savedPosition = loadPosition();
       if (savedPosition && savedPosition.left !== null && savedPosition.top !== null) {
         windowEl.style.left = savedPosition.left + 'px';
@@ -194,9 +186,9 @@
         windowEl.style.transform = 'none';
       } else {
         // Center the chat window if no saved position
-        // Use fallback dimensions if element is not yet visible
-        const boxW = windowEl.offsetWidth || 420; // Default width from CSS
-        const boxH = windowEl.offsetHeight || 480; // Default height from CSS
+        windowEl.style.display = 'block'; // Ensure visible for measurement
+        const boxW = windowEl.offsetWidth || 420;
+        const boxH = windowEl.offsetHeight || 480;
         const centerX = (window.innerWidth - boxW) / 2;
         const centerY = (window.innerHeight - boxH) / 2;
         windowEl.style.left = centerX + 'px';
@@ -205,17 +197,10 @@
         windowEl.style.bottom = 'auto';
         windowEl.style.transform = 'none';
       }
-      // Enable dragging on desktop
       header.style.cursor = 'grab';
       header.addEventListener('mousedown', dragStartHandler);
     }
-    
-    console.log('Quannex Chat Widget: About to call animateOpen');
-    animateOpen();
-    document.body.style.overflow = 'hidden';
-    document.addEventListener('focus', trapFocus, true);
-    saveState({ open: true });
-    resizeInput(); // Initialize textarea size
+    windowEl.style.pointerEvents = 'auto';
   }
   function hideChat() {
     animateClose();

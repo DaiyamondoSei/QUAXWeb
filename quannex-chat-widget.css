@@ -63,14 +63,7 @@ body.dragging {
   transform: scale(1.12) rotate(-4deg);
 }
 #quannex-chat-widget-wrapper {
-  position: fixed;
-  bottom: 180px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001; /* Increased to be above quantum cursor */
-  width: 420px;
-  max-width: 98vw;
-  pointer-events: none;
+  /* Removed position: fixed, bottom, left, transform, z-index, width, max-width, pointer-events */
 }
 #quannex-chat-window {
   display: none; /* Start hidden, controlled by JavaScript */
