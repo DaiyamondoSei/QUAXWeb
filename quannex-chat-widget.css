@@ -73,7 +73,7 @@ body.dragging {
   pointer-events: none;
 }
 #quannex-chat-window {
-  display: flex;
+  display: none; /* Start hidden, controlled by JavaScript */
   flex-direction: column;
   height: 480px;
   min-height: 340px;
@@ -97,14 +97,12 @@ body.dragging {
   z-index: 1002;
   max-width: 98vw;
   min-width: 320px;
-  visibility: hidden; /* Hide from screen readers when closed */
 }
 #quannex-chat-window.quannex-chat-animate-in {
   opacity: 1;
   transform: scale(1) translateY(0);
   pointer-events: auto;
   box-shadow: 0 0 48px 16px #00e6d8ee, 0 0 0 8px #7f5cff88;
-  visibility: visible;
 }
 #quannex-chat-window.quannex-chat-animate-out {
   opacity: 0;
