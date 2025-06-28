@@ -90,6 +90,7 @@
     let isDragging = false;
     let dragOffsetX = 0;
     let dragOffsetY = 0;
+    let closeTimeout;
 
     // Helper to clamp values within viewport
     function clamp(val, min, max) {
@@ -161,6 +162,7 @@
     // --- Animation helpers ---
     function animateOpen() {
       console.log('Quannex Chat Widget: animateOpen called');
+      clearTimeout(closeTimeout);
       windowEl.style.display = 'flex';
       windowEl.classList.remove('quannex-chat-animate-out');
       void windowEl.offsetWidth; // Force reflow for animation
@@ -171,7 +173,7 @@
     function animateClose() {
       windowEl.classList.remove('quannex-chat-animate-in');
       windowEl.classList.add('quannex-chat-animate-out');
-      setTimeout(() => {
+      closeTimeout = setTimeout(() => {
         windowEl.style.display = 'none';
         windowEl.classList.remove('quannex-chat-animate-out');
       }, 380);
@@ -201,13 +203,7 @@
     function showChat() {
       console.log('Quannex Chat Widget: showChat called');
       const isMobile = window.innerWidth <= 600;
-      
-      // Reset any conflicting styles first
-      windowEl.style.opacity = '0';
-      windowEl.style.transform = 'scale(0.85) translateY(40px)';
-      windowEl.style.pointerEvents = 'none';
-      
-      windowEl.style.position = 'fixed'; // Always fixed for consistent dragging behavior
+      // Position is now handled in CSS, no need to set it here
 
       if (isMobile) {
         // On mobile, always center at the bottom
@@ -230,8 +226,11 @@
           windowEl.style.transform = 'none';
         } else {
           // Center the chat window if no saved position
-          const centerX = (window.innerWidth - windowEl.offsetWidth) / 2;
-          const centerY = (window.innerHeight - windowEl.offsetHeight) / 2;
+          // Use fallback dimensions if element is not yet visible
+          const boxW = windowEl.offsetWidth || 420; // Default width from CSS
+          const boxH = windowEl.offsetHeight || 480; // Default height from CSS
+          const centerX = (window.innerWidth - boxW) / 2;
+          const centerY = (window.innerHeight - boxH) / 2;
           windowEl.style.left = centerX + 'px';
           windowEl.style.top = centerY + 'px';
           windowEl.style.right = 'auto';
@@ -263,7 +262,11 @@
       console.log('Current window display:', windowEl.style.display);
       console.log('Current window classes:', windowEl.className);
       
-      if (windowEl.style.display === 'flex' || windowEl.classList.contains('quannex-chat-animate-in')) {
+      // Check if chat is currently visible (either displayed or animating in)
+      const isVisible = windowEl.style.display === 'flex' || 
+                       windowEl.classList.contains('quannex-chat-animate-in');
+      
+      if (isVisible) {
         console.log('Quannex Chat Widget: Hiding chat');
         hideChat();
       } else {

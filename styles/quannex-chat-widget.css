@@ -69,12 +69,12 @@
   pointer-events: none;
 }
 #quannex-chat-window {
-  
+  display: none; /* Start hidden, controlled by JavaScript */
   flex-direction: column;
   height: 480px;
   min-height: 340px;
   max-height: 90vh;
-  position: relative;
+  position: fixed; /* Changed from relative to fixed for proper positioning */
   left: 0;
   right: 0;
   margin: 30px auto 0 auto; /* Added margin-top to detach header */

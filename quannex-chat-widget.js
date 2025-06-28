@@ -138,11 +138,13 @@
 
   // --- Animation helpers ---
   function animateOpen() {
+    console.log('Quannex Chat Widget: animateOpen called');
     clearTimeout(closeTimeout);
     windowEl.style.display = 'flex';
     windowEl.classList.remove('quannex-chat-animate-out');
     void windowEl.offsetWidth; // Force reflow for animation
     windowEl.classList.add('quannex-chat-animate-in');
+    console.log('Quannex Chat Widget: Animation classes applied, window display:', windowEl.style.display);
     setTimeout(() => input.focus(), 400);
   }
   function animateClose() {
@@ -167,8 +169,9 @@
 
   // Show/hide chat (with animation)
   function showChat() {
+    console.log('Quannex Chat Widget: showChat called');
     const isMobile = window.innerWidth <= 600;
-    windowEl.style.position = 'fixed'; // Always fixed for consistent dragging behavior
+    // Position is now handled in CSS, no need to set it here
 
     if (isMobile) {
       // On mobile, always center at the bottom
@@ -191,8 +194,11 @@
         windowEl.style.transform = 'none';
       } else {
         // Center the chat window if no saved position
-        const centerX = (window.innerWidth - windowEl.offsetWidth) / 2;
-        const centerY = (window.innerHeight - windowEl.offsetHeight) / 2;
+        // Use fallback dimensions if element is not yet visible
+        const boxW = windowEl.offsetWidth || 420; // Default width from CSS
+        const boxH = windowEl.offsetHeight || 480; // Default height from CSS
+        const centerX = (window.innerWidth - boxW) / 2;
+        const centerY = (window.innerHeight - boxH) / 2;
         windowEl.style.left = centerX + 'px';
         windowEl.style.top = centerY + 'px';
         windowEl.style.right = 'auto';
@@ -204,6 +210,7 @@
       header.addEventListener('mousedown', dragStartHandler);
     }
     
+    console.log('Quannex Chat Widget: About to call animateOpen');
     animateOpen();
     document.body.style.overflow = 'hidden';
     document.addEventListener('focus', trapFocus, true);
@@ -219,11 +226,19 @@
   }
 
   bubble.addEventListener('click', function() {
-    if (windowEl.style.display === 'flex' || windowEl.classList.contains('quannex-chat-animate-in')) {
-      if (windowEl.style.display !== 'none') {
-        hideChat();
-      }
+    console.log('Quannex Chat Widget: Bubble clicked');
+    console.log('Current window display:', windowEl.style.display);
+    console.log('Current window classes:', windowEl.className);
+    
+    // Check if chat is currently visible (either displayed or animating in)
+    const isVisible = windowEl.style.display === 'flex' || 
+                     windowEl.classList.contains('quannex-chat-animate-in');
+    
+    if (isVisible) {
+      console.log('Quannex Chat Widget: Hiding chat');
+      hideChat();
     } else {
+      console.log('Quannex Chat Widget: Showing chat');
       showChat();
     }
   });
