@@ -160,7 +160,6 @@
 
     // --- Animation helpers ---
     function animateOpen() {
-    console.log('Quannex Chat Widget: animateOpen called');
       console.log('Quannex Chat Widget: animateOpen called');
       windowEl.style.display = 'flex';
       windowEl.classList.remove('quannex-chat-animate-out');
@@ -200,7 +199,6 @@
 
     // Show/hide chat (with animation)
     function showChat() {
-      console.log('Quannex Chat Widget: showChat called');
       console.log('Quannex Chat Widget: showChat called');
       const isMobile = window.innerWidth <= 600;
       
