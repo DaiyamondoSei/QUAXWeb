@@ -210,12 +210,15 @@
   function showChat() {
     console.log('Quannex Chat Widget: showChat called');
     const isMobile = window.innerWidth <= 600;
+    const wrapper = document.getElementById('quannex-chat-widget-wrapper');
 
     if (isMobile) {
+      setWrapperMobileDefault();
       setChatWindowMobileDefault();
       header.style.cursor = 'default';
       header.removeEventListener('mousedown', dragStartHandler);
     } else {
+      setWrapperDesktopDefault();
       const savedPosition = loadPosition();
       // Validate saved position
       let valid = false;
@@ -570,17 +573,42 @@
 
   // Add window resize listener to keep chat window visible and correct mode
   window.addEventListener('resize', function() {
-    if (window.innerWidth > 600) {
-      // Desktop/tablet: ensure only top/left are set, and clamp to viewport
-      clampChatWindowToViewport();
-      header.style.cursor = 'grab';
-      header.addEventListener('mousedown', dragStartHandler);
-    } else {
-      // Mobile: ensure only bottom/left/transform are set
+    const isMobile = window.innerWidth <= 600;
+    if (isMobile) {
+      setWrapperMobileDefault();
       setChatWindowMobileDefault();
       header.style.cursor = 'default';
       header.removeEventListener('mousedown', dragStartHandler);
+    } else {
+      setWrapperDesktopDefault();
+      clampChatWindowToViewport();
+      header.style.cursor = 'grab';
+      header.addEventListener('mousedown', dragStartHandler);
     }
   });
   
+  // Helper to reset wrapper styles for desktop/tablet
+  function setWrapperDesktopDefault() {
+    const wrapper = document.getElementById('quannex-chat-widget-wrapper');
+    if (!wrapper) return;
+    wrapper.style.left = '';
+    wrapper.style.right = '';
+    wrapper.style.width = '';
+    wrapper.style.top = '';
+    wrapper.style.bottom = '';
+    wrapper.style.position = '';
+    wrapper.style.transform = '';
+  }
+  // Helper to set wrapper styles for mobile
+  function setWrapperMobileDefault() {
+    const wrapper = document.getElementById('quannex-chat-widget-wrapper');
+    if (!wrapper) return;
+    wrapper.style.left = '1vw';
+    wrapper.style.right = '1vw';
+    wrapper.style.width = '98vw';
+    wrapper.style.top = 'auto';
+    wrapper.style.bottom = '16px';
+    wrapper.style.position = '';
+    wrapper.style.transform = 'none';
+  }
 })();
