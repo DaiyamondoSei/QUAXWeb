@@ -219,18 +219,26 @@
         // On desktop, restore saved position or center
         const savedPosition = loadPosition();
         if (savedPosition && savedPosition.left !== null && savedPosition.top !== null) {
-          windowEl.style.left = savedPosition.left + 'px';
-          windowEl.style.top = savedPosition.top + 'px';
+          // Clamp saved position to viewport
+          const boxW = windowEl.offsetWidth || 420;
+          const boxH = windowEl.offsetHeight || 480;
+          const winW = window.innerWidth;
+          const winH = window.innerHeight;
+          let left = Math.max(0, Math.min(savedPosition.left, winW - boxW));
+          let top = Math.max(0, Math.min(savedPosition.top, winH - boxH));
+          windowEl.style.left = left + 'px';
+          windowEl.style.top = top + 'px';
           windowEl.style.right = 'auto';
           windowEl.style.bottom = 'auto';
           windowEl.style.transform = 'none';
         } else {
           // Center the chat window if no saved position
-          // Use fallback dimensions if element is not yet visible
           const boxW = windowEl.offsetWidth || 420; // Default width from CSS
           const boxH = windowEl.offsetHeight || 480; // Default height from CSS
-          const centerX = (window.innerWidth - boxW) / 2;
-          const centerY = (window.innerHeight - boxH) / 2;
+          const winW = window.innerWidth;
+          const winH = window.innerHeight;
+          const centerX = Math.max(0, (winW - boxW) / 2);
+          const centerY = Math.max(0, (winH - boxH) / 2);
           windowEl.style.left = centerX + 'px';
           windowEl.style.top = centerY + 'px';
           windowEl.style.right = 'auto';
