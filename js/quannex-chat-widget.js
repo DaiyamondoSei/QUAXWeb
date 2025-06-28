@@ -29,7 +29,7 @@
     const feedbackYes = document.getElementById('quannex-feedback-yes');
     const feedbackNo = document.getElementById('quannex-feedback-no');
     const header = document.getElementById('quannex-chat-header');
-  const chatWindow = document.getElementById('quannex-chat-window');
+  
 
     // Check if all required elements are found
     if (!bubble || !windowEl || !closeBtn || !newChatBtn || !form || !input || !messages || !loader || !feedback || !feedbackYes || !feedbackNo || !header) {
@@ -160,6 +160,7 @@
 
     // --- Animation helpers ---
     function animateOpen() {
+    console.log('Quannex Chat Widget: animateOpen called');
       console.log('Quannex Chat Widget: animateOpen called');
       windowEl.style.display = 'flex';
       windowEl.classList.remove('quannex-chat-animate-out');
@@ -199,6 +200,7 @@
 
     // Show/hide chat (with animation)
     function showChat() {
+      console.log('Quannex Chat Widget: showChat called');
       console.log('Quannex Chat Widget: showChat called');
       const isMobile = window.innerWidth <= 600;
       
