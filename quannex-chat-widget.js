@@ -134,8 +134,11 @@
   document.addEventListener('mousemove', dragMoveHandler);
   document.addEventListener('mouseup', dragEndHandler);
 
+  let closeTimeout;
+
   // --- Animation helpers ---
   function animateOpen() {
+    clearTimeout(closeTimeout);
     windowEl.style.display = 'flex';
     windowEl.classList.remove('quannex-chat-animate-out');
     void windowEl.offsetWidth; // Force reflow for animation
@@ -145,7 +148,7 @@
   function animateClose() {
     windowEl.classList.remove('quannex-chat-animate-in');
     windowEl.classList.add('quannex-chat-animate-out');
-    setTimeout(() => {
+    closeTimeout = setTimeout(() => {
       windowEl.style.display = 'none';
       windowEl.classList.remove('quannex-chat-animate-out');
     }, 380);
@@ -217,7 +220,9 @@
 
   bubble.addEventListener('click', function() {
     if (windowEl.style.display === 'flex' || windowEl.classList.contains('quannex-chat-animate-in')) {
-      hideChat();
+      if (windowEl.style.display !== 'none') {
+        hideChat();
+      }
     } else {
       showChat();
     }
