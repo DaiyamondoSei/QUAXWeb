@@ -1,0 +1,11 @@
+:root {
+    /* Mobile Navigation Variables */
+    --mobile-transition: 0.3s ease;
+    --mobile-padding: 1rem;
+    --mobile-border-radius: 12px;
+    --bottom-nav-height: 64px;
+    --bottom-nav-bg: rgba(5, 5, 32, 0.95);
+    --bottom-nav-border: rgba(255, 255, 255, 0.1);
+    --bottom-nav-active: var(--primary-color);
+    --bottom-nav-inactive: var(--medium-text);
+} 

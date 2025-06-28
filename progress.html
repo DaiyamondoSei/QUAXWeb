@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Progress</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/reading-progress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <script src="js/reading-progress.js" defer></script>
+</head>
+<body class="bg-dark">
+    <div class="progress-container">
+        <div class="progress-header">
+            <div class="icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h2 class="progress-title">Development Progress</h2>
+        </div>
+
+        <div class="feature-card">
+            <div class="progress-item">
+                <div class="progress-item-header">
+                    <span class="progress-label">Core Framework</span>
+                    <span class="progress-percentage">90%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 90%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="progress-item">
+                <div class="progress-item-header">
+                    <span class="progress-label">Future Self Connection</span>
+                    <span class="progress-percentage">80%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 80%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="progress-item">
+                <div class="progress-item-header">
+                    <span class="progress-label">Daily Task System</span>
+                    <span class="progress-percentage">70%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 70%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-card">
+            <div class="progress-item">
+                <div class="progress-item-header">
+                    <span class="progress-label">Basic AI Guidance</span>
+                    <span class="progress-percentage">60%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 60%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html> 

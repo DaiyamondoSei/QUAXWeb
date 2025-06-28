@@ -1,0 +1,595 @@
+/* Business Model Page Styles */
+
+/* Base Content Visibility */
+.content-container,
+.content-header,
+.content-section,
+.market-stats-container,
+.stat-card,
+.competitive-analysis,
+.competitor-grid,
+.competitor-category,
+.unique-differentiators,
+.differentiator-grid,
+.differentiator-card,
+.risk-matrix,
+.risk-category,
+.revenue-streams,
+.revenue-category,
+.revenue-details,
+.tier,
+.stream,
+.revenue-projection,
+.projection-chart,
+.revenue-visualization,
+.revenue-chart-container,
+.canvas-container,
+.canvas-grid,
+.canvas-block,
+.metrics-container,
+.segments-container,
+.financial-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* Animation System */
+.scroll-animate,
+.fade-in,
+.slide-up,
+.scale-in {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.scroll-animate.animate-in,
+.fade-in.animate-in,
+.slide-up.animate-in,
+.scale-in.animate-in {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Remove any problematic animation delays */
+.animate-in * {
+    transition-delay: 0s !important;
+}
+
+/* Performance optimizations */
+.hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .scroll-animate,
+    .fade-in,
+    .slide-up,
+    .scale-in,
+    .canvas-block,
+    .stat-card,
+    .differentiator-card,
+    .tier,
+    .stream,
+    .financial-card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Low-end device optimizations */
+.low-end-device .scroll-animate,
+.low-end-device .fade-in,
+.low-end-device .slide-up,
+.low-end-device .scale-in,
+.low-end-device .canvas-block,
+.low-end-device .stat-card,
+.low-end-device .differentiator-card,
+.low-end-device .tier,
+.low-end-device .stream,
+.low-end-device .financial-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Market Analysis Styles */
+.market-stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin: 15px 0;
+}
+
+.stat-label {
+    color: var(--medium-text);
+    margin-bottom: 10px;
+}
+
+.stat-projection {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+}
+
+/* Competitive Analysis Styles */
+.competitive-analysis {
+    margin: 30px 0;
+}
+
+.competitor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.competitor-category {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.competitor-category h4 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.competitor-category ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.competitor-category li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.competitor-category li:last-child {
+    border-bottom: none;
+}
+
+/* Unique Differentiators Styles */
+.unique-differentiators {
+    margin: 30px 0;
+}
+
+.differentiator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.differentiator-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.differentiator-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.differentiator-card i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.differentiator-card h4 {
+    color: var(--light-text);
+    margin-bottom: 10px;
+}
+
+/* Risk Assessment Styles */
+.risk-matrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.risk-category {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.risk-level {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.risk-description {
+    color: var(--medium-text);
+    margin-bottom: 15px;
+}
+
+.mitigation h4 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.mitigation ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mitigation li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mitigation li:last-child {
+    border-bottom: none;
+}
+
+/* Revenue Model Styles */
+.revenue-streams {
+    margin: 30px 0;
+}
+
+.revenue-category {
+    margin-bottom: 30px;
+}
+
+.revenue-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tier {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.tier:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.tier h4 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.tier .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.tier ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.tier li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tier li:last-child {
+    border-bottom: none;
+}
+
+.stream {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stream:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.stream h4 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+/* Revenue Projection Styles */
+.revenue-projection {
+    margin: 30px 0;
+}
+
+.projection-chart {
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-bar {
+    width: 60px;
+    background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.chart-bar:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 20px rgba(110, 0, 255, 0.5);
+}
+
+.chart-bar::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--light-text);
+    font-weight: bold;
+}
+
+.chart-bar::before {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--medium-text);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Revenue Visualization Styles */
+.revenue-visualization {
+    margin: 30px 0;
+}
+
+.revenue-chart-container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--medium-text);
+    font-size: 0.9rem;
+}
+
+.revenue-chart {
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px 0;
+    position: relative;
+}
+
+.chart-bar {
+    width: 60px;
+    position: relative;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chart-bar:hover {
+    transform: translateY(-10px);
+}
+
+.bar-segment {
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.bar-segment.subscription {
+    background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+}
+
+.bar-segment.enterprise {
+    background: linear-gradient(to top, var(--secondary-color), var(--accent-color));
+}
+
+.bar-segment.additional {
+    background: linear-gradient(to top, var(--accent-color), #ff00e6);
+}
+
+.chart-bar::after {
+    content: attr(data-value);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--light-text);
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.chart-bar::before {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--medium-text);
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.revenue-breakdown {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.breakdown-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.breakdown-chart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.pie-chart {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(
+        var(--primary-color) 0% 60%,
+        var(--secondary-color) 60% 90%,
+        var(--accent-color) 90% 100%
+    );
+}
+
+.breakdown-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.breakdown-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--medium-text);
+}
+
+.breakdown-legend .legend-item::before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.breakdown-legend .legend-item:nth-child(1)::before {
+    background-color: var(--primary-color);
+}
+
+.breakdown-legend .legend-item:nth-child(2)::before {
+    background-color: var(--secondary-color);
+}
+
+.breakdown-legend .legend-item:nth-child(3)::before {
+    background-color: var(--accent-color);
+}
+
+/* Financial Projections Grid */
+.financial-projections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.financial-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.financial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.financial-card h3 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+}
+
+.financial-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.financial-card li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.financial-card li:last-child {
+    border-bottom: none;
+}
+
+.financial-card strong {
+    color: var(--accent-color);
+} 

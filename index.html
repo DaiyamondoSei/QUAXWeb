@@ -158,7 +158,7 @@
     <link rel="stylesheet" href="/styles/quannex-chat-widget.css">
     <div id="quannex-chat-root"></div>
     <script>
-      fetch('/components/common/QuannexChatWidget.html')
+      fetch('/QuannexChatWidget.html')
         .then(r => r.text())
         .then(html => {
           document.getElementById('quannex-chat-root').innerHTML = html;

@@ -1,0 +1,207 @@
+/* Vision Section Styles */
+.vision {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, rgba(5,5,32,0.95) 0%, rgba(3,3,18,0.98) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.vision-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.vision-text {
+    color: var(--light-text);
+}
+
+.vision-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.vision-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.vision-highlight,
+.vision-core,
+.vision-approach,
+.vision-guide {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vision-highlight:hover,
+.vision-core:hover,
+.vision-approach:hover,
+.vision-guide:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(110, 0, 255, 0.2);
+    border-color: var(--primary-color);
+}
+
+.vision-visualization {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantum-visualization {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.quantum-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(110, 0, 255, 0.8) 0%,
+        rgba(0, 184, 255, 0.6) 50%,
+        rgba(255, 0, 230, 0.4) 100%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+.core-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at center,
+        rgba(110, 0, 255, 0.4) 0%,
+        transparent 70%);
+    animation: glow 4s ease-in-out infinite;
+}
+
+.core-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: pulse-ring 4s ease-in-out infinite;
+}
+
+.quantum-rings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: rotate 20s linear infinite;
+}
+
+.ring-1 {
+    width: 200px;
+    height: 200px;
+    animation-duration: 20s;
+}
+
+.ring-2 {
+    width: 250px;
+    height: 250px;
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+.ring-3 {
+    width: 300px;
+    height: 300px;
+    animation-duration: 30s;
+}
+
+@keyframes pulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.1); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes glow {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+}
+
+@keyframes pulse-ring {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.2); opacity: 0.2; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+
+@keyframes rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .vision-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .vision-visualization {
+        height: 300px;
+        margin-top: 2rem;
+    }
+
+    .quantum-visualization {
+        width: 250px;
+        height: 250px;
+    }
+
+    .ring-1 { width: 150px; height: 150px; }
+    .ring-2 { width: 200px; height: 200px; }
+    .ring-3 { width: 250px; height: 250px; }
+
+    .vision-text h3 {
+        font-size: 1.5rem;
+    }
+
+    .vision-text p {
+        font-size: 1rem;
+    }
+
+    .vision-highlight,
+    .vision-core,
+    .vision-approach,
+    .vision-guide {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+} 

@@ -1,0 +1,38 @@
+
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <header></header>
+    
+    <div class="error-container">
+        <div class="error-code">404</div>
+        <div class="error-message">Oops! The page you're looking for doesn't exist.</div>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Search our website..." id="searchInput">
+        </div>
+        
+        <div class="suggested-links">
+            <a href="/">Home</a>
+            <a href="/consciousness_bands">Consciousness Bands</a>
+            <a href="/technical_implementation">Technical Implementation</a>
+            <a href="/contact">Contact Us</a>
+        </div>
+    </div>
+    
+    <footer></footer>
+    
+    <script src="js/header-footer.js" defer></script>
+    <script>
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const query = this.value.trim();
+                if (query) {
+                    // Remove or replace window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+    </script>
+    <script src="js/consolidated.js" defer=""></script>
+
+ 

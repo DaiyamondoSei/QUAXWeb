@@ -1,0 +1,116 @@
+/* Enhanced Touch Interactions */
+.interactive-element {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    position: relative;
+    cursor: pointer;
+}
+
+.interactive-element::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: inherit;
+}
+
+.interactive-element:active {
+    transform: scale(0.98);
+}
+
+.interactive-element:active::after {
+    opacity: 1;
+}
+
+/* Haptic Feedback */
+.haptic-feedback {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.haptic-feedback:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Pull to Refresh */
+.pull-to-refresh {
+    position: relative;
+    overflow: hidden;
+}
+
+.pull-to-refresh-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.pull-to-refresh-indicator.active {
+    transform: translateY(0);
+}
+
+/* Swipe Actions */
+.swipe-action {
+    position: relative;
+    overflow: hidden;
+}
+
+.swipe-action-content {
+    position: relative;
+    z-index: 1;
+    background: var(--bg-color);
+    transition: transform 0.3s ease;
+}
+
+.swipe-action-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+}
+
+.swipe-action-button {
+    padding: 1rem;
+    color: white;
+    background: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.swipe-action-button:active {
+    background-color: var(--secondary-color);
+}
+
+/* Mobile Gestures */
+.gesture-area {
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .interactive-element,
+    .swipe-action-content,
+    .pull-to-refresh-indicator {
+        transition: none;
+    }
+    
+    .interactive-element:active {
+        transform: none;
+    }
+} 
