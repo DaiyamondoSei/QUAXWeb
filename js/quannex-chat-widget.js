@@ -183,9 +183,8 @@
     function initializeChatWindow() {
       windowEl.style.display = 'none';
       windowEl.classList.remove('quannex-chat-animate-in', 'quannex-chat-animate-out');
-      windowEl.style.opacity = '0';
-      windowEl.style.transform = 'scale(0.85) translateY(40px)';
-      windowEl.style.pointerEvents = 'none';
+      // Don't set opacity and transform here as they're handled by CSS animations
+      // Don't set pointer-events here as they're handled by CSS classes
     }
     
     // Call initialization

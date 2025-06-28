@@ -16,7 +16,7 @@ body.dragging {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 10000; /* Increased to be above quantum cursor */
   border: 3px solid #7f5cffcc;
   transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
 }
@@ -67,7 +67,7 @@ body.dragging {
   bottom: 180px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1001;
+  z-index: 10001; /* Increased to be above quantum cursor */
   width: 420px;
   max-width: 98vw;
   pointer-events: none;
@@ -79,8 +79,6 @@ body.dragging {
   min-height: 340px;
   max-height: 90vh;
   position: fixed; /* Changed from relative to fixed for proper positioning */
-  left: 0;
-  right: 0;
   margin: 30px auto 0 auto; /* Added margin-top to detach header */
   pointer-events: auto;
   /* Neon animated border */
@@ -94,9 +92,10 @@ body.dragging {
   pointer-events: none; /* Disable interactions when hidden */
   transition: opacity 0.38s cubic-bezier(.4,0,.2,1), transform 0.38s cubic-bezier(.4,0,.2,1), box-shadow 0.28s;
   /* Ensure the chat window is always visible */
-  z-index: 1002;
+  z-index: 10002; /* Increased to be above quantum cursor */
   max-width: 98vw;
   min-width: 320px;
+  width: 420px; /* Set explicit width */
 }
 #quannex-chat-window.quannex-chat-animate-in {
   opacity: 1;
@@ -176,7 +175,7 @@ body.dragging {
   top: -30px; /* Adjust as needed to detach */
   left: 20px;
   right: 20px;
-  z-index: 1003; /* Ensure it's above the chat window */
+  z-index: 10003; /* Increased to be above quantum cursor */
 }
 #quannex-chat-header::after {
   content: '⋮⋮';
@@ -439,7 +438,7 @@ body.dragging {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 2000;
+  z-index: 10004; /* Increased to be above quantum cursor */
   display: flex;
   align-items: center;
   justify-content: center;
