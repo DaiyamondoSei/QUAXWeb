@@ -70,6 +70,22 @@
     return Math.max(min, Math.min(val, max));
   }
 
+  // Ensure chat window stays fully visible within viewport
+  function clampChatWindowToViewport() {
+    if (window.innerWidth <= 600) return; // Only clamp on desktop/tablet
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const boxW = windowEl.offsetWidth;
+    const boxH = windowEl.offsetHeight;
+    const minVisible = 50; // Minimum visible pixels
+    let left = parseInt(windowEl.style.left) || 0;
+    let top = parseInt(windowEl.style.top) || 0;
+    left = clamp(left, -(boxW - minVisible), winW - minVisible);
+    top = clamp(top, -(boxH - minVisible), winH - minVisible);
+    windowEl.style.left = left + 'px';
+    windowEl.style.top = top + 'px';
+  }
+
   // Drag start handler
   function dragStartHandler(e) {
     // Prevent dragging on scrollbars or other interactive elements within the header
@@ -78,11 +94,9 @@
     }
     e.preventDefault();
     isDragging = true;
-    
     // Calculate offset from mouse pointer to the top-left corner of the chat window
     dragOffsetX = e.clientX - windowEl.offsetLeft;
     dragOffsetY = e.clientY - windowEl.offsetTop;
-    
     // Prepare for dragging
     windowEl.style.transition = 'none'; // Disable transitions for smooth dragging
     document.body.style.userSelect = 'none'; // Prevent text selection
@@ -98,10 +112,9 @@
     const boxW = windowEl.offsetWidth;
     const boxH = windowEl.offsetHeight;
     const minVisible = 50; // Minimum visible pixels
-
+    // Clamp so the window is always at least minVisible px visible
     let left = clamp(e.clientX - dragOffsetX, -(boxW - minVisible), winW - minVisible);
     let top = clamp(e.clientY - dragOffsetY, -(boxH - minVisible), winH - minVisible);
-
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
   }
@@ -114,7 +127,8 @@
       document.body.style.userSelect = '';
       header.style.cursor = 'grab';
       document.body.classList.remove('dragging');
-      
+      // Clamp to viewport on drag end
+      clampChatWindowToViewport();
       const left = parseInt(windowEl.style.left) || 0;
       const top = parseInt(windowEl.style.top) || 0;
       savePosition(left, top);
@@ -185,6 +199,7 @@
         windowEl.style.right = 'auto';
         windowEl.style.bottom = 'auto';
         windowEl.style.transform = 'none';
+        clampChatWindowToViewport(); // Ensure it's not off-screen
       } else {
         // Center the chat window if no saved position
         windowEl.style.display = 'block'; // Ensure visible for measurement
@@ -522,29 +537,10 @@
     hideFeedback(); // Hide feedback buttons for new chat
   });
 
-  // Window resize handler to keep chat window in bounds
+  // Add window resize listener to keep chat window visible
   window.addEventListener('resize', function() {
-    if (windowEl.style.display === 'flex' || windowEl.classList.contains('quannex-chat-animate-in')) {
-      const savedPosition = loadPosition();
-      if (savedPosition && savedPosition.left && savedPosition.top) {
-        const winW = window.innerWidth;
-        const winH = window.innerHeight;
-        const boxW = windowEl.offsetWidth;
-        const boxH = windowEl.offsetHeight;
-        
-        let left = savedPosition.left;
-        let top = savedPosition.top;
-        
-        // Adjust position if it's now outside the viewport
-        if (left + boxW > winW) left = winW - boxW;
-        if (top + boxH > winH) top = winH - boxH;
-        if (left < 0) left = 0;
-        if (top < 0) top = 0;
-        
-        windowEl.style.left = left + 'px';
-        windowEl.style.top = top + 'px';
-        savePosition(left, top);
-      }
+    if (window.innerWidth > 600) {
+      clampChatWindowToViewport();
     }
   });
   
