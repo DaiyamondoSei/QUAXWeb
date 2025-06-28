@@ -97,9 +97,10 @@
     const winH = window.innerHeight;
     const boxW = windowEl.offsetWidth;
     const boxH = windowEl.offsetHeight;
+    const minVisible = 50; // Minimum visible pixels
 
-    let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
-    let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
+    let left = clamp(e.clientX - dragOffsetX, -(boxW - minVisible), winW - minVisible);
+    let top = clamp(e.clientY - dragOffsetY, -(boxH - minVisible), winH - minVisible);
 
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
