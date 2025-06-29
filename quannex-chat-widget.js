@@ -243,12 +243,12 @@
         windowEl.style.right = 'auto';
         windowEl.style.bottom = 'auto';
         windowEl.style.transform = 'none';
-        clampChatWindowToViewport(); // Ensure it's not off-screen
       } else {
         resetChatWindowToCenter();
       }
       header.style.cursor = 'grab';
       header.addEventListener('mousedown', dragStartHandler);
+      clampChatWindowToViewport(); // Ensure it's not off-screen on open
     }
     windowEl.style.pointerEvents = 'auto';
   }
@@ -581,7 +581,7 @@
       header.removeEventListener('mousedown', dragStartHandler);
     } else {
       setWrapperDesktopDefault();
-      clampChatWindowToViewport();
+      clampChatWindowToViewport(); // Clamp on resize as well
       header.style.cursor = 'grab';
       header.addEventListener('mousedown', dragStartHandler);
     }
