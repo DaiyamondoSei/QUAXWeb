@@ -83,11 +83,11 @@
     const winH = window.innerHeight;
     const boxW = windowEl.offsetWidth;
     const boxH = windowEl.offsetHeight;
-    const minVisible = 50; // Minimum visible pixels
+    // Clamp so the window is always fully visible
     let left = parseInt(windowEl.style.left) || 0;
     let top = parseInt(windowEl.style.top) || 0;
-    left = clamp(left, -(boxW - minVisible), winW - minVisible);
-    top = clamp(top, -(boxH - minVisible), winH - minVisible);
+    left = clamp(left, 0, winW - boxW);
+    top = clamp(top, 0, winH - boxH);
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
     windowEl.style.right = 'auto';
@@ -152,10 +152,9 @@
     const winH = window.innerHeight;
     const boxW = windowEl.offsetWidth;
     const boxH = windowEl.offsetHeight;
-    const minVisible = 50; // Minimum visible pixels
-    // Clamp so the window is always at least minVisible px visible
-    let left = clamp(e.clientX - dragOffsetX, -(boxW - minVisible), winW - minVisible);
-    let top = clamp(e.clientY - dragOffsetY, -(boxH - minVisible), winH - minVisible);
+    // Clamp so the window is always fully visible
+    let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
+    let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
     windowEl.style.right = 'auto';

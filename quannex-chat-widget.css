@@ -728,4 +728,10 @@ body.dragging {
   font-size: 1.6rem;
   color: #7f5cff;
   filter: drop-shadow(0 0 8px #00e6d8cc);
+}
+.quannex-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 } 
