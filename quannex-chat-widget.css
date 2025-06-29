@@ -2,6 +2,12 @@ body.dragging {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+#quannex-chat-root {
+  position: relative;
+  z-index: 10000;
+  pointer-events: none; /* Allow clicks to pass through to content below */
+}
+
 #quannex-chat-bubble {
   position: fixed;
   bottom: 104px; /* Above back-to-top button */
@@ -19,6 +25,7 @@ body.dragging {
   z-index: 10000; /* Increased to be above quantum cursor */
   border: 3px solid #7f5cffcc;
   transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+  pointer-events: auto; /* Re-enable pointer events for the bubble */
 }
 #quannex-chat-bubble:focus {
   outline: 2.5px solid #00e6d8;

@@ -639,6 +639,7 @@
     wrapper.style.transform = '';
     wrapper.style.margin = '';
     wrapper.style.padding = '';
+    wrapper.style.pointerEvents = 'auto';
   }
   
   // Helper to set wrapper styles for mobile
@@ -652,5 +653,6 @@
     wrapper.style.top = 'auto';
     wrapper.style.bottom = '16px';
     wrapper.style.transform = 'none';
+    wrapper.style.pointerEvents = 'auto';
   }
 })();
