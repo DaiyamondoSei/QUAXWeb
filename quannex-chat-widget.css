@@ -90,25 +90,22 @@ body.dragging {
   height: 480px;
   min-height: 340px;
   max-height: 90vh;
-  position: absolute; /* Changed from fixed to absolute for full screen movement */
-  margin: 30px auto 0 auto; /* Added margin-top to detach header */
+  position: absolute; /* Allow full-screen movement on desktop */
+  margin: 30px auto 0 auto;
   pointer-events: auto;
-  /* Neon animated border */
   box-shadow: 0 0 32px 8px #00e6d8cc, 0 0 0 4px #7f5cff88, 0 0 40px 8px #4A90E299;
-  border-radius: 0 0 28px 28px; /* Rounded only at the bottom */
+  border-radius: 0 0 28px 28px;
   border: 2.5px solid #7f5cff88;
   overflow: hidden;
   animation: neon-glow 2.5s infinite alternate cubic-bezier(.4,0,.6,1);
   opacity: 0;
   transform: scale(0.85) translateY(40px);
-  pointer-events: none; /* Disable interactions when hidden */
+  pointer-events: none;
   transition: opacity 0.38s cubic-bezier(.4,0,.2,1), transform 0.38s cubic-bezier(.4,0,.2,1), box-shadow 0.28s;
-  /* Ensure the chat window is always visible */
-  z-index: 10002; /* Increased to be above quantum cursor */
+  z-index: 10002;
   max-width: 98vw;
   min-width: 320px;
-  width: 420px; /* Set explicit width */
-  /* Remove any default positioning to allow full movement */
+  width: 420px;
   left: auto;
   top: auto;
   right: auto;
@@ -418,24 +415,18 @@ body.dragging {
 }
 
 @media (max-width: 600px) {
-  #quannex-chat-widget-wrapper {
-    position: fixed;
-    bottom: 16px;
-    left: 1vw;
-    right: 1vw;
-    width: 98vw;
-    transform: none;
-    pointer-events: auto;
-    z-index: 10001;
-    max-width: 98vw;
-  }
   #quannex-chat-window {
+    position: fixed;
     width: 98vw;
-    min-width: unset; /* Removed min-width for mobile */
+    min-width: unset;
     max-width: 98vw;
     border-radius: 18px;
-    height: calc(100vh - 100px); /* Make it take up most of the screen height */
-    max-height: unset; /* Remove max-height restriction */
+    height: calc(100vh - 100px);
+    max-height: unset;
+    left: 1vw;
+    right: 1vw;
+    bottom: 16px;
+    top: auto;
   }
   #quannex-chat-bubble {
     right: 4px;
