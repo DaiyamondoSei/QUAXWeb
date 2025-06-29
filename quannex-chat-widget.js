@@ -73,49 +73,46 @@
   // Ensure chat window stays fully visible within viewport
   function clampChatWindowToViewport() {
     if (window.innerWidth <= 600) return; // Only clamp on desktop/tablet
-    // Forcefully clear all positioning styles
-    windowEl.style.left = '';
-    windowEl.style.top = '';
-    windowEl.style.right = '';
-    windowEl.style.bottom = '';
-    windowEl.style.transform = '';
+    
     const winW = window.innerWidth;
     const winH = window.innerHeight;
-    const boxW = windowEl.offsetWidth;
-    const boxH = windowEl.offsetHeight;
-    // Clamp so the window is always fully visible
+    const boxW = windowEl.offsetWidth || 420;
+    const boxH = windowEl.offsetHeight || 480;
+    
+    // Get current position
     let left = parseInt(windowEl.style.left) || 0;
     let top = parseInt(windowEl.style.top) || 0;
+    
+    // Clamp so the window is always fully visible
     left = clamp(left, 0, winW - boxW);
     top = clamp(top, 0, winH - boxH);
+    
+    // Apply clamped position
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
     windowEl.style.right = 'auto';
     windowEl.style.bottom = 'auto';
     windowEl.style.transform = 'none';
+    
     // Debug logging
-    console.log('[clampChatWindowToViewport] left:', windowEl.style.left, 'top:', windowEl.style.top, 'bottom:', windowEl.style.bottom, 'right:', windowEl.style.right);
+    console.log('[clampChatWindowToViewport] left:', windowEl.style.left, 'top:', windowEl.style.top);
   }
 
   // Helper to reset chat window to center (desktop/tablet)
   function resetChatWindowToCenter() {
-    // Forcefully clear all positioning styles
-    windowEl.style.left = '';
-    windowEl.style.top = '';
-    windowEl.style.right = '';
-    windowEl.style.bottom = '';
-    windowEl.style.transform = '';
     const boxW = windowEl.offsetWidth || 420;
     const boxH = windowEl.offsetHeight || 480;
     const centerX = (window.innerWidth - boxW) / 2;
     const centerY = (window.innerHeight - boxH) / 2;
+    
     windowEl.style.left = centerX + 'px';
     windowEl.style.top = centerY + 'px';
     windowEl.style.right = 'auto';
     windowEl.style.bottom = 'auto';
     windowEl.style.transform = 'none';
+    
     // Debug logging
-    console.log('[resetChatWindowToCenter] left:', windowEl.style.left, 'top:', windowEl.style.top, 'bottom:', windowEl.style.bottom, 'right:', windowEl.style.right);
+    console.log('[resetChatWindowToCenter] left:', windowEl.style.left, 'top:', windowEl.style.top);
   }
 
   // Helper to set chat window to mobile default
@@ -135,9 +132,12 @@
     }
     e.preventDefault();
     isDragging = true;
+    
     // Calculate offset from mouse pointer to the top-left corner of the chat window
-    dragOffsetX = e.clientX - windowEl.offsetLeft;
-    dragOffsetY = e.clientY - windowEl.offsetTop;
+    const rect = windowEl.getBoundingClientRect();
+    dragOffsetX = e.clientX - rect.left;
+    dragOffsetY = e.clientY - rect.top;
+    
     // Prepare for dragging
     windowEl.style.transition = 'none'; // Disable transitions for smooth dragging
     document.body.style.userSelect = 'none'; // Prevent text selection
@@ -148,13 +148,21 @@
   // Drag move handler
   function dragMoveHandler(e) {
     if (!isDragging) return;
+    
     const winW = window.innerWidth;
     const winH = window.innerHeight;
     const boxW = windowEl.offsetWidth;
     const boxH = windowEl.offsetHeight;
+    
+    // Calculate new position
+    let left = e.clientX - dragOffsetX;
+    let top = e.clientY - dragOffsetY;
+    
     // Clamp so the window is always fully visible
-    let left = clamp(e.clientX - dragOffsetX, 0, winW - boxW);
-    let top = clamp(e.clientY - dragOffsetY, 0, winH - boxH);
+    left = clamp(left, 0, winW - boxW);
+    top = clamp(top, 0, winH - boxH);
+    
+    // Apply new position
     windowEl.style.left = left + 'px';
     windowEl.style.top = top + 'px';
     windowEl.style.right = 'auto';
@@ -227,13 +235,6 @@
     const isMobile = window.innerWidth <= 600;
     const wrapper = document.getElementById('quannex-chat-widget-wrapper');
 
-    // Forcefully clear all positioning styles
-    windowEl.style.left = '';
-    windowEl.style.top = '';
-    windowEl.style.right = '';
-    windowEl.style.bottom = '';
-    windowEl.style.transform = '';
-
     if (isMobile) {
       setWrapperMobileDefault();
       setChatWindowMobileDefault();
@@ -242,40 +243,51 @@
     } else {
       setWrapperDesktopDefault();
       const savedPosition = loadPosition();
+      
       // Validate saved position
       let valid = false;
       if (savedPosition && typeof savedPosition.left === 'number' && typeof savedPosition.top === 'number') {
-        // Check if within viewport
+        // Check if within viewport with some tolerance
         const winW = window.innerWidth;
         const winH = window.innerHeight;
-        const boxW = windowEl.offsetWidth;
-        const boxH = windowEl.offsetHeight;
+        const boxW = windowEl.offsetWidth || 420;
+        const boxH = windowEl.offsetHeight || 480;
+        
         if (
-          savedPosition.left >= -(boxW - 50) &&
+          savedPosition.left >= -50 &&
           savedPosition.left <= winW - 50 &&
-          savedPosition.top >= -(boxH - 50) &&
+          savedPosition.top >= -50 &&
           savedPosition.top <= winH - 50
         ) {
           valid = true;
         }
       }
-      // Always clear bottom/right before setting left/top (already done above)
+      
       if (valid) {
+        // Apply saved position
         windowEl.style.left = savedPosition.left + 'px';
         windowEl.style.top = savedPosition.top + 'px';
-        windowEl.style.transform = 'none';
         windowEl.style.right = 'auto';
         windowEl.style.bottom = 'auto';
+        windowEl.style.transform = 'none';
       } else {
+        // Reset to center if no valid saved position
         resetChatWindowToCenter();
       }
+      
+      // Enable dragging on desktop
       header.style.cursor = 'grab';
       header.addEventListener('mousedown', dragStartHandler);
-      clampChatWindowToViewport(); // Ensure it's not off-screen on open
+      
+      // Ensure it's within viewport bounds
+      clampChatWindowToViewport();
     }
+    
     windowEl.style.pointerEvents = 'auto';
+    animateOpen();
+    
     // Debug logging
-    console.log('[showChat] left:', windowEl.style.left, 'top:', windowEl.style.top, 'bottom:', windowEl.style.bottom, 'right:', windowEl.style.right);
+    console.log('[showChat] left:', windowEl.style.left, 'top:', windowEl.style.top);
   }
   function hideChat() {
     animateClose();
@@ -616,24 +628,29 @@
   function setWrapperDesktopDefault() {
     const wrapper = document.getElementById('quannex-chat-widget-wrapper');
     if (!wrapper) return;
+    // Remove all positioning constraints to allow full screen movement
+    wrapper.style.position = 'static';
     wrapper.style.left = '';
     wrapper.style.right = '';
-    wrapper.style.width = '';
     wrapper.style.top = '';
     wrapper.style.bottom = '';
-    wrapper.style.position = '';
+    wrapper.style.width = '';
+    wrapper.style.height = '';
     wrapper.style.transform = '';
+    wrapper.style.margin = '';
+    wrapper.style.padding = '';
   }
+  
   // Helper to set wrapper styles for mobile
   function setWrapperMobileDefault() {
     const wrapper = document.getElementById('quannex-chat-widget-wrapper');
     if (!wrapper) return;
+    wrapper.style.position = 'fixed';
     wrapper.style.left = '1vw';
     wrapper.style.right = '1vw';
     wrapper.style.width = '98vw';
     wrapper.style.top = 'auto';
     wrapper.style.bottom = '16px';
-    wrapper.style.position = '';
     wrapper.style.transform = 'none';
   }
 })();

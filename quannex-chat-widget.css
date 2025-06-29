@@ -73,6 +73,10 @@ body.dragging {
   transform: none;
   z-index: auto;
   pointer-events: auto;
+  /* Ensure wrapper doesn't constrain chat window movement */
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 #quannex-chat-window {
   display: none; /* Start hidden, controlled by JavaScript */
@@ -80,7 +84,7 @@ body.dragging {
   height: 480px;
   min-height: 340px;
   max-height: 90vh;
-  position: fixed; /* Changed from relative to fixed for proper positioning */
+  position: absolute; /* Changed from fixed to absolute for full screen movement */
   margin: 30px auto 0 auto; /* Added margin-top to detach header */
   pointer-events: auto;
   /* Neon animated border */
@@ -98,6 +102,11 @@ body.dragging {
   max-width: 98vw;
   min-width: 320px;
   width: 420px; /* Set explicit width */
+  /* Remove any default positioning to allow full movement */
+  left: auto;
+  top: auto;
+  right: auto;
+  bottom: auto;
 }
 #quannex-chat-window.quannex-chat-animate-in {
   opacity: 1;
