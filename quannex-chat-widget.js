@@ -237,11 +237,12 @@
           valid = true;
         }
       }
+      // Always clear bottom/right before setting left/top
+      windowEl.style.right = 'auto';
+      windowEl.style.bottom = 'auto';
       if (valid) {
         windowEl.style.left = savedPosition.left + 'px';
         windowEl.style.top = savedPosition.top + 'px';
-        windowEl.style.right = 'auto';
-        windowEl.style.bottom = 'auto';
         windowEl.style.transform = 'none';
       } else {
         resetChatWindowToCenter();
