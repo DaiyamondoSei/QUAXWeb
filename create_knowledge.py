@@ -6,6 +6,8 @@ from google.generativeai import configure, embed_content
 from dotenv import load_dotenv
 from urllib.parse import urljoin, urlparse
 import time
+import shutil
+import pathlib
 
 # Load API key from .env file
 load_dotenv()
@@ -35,31 +37,6 @@ def get_internal_links(base_url):
         except Exception as e:
             print(f"Failed to fetch {url}: {e}")
     return list(visited)
-
-def extract_section_chunks(soup):
-    """
-    Extracts content by heading sections (h1-h6) for more context-rich chunks.
-    Returns a list of (heading, text) tuples.
-    """
-    chunks = []
-    headings = soup.find_all([f'h{i}' for i in range(1, 7)])
-    if not headings:
-        # Fallback: just return all visible text as one chunk
-        text = ' '.join(soup.stripped_strings)
-        return [("", text)]
-    for idx, heading in enumerate(headings):
-        section_title = heading.get_text(strip=True)
-        section_content = []
-        # Get all elements until the next heading of same or higher level
-        for sibling in heading.next_siblings:
-            if sibling.name and sibling.name.startswith('h') and int(sibling.name[1]) <= int(heading.name[1]):
-                break
-            if hasattr(sibling, 'get_text'):
-                section_content.append(sibling.get_text(" ", strip=True))
-        chunk_text = section_title + "\n" + " ".join(section_content)
-        if chunk_text.strip():
-            chunks.append((section_title, chunk_text.strip()))
-    return chunks
 
 def extract_section_chunks(soup):
     """
@@ -1177,29 +1154,6 @@ def extract_app_screens_data(soup):
 
     return tech_impl_chunks
 
-def extract_app_screens_data(soup):
-    """
-    Extracts structured data from app_screens.html.
-    """
-    app_screens_chunks = []
-
-    # Main Interface Screens, Feature Screens, Advanced Feature Screens
-    for section_id in ['main-interface-screens', 'feature-screens', 'advanced-feature-screens']:
-        screen_section = soup.find('section', class_='screen-section', id=section_id)
-        if screen_section:
-            for screen_card in screen_section.find_all('div', class_='screen-card'):
-                title = screen_card.find('h3').get_text(strip=True) if screen_card.find('h3') else ""
-                description = screen_card.find('p').get_text(strip=True) if screen_card.find('p') else ""
-                features = [li.get_text(strip=True) for li in screen_card.find_all('li')] if screen_card.find_all('li') else []
-                tags = [span.get_text(strip=True) for span in screen_card.find_all('span', class_='screen-tag')] if screen_card.find('span', class_='screen-tag') else []
-                
-                app_screens_chunks.append((
-                    f"App Screen: {title}",
-                    f"Screen: {title}. Description: {description}. Features: {"; ".join(features)}. Tags: {", ".join(tags)}."
-                ))
-
-    return app_screens_chunks
-
 def extract_quantum_mind_data(soup):
     """
     Extracts structured data from quantum-mind.html (blog post).
@@ -1302,129 +1256,6 @@ def extract_partnerships_data(soup):
             ))
 
     return partnerships_chunks
-
-def extract_project_proposal_data(soup):
-    """
-    Extracts structured data from project_proposal.html.
-    """
-    project_proposal_chunks = []
-
-    # Executive Summary - Core Innovation Highlight Box
-    executive_summary_section = soup.find('div', id='executive-summary')
-    if executive_summary_section:
-        highlight_box = executive_summary_section.find('div', class_='highlight-box')
-        if highlight_box:
-            title = highlight_box.find('h4').get_text(strip=True) if highlight_box.find('h4') else ""
-            content = highlight_box.find('p').get_text(strip=True) if highlight_box.find('p') else ""
-            project_proposal_chunks.append((
-                f"Executive Summary: {title}",
-                f"Core Innovation: {title}. Description: {content}."
-            ))
-
-    # Vision and Concept - Five Quantum Parameters Framework
-    vision_concept_section = soup.find('div', id='vision-concept')
-    if vision_concept_section:
-        quantum_params_ul = vision_concept_section.find('h3', string='Five Quantum Parameters Framework').find_next_sibling('ul')
-        if quantum_params_ul:
-            params = [li.get_text(strip=True) for li in quantum_params_ul.find_all('li')]
-            project_proposal_chunks.append((
-                "Five Quantum Parameters Framework",
-                "The Five Quantum Parameters Framework includes: " + "; ".join(params) + "."
-            ))
-
-    # Key Features - 13-Stage Astral Body Evolution System
-    key_features_section = soup.find('div', id='key-features')
-    if key_features_section:
-        astral_stages_ol = key_features_section.find('h3', string='13-Stage Astral Body Evolution System').find_next_sibling('ol')
-        if astral_stages_ol:
-            stages = [li.get_text(strip=True) for li in astral_stages_ol.find_all('li')]
-            project_proposal_chunks.append((
-                "13-Stage Astral Body Evolution System",
-                "The 13-Stage Astral Body Evolution System includes: " + "; ".join(stages) + "."
-            ))
-
-        # Key Features - Five Mastery Paths
-        mastery_paths_ul = key_features_section.find('h3', string='Five Mastery Paths').find_next_sibling('ul')
-        if mastery_paths_ul:
-            paths = [li.get_text(strip=True) for li in mastery_paths_ul.find_all('li')]
-            project_proposal_chunks.append((
-                "Five Mastery Paths",
-                "The Five Mastery Paths are: " + "; ".join(paths) + "."
-            ))
-
-        # Key Features - Innovative Features Highlight Box
-        innovative_features_box = key_features_section.find('div', class_='highlight-box')
-        if innovative_features_box:
-            features = [li.get_text(strip=True) for li in innovative_features_box.find_all('li')] if innovative_features_box.find_all('li') else []
-            project_proposal_chunks.append((
-                "Innovative Features",
-                "Innovative features include: " + "; ".join(features) + "."
-            ))
-
-    # Scientific Validation - Research Foundation
-    scientific_validation_section = soup.find('div', id='scientific-validation')
-    if scientific_validation_section:
-        research_institutions_ul = scientific_validation_section.find('h3', string='Research Foundation').find_next_sibling('ul')
-        if research_institutions_ul:
-            institutions = [li.get_text(strip=True) for li in research_institutions_ul.find_all('li')]
-            project_proposal_chunks.append((
-                "Scientific Validation: Research Foundation",
-                "Research is based on leading institutions such as: " + "; ".join(institutions) + "."
-            ))
-
-        # Scientific Validation - Multi-Consciousness Band Approach
-        consciousness_bands_ul = scientific_validation_section.find('h3', string='Multi-Consciousness Band Approach').find_next_sibling('ul')
-        if consciousness_bands_ul:
-            bands = [li.get_text(strip=True) for li in consciousness_bands_ul.find_all('li')]
-            project_proposal_chunks.append((
-                "Multi-Consciousness Band Approach",
-                "The Multi-Consciousness Band Approach targets: " + "; ".join(bands) + "."
-            ))
-
-    # Implementation Strategy - Phases
-    implementation_section = soup.find('div', id='implementation')
-    if implementation_section:
-        for i in range(1, 5):
-            phase_heading = implementation_section.find('h3', string=lambda text: text and f'Phase {i}:' in text)
-            if phase_heading:
-                phase_ul = phase_heading.find_next_sibling('ul')
-                if phase_ul:
-                    features = [li.get_text(strip=True) for li in phase_ul.find_all('li')]
-                    project_proposal_chunks.append((
-                        f"Implementation Strategy: Phase {i}",
-                        f"Phase {i} includes: " + "; ".join(features) + "."
-                    ))
-
-    # Business Model - Monetization Strategy
-    business_model_section = soup.find('div', id='business-model')
-    if business_model_section:
-        monetization_ul = business_model_section.find('h3', string='Monetization Strategy').find_next_sibling('ul')
-        if monetization_ul:
-            tiers = [li.get_text(strip=True) for li in monetization_ul.find_all('li')]
-            project_proposal_chunks.append((
-                "Business Model: Monetization Strategy",
-                "Monetization strategy includes: " + "; ".join(tiers) + "."
-            ))
-
-        # Business Model - Revenue Streams
-        revenue_streams_ul = business_model_section.find('h3', string='Revenue Streams').find_next_sibling('ul')
-        if revenue_streams_ul:
-            streams = [li.get_text(strip=True) for li in revenue_streams_ul.find_all('li')]
-            project_proposal_chunks.append((
-                "Business Model: Revenue Streams",
-                "Revenue streams include: " + "; ".join(streams) + "."
-            ))
-
-        # Business Model - Growth Strategy Highlight Box
-        growth_strategy_box = business_model_section.find('div', class_='highlight-box')
-        if growth_strategy_box:
-            strategies = [li.get_text(strip=True) for li in growth_strategy_box.find_all('li')] if growth_strategy_box.find_all('li') else []
-            project_proposal_chunks.append((
-                "Business Model: Growth Strategy",
-                "Growth strategies include: " + "; ".join(strategies) + "."
-            ))
-
-    return project_proposal_chunks
 
 def scrape_clean_text(url):
     """Scrape and clean the main text content from a page, chunked by section."""
@@ -1572,4 +1403,11 @@ if __name__ == "__main__":
     print(f"Scraping complete! Data saved to raw_website_data.json.")
     # Now process and embed
     process_and_embed_all("raw_website_data.json", "knowledge.json") 
+
+    # --- AUTOMATIC COPY TO NETLIFY FUNCTIONS DIR ---
+    src = pathlib.Path("knowledge.json")
+    dst = pathlib.Path("netlify/functions/knowledge.json")
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
+    print(f"✅ Copied knowledge.json to {dst}")
     

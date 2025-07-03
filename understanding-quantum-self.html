@@ -342,16 +342,11 @@
                 });
             });
             
-            // Debug and ensure CTA buttons are working
+            // Enhanced CTA button interactions
             const ctaButtons = document.querySelectorAll('.cta-button');
             
             ctaButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    console.log('CTA button clicked:', this.href);
-                    // Allow the default navigation to proceed
-                });
-                
-                // Add visual feedback for debugging
+                // Add hover effects for better user experience
                 button.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-2px)';
                 });
@@ -359,13 +354,6 @@
                 button.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
                 });
-            });
-            
-            // Log all links for debugging
-            const allLinks = document.querySelectorAll('a[href]');
-            console.log('All links found:', allLinks.length);
-            allLinks.forEach(link => {
-                console.log('Link:', link.href, 'Text:', link.textContent.trim());
             });
         });
     </script>

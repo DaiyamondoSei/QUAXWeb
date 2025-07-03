@@ -4,10 +4,11 @@
   "description": "QUANNEX Foundation Website",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/copy-knowledge.js && next build",
     "start": "next start",
     "lint": "next lint",
-    "create-post": "node scripts/create-post.js"
+    "create-post": "node scripts/create-post.js",
+    "copy-knowledge": "node scripts/copy-knowledge.js"
   },
   "dependencies": {
     "@google/genai": "^1.6.0",

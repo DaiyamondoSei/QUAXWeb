@@ -94,8 +94,7 @@
     windowEl.style.bottom = 'auto';
     windowEl.style.transform = 'none';
     
-    // Debug logging
-    console.log('[clampChatWindowToViewport] left:', windowEl.style.left, 'top:', windowEl.style.top);
+    // Position clamped successfully
   }
 
   // Helper to reset chat window to center (desktop/tablet)
@@ -111,8 +110,7 @@
     windowEl.style.bottom = 'auto';
     windowEl.style.transform = 'none';
     
-    // Debug logging
-    console.log('[resetChatWindowToCenter] left:', windowEl.style.left, 'top:', windowEl.style.top);
+    // Window centered successfully
   }
 
   // Helper to set chat window to mobile default
@@ -200,13 +198,11 @@
 
   // --- Animation helpers ---
   function animateOpen() {
-    console.log('Quannex Chat Widget: animateOpen called');
     clearTimeout(closeTimeout);
     windowEl.style.display = 'flex';
     windowEl.classList.remove('quannex-chat-animate-out');
     void windowEl.offsetWidth; // Force reflow for animation
     windowEl.classList.add('quannex-chat-animate-in');
-    console.log('Quannex Chat Widget: Animation classes applied, window display:', windowEl.style.display);
     setTimeout(() => input.focus(), 400);
   }
   function animateClose() {
@@ -231,7 +227,6 @@
 
   // Show/hide chat (with animation)
   function showChat() {
-    console.log('Quannex Chat Widget: showChat called');
     const isMobile = window.innerWidth <= 600;
     const wrapper = document.getElementById('quannex-chat-widget-wrapper');
 
@@ -286,8 +281,7 @@
     windowEl.style.pointerEvents = 'auto';
     animateOpen();
     
-    // Debug logging
-    console.log('[showChat] left:', windowEl.style.left, 'top:', windowEl.style.top);
+    // Chat window positioned and displayed
   }
   function hideChat() {
     animateClose();
@@ -298,19 +292,13 @@
   }
 
   bubble.addEventListener('click', function() {
-    console.log('Quannex Chat Widget: Bubble clicked');
-    console.log('Current window display:', windowEl.style.display);
-    console.log('Current window classes:', windowEl.className);
-    
     // Check if chat is currently visible (either displayed or animating in)
     const isVisible = windowEl.style.display === 'flex' || 
                      windowEl.classList.contains('quannex-chat-animate-in');
     
     if (isVisible) {
-      console.log('Quannex Chat Widget: Hiding chat');
       hideChat();
     } else {
-      console.log('Quannex Chat Widget: Showing chat');
       showChat();
     }
   });
