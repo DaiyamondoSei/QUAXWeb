@@ -1,5 +1,10 @@
 body.dragging {
-  background-color: rgba(0, 0, 0, 0.1);
+  user-select: none;
+  cursor: grabbing !important;
+}
+
+body.dragging * {
+  cursor: grabbing !important;
 }
 
 #quannex-chat-root {
@@ -70,13 +75,14 @@ body.dragging {
   transform: scale(1.12) rotate(-4deg);
 }
 #quannex-chat-widget-wrapper {
+  /* Remove all positioning for desktop to allow free movement */
   position: static;
   left: auto;
   right: auto;
   top: auto;
   bottom: auto;
   transform: none;
-  pointer-events: auto;
+  pointer-events: none;
   z-index: auto;
   width: auto;
   max-width: none;
@@ -90,7 +96,7 @@ body.dragging {
   height: 480px;
   min-height: 340px;
   max-height: 90vh;
-  position: absolute; /* Allow full-screen movement on desktop */
+  position: fixed; /* Fixed positioning for free movement on desktop */
   margin: 30px auto 0 auto;
   pointer-events: auto;
   box-shadow: 0 0 32px 8px #00e6d8cc, 0 0 0 4px #7f5cff88, 0 0 40px 8px #4A90E299;
@@ -106,6 +112,7 @@ body.dragging {
   max-width: 98vw;
   min-width: 320px;
   width: 420px;
+  /* Remove default positioning to let JavaScript handle it */
   left: auto;
   top: auto;
   right: auto;
@@ -415,6 +422,18 @@ body.dragging {
 }
 
 @media (max-width: 600px) {
+  #quannex-chat-widget-wrapper {
+    /* Keep wrapper constraints for mobile */
+    position: fixed;
+    width: 98vw;
+    left: 1vw;
+    right: 1vw;
+    bottom: 16px;
+    top: auto;
+    transform: none;
+    pointer-events: none;
+  }
+  
   #quannex-chat-window {
     position: fixed;
     width: 98vw;
@@ -423,10 +442,10 @@ body.dragging {
     border-radius: 18px;
     height: calc(100vh - 100px);
     max-height: unset;
-    left: 1vw;
-    right: 1vw;
-    bottom: 16px;
-    top: auto;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 16px !important;
+    top: auto !important;
   }
   #quannex-chat-bubble {
     right: 4px;

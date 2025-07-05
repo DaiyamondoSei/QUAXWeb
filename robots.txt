@@ -3,9 +3,54 @@ Allow: /
 Disallow: /private/
 Disallow: /admin/
 Disallow: /temp/
+Disallow: /components/
+Disallow: /delivery/
+Disallow: /netlify/
+Disallow: /cache/
+Disallow: /scripts/
+Disallow: /public/
+Disallow: /*.json
+Disallow: /component-*.html
+
+# Bing-specific directives
+User-agent: bingbot
+Allow: /
+Crawl-delay: 1
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&gclid&fbclid
+
+User-agent: msnbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: BingPreview
+Allow: /
+
+# Yandex-specific directives
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 5
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+
+User-agent: YandexImages
+Allow: /images/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+
+User-agent: YandexVideo
+Allow: /
+
+User-agent: YandexNews
+Allow: /
 
 # Sitemaps
 Sitemap: https://quannex.earth/sitemap.xml
 
 # Crawl-delay
-Crawl-delay: 10 
+Crawl-delay: 10
+
+# Host directive for Yandex (specify main domain)
+Host: https://quannex.earth 

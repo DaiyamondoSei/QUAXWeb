@@ -99,22 +99,28 @@
 
   // Helper to reset chat window to center (desktop/tablet)
   function resetChatWindowToCenter() {
-    const boxW = windowEl.offsetWidth || 420;
-    const boxH = windowEl.offsetHeight || 480;
-    const centerX = (window.innerWidth - boxW) / 2;
-    const centerY = (window.innerHeight - boxH) / 2;
+    // Ensure window dimensions are calculated
+    const boxW = 420; // Use fixed width to ensure consistent calculation
+    const boxH = 480; // Use fixed height to ensure consistent calculation
+    const centerX = Math.max(0, (window.innerWidth - boxW) / 2);
+    const centerY = Math.max(0, (window.innerHeight - boxH) / 2);
     
     windowEl.style.left = centerX + 'px';
     windowEl.style.top = centerY + 'px';
     windowEl.style.right = 'auto';
     windowEl.style.bottom = 'auto';
     windowEl.style.transform = 'none';
+    windowEl.style.position = 'fixed'; // Ensure fixed positioning
+    
+    // Save centered position
+    savePosition(centerX, centerY);
     
     // Window centered successfully
   }
 
   // Helper to set chat window to mobile default
   function setChatWindowMobileDefault() {
+    windowEl.style.position = 'fixed';
     windowEl.style.left = '50%';
     windowEl.style.top = 'auto';
     windowEl.style.right = 'auto';
@@ -237,6 +243,10 @@
       header.removeEventListener('mousedown', dragStartHandler);
     } else {
       setWrapperDesktopDefault();
+      
+      // Ensure window is fixed positioned for desktop
+      windowEl.style.position = 'fixed';
+      
       const savedPosition = loadPosition();
       
       // Validate saved position
@@ -245,20 +255,20 @@
         // Check if within viewport with some tolerance
         const winW = window.innerWidth;
         const winH = window.innerHeight;
-        const boxW = windowEl.offsetWidth || 420;
-        const boxH = windowEl.offsetHeight || 480;
+        const boxW = 420;
+        const boxH = 480;
         
         if (
-          savedPosition.left >= -50 &&
-          savedPosition.left <= winW - 50 &&
-          savedPosition.top >= -50 &&
-          savedPosition.top <= winH - 50
+          savedPosition.left >= 0 &&
+          savedPosition.left <= winW - boxW &&
+          savedPosition.top >= 0 &&
+          savedPosition.top <= winH - boxH
         ) {
           valid = true;
         }
       }
       
-      if (valid) {
+      if (valid && savedPosition) {
         // Apply saved position
         windowEl.style.left = savedPosition.left + 'px';
         windowEl.style.top = savedPosition.top + 'px';
@@ -275,11 +285,15 @@
       header.addEventListener('mousedown', dragStartHandler);
       
       // Ensure it's within viewport bounds
-      clampChatWindowToViewport();
+      setTimeout(() => {
+        clampChatWindowToViewport();
+      }, 100); // Small delay to ensure dimensions are calculated
     }
     
     windowEl.style.pointerEvents = 'auto';
     animateOpen();
+    
+    saveState({ open: true });
     
     // Chat window positioned and displayed
   }
@@ -372,7 +386,7 @@
       hideIndicator('typing');
       }
     } catch (err) {
-      hideLoader();
+      hideIndicator('typing');
       addMessage('There was an error connecting to Quannex Intelligence.', 'ai');
     }
   });

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square70x70logo src="/images/favicon_io/favicon-32x32.png"/>
+      <square150x150logo src="/images/favicon_io/android-chrome-192x192.png"/>
+      <square310x310logo src="/images/favicon_io/android-chrome-512x512.png"/>
+      <TileColor>#050520</TileColor>
+    </tile>
+    <notification>
+      <polling-uri src="https://quannex.earth/notifications/"/>
+      <frequency>30</frequency>
+      <cycle>1</cycle>
+    </notification>
+  </msapplication>
+</browserconfig> 

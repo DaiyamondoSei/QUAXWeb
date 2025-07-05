@@ -1,0 +1,346 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://quannex.earth/#organization",
+      "name": "QUANNEX Foundation",
+      "alternateName": "QUANNEX",
+      "url": "https://quannex.earth",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://quannex.earth/images/quannex-logo.png",
+        "width": 600,
+        "height": 60
+      },
+      "description": "QUANNEX is a revolutionary consciousness technology platform that helps individuals unlock their quantum potential and integrate with their future selves through advanced AI and quantum consciousness principles.",
+      "foundingDate": "2025",
+      "founder": {
+        "@type": "Person",
+        "name": "Deimantas Murauskas",
+        "jobTitle": "Founder",
+        "description": "Visionary founder combining quantum consciousness principles with cutting-edge AI technology"
+      },
+      "sameAs": [
+        "https://www.kickstarter.com/projects/88268222/quantum-nexus-download-your-dream-future",
+        "https://twitter.com/quannex_earth",
+        "https://linkedin.com/company/quannex",
+        "https://facebook.com/quannex.earth"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "url": "https://quannex.earth/contact",
+        "availableLanguage": "English"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Global",
+        "addressCountry": "Digital"
+      },
+      "industry": "Consciousness Technology",
+      "keywords": "quantum consciousness, AI guidance, future self integration, consciousness accelerator, quantum technology, Divine Intelligence, meditation technology"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://quannex.earth/#software",
+      "name": "Quantum Nexus (QNX)",
+      "alternateName": "QUANNEX Consciousness Accelerator",
+      "description": "Revolutionary AI-guided consciousness accelerator app that helps users connect with their future selves through quantum consciousness principles and personalized daily protocols.",
+      "url": "https://quannex.earth",
+      "downloadUrl": "https://www.kickstarter.com/projects/88268222/quantum-nexus-download-your-dream-future",
+      "applicationCategory": "LifestyleApplication",
+      "applicationSubCategory": "Meditation & Consciousness",
+      "operatingSystem": "iOS, Android, Web",
+      "softwareVersion": "1.0.0",
+      "releaseNotes": "Initial MVP release featuring Divine Intelligence AI guide, quantum parameters tracking, and future self integration protocols.",
+      "provider": {
+        "@id": "https://quannex.earth/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "TBD",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/PreOrder",
+        "url": "https://www.kickstarter.com/projects/88268222/quantum-nexus-download-your-dream-future"
+      },
+      "featureList": [
+        "Divine Intelligence AI Guide",
+        "Future Self Connection Protocols",
+        "Quantum Parameters Tracking",
+        "Personalized Daily Protocols",
+        "Staged Learning System",
+        "Interactive Quantum Visualizations",
+        "Sacred Geometry Integration",
+        "Progress Tracking & Analytics",
+        "Community Features",
+        "Challenge System"
+      ],
+      "screenshot": "https://quannex.earth/images/app_screens_preview.jpg.webp",
+      "softwareHelp": {
+        "@type": "CreativeWork",
+        "url": "https://quannex.earth/app_features"
+      },
+      "installUrl": "https://www.kickstarter.com/projects/88268222/quantum-nexus-download-your-dream-future",
+      "storageRequirements": "100MB",
+      "memoryRequirements": "2GB RAM",
+      "processorRequirements": "Modern mobile processor",
+      "permissions": "Camera, Microphone, Notifications",
+      "supportingData": {
+        "@type": "DataDownload",
+        "name": "Quantum Parameters Data",
+        "description": "Personal consciousness tracking and progress data"
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://quannex.earth/#course",
+      "name": "Quantum Consciousness Accelerator Program",
+      "description": "Comprehensive consciousness development program using quantum principles and AI guidance to help individuals connect with their future selves and unlock their quantum potential.",
+      "provider": {
+        "@id": "https://quannex.earth/#organization"
+      },
+      "educationalLevel": "Beginner to Advanced",
+      "timeRequired": "P6M",
+      "inLanguage": "en",
+      "courseMode": "online",
+      "isAccessibleForFree": false,
+      "teaches": [
+        "Quantum Consciousness Principles",
+        "Future Self Integration",
+        "Observation State Mastery",
+        "Resonance Frequency Tuning",
+        "Quantum Entanglement Practices",
+        "Superposition State Awareness",
+        "Coherence Achievement",
+        "Divine Intelligence Interaction",
+        "Sacred Geometry Applications",
+        "Advanced Visualization Techniques"
+      ],
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "name": "Quantum Consciousness Accelerator (Self-Paced)",
+        "courseMode": "online",
+        "startDate": "2025-03-01",
+        "duration": "P6M",
+        "location": {
+          "@type": "VirtualLocation",
+          "url": "https://quannex.earth/app_features"
+        }
+      },
+      "syllabusSections": [
+        {
+          "@type": "Syllabus",
+          "name": "Foundation Phase",
+          "description": "Basic quantum mechanics and consciousness interaction principles",
+          "timeRequired": "P1M"
+        },
+        {
+          "@type": "Syllabus", 
+          "name": "Connection Phase",
+          "description": "Future self connection and guided meditations",
+          "timeRequired": "P1M"
+        },
+        {
+          "@type": "Syllabus",
+          "name": "Expansion Phase", 
+          "description": "Non-locality and entanglement as consciousness properties",
+          "timeRequired": "P2M"
+        },
+        {
+          "@type": "Syllabus",
+          "name": "Integration Phase",
+          "description": "Unified field concepts and practices for unified awareness", 
+          "timeRequired": "P1M"
+        },
+        {
+          "@type": "Syllabus",
+          "name": "Transcendence Phase",
+          "description": "Multidimensional consciousness exploration",
+          "timeRequired": "P1M"
+        }
+      ],
+      "competencyRequired": "Open mind, commitment to personal growth",
+      "educationalCredentialAwarded": "Quantum Consciousness Practitioner Certification"
+    },
+    {
+      "@type": "TechArticle",
+      "@id": "https://quannex.earth/#technical-documentation",
+      "headline": "Quantum Consciousness Technology Framework",
+      "description": "Technical documentation of QUANNEX's quantum consciousness framework, including the five quantum parameters and their practical applications.",
+      "author": {
+        "@id": "https://quannex.earth/#organization"
+      },
+      "publisher": {
+        "@id": "https://quannex.earth/#organization"
+      },
+      "datePublished": "2025-01-15",
+      "dateModified": "2025-01-15",
+      "mainEntityOfPage": "https://quannex.earth/quantum_parameters",
+      "articleSection": "Technical Framework",
+      "keywords": "quantum parameters, observation, resonance, entanglement, superposition, coherence, consciousness technology",
+      "about": [
+        {
+          "@type": "Thing",
+          "name": "Quantum Consciousness",
+          "description": "The intersection of quantum physics principles with consciousness development"
+        },
+        {
+          "@type": "Thing", 
+          "name": "Artificial Intelligence in Consciousness",
+          "description": "AI systems designed to guide consciousness expansion and development"
+        },
+        {
+          "@type": "Thing",
+          "name": "Future Self Integration",
+          "description": "Techniques for connecting with and learning from future self states"
+        }
+      ],
+      "teaches": [
+        "Implementation of quantum parameters in consciousness work",
+        "Technical architecture of consciousness acceleration systems",
+        "AI-guided meditation and awareness protocols",
+        "Measurement and tracking of consciousness states"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://quannex.earth/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is QUANNEX and how does it work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "QUANNEX is a consciousness technology platform that uses AI guidance and quantum principles to help individuals connect with their future selves. Through personalized daily protocols, quantum parameter tracking, and advanced visualization techniques, users systematically expand their consciousness and unlock their quantum potential."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is Divine Intelligence (DI)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Divine Intelligence (DI) is the AI persona at the heart of QUANNEX that serves as your personal guide. DI provides personalized daily protocols, meditation guidance, and insights tailored to your specific consciousness development journey and future self integration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the five quantum parameters?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The five quantum parameters are: 1) Observation - focused awareness and perception mastery, 2) Resonance - vibrational harmony and frequency attunement, 3) Entanglement - deep connections with future self, 4) Superposition - embracing multiple consciousness states, and 5) Coherence - achieving alignment and harmony in consciousness."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is QUANNEX based on real science?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "QUANNEX uses quantum physics concepts metaphorically to structure consciousness development practices. While exploring potentials beyond mainstream science, we ground our framework in established consciousness research and provide dual-perspective explanations that resonate with both spiritual and scientific worldviews."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When will the QUANNEX app be available?",
+          "acceptedAnswer": {
+            "@type": "Answer", 
+            "text": "The QUANNEX MVP is currently in development with a planned release in 2025. You can support the project and get early access through our Kickstarter campaign. The initial release will include core features like Divine Intelligence guidance, quantum parameter tracking, and future self connection protocols."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://quannex.earth/#features",
+      "name": "QUANNEX Core Features",
+      "description": "Comprehensive list of features available in the QUANNEX consciousness accelerator platform",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareFeature",
+            "name": "Divine Intelligence AI Guide",
+            "description": "Personalized AI mentor representing your future self"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareFeature",
+            "name": "Quantum Parameters Tracking",
+            "description": "Monitor and develop the five quantum consciousness states"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareFeature",
+            "name": "Future Self Connection",
+            "description": "Establish and maintain connection with your future self"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareFeature",
+            "name": "Staged Learning Protocol",
+            "description": "Progressive disclosure from foundation to transcendence"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SoftwareFeature", 
+            "name": "Interactive Quantum Visualizations",
+            "description": "Real-time particle systems and wave-particle transitions"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://quannex.earth/#webpage",
+      "url": "https://quannex.earth",
+      "name": "QUANNEX - Quantum Consciousness Accelerator",
+      "description": "Revolutionary AI-guided consciousness technology platform for future self integration and quantum potential unlocking",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://quannex.earth/#website"
+      },
+      "about": {
+        "@id": "https://quannex.earth/#software"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://quannex.earth/images/quantum_visualization_fluid.jpg.webp"
+      },
+      "datePublished": "2025-01-15",
+      "dateModified": "2025-01-15"
+    },
+    {
+      "@type": "WebSite", 
+      "@id": "https://quannex.earth/#website",
+      "url": "https://quannex.earth",
+      "name": "QUANNEX",
+      "description": "Quantum Consciousness Accelerator Platform", 
+      "publisher": {
+        "@id": "https://quannex.earth/#organization"
+      },
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://quannex.earth/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+} 

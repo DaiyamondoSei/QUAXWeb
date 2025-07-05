@@ -18,6 +18,33 @@
     
     <link rel="canonical" href="https://quannex.earth/curriculum">
     <title>Curriculum | QUANNEX</title>
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(103201088, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/103201088" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    
+    <!-- Clarity tracking code for https://quannex.earth/ -->
+    <script>
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "s9nghvvhm3");
+    </script>
+    
     <!-- Favicon for all browsers -->
     <link rel="icon" href="images/favicon_io/favicon.ico" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon_io/favicon-32x32.png">
@@ -140,8 +167,14 @@
             "@type": "CourseInstance",
             "courseMode": "online",
             "duration": "P4W",
-            "courseWorkload": "1 hour per day, 7 days a week for 4 weeks",
-            "courseSchedule": "Self-paced"
+            "courseWorkload": "PT1H",
+            "courseSchedule": {
+                "@type": "Schedule",
+                "startDate": "2025-01-01",
+                "endDate": "2025-12-31",
+                "repeatFrequency": "Daily",
+                "repeatCount": "28"
+            }
         },
         "datePublished": "2025-06-20",
         "dateModified": "2025-06-20",

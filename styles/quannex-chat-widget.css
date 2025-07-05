@@ -1,3 +1,18 @@
+body.dragging {
+  user-select: none;
+  cursor: grabbing !important;
+}
+
+body.dragging * {
+  cursor: grabbing !important;
+}
+
+#quannex-chat-root {
+  position: relative;
+  z-index: 10000;
+  pointer-events: none; /* Allow clicks to pass through to content below */
+}
+
 #quannex-chat-bubble {
   position: fixed;
   bottom: 104px; /* Above back-to-top button */
@@ -15,6 +30,7 @@
   z-index: 10000; /* Increased to be above quantum cursor */
   border: 3px solid #7f5cffcc;
   transition: box-shadow 0.2s, background 0.2s, transform 0.2s;
+  pointer-events: auto; /* Re-enable pointer events for the bubble */
 }
 #quannex-chat-bubble:focus {
   outline: 2.5px solid #00e6d8;
@@ -59,14 +75,20 @@
   transform: scale(1.12) rotate(-4deg);
 }
 #quannex-chat-widget-wrapper {
-  position: fixed;
-  bottom: 180px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10001; /* Increased to be above quantum cursor */
-  width: 420px;
-  max-width: 98vw;
+  /* Remove all positioning for desktop to allow free movement */
+  position: static;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+  transform: none;
   pointer-events: none;
+  z-index: auto;
+  width: auto;
+  max-width: none;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 #quannex-chat-window {
   display: none; /* Start hidden, controlled by JavaScript */
@@ -74,24 +96,27 @@
   height: 480px;
   min-height: 340px;
   max-height: 90vh;
-  position: fixed; /* Changed from relative to fixed for proper positioning */
-  margin: 30px auto 0 auto; /* Added margin-top to detach header */
+  position: fixed; /* Fixed positioning for free movement on desktop */
+  margin: 30px auto 0 auto;
   pointer-events: auto;
-  /* Neon animated border */
   box-shadow: 0 0 32px 8px #00e6d8cc, 0 0 0 4px #7f5cff88, 0 0 40px 8px #4A90E299;
-  border-radius: 0 0 28px 28px; /* Rounded only at the bottom */
+  border-radius: 0 0 28px 28px;
   border: 2.5px solid #7f5cff88;
   overflow: hidden;
   animation: neon-glow 2.5s infinite alternate cubic-bezier(.4,0,.6,1);
   opacity: 0;
   transform: scale(0.85) translateY(40px);
-  pointer-events: none; /* Disable interactions when hidden */
+  pointer-events: none;
   transition: opacity 0.38s cubic-bezier(.4,0,.2,1), transform 0.38s cubic-bezier(.4,0,.2,1), box-shadow 0.28s;
-  /* Ensure the chat window is always visible */
-  z-index: 10002; /* Increased to be above quantum cursor */
+  z-index: 10002;
   max-width: 98vw;
   min-width: 320px;
-  width: 420px; /* Set explicit width */
+  width: 420px;
+  /* Remove default positioning to let JavaScript handle it */
+  left: auto;
+  top: auto;
+  right: auto;
+  bottom: auto;
 }
 #quannex-chat-window.quannex-chat-animate-in {
   opacity: 1;
@@ -247,6 +272,38 @@
   animation: quannex-spin 1.2s linear infinite;
   filter: drop-shadow(0 0 16px #00e6d8cc);
 }
+
+#quannex-typing-indicator {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #00e6d8;
+  border-radius: 50%;
+  margin: 0 4px;
+  animation: typing 1.2s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
 @keyframes quannex-spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -363,29 +420,32 @@
   color: #00e6d8; /* Vibrant color */
   text-shadow: 0 0 10px #00e6d8, 0 0 20px #00e6d8; /* Neon glow effect */
 }
-.quannex-header-subtitle {
-  font-size: 1.02rem;
-  font-weight: 400;
-  color: #e0f7fa;
-  margin-top: 2px;
-  text-shadow: 0 1px 8px #00e6d8cc;
-}
+
 @media (max-width: 600px) {
   #quannex-chat-widget-wrapper {
+    /* Keep wrapper constraints for mobile */
+    position: fixed;
     width: 98vw;
-    left: 1vw; /* Adjusted for mobile */
-    right: 1vw; /* Adjusted for mobile */
-    transform: none; /* Removed for mobile */
-    bottom: 16px; /* Adjusted for mobile */
-    top: auto; /* Ensure it's at the bottom */
+    left: 1vw;
+    right: 1vw;
+    bottom: 16px;
+    top: auto;
+    transform: none;
+    pointer-events: none;
   }
+  
   #quannex-chat-window {
+    position: fixed;
     width: 98vw;
-    min-width: unset; /* Removed min-width for mobile */
+    min-width: unset;
     max-width: 98vw;
     border-radius: 18px;
-    height: calc(100vh - 100px); /* Make it take up most of the screen height */
-    max-height: unset; /* Remove max-height restriction */
+    height: calc(100vh - 100px);
+    max-height: unset;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 16px !important;
+    top: auto !important;
   }
   #quannex-chat-bubble {
     right: 4px;
@@ -696,4 +756,10 @@
   font-size: 1.6rem;
   color: #7f5cff;
   filter: drop-shadow(0 0 8px #00e6d8cc);
+}
+.quannex-header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 } 
