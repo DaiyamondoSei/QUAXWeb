@@ -1,54 +1,151 @@
-// Quannex Intelligence Chat Widget JS
+// Quannex Intelligence Chat Widget JS - Best Practices Implementation
 (function() {
-  const bubble = document.getElementById('quannex-chat-bubble');
-  const windowEl = document.getElementById('quannex-chat-window');
-  const closeBtn = document.getElementById('quannex-chat-close');
-  const newChatBtn = document.getElementById('quannex-new-chat-btn');
-  const form = document.getElementById('quannex-chat-form');
-  const input = document.getElementById('quannex-chat-input');
-  const messages = document.getElementById('quannex-chat-messages');
+  'use strict';
+  
+  // Error handling wrapper
+  function safeExecute(fn, context = 'Unknown') {
+    try {
+      return fn();
+    } catch (error) {
+      console.error(`[Quannex Chat Widget] Error in ${context}:`, error);
+      return null;
+    }
+  }
+
+  // Check for required elements
+  const requiredElements = [
+    'quannex-chat-bubble',
+    'quannex-chat-window', 
+    'quannex-chat-close',
+    'quannex-new-chat-btn',
+    'quannex-chat-form',
+    'quannex-chat-input',
+    'quannex-chat-messages',
+    'quannex-chat-header'
+  ];
+
+  const elements = {};
+  let missingElements = [];
+
+  requiredElements.forEach(id => {
+    const element = document.getElementById(id);
+    if (!element) {
+      missingElements.push(id);
+    } else {
+      elements[id.replace('quannex-chat-', '')] = element;
+    }
+  });
+
+  if (missingElements.length > 0) {
+    console.error('[Quannex Chat Widget] Missing required elements:', missingElements);
+    return; // Exit if critical elements are missing
+  }
+
+  // Get elements with fallback
+  const bubble = elements.bubble;
+  const windowEl = elements.window;
+  const closeBtn = elements.close;
+  const newChatBtn = elements['new-chat-btn'];
+  const form = elements.form;
+  const input = elements.input;
+  const messages = elements.messages;
+  const header = elements.header;
+  
+  // Optional elements
   const loader = document.getElementById('quannex-chat-loader');
   const typingIndicator = document.getElementById('quannex-typing-indicator');
   const feedback = document.getElementById('quannex-chat-feedback');
   const feedbackYes = document.getElementById('quannex-feedback-yes');
   const feedbackNo = document.getElementById('quannex-feedback-no');
-  const header = document.getElementById('quannex-chat-header');
 
+  // State management with error handling
   const stateManager = {
-    get: () => {
-      try {
-        return JSON.parse(localStorage.getItem('quannex-chat-state')) || {};
-      } catch {
-        return {};
+    get: () => safeExecute(() => {
+      return JSON.parse(localStorage.getItem('quannex-chat-state')) || {};
+    }, 'State loading') || {},
+    
+    set: (state) => safeExecute(() => {
+      localStorage.setItem('quannex-chat-state', JSON.stringify(state));
+    }, 'State saving')
+  };
+
+  // Event listener tracking for cleanup
+  const eventListeners = new Map();
+
+  function addManagedEventListener(element, event, handler, options = {}) {
+    if (!element) return;
+    
+    const key = `${element.id || 'unknown'}-${event}`;
+    
+    // Remove existing listener if present
+    if (eventListeners.has(key)) {
+      const existing = eventListeners.get(key);
+      element.removeEventListener(event, existing.handler, existing.options);
+    }
+    
+    element.addEventListener(event, handler, options);
+    eventListeners.set(key, { element, event, handler, options });
+  }
+
+  // Cleanup function
+  function cleanup() {
+    eventListeners.forEach(({ element, event, handler, options }) => {
+      element.removeEventListener(event, handler, options);
+    });
+    eventListeners.clear();
+    
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    if (closeTimeout) clearTimeout(closeTimeout);
+  }
+
+  // Safe HTML rendering
+  function sanitizeHTML(str) {
+    if (typeof str !== 'string') return '';
+    
+    const div = document.createElement('div');
+    div.textContent = str;
+    let sanitized = div.innerHTML;
+    
+    // Only allow specific highlighting
+    sanitized = sanitized.replace(/(Quannex)/gi, '<span class="quannex-highlight">$1</span>');
+    
+    return sanitized;
+  }
+
+  // Performance monitoring
+  const performanceMonitor = {
+    startTiming(label) {
+      if (performance && performance.mark) {
+        performance.mark(`quannex-${label}-start`);
       }
     },
-    set: (state) => {
-      localStorage.setItem('quannex-chat-state', JSON.stringify(state));
+    
+    endTiming(label) {
+      if (performance && performance.mark && performance.measure) {
+        performance.mark(`quannex-${label}-end`);
+        performance.measure(`quannex-${label}`, `quannex-${label}-start`, `quannex-${label}-end`);
+      }
     }
   };
 
-  // Persistent state helpers
+  // Persistent state helpers with error handling
   function saveState(newState) {
     const state = stateManager.get();
     stateManager.set({ ...state, ...newState });
   }
+  
   function loadState() {
     return stateManager.get();
   }
-  function saveFeedback(feedbackArr) {
-    const state = stateManager.get();
-    state.feedback = feedbackArr;
-    stateManager.set(state);
-  }
-  function loadFeedback() {
-    const state = stateManager.get();
-    return state.feedback || [];
-  }
+  
   function savePosition(left, top) {
-    const state = loadState();
-    state.position = { left, top };
-    saveState(state);
+    if (typeof left === 'number' && typeof top === 'number') {
+      const state = loadState();
+      state.position = { left, top };
+      saveState(state);
+    }
   }
+  
   function loadPosition() {
     const state = loadState();
     return state.position || null;
@@ -207,9 +304,10 @@
     clearTimeout(closeTimeout);
     windowEl.style.display = 'flex';
     windowEl.classList.remove('quannex-chat-animate-out');
-    void windowEl.offsetWidth; // Force reflow for animation
-    windowEl.classList.add('quannex-chat-animate-in');
-    setTimeout(() => input.focus(), 400);
+    requestAnimationFrame(() => { // Use requestAnimationFrame for smoother animation
+      windowEl.classList.add('quannex-chat-animate-in');
+      setTimeout(() => input.focus(), 400);
+    });
   }
   function animateClose() {
     windowEl.classList.remove('quannex-chat-animate-in');
@@ -286,7 +384,7 @@
       
       // Ensure it's within viewport bounds
       setTimeout(() => {
-        clampChatWindowToViewport();
+      clampChatWindowToViewport();
       }, 100); // Small delay to ensure dimensions are calculated
     }
     
@@ -348,48 +446,56 @@
     feedback.style.display = 'none';
   }
   function storeFeedback(val) {
-    const feedbackArr = loadFeedback();
+    const state = stateManager.get();
+    const feedbackArr = state.feedback || [];
     feedbackArr.push({
       timestamp: Date.now(),
       value: val,
       lastAI: ''
     });
-    saveFeedback(feedbackArr);
+    saveState({ feedback: feedbackArr });
     hideFeedback();
   }
   feedbackYes.addEventListener('click', () => storeFeedback('yes'));
   feedbackNo.addEventListener('click', () => storeFeedback('no'));
 
-  // Form submit (multi-line textarea)
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const question = input.value.trim();
-    if (!question) return;
-    addMessage(question, 'user');
-    input.value = '';
-    resizeInput(); // Reset textarea size after sending
-    showIndicator('typing');
-    hideFeedback();
-    try {
-      const res = await fetch('/.netlify/functions/quannex_intelligence', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question })
-      });
-      const data = await res.json();
-      hideIndicator('typing');
-      if (data.answer) {
-        addMessage(data.answer, 'ai');
-        showFeedback();
-      } else {
-        addMessage('Sorry, Quannex Intelligence could not find an answer. Please try again.', 'ai');
-      hideIndicator('typing');
+  // Enhanced form submission with better error handling
+  if (form) {
+    addManagedEventListener(form, 'submit', async function(e) {
+      e.preventDefault();
+      
+      const question = input.value.trim();
+      if (!question) return;
+      
+      // Disable form during submission
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      
+      addMessage(question, 'user');
+      input.value = '';
+      if (typeof resizeInput === 'function') resizeInput();
+      
+      if (typingIndicator) showIndicator('typing');
+      if (feedback) hideFeedback();
+      
+      try {
+        const data = await sendMessage(question);
+        
+        if (data && data.answer) {
+          addMessage(data.answer, 'ai');
+          if (feedback) showFeedback();
+        } else {
+          addMessage('Sorry, I could not process your request. Please try again.', 'ai');
+        }
+      } catch (error) {
+        console.error('[Quannex Chat Widget] API Error:', error);
+        addMessage(`Error: ${error.message}`, 'ai');
+      } finally {
+        if (typingIndicator) hideIndicator('typing');
+        if (submitBtn) submitBtn.disabled = false;
       }
-    } catch (err) {
-      hideIndicator('typing');
-      addMessage('There was an error connecting to Quannex Intelligence.', 'ai');
-    }
-  });
+    });
+  }
 
   // Multi-line textarea: Enter to send, Shift+Enter for newline
   input.addEventListener('keydown', function(e) {
@@ -406,16 +512,67 @@
   }
   input.addEventListener('input', resizeInput);
 
-  // Restore state/history on load
-  if (loadState().open) {
-    showChat();
-  }
-  // Add welcoming message if no history exists
-  if (!getCurrentSessionId() || !getCurrentSession()) {
-    createSession(); // Create a new session if none exists or current is invalid
-  }
-  renderHistory(getCurrentSession().messages);
+  // Enhanced resize handling with proper cleanup
+  let resizeTimeout;
+  addManagedEventListener(window, 'resize', function() {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      safeExecute(() => {
+        const isMobile = window.innerWidth <= 600;
+        if (isMobile) {
+          setWrapperMobileDefault();
+          setChatWindowMobileDefault();
+          if (header) {
+            header.style.cursor = 'default';
+            header.removeEventListener('mousedown', dragStartHandler);
+          }
+        } else {
+          setWrapperDesktopDefault();
+          clampChatWindowToViewport();
+          if (header) {
+            header.style.cursor = 'grab';
+            addManagedEventListener(header, 'mousedown', dragStartHandler);
+          }
+        }
+      }, 'Window resize');
+    }, 150);
+  });
 
+  // Global error handler for unhandled errors
+  addManagedEventListener(window, 'error', function(event) {
+    if (event.filename && event.filename.includes('quannex-chat-widget')) {
+      console.error('[Quannex Chat Widget] Unhandled error:', {
+        message: event.message,
+        filename: event.filename,
+        lineno: event.lineno,
+        colno: event.colno
+      });
+    }
+  });
+
+  // Cleanup on page unload
+  addManagedEventListener(window, 'beforeunload', cleanup);
+
+  // Initialize with error handling
+  safeExecute(() => {
+    // Restore state/history on load
+    if (loadState().open) {
+      showChat();
+    }
+    
+    // Initialize session
+    if (!getCurrentSessionId() || !getCurrentSession()) {
+      createSession();
+    }
+    renderHistory(getCurrentSession().messages);
+  }, 'Initialization');
+
+  // Export cleanup function for manual cleanup if needed
+  if (window.QuannexChatWidget) {
+    window.QuannexChatWidget.cleanup = cleanup;
+  } else {
+    window.QuannexChatWidget = { cleanup };
+  }
 
   // --- Session-based History ---
   function saveSessions(sessions) {
@@ -486,12 +643,18 @@
     renderSessionList();
     historyModal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => { // Smooth animation
+      historyModal.classList.add('modal-open');
+    });
     setTimeout(() => historyClose.focus(), 100);
   }
   function closeHistoryModal() {
-    historyModal.style.display = 'none';
-    document.body.style.overflow = '';
-    windowEl.focus();
+    historyModal.classList.remove('modal-open');
+    setTimeout(() => {
+      historyModal.style.display = 'none';
+      document.body.style.overflow = '';
+    }, 300);
+    input.focus();
   }
   historyBtn.addEventListener('click', openHistoryModal);
   historyClose.addEventListener('click', closeHistoryModal);
@@ -557,16 +720,26 @@
     });
   }
   // --- Chat Rendering ---
-  function renderCoherenceMessage() {
-    const coherenceDiv = document.getElementById('quannex-chat-coherence-message');
-    if (!coherenceDiv) return;
-    coherenceDiv.innerHTML = `<div class="quannex-coherence-card"><span class="coherence-icon">⚛️</span> <span><strong>Quannex</strong> is here to help you find clarity and coherence. How can I assist you today?</span></div>`;
-  }
   function renderHistory(messagesOverride) {
-    renderCoherenceMessage();
     messages.innerHTML = '';
     const session = getCurrentSession();
     const msgs = messagesOverride || (session ? session.messages : []);
+    
+    // Add coherence message as first message if it's a new session
+    if (msgs.length === 1 && msgs[0].sender === 'ai') {
+      // Add the coherence card as a special message
+      const coherenceDiv = document.createElement('div');
+      coherenceDiv.className = 'quannex-coherence-card';
+      coherenceDiv.innerHTML = `
+        <span class="coherence-icon">⚛️</span>
+        <div>
+          <strong>Quannex</strong> is here to help you find clarity and coherence.<br>
+          How can I assist you today?
+        </div>
+      `;
+      messages.appendChild(coherenceDiv);
+    }
+    
     msgs.forEach(msg => {
       const div = document.createElement('div');
       div.className = 'quannex-message ' + msg.sender + (msg.special ? ' quannex-message-special' : '');
@@ -575,13 +748,27 @@
       div.innerHTML = html;
       messages.appendChild(div);
     });
-    messages.scrollTop = messages.scrollHeight;
+    
+    // Smooth scroll to bottom
+    requestAnimationFrame(() => {
+      messages.scrollTop = messages.scrollHeight;
+    });
   }
   // --- Message Handling ---
-  function addMessage(text, sender, special) {
+  function addMessage(text, sender, special = false) {
+    if (!text || !sender) return;
+    
     const session = getCurrentSession();
     if (!session) return;
-    session.messages.push({ text, sender, ts: Date.now(), special });
+    
+    const messageData = { 
+      text: String(text), 
+      sender: String(sender), 
+      ts: Date.now(), 
+      special: Boolean(special) 
+    };
+    
+    session.messages.push(messageData);
     updateCurrentSessionMessages(session.messages);
     renderHistory(session.messages);
   }
@@ -596,36 +783,16 @@
     }
   }
 
-  // --- On Load: Session Bootstrapping ---
-  if (!getCurrentSessionId() || !getCurrentSession()) {
-    createSession(); // Create a new session if none exists or current is invalid
-  }
-  renderHistory(getCurrentSession().messages);
-
   // New Chat button functionality
   newChatBtn.addEventListener('click', function() {
     const newSession = createSession();
     renderHistory(newSession.messages);
     input.value = ''; // Clear input field
     hideFeedback(); // Hide feedback buttons for new chat
+    // Smooth scroll to top to see coherence message
+    messages.scrollTop = 0;
   });
 
-  // Add window resize listener to keep chat window visible and correct mode
-  window.addEventListener('resize', function() {
-    const isMobile = window.innerWidth <= 600;
-    if (isMobile) {
-      setWrapperMobileDefault();
-      setChatWindowMobileDefault();
-      header.style.cursor = 'default';
-      header.removeEventListener('mousedown', dragStartHandler);
-    } else {
-      setWrapperDesktopDefault();
-      clampChatWindowToViewport(); // Clamp on resize as well
-      header.style.cursor = 'grab';
-      header.addEventListener('mousedown', dragStartHandler);
-    }
-  });
-  
   // Helper to reset wrapper styles for desktop/tablet
   function setWrapperDesktopDefault() {
     const wrapper = document.getElementById('quannex-chat-widget-wrapper');
@@ -656,5 +823,52 @@
     wrapper.style.bottom = '16px';
     wrapper.style.transform = 'none';
     wrapper.style.pointerEvents = 'auto';
+  }
+
+  // Enhanced error handling for API calls
+  async function sendMessage(question) {
+    if (!question || typeof question !== 'string') {
+      throw new Error('Invalid question provided');
+    }
+
+    performanceMonitor.startTiming('api-call');
+    
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
+      
+      const response = await fetch('/.netlify/functions/quannex_intelligence', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question }),
+        signal: controller.signal
+      });
+      
+      clearTimeout(timeoutId);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      performanceMonitor.endTiming('api-call');
+      
+      return data;
+    } catch (error) {
+      performanceMonitor.endTiming('api-call');
+      
+      if (error.name === 'AbortError') {
+        throw new Error('Request timed out. Please try again.');
+      }
+      
+      throw error;
+    }
+  }
+
+  function createMessageElement(text, sender, special = false) {
+    const div = document.createElement('div');
+    div.className = `quannex-message ${sender}${special ? ' quannex-message-special' : ''}`;
+    div.innerHTML = sanitizeHTML(text);
+    return div;
   }
 })();
